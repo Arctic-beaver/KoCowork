@@ -3,13 +3,13 @@
 AS
 BEGIN
 	select
-		id,
-		name,
-		dateBirth,
-		email,
-		phone,
-		paperAmount,
-		paperEndDay
+		Id,
+		Name,
+		Date,
+		Email,
+		Phone,
+		PaperAmount,
+		PaperEndDay
 	from dbo.Client
-	where id =@Id
+	where Id =@Id
 END

@@ -3,8 +3,8 @@
 AS
 BEGIN
 	select
-		id,
-		name
+		Id,
+		Name
 	from dbo.TypeOfRoom
-	where id =@Id
+	where Id =@Id
 END

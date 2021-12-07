@@ -3,5 +3,5 @@
 AS
 BEGIN
 	delete from dbo.TypeOfRoom
-	where id = @Id
+	where Id = @Id
 END

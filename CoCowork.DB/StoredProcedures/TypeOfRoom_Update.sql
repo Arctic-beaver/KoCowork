@@ -5,5 +5,5 @@ AS
 BEGIN
 	update dbo.TypeOfRoom
 	set Name = @Name
-    where id = @Id
+    where Id = @Id
 END

@@ -2,7 +2,7 @@
 AS
 BEGIN
 	select
-		id,
-		name
+		Id,
+		Name
 	from dbo.TypeOfRoom
 END

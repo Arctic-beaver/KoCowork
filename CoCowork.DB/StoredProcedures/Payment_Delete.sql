@@ -3,5 +3,5 @@
 AS
 BEGIN
 	delete from dbo.Payment
-	where id = @Id
+	where Id = @Id
 END

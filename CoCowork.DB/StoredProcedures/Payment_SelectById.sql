@@ -3,10 +3,10 @@
 AS
 BEGIN
 	select
-		id,
-		amount,
-		paymentDate,
-		orderId
+		Id,
+		Amount,
+		PaymentDate,
+		OrderId
 	from dbo.Payment
 	where id =@Id
 END

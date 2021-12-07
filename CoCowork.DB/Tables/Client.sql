@@ -1,10 +1,10 @@
 ﻿CREATE TABLE [dbo].[Client]
 (
-	[Id] INT NOT NULL PRIMARY KEY,
-	[Name] varchar NOT NULL,
-	[DateBirth] DateTime,
-	[Email] varchar,
-	[Phone] varchar,
+	[Id] INT NOT NULL PRIMARY KEY IDENTITY,
+	[Name] varchar(30) NOT NULL,
+	[Date] DateTime,
+	[Email] varchar(30),
+	[Phone] varchar(20),
 	[PaperAmount] int,
 	[PaperEndDay] Datetime
 )
