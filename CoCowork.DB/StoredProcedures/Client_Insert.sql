@@ -1,22 +1,22 @@
 ﻿CREATE PROC dbo.Client_Insert
-	@Name varchar, 
-	@Date DateTime,
-	@Email varchar,
-	@Phone varchar,
+	@Name varchar(30), 
+	@DateBirth date,
+	@Email varchar(30),
+	@Phone varchar(20),
 	@PaperAmount int,
 	@PaperEndDay DateTime
 AS
 BEGIN
 	insert into dbo.Client
 		(Name, 
-		Date, 
+		DateBirth, 
 		Email,
 		Phone,
 		PaperAmount,
 		PaperEndDay)
 	values 
 		(@Name, 
-		@Date, 
+		@DateBirth, 
 		@Email,
 		@Phone,
 		@PaperAmount,

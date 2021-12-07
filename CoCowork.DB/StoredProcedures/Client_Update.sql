@@ -1,7 +1,7 @@
 ﻿CREATE PROC dbo.Client_Update
 	@Id int,
 	@Name varchar, 
-	@Date DateTime,
+	@DateBirth date,
 	@Phone varchar,
 	@PaperAmount int,
 	@PaperEndDay DateTime
@@ -9,7 +9,7 @@ AS
 BEGIN
 	update dbo.Client
 	set Name = @Name, 
-		Date = @Date,
+		DateBirth = @DateBirth,
 		Phone = @Phone,
 		PaperAmount = @PaperAmount,
 		PaperEndDay = @PaperEndDay

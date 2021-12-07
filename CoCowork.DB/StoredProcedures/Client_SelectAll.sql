@@ -4,7 +4,7 @@ BEGIN
 	select
 		Id,
 		Name,
-		Date,
+		DateBirth,
 		Email,
 		Phone,
 		PaperAmount,
