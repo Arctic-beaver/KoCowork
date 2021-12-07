@@ -1,8 +1,8 @@
 ﻿CREATE PROC dbo.Client_Update
 	@Id int,
-	@Name varchar, 
+	@Name varchar(30), 
 	@DateBirth date,
-	@Phone varchar,
+	@Phone varchar(20),
 	@PaperAmount int,
 	@PaperEndDay DateTime
 AS

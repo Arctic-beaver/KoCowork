@@ -1,6 +1,6 @@
 ﻿CREATE PROC dbo.TypeOfRoom_Update
 	@Id int,
-	@Name varchar
+	@Name varchar(30)
 AS
 BEGIN
 	update dbo.TypeOfRoom

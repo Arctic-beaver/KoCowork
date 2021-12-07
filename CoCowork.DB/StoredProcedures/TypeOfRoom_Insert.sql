@@ -1,5 +1,5 @@
 ﻿CREATE PROC dbo.TypeOfRoom_Insert
-	@Name varchar
+	@Name varchar(30)
 AS
 BEGIN
 	insert into dbo.TypeOfRoom 
