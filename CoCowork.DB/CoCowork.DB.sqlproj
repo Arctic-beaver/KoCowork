@@ -81,5 +81,10 @@
     <Build Include="StoredProcedures\TypeOfRoom_Update.sql" />
     <Build Include="Tables\Laptop.sql" />
     <Build Include="Tables\LaptopOrder.sql" />
+    <Build Include="StoredProcedures\Laptop_Delete.sql" />
+    <Build Include="StoredProcedures\Laptop_Insert.sql" />
+    <Build Include="StoredProcedures\Laptop_SelectAll.sql" />
+    <Build Include="StoredProcedures\Laptop_SelectById.sql" />
+    <Build Include="StoredProcedures\Laptop_Update.sql" />
   </ItemGroup>
 </Project>
