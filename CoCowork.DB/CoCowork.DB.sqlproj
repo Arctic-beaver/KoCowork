@@ -80,5 +80,6 @@
     <Build Include="StoredProcedures\Payment_Update.sql" />
     <Build Include="StoredProcedures\TypeOfRoom_Update.sql" />
     <Build Include="Tables\Laptop.sql" />
+    <Build Include="Tables\LaptopOrder.sql" />
   </ItemGroup>
 </Project>
