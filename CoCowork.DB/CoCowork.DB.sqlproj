@@ -78,5 +78,7 @@
     <Build Include="StoredProcedures\TypeOfRoom_Delete.sql" />
     <Build Include="StoredProcedures\Payment_Update.sql" />
     <Build Include="StoredProcedures\TypeOfRoom_Update.sql" />
+    <Build Include="Tables\Product.sql" />
+    <Build Include="Tables\ProductOrder.sql" />
   </ItemGroup>
 </Project>
