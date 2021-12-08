@@ -1,6 +1,5 @@
 ﻿CREATE PROCEDURE [dbo].[Laptop_Delete]
-	@Id int = 0,
-	@param2 int
+	@Id int
 AS
 BEGIN
 	delete from dbo.Laptop

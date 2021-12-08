@@ -86,5 +86,10 @@
     <Build Include="StoredProcedures\Laptop_SelectAll.sql" />
     <Build Include="StoredProcedures\Laptop_SelectById.sql" />
     <Build Include="StoredProcedures\Laptop_Update.sql" />
+    <Build Include="StoredProcedures\LaptopOrder_Delete.sql" />
+    <Build Include="StoredProcedures\LaptopOrder_Insert.sql" />
+    <Build Include="StoredProcedures\LaptopOrder_SelectAll.sql" />
+    <Build Include="StoredProcedures\LaptopOrder_SelectById.sql" />
+    <Build Include="StoredProcedures\LaptopOrder_Update.sql" />
   </ItemGroup>
 </Project>

@@ -1,5 +1,4 @@
 ﻿CREATE PROCEDURE [dbo].[Laptop_SelectAll]
-	
 AS
 BEGIN
 	select
