@@ -78,5 +78,11 @@
     <Build Include="StoredProcedures\TypeOfRoom_Delete.sql" />
     <Build Include="StoredProcedures\Payment_Update.sql" />
     <Build Include="StoredProcedures\TypeOfRoom_Update.sql" />
+    <Build Include="Tables\Room.sql" />
+    <Build Include="Tables\RoomOrder.sql" />
+    <Build Include="Tables\Order.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <RefactorLog Include="CoCowork.DB.refactorlog" />
   </ItemGroup>
 </Project>

@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Operations Version="1.0" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+  <Operation Name="Rename Refactor" Key="f85d8b21-56f4-427f-bd95-599b0c9320c4" ChangeDateTime="12/08/2021 13:24:41">
+    <Property Name="ElementName" Value="[dbo].[RoomOrder].[RoodId]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[RoomOrder]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="RoomId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="1249349a-05e0-46ec-9ff0-98a680b7cb49" ChangeDateTime="12/08/2021 13:27:09">
+    <Property Name="ElementName" Value="[dbo].[FK_Room_ToTable]" />
+    <Property Name="ElementType" Value="SqlForeignKeyConstraint" />
+    <Property Name="ParentElementName" Value="[dbo].[Room]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="[FK_Type_to_TypeOfRomm]" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="df5bbaf0-6a82-4be3-b1d8-f8f686e7f80b" ChangeDateTime="12/08/2021 13:27:38">
+    <Property Name="ElementName" Value="[dbo].[RoomId]" />
+    <Property Name="ElementType" Value="SqlForeignKeyConstraint" />
+    <Property Name="ParentElementName" Value="[dbo].[RoomOrder]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="[FK_RoomId_to_Room]" />
+  </Operation>
+</Operations>
