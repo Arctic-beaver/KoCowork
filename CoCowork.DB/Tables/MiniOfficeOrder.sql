@@ -5,5 +5,6 @@
     [OrderId] INT NOT NULL, 
     [StartDate] DATETIME NOT NULL, 
     [EndDate] DATETIME NOT NULL, 
-    [SubtotalPrice] INT NOT NULL
+    [SubtotalPrice] INT NOT NULL, 
+    CONSTRAINT [FK_MiniOfficeOrder_ToMiniOffice] FOREIGN KEY ([MiniOfficeId]) REFERENCES [dbo].[MiniOffice]([Id])
 )
