@@ -62,6 +62,9 @@
     <Folder Include="StoredProcedures\Payment.CRUD" />
     <Folder Include="StoredProcedures\TypeOfRoom.CRUD" />
     <Folder Include="StoredProcedures\Place.CRUD" />
+    <Folder Include="StoredProcedures\MiniOffice.CRUD" />
+    <Folder Include="StoredProcedures\PlaceOrder.CRUD" />
+    <Folder Include="StoredProcedures\MiniOfficeOrder.CRUD" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="Tables\TypeOfRoom.sql" />
@@ -91,5 +94,20 @@
     <Build Include="StoredProcedures\Place.CRUD\Place_SelectAll.sql" />
     <Build Include="StoredProcedures\Place.CRUD\Place_SelectById.sql" />
     <Build Include="StoredProcedures\Place.CRUD\Place_Update.sql" />
+    <Build Include="StoredProcedures\MiniOffice.CRUD\MiniOffice_Delete.sql" />
+    <Build Include="StoredProcedures\MiniOffice.CRUD\MiniOffice_Insert.sql" />
+    <Build Include="StoredProcedures\MiniOffice.CRUD\MiniOffice_SelectAll.sql" />
+    <Build Include="StoredProcedures\MiniOffice.CRUD\MiniOffice_SelectById.sql" />
+    <Build Include="StoredProcedures\MiniOffice.CRUD\MiniOffice_Update.sql" />
+    <Build Include="StoredProcedures\MiniOfficeOrder.CRUD\MiniOfficeOrder_Delete.sql" />
+    <Build Include="StoredProcedures\MiniOfficeOrder.CRUD\MiniOfficeOrder_Insert.sql" />
+    <Build Include="StoredProcedures\MiniOfficeOrder.CRUD\MiniOfficeOrder_SelectAll.sql" />
+    <Build Include="StoredProcedures\MiniOfficeOrder.CRUD\MiniOfficeOrder_SelectById.sql" />
+    <Build Include="StoredProcedures\MiniOfficeOrder.CRUD\MiniOfficeOrder_Update.sql" />
+    <Build Include="StoredProcedures\PlaceOrder.CRUD\PlaceOrder_Delete.sql" />
+    <Build Include="StoredProcedures\PlaceOrder.CRUD\PlaceOrder_Insert.sql" />
+    <Build Include="StoredProcedures\PlaceOrder.CRUD\PlaceOrder_SelectAll.sql" />
+    <Build Include="StoredProcedures\PlaceOrder.CRUD\PlaceOrder_SelectById.sql" />
+    <Build Include="StoredProcedures\PlaceOrder.CRUD\PlaceOrder_Update.sql" />
   </ItemGroup>
 </Project>
