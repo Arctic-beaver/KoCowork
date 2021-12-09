@@ -58,25 +58,33 @@
     <Folder Include="Properties" />
     <Folder Include="Tables" />
     <Folder Include="StoredProcedures" />
+    <Folder Include="StoredProcedures\Client.CRUD" />
+    <Folder Include="StoredProcedures\Payment.CRUD" />
+    <Folder Include="StoredProcedures\TypeOfRoom.CRUD" />
+    <Folder Include="StoredProcedures\Place.CRUD" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="Tables\TypeOfRoom.sql" />
     <Build Include="Tables\Client.sql" />
     <Build Include="Tables\Payment.sql" />
-    <Build Include="StoredProcedures\TypeOfRoom_SelectAll.sql" />
-    <Build Include="StoredProcedures\Client_SelectAll.sql" />
-    <Build Include="StoredProcedures\Payment_SelectAll.sql" />
-    <Build Include="StoredProcedures\TypeOfRoom_SelectById.sql" />
-    <Build Include="StoredProcedures\Payment_SelectById.sql" />
-    <Build Include="StoredProcedures\Client_SelectById.sql" />
-    <Build Include="StoredProcedures\TypeOfRoom_Insert.sql" />
-    <Build Include="StoredProcedures\Client_Insert.sql" />
-    <Build Include="StoredProcedures\Payment_Insert.sql" />
-    <Build Include="StoredProcedures\Client_Update.sql" />
-    <Build Include="StoredProcedures\Client_Delete.sql" />
-    <Build Include="StoredProcedures\Payment_Delete.sql" />
-    <Build Include="StoredProcedures\TypeOfRoom_Delete.sql" />
-    <Build Include="StoredProcedures\Payment_Update.sql" />
-    <Build Include="StoredProcedures\TypeOfRoom_Update.sql" />
+    <Build Include="Tables\Place.sql" />
+    <Build Include="Tables\MiniOffice.sql" />
+    <Build Include="Tables\PlaceOrder.sql" />
+    <Build Include="Tables\MiniOfficeOrder.sql" />
+    <Build Include="StoredProcedures\Client.CRUD\Client_Delete.sql" />
+    <Build Include="StoredProcedures\Client.CRUD\Client_Insert.sql" />
+    <Build Include="StoredProcedures\Client.CRUD\Client_SelectAll.sql" />
+    <Build Include="StoredProcedures\Client.CRUD\Client_SelectById.sql" />
+    <Build Include="StoredProcedures\Client.CRUD\Client_Update.sql" />
+    <Build Include="StoredProcedures\Payment.CRUD\Payment_Delete.sql" />
+    <Build Include="StoredProcedures\Payment.CRUD\Payment_Insert.sql" />
+    <Build Include="StoredProcedures\Payment.CRUD\Payment_SelectAll.sql" />
+    <Build Include="StoredProcedures\Payment.CRUD\Payment_SelectById.sql" />
+    <Build Include="StoredProcedures\Payment.CRUD\Payment_Update.sql" />
+    <Build Include="StoredProcedures\TypeOfRoom.CRUD\TypeOfRoom_Delete.sql" />
+    <Build Include="StoredProcedures\TypeOfRoom.CRUD\TypeOfRoom_Insert.sql" />
+    <Build Include="StoredProcedures\TypeOfRoom.CRUD\TypeOfRoom_SelectAll.sql" />
+    <Build Include="StoredProcedures\TypeOfRoom.CRUD\TypeOfRoom_SelectById.sql" />
+    <Build Include="StoredProcedures\TypeOfRoom.CRUD\TypeOfRoom_Update.sql" />
   </ItemGroup>
 </Project>
