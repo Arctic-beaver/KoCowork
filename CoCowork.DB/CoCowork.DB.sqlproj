@@ -86,5 +86,10 @@
     <Build Include="StoredProcedures\TypeOfRoom.CRUD\TypeOfRoom_SelectAll.sql" />
     <Build Include="StoredProcedures\TypeOfRoom.CRUD\TypeOfRoom_SelectById.sql" />
     <Build Include="StoredProcedures\TypeOfRoom.CRUD\TypeOfRoom_Update.sql" />
+    <Build Include="StoredProcedures\Place.CRUD\Place_Delete.sql" />
+    <Build Include="StoredProcedures\Place.CRUD\Place_Insert.sql" />
+    <Build Include="StoredProcedures\Place.CRUD\Place_SelectAll.sql" />
+    <Build Include="StoredProcedures\Place.CRUD\Place_SelectById.sql" />
+    <Build Include="StoredProcedures\Place.CRUD\Place_Update.sql" />
   </ItemGroup>
 </Project>
