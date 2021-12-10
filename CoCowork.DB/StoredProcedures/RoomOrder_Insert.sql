@@ -10,10 +10,12 @@ BEGIN
 		(RoomId,
 		OrderId,
 		StartDate,
+		SubtotalPrice,
 		EndDate)
 	values 
 		(RoomId,
 		OrderId,
 		StartDate,
+		SubtotalPrice,
 		EndDate)
 END

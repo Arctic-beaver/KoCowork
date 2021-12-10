@@ -5,7 +5,7 @@
 AS
 BEGIN
 	insert into dbo.Room
-		(Type,
+		(TypeId,
 		AmountOfPeople,
 		PricePerHour)
 	values 
