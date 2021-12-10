@@ -6,7 +6,7 @@
 AS
 BEGIN
 	update dbo.Place
-	set MiniOfficeId = @MiniOfficeId,
+	set 
 	    PricePerDay = @PricePerDay,
 		PriceFixedPerDay = @PriceFixedPerDay
     where Id = @Id

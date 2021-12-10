@@ -8,4 +8,5 @@ BEGIN
 			PricePerDay,
 			IsActive
 	from dbo.MiniOffice
+	where IsActive is not null
 END

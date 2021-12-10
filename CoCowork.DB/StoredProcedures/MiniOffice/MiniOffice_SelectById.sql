@@ -9,5 +9,5 @@ BEGIN
 		PricePerDay,
 		IsActive
 	from dbo.MiniOffice
-	where Id = @Id
+	where Id = @Id and IsActive is not null
 END
