@@ -4,6 +4,8 @@ AS
 BEGIN
 	select
 		Id,
+		Name,
+		Amount,
 		PricePerMonth,
 		Description
 	from dbo.Laptop

@@ -1,10 +1,5 @@
 ﻿CREATE PROCEDURE [dbo].[LaptopOrder_Delete]
-	@Id int,
-	@LaptopId int,
-	@OrderId int,
-	@StartDate datetime,
-	@EndDate datetime,
-	@SubtotalPrice int
+	@Id int
 AS
 BEGIN
 	delete from dbo.LaptopOrder

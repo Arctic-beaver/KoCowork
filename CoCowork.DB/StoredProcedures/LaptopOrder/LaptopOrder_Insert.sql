@@ -1,5 +1,4 @@
 ﻿CREATE PROCEDURE [dbo].[LaptopOrder_Insert]
-	@Id int,
 	@LaptopId int,
 	@OrderId int,
 	@StartDate datetime,
@@ -8,15 +7,13 @@
 AS
 BEGIN
 	insert into dbo.LaptopOrder
-		(Id,
-		LaptopId,
+		(LaptopId,
 		OrderId,
 		StartDate,
 		EndDate,
 		SubtotalPrice)
 	values 
-		(@Id,
-		@LaptopId,
+		(@LaptopId,
 		@OrderId,
 		@StartDate,
 		@EndDate,
