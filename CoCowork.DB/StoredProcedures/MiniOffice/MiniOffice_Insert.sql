@@ -1,7 +1,7 @@
 ﻿CREATE PROC dbo.MiniOffice_Insert
 	@Name varchar(30),
 	@AmountOfPlaces int,
-	@PricePerDay int,
+	@PricePerDay decimal(10,2),
 	@IsActive bit
 AS
 BEGIN

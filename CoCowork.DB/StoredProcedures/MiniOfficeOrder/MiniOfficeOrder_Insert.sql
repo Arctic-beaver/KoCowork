@@ -3,7 +3,7 @@
 	@OrderId int,
 	@StartDate datetime,
 	@EndDate datetime,
-	@SubtotalPrice int
+	@SubtotalPrice decimal(10,2)
 AS
 BEGIN
 	insert into dbo.MiniOfficeOrder
