@@ -58,6 +58,9 @@
     <Folder Include="Properties" />
     <Folder Include="Tables" />
     <Folder Include="StoredProcedures" />
+    <Folder Include="StoredProcedures\Order" />
+    <Folder Include="StoredProcedures\Room" />
+    <Folder Include="StoredProcedures\RoomOrder" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="Tables\RoomType.sql" />
@@ -81,21 +84,21 @@
     <Build Include="Tables\Room.sql" />
     <Build Include="Tables\RoomOrder.sql" />
     <Build Include="Tables\Order.sql" />
-    <Build Include="StoredProcedures\Room_Update.sql" />
-    <Build Include="StoredProcedures\Room_Delete.sql" />
-    <Build Include="StoredProcedures\Room_Insert.sql" />
-    <Build Include="StoredProcedures\Room_SelectById.sql" />
-    <Build Include="StoredProcedures\Room_SelectAll.sql" />
-    <Build Include="StoredProcedures\RoomOrder_Delete.sql" />
-    <Build Include="StoredProcedures\RoomOrder_Update.sql" />
-    <Build Include="StoredProcedures\RoomOrder_Insert.sql" />
-    <Build Include="StoredProcedures\RoomOrder_SelectAll.sql" />
-    <Build Include="StoredProcedures\RoomOrder_SelectById.sql" />
-    <Build Include="StoredProcedures\Order_Delete.sql" />
-    <Build Include="StoredProcedures\Order_SelectById.sql" />
-    <Build Include="StoredProcedures\Order_Insert.sql" />
-    <Build Include="StoredProcedures\Order_Update.sql" />
-    <Build Include="StoredProcedures\Order_SelectAll.sql" />
+    <Build Include="StoredProcedures\Room\Room_Update.sql" />
+    <Build Include="StoredProcedures\Room\Room_Delete.sql" />
+    <Build Include="StoredProcedures\Room\Room_Insert.sql" />
+    <Build Include="StoredProcedures\Room\Room_SelectAll.sql" />
+    <Build Include="StoredProcedures\Room\Room_SelectById.sql" />
+    <Build Include="StoredProcedures\RoomOrder\RoomOrder_Delete.sql" />
+    <Build Include="StoredProcedures\RoomOrder\RoomOrder_Insert.sql" />
+    <Build Include="StoredProcedures\RoomOrder\RoomOrder_SelectAll.sql" />
+    <Build Include="StoredProcedures\RoomOrder\RoomOrder_SelectById.sql" />
+    <Build Include="StoredProcedures\RoomOrder\RoomOrder_Update.sql" />
+    <Build Include="StoredProcedures\Order\Order_Update.sql" />
+    <Build Include="StoredProcedures\Order\Order_Delete.sql" />
+    <Build Include="StoredProcedures\Order\Order_Insert.sql" />
+    <Build Include="StoredProcedures\Order\Order_SelectAll.sql" />
+    <Build Include="StoredProcedures\Order\Order_SelectById.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="CoCowork.DB.refactorlog" />
