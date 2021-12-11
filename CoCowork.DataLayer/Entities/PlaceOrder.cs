@@ -9,7 +9,7 @@ namespace CoCowork.DataLayer.Entities
     public class PlaceOrder
     {
         public int Id { get; set; }
-        public int PlaceId { get; set; }
+        public Place Place { get; set; }
         public int OrderId { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
