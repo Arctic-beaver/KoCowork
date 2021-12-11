@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31313.79
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoCoworkView", "CoCoworkView\CoCoworkView.csproj", "{7D456203-6DC5-43EF-8050-C9C024E63840}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoCowork.UI", "CoCoworkView\CoCowork.UI.csproj", "{7D456203-6DC5-43EF-8050-C9C024E63840}"
 EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "CoCowork.DB", "CoCowork.DB\CoCowork.DB.sqlproj", "{0FD7B480-E3AD-4A41-AB5B-86C1C131CB9B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoCowork.DataLayer", "CoCowork.DataLayer\CoCowork.DataLayer.csproj", "{5E19FC52-2074-4B5B-A0F9-C77AA3FFEA22}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,6 +25,10 @@ Global
 		{0FD7B480-E3AD-4A41-AB5B-86C1C131CB9B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0FD7B480-E3AD-4A41-AB5B-86C1C131CB9B}.Release|Any CPU.Build.0 = Release|Any CPU
 		{0FD7B480-E3AD-4A41-AB5B-86C1C131CB9B}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{5E19FC52-2074-4B5B-A0F9-C77AA3FFEA22}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5E19FC52-2074-4B5B-A0F9-C77AA3FFEA22}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5E19FC52-2074-4B5B-A0F9-C77AA3FFEA22}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5E19FC52-2074-4B5B-A0F9-C77AA3FFEA22}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

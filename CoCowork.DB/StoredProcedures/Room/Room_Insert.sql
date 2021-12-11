@@ -1,7 +1,7 @@
 ﻿CREATE PROC dbo.Room_Insert
 	@Type int,
 	@AmountOfPeople int,
-	@PricePerHour int
+	@PricePerHour decimal(10,2)
 AS
 BEGIN
 	insert into dbo.Room
