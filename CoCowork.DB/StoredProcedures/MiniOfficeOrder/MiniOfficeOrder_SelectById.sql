@@ -3,12 +3,13 @@
 AS
 BEGIN
 	select
-		Id,
-		MiniOfficeId,
-		OrderId,
-		StartDate,
-		EndDate,
-		SubtotalPrice
-	from dbo.MiniOfficeOrder
-	where Id = @Id
+		mo.Id,
+		mo.MiniOfficeId,
+		mo.OrderId,
+		mo.StartDate,
+		mo.EndDate,
+		mo.SubtotalPrice,
+		m.Name
+	from dbo.MiniOfficeOrder mo inner join dbo.MiniOffice m on mo.MiniOfficeId = m.Id
+	where mo.Id = @Id
 END

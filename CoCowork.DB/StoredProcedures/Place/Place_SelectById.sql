@@ -3,10 +3,11 @@
 AS
 BEGIN
 	select
-		Id,
-		MiniOfficeId,
-		PricePerDay,
-		PriceFixedPerDay
-	from dbo.Place
-	where Id = @Id
+		p.Id,
+		p.MiniOfficeId,
+		p.PricePerDay,
+		p.PriceFixedPerDay,
+		mo.Name
+	from dbo.Place p inner join dbo.MiniOffice mo on p.MiniOfficeId = mo.Id
+	where p.Id = @Id
 END

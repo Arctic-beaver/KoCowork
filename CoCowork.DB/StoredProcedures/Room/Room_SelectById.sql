@@ -3,10 +3,11 @@
 AS
 BEGIN
 	select
-		Id,
-		TypeId,
-		AmountOfPeople,
-		PricePerHour
-	from dbo.Room
-	where id =@Id
+		r.Id,
+		r.TypeId,
+		r.AmountOfPeople,
+		r.PricePerHour,
+		rt.Name
+	from dbo.Room r inner join dbo.RoomType rt on r.TypeId = rt.Id
+	where r.id =@Id
 END

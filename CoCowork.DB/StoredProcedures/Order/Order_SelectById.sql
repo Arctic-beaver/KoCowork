@@ -3,11 +3,12 @@
 AS
 BEGIN
 	select
-		Id,
-		ClientId,
-		TotalPrice,
-		IsPaid,
-		IsCanceled
-	from dbo.[Order]
-	where id =@Id
+		o.Id,
+		o.ClientId,
+		o.TotalPrice,
+		o.IsPaid,
+		o.IsCanceled,
+		c.Name
+	from dbo.[Order] o inner join dbo.Client c on o.ClientId = c.Id
+	where o.id =@Id
 END
