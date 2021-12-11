@@ -1,5 +1,5 @@
 ﻿CREATE PROC dbo.Payment_Insert
-	@Amount int,
+	@Amount decimal(10,2),
 	@PaymentDate DateTime,
 	@OrderId int
 AS

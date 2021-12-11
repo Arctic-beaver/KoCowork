@@ -2,7 +2,7 @@
 	@Id int,
 	@Type int,
 	@AmountOfPeople int,
-	@PricePerHour int
+	@PricePerHour decimal(10,2)
 AS
 BEGIN
 	update dbo.Room
