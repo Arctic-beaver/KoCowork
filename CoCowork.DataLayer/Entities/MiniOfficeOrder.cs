@@ -8,5 +8,11 @@ namespace CoCowork.DataLayer.Entities
 {
     class MiniOfficeOrder
     {
+        public int Id { get; set; }
+        public int MiniOfficeId { get; set; }
+        public int OrderId { get; set; }
+        public DateTime StartDate { get; set; }
+        public DateTime EndDate { get; set; }
+        public decimal SubtotalPrice { get; set; }
     }
 }

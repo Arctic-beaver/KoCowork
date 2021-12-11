@@ -6,7 +6,12 @@ using System.Threading.Tasks;
 
 namespace CoCowork.DataLayer.Entities
 {
-    class MiniOffice
+    public class MiniOffice
     {
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public int AmountOfPlaces { get; set; }
+        public decimal PricePerDay { get; set; }
+        public bool IsActive { get; set; }
     }
 }
