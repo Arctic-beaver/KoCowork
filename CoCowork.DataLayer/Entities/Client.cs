@@ -6,14 +6,15 @@ using System.Threading.Tasks;
 
 namespace CoCowork.DataLayer.Entities
 {
-    class Client
+    public class Client
     {
         public int Id { get; set; }
-        public string Name { get; set; }
-        public DateTime DateBirth { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public DateTime? DateBirth { get; set; }
         public string Email { get; set; }
         public string Phone { get; set; }
-        public int PaperAmount { get; set; }
-        public DateTime PaperEndDay { get; set; }
+        public int? PaperAmount { get; set; }
+        public DateTime? PaperEndDay { get; set; }
     }
 }
