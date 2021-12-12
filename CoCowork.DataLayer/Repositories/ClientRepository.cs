@@ -79,7 +79,6 @@ namespace CoCowork.DataLayer.Repositories
                     PaperEndDay = client.PaperEndDay
                 },
                 commandType: CommandType.StoredProcedure);
-
         }
 
         public void DeleteClientById(int id)

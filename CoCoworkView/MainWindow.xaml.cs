@@ -25,22 +25,6 @@ namespace CoCoworkView
         public MainWindow()
         {
             InitializeComponent();
-
-            Client client = new Client();
-            var repo = new ClientRepository();
-
-            client.FirstName = "Юрец";
-            client.LastName = "Квадрокоптер";
-            DateTime dt = new DateTime(2008, 04, 01);
-            client.DateBirth = dt;
-            client.Phone = "+79817648352";
-            client.PaperAmount = 0;
-            client.PaperEndDay = null;
-            client.Email = "JarenieGvozdi@yandex.ru";
-
-            repo.DeleteClientById(3);
-
-            int num = 42;
         }
     }
 }
