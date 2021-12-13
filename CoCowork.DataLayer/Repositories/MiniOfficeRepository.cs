@@ -29,16 +29,32 @@ namespace CoCowork.DataLayer.Repositories
                 .ToList();
         }
 
-        public MiniOffice GetMiniOfficeById(int id)
+        public MiniOffice GetMiniOfficeById()
         {
             using var connection = new SqlConnection(_connectionString);
             connection.Open();
 
-            return connection
-                .QueryFirstOrDefault<MiniOffice>(
-                _selectByIdProcedure,
-                new { Id = id },
-                commandType: CommandType.StoredProcedure);
+            var orderDictionary = new Dictionary<int, MiniOffice>();
+
+
+            return connection.Query<MiniOffice, Place, MiniOffice>(
+            _selectByIdProcedure,
+            (miniOffice, place) =>
+            {
+
+                if (!orderDictionary.TryGetValue(miniOffice.Id, out MiniOffice miniOfficeEntry))
+                {
+                    miniOfficeEntry = miniOffice;
+                    miniOfficeEntry.Places = new List<Place>();
+                    orderDictionary.Add(miniOfficeEntry.Id, miniOfficeEntry);
+                }
+
+                miniOfficeEntry.Places.Add(place);
+                return miniOfficeEntry;
+            },
+            splitOn: "Id")
+            .Distinct()
+            .FirstOrDefault();
         }
 
         public void Add(MiniOffice miniOffice)
