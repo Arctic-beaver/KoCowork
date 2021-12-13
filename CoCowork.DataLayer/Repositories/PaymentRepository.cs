@@ -12,7 +12,7 @@ namespace CoCowork.DataLayer.Repositories
 {
     class PaymentRepository
     {
-        private const string _connString = "Server=(local);Integrated Security=True;Database=CoCowork.DB;";
+        private const string _connString = "Server=80.78.240.16;User ID=student;Password=qwe!23;Database=CoCowork.DB;";
         private const string _selectAllProc = "dbo.Payment_SelectAll";
         private const string _selectByIdProc = "dbo.Payment_SelectById";
         private const string _insertProc = "dbo.Payment_Insert";
