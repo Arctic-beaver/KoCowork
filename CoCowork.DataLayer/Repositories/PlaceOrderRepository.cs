@@ -80,7 +80,7 @@ namespace CoCowork.DataLayer.Repositories
                 .ToList();
         }
 
-        public List<PlaceOrder> GetPlaceOrdersReferToOrder(MiniOffice order)
+        public List<PlaceOrder> GetPlaceOrdersReferToOrder(Order order)
         {
             using var connection = new SqlConnection(_connectionString);
             connection.Open();

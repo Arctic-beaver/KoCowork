@@ -1,13 +1,148 @@
-﻿using System;
+﻿using CoCowork.DataLayer.Entities;
+using CoCowork.DataLayer.Helpers;
+using Dapper;
+using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CoCowork.DataLayer.Repositories
 {
     class MiniOfficeOrderRepository
     {
+        private const string _connectionString = "Server=(local);Integrated Security=True;Database=CoCowork.DB;";
+        private const string _selectAllProcedure = "dbo.MiniOfficeOrder_SelectAll";
+        private const string _selectByIdProcedure = "dbo.MiniOfficeOrder_SelectById";
+        private const string _insertProcedure = "dbo.MiniOfficeOrder_Insert";
+        private const string _updateProcedure = "dbo.MiniOfficeOrder_Update";
+        private const string _deleteProcedure = "dbo.MiniOfficeOrder_Delete";
+        private const string _selectByOrderIdProcedure = "dbo.MiniOfficeOrder_SelectByOrderId";
 
+        public List<MiniOfficeOrder> GetAllMiniOfficeOrders()
+        {
+            using var connection = new SqlConnection(_connectionString);
+            connection.Open();
+
+            return connection
+                .Query<MiniOfficeOrder, MiniOffice, MiniOfficeOrder>
+                (_selectAllProcedure, (miniOfficeOrder, miniOffice) =>
+                {
+                    miniOfficeOrder.MiniOffice = miniOffice;
+                    return miniOfficeOrder;
+                })
+                .Distinct()
+                .ToList();
+        }
+        
+        public MiniOfficeOrder GetMiniOfficeOrderById(int id)
+        {
+            using var connection = new SqlConnection(_connectionString);
+            connection.Open();
+
+            return connection
+                .Query<MiniOfficeOrder, MiniOffice, MiniOfficeOrder>
+                (_selectByIdProcedure,
+                (miniOfficeOrder, miniOffice) =>
+                {
+                    miniOfficeOrder.MiniOffice = miniOffice;
+                    return miniOfficeOrder;
+                },
+                new
+                {
+                    Id = id
+                },
+                commandType: CommandType.StoredProcedure)
+                .FirstOrDefault();
+        }
+
+        public List<MiniOfficeOrder> GetMiniOfficeOrdersReferToOrder(int orderId)
+        {
+            using var connection = new SqlConnection(_connectionString);
+            connection.Open();
+
+            return connection
+                .Query<MiniOfficeOrder, MiniOffice, MiniOfficeOrder>
+                (_selectByOrderIdProcedure,
+                (miniOfficeOrder, miniOffice) =>
+                {
+                    miniOfficeOrder.MiniOffice = miniOffice;
+                    return miniOfficeOrder;
+                },
+                new { OrderId = orderId },
+                commandType: CommandType.StoredProcedure)
+                .Distinct()
+                .ToList();
+        }
+
+        public List<MiniOfficeOrder> GetMiniOfficeOrdersReferToOrder(Order order)
+        {
+            using var connection = new SqlConnection(_connectionString);
+            connection.Open();
+
+            return connection
+                 .Query<MiniOfficeOrder, MiniOffice, MiniOfficeOrder>
+                 (_selectByOrderIdProcedure,
+                 (miniOfficeOrder, miniOffice) =>
+                 {
+                     miniOfficeOrder.MiniOffice = miniOffice;
+                     return miniOfficeOrder;
+                 },
+                new { OrderId = order.Id },
+                 commandType: CommandType.StoredProcedure)
+                 .Distinct()
+                 .ToList();
+        }
+
+        public void Add(MiniOfficeOrder miniOfficeOrder)
+        {
+            using var connection = new SqlConnection(_connectionString);
+            connection.Open();
+
+            connection.ExecuteScalar<MiniOfficeOrder>(
+                _insertProcedure,
+                new
+                {
+                    MiniOfficeId = miniOfficeOrder.MiniOffice.Id,
+                    OrderId = miniOfficeOrder.OrderId,
+                    StartDate = miniOfficeOrder.StartDate,
+                    EndDate = miniOfficeOrder.EndDate,
+                    SubtotalPrice = miniOfficeOrder.SubtotalPrice
+                },
+                commandType: CommandType.StoredProcedure);
+        }
+
+        public void UpdateMiniOfficeOrderById(int id, MiniOfficeOrder miniOfficeOrder)
+        {
+            using var connection = new SqlConnection(_connectionString);
+            connection.Open();
+
+            var affectedRows = connection.ExecuteScalar<MiniOfficeOrder>(
+                _updateProcedure,
+                new
+                {
+                    Id = id,
+                    MiniOfficeId = miniOfficeOrder.MiniOffice.Id,
+                    OrderId = miniOfficeOrder.OrderId,
+                    StartDate = miniOfficeOrder.StartDate,
+                    EndDate = miniOfficeOrder.EndDate,
+                    SubtotalPrice = miniOfficeOrder.SubtotalPrice
+                },
+                commandType: CommandType.StoredProcedure);
+        }
+
+        public void DeleteMiniOfficeOrderById(int id)
+        {
+            using var connection = new SqlConnection(_connectionString);
+            connection.Open();
+
+            connection.ExecuteScalar<MiniOfficeOrder>(
+                _deleteProcedure,
+                new
+                {
+                    Id = id
+                },
+                commandType: CommandType.StoredProcedure);
+        }
     }
 }

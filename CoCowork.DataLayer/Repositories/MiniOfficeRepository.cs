@@ -1,4 +1,5 @@
 ﻿using CoCowork.DataLayer.Entities;
+using CoCowork.DataLayer.Helpers;
 using Dapper;
 using System;
 using System.Collections.Generic;
@@ -10,7 +11,6 @@ namespace CoCowork.DataLayer.Repositories
 {
     class MiniOfficeRepository
     {
-        private const string _connectionString = "Server=(local);Integrated Security=True;Database=CoCowork.DB;";
         private const string _selectAllProcedure = "dbo.MiniOffice_SelectAll";
         private const string _selectByIdProcedure = "dbo.MiniOffice_SelectById";
         private const string _insertProcedure = "dbo.MiniOffice_Insert";
@@ -19,8 +19,7 @@ namespace CoCowork.DataLayer.Repositories
 
         public List<MiniOffice> GetAll()
         {
-            using var connection = new SqlConnection(_connectionString);
-            connection.Open();
+           var connection = DLHelpers.Connection();
 
            return connection
                 .Query<MiniOffice>
@@ -31,10 +30,9 @@ namespace CoCowork.DataLayer.Repositories
 
         public MiniOffice GetMiniOfficeById()
         {
-            using var connection = new SqlConnection(_connectionString);
-            connection.Open();
+            using var connection = DLHelpers.Connection();
 
-            var orderDictionary = new Dictionary<int, MiniOffice>();
+            var miniOfficeDictionary = new Dictionary<int, MiniOffice>();
 
 
             return connection.Query<MiniOffice, Place, MiniOffice>(
@@ -42,11 +40,11 @@ namespace CoCowork.DataLayer.Repositories
             (miniOffice, place) =>
             {
 
-                if (!orderDictionary.TryGetValue(miniOffice.Id, out MiniOffice miniOfficeEntry))
+                if (!miniOfficeDictionary.TryGetValue(miniOffice.Id, out MiniOffice miniOfficeEntry))
                 {
                     miniOfficeEntry = miniOffice;
                     miniOfficeEntry.Places = new List<Place>();
-                    orderDictionary.Add(miniOfficeEntry.Id, miniOfficeEntry);
+                    miniOfficeDictionary.Add(miniOfficeEntry.Id, miniOfficeEntry);
                 }
 
                 miniOfficeEntry.Places.Add(place);
@@ -59,8 +57,7 @@ namespace CoCowork.DataLayer.Repositories
 
         public void Add(MiniOffice miniOffice)
         {
-            using var connection = new SqlConnection(_connectionString);
-            connection.Open();
+            using var connection = DLHelpers.Connection();
 
             connection.ExecuteScalar<MiniOffice>(
                 _insertProcedure,
@@ -76,8 +73,7 @@ namespace CoCowork.DataLayer.Repositories
 
         public void UpdateMiniOfficeById(int id, MiniOffice miniOffice)
         {
-            using var connection = new SqlConnection(_connectionString);
-            connection.Open();
+            using var connection = DLHelpers.Connection();
 
             var affectedRows = connection.ExecuteScalar<MiniOffice>(
                 _updateProcedure,
@@ -94,8 +90,7 @@ namespace CoCowork.DataLayer.Repositories
 
         public void DeleteMiniOfficeById(int id)
         {
-            using var connection = new SqlConnection(_connectionString);
-            connection.Open();
+            using var connection = DLHelpers.Connection();
 
             connection.ExecuteScalar<MiniOffice>(
                 _deleteProcedure,
