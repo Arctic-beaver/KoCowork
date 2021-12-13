@@ -59,11 +59,11 @@
     <Folder Include="Properties" />
     <Folder Include="Tables" />
     <Folder Include="StoredProcedures" />
-	  <Folder Include="StoredProcedures\Client" />
-	  <Folder Include="StoredProcedures\Laptop" />
-	  <Folder Include="StoredProcedures\LaptopOrder" />
-	  <Folder Include="StoredProcedures\Payment" />
-	  <Folder Include="StoredProcedures\TypeOfRoom" />
+    <Folder Include="StoredProcedures\Client" />
+    <Folder Include="StoredProcedures\Laptop" />
+    <Folder Include="StoredProcedures\LaptopOrder" />
+    <Folder Include="StoredProcedures\Payment" />
+    <Folder Include="StoredProcedures\TypeOfRoom" />
     <Folder Include="StoredProcedures\Order" />
     <Folder Include="StoredProcedures\Room" />
     <Folder Include="StoredProcedures\RoomOrder" />
@@ -163,6 +163,7 @@
     <Build Include="StoredProcedures\Order\Order_Insert.sql" />
     <Build Include="StoredProcedures\Order\Order_SelectAll.sql" />
     <Build Include="StoredProcedures\Order\Order_SelectById.sql" />
+    <Build Include="StoredProcedures\Place\Place_SelectByMiniOfficeId.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="CoCowork.DB.refactorlog" />
