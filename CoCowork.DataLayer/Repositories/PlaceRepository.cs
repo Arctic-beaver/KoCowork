@@ -46,9 +46,9 @@ namespace CoCowork.DataLayer.Repositories
             var place = new Place();
             var miniOffice = new MiniOffice();
 
-            return (Place)connection
+            return connection
                 .Query<Place, MiniOffice, Place>
-                ( _selectByIdProcedure,
+                (_selectByIdProcedure,
                 (place, miniOffice) =>
                 {
                     place.MiniOffice = miniOffice;
@@ -58,7 +58,8 @@ namespace CoCowork.DataLayer.Repositories
                 {
                     Id = id
                 },
-                commandType: CommandType.StoredProcedure);
+                commandType: CommandType.StoredProcedure)
+                .FirstOrDefault();
         }
 
         public List<Place> GetPlacesReferToMiniOffice(int miniOfficeId)
