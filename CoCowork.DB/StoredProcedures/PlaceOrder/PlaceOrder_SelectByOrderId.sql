@@ -1,5 +1,5 @@
-﻿CREATE PROC dbo.PlaceOrder_SelectById	
-	@Id int
+﻿CREATE PROC dbo.PlaceOrder_SelectByOrderId	
+	@OrderId int
 AS
 BEGIN
 	select
@@ -32,5 +32,5 @@ BEGIN
 		left outer join dbo.MiniOffice on dbo.MiniOffice.Id = dbo.Place.MiniOfficeId
 	) as FullPlace
 	inner join dbo.PlaceOrder on PlaceOrder.PlaceId = FullPlace.PlaceId
-	where dbo.PlaceOrder.Id = @Id
+	where dbo.PlaceOrder.OrderId = @OrderId
 END

@@ -17,15 +17,12 @@ namespace CoCowork.DataLayer.Repositories
         private const string _insertProcedure = "dbo.Place_Insert";
         private const string _updateProcedure = "dbo.Place_Update";
         private const string _deleteProcedure = "dbo.Place_Delete";
-        private const string _selectByMiniOfficeIdProcedure = "dbo.Place_Delete";
+        private const string _selectByMiniOfficeIdProcedure = "dbo.Place_SelectByMiniOfficeId";
 
         public List<Place> GetAllPlaces()
         {
             using var connection = new SqlConnection(_connectionString);
             connection.Open();
-
-            var place = new Place();
-            var miniOffice = new MiniOffice();
 
             return connection
                 .Query<Place, MiniOffice, Place>
@@ -42,9 +39,6 @@ namespace CoCowork.DataLayer.Repositories
         {
             using var connection = new SqlConnection(_connectionString);
             connection.Open();
-
-            var place = new Place();
-            var miniOffice = new MiniOffice();
 
             return connection
                 .Query<Place, MiniOffice, Place>
