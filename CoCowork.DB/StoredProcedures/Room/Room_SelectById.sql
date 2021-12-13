@@ -5,8 +5,7 @@ BEGIN
 	select
 		r.Id,
 		r.AmountOfPeople,
-		r.PricePerHour,
-		rt.Name TypeId
-	from dbo.Room r inner join dbo.RoomType rt on r.TypeId = rt.Id
+		r.PricePerHour
+	from dbo.Room r 
 	where r.id =@Id
 END

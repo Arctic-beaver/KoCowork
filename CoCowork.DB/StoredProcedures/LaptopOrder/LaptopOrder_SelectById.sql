@@ -7,8 +7,7 @@ BEGIN
 		lo.OrderId,
 		lo.StartDate,
 		lo.EndDate,
-		lo.SubtotalPrice,
-		l.Name LaptopId
-	from dbo.LaptopOrder lo inner join dbo.Laptop l on lo.LaptopId = l.Id
+		lo.SubtotalPrice
+	from dbo.LaptopOrder lo
 	where lo.Id = @Id
 END

@@ -3,12 +3,17 @@
 AS
 BEGIN
 	select
-		Id,
-		RoomId,
-		OrderId,
-		StartDate,
-		EndDate,
-		SubtotalPrice
-	from dbo.RoomOrder
-	where id =@Id
+		ro.Id,
+		ro.RoomId,
+		ro.OrderId,
+		ro.StartDate,
+		ro.EndDate,
+		ro.SubtotalPrice,
+		r.Id,
+		r.AmountOfPeople,
+		r.PricePerHour,
+		r.TypeId
+	from dbo.RoomOrder ro
+	left outer join dbo.Room r on ro.RoomId = r.Id
+	where ro.Id =@Id
 END

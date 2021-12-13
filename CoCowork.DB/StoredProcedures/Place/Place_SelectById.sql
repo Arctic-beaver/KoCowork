@@ -6,8 +6,7 @@ BEGIN
 		p.Id,
 		p.MiniOfficeId,
 		p.PricePerDay,
-		p.PriceFixedPerDay,
-		mo.Name
-	from dbo.Place p inner join dbo.MiniOffice mo on p.MiniOfficeId = mo.Id
+		p.PriceFixedPerDay
+	from dbo.Place p 
 	where p.Id = @Id
 END
