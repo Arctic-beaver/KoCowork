@@ -20,12 +20,7 @@ namespace CoCowork.DataLayer.Repositories
         {
             using var connection = new SqlConnection(_connString);
             connection.Open();
-
-            var result = connection
-                .Query<Client>
-                (_selectAllProc)
-                .ToList();
-
+            var result = connection.Query<Client>(_selectAllProc).ToList();
             return result;
         }
 
@@ -36,9 +31,9 @@ namespace CoCowork.DataLayer.Repositories
 
             return connection
                 .QueryFirstOrDefault<Client>(
-                _selectByIdProc,
-                new { Id = id },
-                commandType: CommandType.StoredProcedure);
+                    _selectByIdProc,
+                    new { Id = id },
+                    commandType: CommandType.StoredProcedure);
         }
 
         public void Add(Client client)
@@ -46,8 +41,7 @@ namespace CoCowork.DataLayer.Repositories
             using var connection = new SqlConnection(_connString);
             connection.Open();
 
-            connection.ExecuteScalar<Client>(
-                _insertProc,
+            connection.Execute(_insertProc,
                 new
                 {
                     FirstName = client.FirstName,
@@ -66,8 +60,7 @@ namespace CoCowork.DataLayer.Repositories
             using var connection = new SqlConnection(_connString);
             connection.Open();
 
-            var affectedRows = connection.ExecuteScalar<Client>(
-                _updateProc,
+            connection.Execute(_updateProc,
                 new
                 {
                     Id = id,
@@ -85,14 +78,9 @@ namespace CoCowork.DataLayer.Repositories
         {
             using var connection = new SqlConnection(_connString);
             connection.Open();
-
-            connection.ExecuteScalar<Client>(
-                _deleteProc,
-                new
-                {
-                    Id = id
-                },
-                commandType: CommandType.StoredProcedure);
+            connection.Execute(_deleteProc,
+                        new { Id = id },
+                        commandType: CommandType.StoredProcedure);
         }
     }
 }

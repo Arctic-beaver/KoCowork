@@ -8,5 +8,8 @@ namespace CoCowork.DataLayer.Entities
 {
     class Payment
     {
+        public decimal Amount { get; set; }
+        public DateTime PaymentDate { get; set; }
+        public int OrderId { get; set; }
     }
 }

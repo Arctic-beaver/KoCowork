@@ -8,5 +8,6 @@ namespace CoCowork.DataLayer.Entities
 {
     class RoomType
     {
+        public string Name { get; set; }
     }
 }
