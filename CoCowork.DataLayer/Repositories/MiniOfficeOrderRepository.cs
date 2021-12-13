@@ -8,5 +8,6 @@ namespace CoCowork.DataLayer.Repositories
 {
     class MiniOfficeOrderRepository
     {
+
     }
 }

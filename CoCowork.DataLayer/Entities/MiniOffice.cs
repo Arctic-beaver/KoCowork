@@ -13,5 +13,6 @@ namespace CoCowork.DataLayer.Entities
         public int AmountOfPlaces { get; set; }
         public decimal PricePerDay { get; set; }
         public bool IsActive { get; set; }
+        public List<Place> Places { get; set; }
     }
 }
