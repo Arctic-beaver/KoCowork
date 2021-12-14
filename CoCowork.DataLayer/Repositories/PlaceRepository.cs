@@ -11,7 +11,7 @@ namespace CoCowork.DataLayer.Repositories
 {
     public class PlaceRepository
     {
-        private const string _connectionString = "Server=(local);Integrated Security=True;Database=CoCowork.DB;";
+        private const string _connectionString = "Server=80.78.240.16;User ID=student;Password=qwe!23;Database=CoCowork.DB;";
         private const string _selectAllProcedure = "dbo.Place_SelectAll";
         private const string _selectByIdProcedure = "dbo.Place_SelectById";
         private const string _insertProcedure = "dbo.Place_Insert";
@@ -26,11 +26,11 @@ namespace CoCowork.DataLayer.Repositories
 
             return connection
                 .Query<Place, MiniOffice, Place>
-                (_selectAllProcedure, (place, miniOffice) =>
-                {
-                    place.MiniOffice = miniOffice;
-                    return place;
-                })
+                    (_selectAllProcedure, (place, miniOffice) =>
+                    {
+                        place.MiniOffice = miniOffice;
+                        return place;
+                    })
                 .Distinct()
                 .ToList();
         }
@@ -42,17 +42,17 @@ namespace CoCowork.DataLayer.Repositories
 
             return connection
                 .Query<Place, MiniOffice, Place>
-                (_selectByIdProcedure,
-                (place, miniOffice) =>
-                {
+                    (_selectByIdProcedure,
+                    (place, miniOffice) =>
+                    {
                     place.MiniOffice = miniOffice;
                     return place;
-                },
-                new
-                {
-                    Id = id
-                },
-                commandType: CommandType.StoredProcedure)
+                    },
+                    new
+                    {
+                        Id = id
+                     },
+                    commandType: CommandType.StoredProcedure)
                 .FirstOrDefault();
         }
 
@@ -63,14 +63,14 @@ namespace CoCowork.DataLayer.Repositories
 
             return connection
                 .Query<Place, MiniOffice, Place>
-                (_selectByMiniOfficeIdProcedure, 
-                (place, miniOffice) =>
-                {
-                    place.MiniOffice = miniOffice;
-                    return place;
-                },
-                new { MiniOfficeId = miniOfficeId },
-                commandType: CommandType.StoredProcedure)
+                    (_selectByMiniOfficeIdProcedure, 
+                    (place, miniOffice) =>
+                    {
+                        place.MiniOffice = miniOffice;
+                        return place;
+                    },
+                     new { MiniOfficeId = miniOfficeId },
+                    commandType: CommandType.StoredProcedure)
                 .Distinct()
                 .ToList();
         }
@@ -82,14 +82,14 @@ namespace CoCowork.DataLayer.Repositories
 
             return connection
                  .Query<Place, MiniOffice, Place>
-                 (_selectByMiniOfficeIdProcedure,
-                 (place, miniOffice) =>
-                 {
-                     place.MiniOffice = miniOffice;
-                     return place;
-                 },
-                 new { MiniOfficeId = miniOffice.Id},
-                 commandType: CommandType.StoredProcedure)
+                    (_selectByMiniOfficeIdProcedure,
+                    (place, miniOffice) =>
+                    {
+                        place.MiniOffice = miniOffice;
+                        return place;
+                    },
+                    new { MiniOfficeId = miniOffice.Id},
+                    commandType: CommandType.StoredProcedure)
                  .Distinct()
                  .ToList();
         }
@@ -115,7 +115,7 @@ namespace CoCowork.DataLayer.Repositories
             using var connection = new SqlConnection(_connectionString);
             connection.Open();
 
-            var affectedRows = connection.Execute(
+            var affectedRows = connection.Execute( 
                 _updateProcedure,
                 new
                 {

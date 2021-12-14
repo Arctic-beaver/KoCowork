@@ -26,11 +26,11 @@ namespace CoCowork.DataLayer.Repositories
 
             return connection
                 .Query<MiniOfficeOrder, MiniOffice, MiniOfficeOrder>
-                (_selectAllProcedure, (miniOfficeOrder, miniOffice) =>
-                {
-                    miniOfficeOrder.MiniOffice = miniOffice;
-                    return miniOfficeOrder;
-                })
+                    (_selectAllProcedure, (miniOfficeOrder, miniOffice) =>
+                    {
+                        miniOfficeOrder.MiniOffice = miniOffice;
+                        return miniOfficeOrder;
+                    })
                 .Distinct()
                 .ToList();
         }
@@ -42,17 +42,17 @@ namespace CoCowork.DataLayer.Repositories
 
             return connection
                 .Query<MiniOfficeOrder, MiniOffice, MiniOfficeOrder>
-                (_selectByIdProcedure,
-                (miniOfficeOrder, miniOffice) =>
-                {
-                    miniOfficeOrder.MiniOffice = miniOffice;
-                    return miniOfficeOrder;
-                },
-                new
-                {
-                    Id = id
-                },
-                commandType: CommandType.StoredProcedure)
+                    (_selectByIdProcedure,
+                    (miniOfficeOrder, miniOffice) =>
+                    {
+                        miniOfficeOrder.MiniOffice = miniOffice;
+                        return miniOfficeOrder;
+                    },
+                    new
+                    {
+                        Id = id
+                    },
+                    commandType: CommandType.StoredProcedure)
                 .FirstOrDefault();
         }
 
@@ -63,14 +63,14 @@ namespace CoCowork.DataLayer.Repositories
 
             return connection
                 .Query<MiniOfficeOrder, MiniOffice, MiniOfficeOrder>
-                (_selectByOrderIdProcedure,
-                (miniOfficeOrder, miniOffice) =>
-                {
-                    miniOfficeOrder.MiniOffice = miniOffice;
-                    return miniOfficeOrder;
-                },
-                new { OrderId = orderId },
-                commandType: CommandType.StoredProcedure)
+                    (_selectByOrderIdProcedure,
+                    (miniOfficeOrder, miniOffice) =>
+                    {
+                        miniOfficeOrder.MiniOffice = miniOffice;
+                        return miniOfficeOrder;
+                    },
+                    new { OrderId = orderId },
+                    commandType: CommandType.StoredProcedure)
                 .Distinct()
                 .ToList();
         }
@@ -82,14 +82,14 @@ namespace CoCowork.DataLayer.Repositories
 
             return connection
                  .Query<MiniOfficeOrder, MiniOffice, MiniOfficeOrder>
-                 (_selectByOrderIdProcedure,
-                 (miniOfficeOrder, miniOffice) =>
-                 {
-                     miniOfficeOrder.MiniOffice = miniOffice;
-                     return miniOfficeOrder;
-                 },
-                new { OrderId = order.Id },
-                 commandType: CommandType.StoredProcedure)
+                    (_selectByOrderIdProcedure,
+                    (miniOfficeOrder, miniOffice) =>
+                    {
+                        miniOfficeOrder.MiniOffice = miniOffice;
+                        return miniOfficeOrder;
+                    },
+                    new { OrderId = order.Id },
+                    commandType: CommandType.StoredProcedure)
                  .Distinct()
                  .ToList();
         }

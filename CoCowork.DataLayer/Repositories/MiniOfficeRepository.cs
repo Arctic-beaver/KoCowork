@@ -24,7 +24,7 @@ namespace CoCowork.DataLayer.Repositories
 
             return connection
                 .Query<MiniOffice>
-                (_selectAllProcedure)
+                    (_selectAllProcedure)
                 .Distinct()
                 .ToList();
         }
@@ -37,24 +37,25 @@ namespace CoCowork.DataLayer.Repositories
             var miniOfficeDictionary = new Dictionary<int, MiniOffice>();
 
 
-            return connection.Query<MiniOffice, Place, MiniOffice>(
-            _selectByIdProcedure,
-            (miniOffice, place) =>
-            {
+            return connection
+                .Query<MiniOffice, Place, MiniOffice>(
+                     _selectByIdProcedure,
+                    (miniOffice, place) =>
+                    {
 
-                if (!miniOfficeDictionary.TryGetValue(miniOffice.Id, out MiniOffice miniOfficeEntry))
-                {
-                    miniOfficeEntry = miniOffice;
-                    miniOfficeEntry.Places = new List<Place>();
-                    miniOfficeDictionary.Add(miniOfficeEntry.Id, miniOfficeEntry);
-                }
+                        if (!miniOfficeDictionary.TryGetValue(miniOffice.Id, out MiniOffice miniOfficeEntry))
+                        {
+                            miniOfficeEntry = miniOffice;
+                            miniOfficeEntry.Places = new List<Place>();
+                            miniOfficeDictionary.Add(miniOfficeEntry.Id, miniOfficeEntry);
+                        }
 
-                miniOfficeEntry.Places.Add(place);
-                return miniOfficeEntry;
-            },
-            splitOn: "Id")
-            .Distinct()
-            .FirstOrDefault();
+                        miniOfficeEntry.Places.Add(place);
+                        return miniOfficeEntry;
+                    },
+                    splitOn: "Id")
+                .Distinct()
+                .FirstOrDefault();
         }
 
         public void Add(MiniOffice miniOffice)

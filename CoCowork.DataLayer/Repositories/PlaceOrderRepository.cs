@@ -28,11 +28,11 @@ namespace CoCowork.DataLayer.Repositories
 
             return connection
                 .Query<PlaceOrder, Place, PlaceOrder>
-                (_selectAllProcedure, (placeOrder, place) =>
-                {
-                    placeOrder.Place= place;
-                    return placeOrder;
-                })
+                    (_selectAllProcedure, (placeOrder, place) =>
+                    {
+                        placeOrder.Place= place;
+                        return placeOrder;
+                    })
                 .Distinct()
                 .ToList();
         }
@@ -47,17 +47,17 @@ namespace CoCowork.DataLayer.Repositories
 
             return connection
                 .Query<PlaceOrder, Place, PlaceOrder>
-                (_selectByIdProcedure,
-                (placeOrder, place) =>
-                {
-                    placeOrder.Place = place;
-                    return placeOrder;
-                },
-                new
-                {
-                    Id = id
-                },
-                commandType: CommandType.StoredProcedure)
+                    (_selectByIdProcedure,
+                    (placeOrder, place) =>
+                    {
+                        placeOrder.Place = place;
+                        return placeOrder;
+                    },
+                    new
+                    {
+                        Id = id
+                    },
+                    commandType: CommandType.StoredProcedure)
                 .FirstOrDefault();
         }
 
@@ -68,14 +68,14 @@ namespace CoCowork.DataLayer.Repositories
 
             return connection
                 .Query<PlaceOrder, Place, PlaceOrder>
-                (_selectByOrderIdProcedure,
-                (placeOrder, place) =>
-                {
-                    placeOrder.Place = place;
-                    return placeOrder;
-                },
-                new { OrderId = orderId },
-                commandType: CommandType.StoredProcedure)
+                    (_selectByOrderIdProcedure,
+                    (placeOrder, place) =>
+                    {
+                        placeOrder.Place = place;
+                        return placeOrder;
+                    },
+                    new { OrderId = orderId },
+                    commandType: CommandType.StoredProcedure)
                 .Distinct()
                 .ToList();
         }
@@ -87,14 +87,14 @@ namespace CoCowork.DataLayer.Repositories
 
             return connection
                  .Query<PlaceOrder, Place, PlaceOrder>
-                 (_selectByOrderIdProcedure,
-                 (placeOrder, place) =>
-                 {
-                     placeOrder.Place = place;
-                     return placeOrder;
-                 },
-                new { OrderId = order.Id },
-                 commandType: CommandType.StoredProcedure)
+                    (_selectByOrderIdProcedure,
+                    (placeOrder, place) =>
+                    {
+                        placeOrder.Place = place;
+                        return placeOrder;
+                    },
+                    new { OrderId = order.Id },
+                    commandType: CommandType.StoredProcedure)
                  .Distinct()
                  .ToList();
         }
