@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CoCowork.DataLayer.Entities
+namespace CoCowork.BusinessLayer.Models
 {
-    public class RoomType
+    public class ClientShortModel
     {
-        public string Name { get; set; }
     }
 }
