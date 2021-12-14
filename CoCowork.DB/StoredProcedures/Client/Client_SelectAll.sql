@@ -3,7 +3,8 @@ AS
 BEGIN
 	select
 		Id,
-		Name,
+		FirstName,
+		LastName,
 		DateBirth,
 		Email,
 		Phone,

@@ -6,5 +6,6 @@
 	[StartDate] datetime NOT NULL,
 	[EndDate] datetime NOT NULL,
 	[SubtotalPrice] int NOT NULL,
-	CONSTRAINT [FK_LaptopId_to_Laptop] FOREIGN KEY ([LaptopId]) REFERENCES [Laptop]([Id])
+	CONSTRAINT [FK_LaptopId_to_Laptop] FOREIGN KEY ([LaptopId]) REFERENCES [Laptop]([Id]), 
+    CONSTRAINT [FK_LaptopOrder_Order] FOREIGN KEY ([OrderId]) REFERENCES [Order]([Id])
 )

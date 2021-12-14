@@ -1,8 +1,8 @@
-﻿CREATE PROC dbo.TypeOfRoom_SelectAll
+﻿CREATE PROC dbo.RoomType_SelectAll
 AS
 BEGIN
 	select
 		Id,
 		Name
-	from dbo.TypeOfRoom
+	from dbo.RoomType
 END

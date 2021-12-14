@@ -1,10 +1,10 @@
-﻿CREATE PROC dbo.TypeOfRoom_SelectById	
+﻿CREATE PROC dbo.RoomType_SelectById	
 	@Id int
 AS
 BEGIN
 	select
 		Id,
 		Name
-	from dbo.TypeOfRoom
+	from dbo.RoomType
 	where Id =@Id
 END

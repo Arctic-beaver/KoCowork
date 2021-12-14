@@ -1,5 +1,6 @@
 ﻿CREATE PROC dbo.Client_Insert
-	@Name varchar(30), 
+	@FirstName varchar(20),
+	@LastName varchar(20), 
 	@DateBirth date,
 	@Email varchar(30),
 	@Phone varchar(20),
@@ -8,14 +9,16 @@
 AS
 BEGIN
 	insert into dbo.Client
-		(Name, 
+		(FirstName,
+		LastName, 
 		DateBirth, 
 		Email,
 		Phone,
 		PaperAmount,
 		PaperEndDay)
 	values 
-		(@Name, 
+		(@FirstName,
+		@LastName, 
 		@DateBirth, 
 		@Email,
 		@Phone,

@@ -1,7 +1,7 @@
-﻿CREATE PROC dbo.TypeOfRoom_Delete
+﻿CREATE PROC dbo.RoomType_Delete
 	@Id int
 AS
 BEGIN
-	delete from dbo.TypeOfRoom
+	delete from dbo.RoomType
 	where Id = @Id
 END
