@@ -10,7 +10,7 @@ namespace CoCowork.DataLayer.Repositories
 {
     public class MiniOfficeRepository
     {
-        private const string _connectionString = "Server=(local);Integrated Security=True;Database=CoCowork.DB;";
+        private const string _connectionString = "Server=80.78.240.16;User ID=student;Password=qwe!23;Database=CoCowork.DB;";
         private const string _selectAllProcedure = "dbo.MiniOffice_SelectAll";
         private const string _selectByIdProcedure = "dbo.MiniOffice_SelectById";
         private const string _insertProcedure = "dbo.MiniOffice_Insert";
