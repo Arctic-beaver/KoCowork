@@ -71,6 +71,8 @@
     <Folder Include="StoredProcedures\MiniOffice" />
     <Folder Include="StoredProcedures\PlaceOrder" />
     <Folder Include="StoredProcedures\MiniOfficeOrder" />
+    <Folder Include="StoredProcedures\Product" />
+    <Folder Include="StoredProcedures\ProductOrder" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="Tables\RoomType.sql" />
@@ -155,6 +157,18 @@
     <Build Include="StoredProcedures\Order\Order_Insert.sql" />
     <Build Include="StoredProcedures\Order\Order_SelectAll.sql" />
     <Build Include="StoredProcedures\Order\Order_SelectById.sql" />
+    <Build Include="Tables\Product.sql" />
+    <Build Include="Tables\ProductOrder.sql" />
+    <Build Include="StoredProcedures\Product\Product_Delete.sql" />
+    <Build Include="StoredProcedures\Product\Product_Insert.sql" />
+    <Build Include="StoredProcedures\Product\Product_SelectAll.sql" />
+    <Build Include="StoredProcedures\Product\Product_SelectById.sql" />
+    <Build Include="StoredProcedures\Product\Product_Update.sql" />
+    <Build Include="StoredProcedures\ProductOrder\ProductOrder_Update.sql" />
+    <Build Include="StoredProcedures\ProductOrder\ProductOrder_Delete.sql" />
+    <Build Include="StoredProcedures\ProductOrder\ProductOrder_Insert.sql" />
+    <Build Include="StoredProcedures\ProductOrder\ProductOrder_SelectAll.sql" />
+    <Build Include="StoredProcedures\ProductOrder\ProductOrder_SelectById.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="CoCowork.DB.refactorlog" />

@@ -28,4 +28,18 @@
     <Property Name="ParentElementType" Value="SqlSchema" />
     <Property Name="NewName" Value="[RoomType]" />
   </Operation>
+  <Operation Name="Rename Refactor" Key="df173d10-6b64-4506-b9a1-11bd146787a1" ChangeDateTime="12/14/2021 13:55:43">
+    <Property Name="ElementName" Value="[dbo].[ProductOrder].[Name]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[ProductOrder]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="ProductId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="87b457a9-981b-4ee4-b16f-29e4df6831b0" ChangeDateTime="12/14/2021 13:55:51">
+    <Property Name="ElementName" Value="[dbo].[ProductOrder].[Amount]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[ProductOrder]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="OrderId" />
+  </Operation>
 </Operations>
