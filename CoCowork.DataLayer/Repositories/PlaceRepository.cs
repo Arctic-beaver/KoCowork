@@ -18,7 +18,8 @@ namespace CoCowork.DataLayer.Repositories
         private const string _updateProcedure = "dbo.Place_Update";
         private const string _deleteProcedure = "dbo.Place_Delete";
         private const string _selectByMiniOfficeIdProcedure = "dbo.Place_SelectByMiniOfficeId";
-
+        private const string _selectThatNotInMiniOfficeProcedure = "dbo.Place_SelectThatNotInMiniOffice";
+        
         public List<Place> GetAllPlaces()
         {
             using var connection = new SqlConnection(_connectionString);
@@ -89,6 +90,24 @@ namespace CoCowork.DataLayer.Repositories
                         return place;
                     },
                     new { MiniOfficeId = miniOffice.Id},
+                    commandType: CommandType.StoredProcedure)
+                 .Distinct()
+                 .ToList();
+        }
+
+        public List<Place> GetPlacesThatNotInMiniOffice()
+        {
+            using var connection = new SqlConnection(_connectionString);
+            connection.Open();
+
+            return connection
+                 .Query<Place, MiniOffice, Place>
+                    (_selectThatNotInMiniOfficeProcedure,
+                    (place, miniOffice) =>
+                    {
+                        place.MiniOffice = miniOffice;
+                        return place;
+                    },
                     commandType: CommandType.StoredProcedure)
                  .Distinct()
                  .ToList();

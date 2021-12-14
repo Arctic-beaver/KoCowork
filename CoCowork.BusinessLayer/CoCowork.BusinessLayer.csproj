@@ -9,4 +9,8 @@
     <Folder Include="Services\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\CoCowork.DataLayer\CoCowork.DataLayer.csproj" />
+  </ItemGroup>
+
 </Project>
