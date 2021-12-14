@@ -1,5 +1,4 @@
 ﻿using CoCowork.DataLayer.Entities;
-using CoCowork.DataLayer.Helpers;
 using Dapper;
 using System;
 using System.Collections.Generic;
@@ -9,8 +8,9 @@ using System.Linq;
 
 namespace CoCowork.DataLayer.Repositories
 {
-    class MiniOfficeRepository
+    public class MiniOfficeRepository
     {
+        private const string _connectionString = "Server=(local);Integrated Security=True;Database=CoCowork.DB;";
         private const string _selectAllProcedure = "dbo.MiniOffice_SelectAll";
         private const string _selectByIdProcedure = "dbo.MiniOffice_SelectById";
         private const string _insertProcedure = "dbo.MiniOffice_Insert";
@@ -19,9 +19,10 @@ namespace CoCowork.DataLayer.Repositories
 
         public List<MiniOffice> GetAll()
         {
-           var connection = DLHelpers.Connection();
+            using var connection = new SqlConnection(_connectionString);
+            connection.Open();
 
-           return connection
+            return connection
                 .Query<MiniOffice>
                 (_selectAllProcedure)
                 .Distinct()
@@ -30,7 +31,8 @@ namespace CoCowork.DataLayer.Repositories
 
         public MiniOffice GetMiniOfficeById()
         {
-            using var connection = DLHelpers.Connection();
+            using var connection = new SqlConnection(_connectionString);
+            connection.Open();
 
             var miniOfficeDictionary = new Dictionary<int, MiniOffice>();
 
@@ -57,9 +59,10 @@ namespace CoCowork.DataLayer.Repositories
 
         public void Add(MiniOffice miniOffice)
         {
-            using var connection = DLHelpers.Connection();
+            using var connection = new SqlConnection(_connectionString);
+            connection.Open();
 
-            connection.ExecuteScalar<MiniOffice>(
+            connection.Execute(
                 _insertProcedure,
                 new
                 {
@@ -73,9 +76,10 @@ namespace CoCowork.DataLayer.Repositories
 
         public void UpdateMiniOfficeById(int id, MiniOffice miniOffice)
         {
-            using var connection = DLHelpers.Connection();
+            using var connection = new SqlConnection(_connectionString);
+            connection.Open();
 
-            var affectedRows = connection.ExecuteScalar<MiniOffice>(
+            var affectedRows = connection.Execute(
                 _updateProcedure,
                 new
                 {
@@ -90,9 +94,10 @@ namespace CoCowork.DataLayer.Repositories
 
         public void DeleteMiniOfficeById(int id)
         {
-            using var connection = DLHelpers.Connection();
+            using var connection = new SqlConnection(_connectionString);
+            connection.Open();
 
-            connection.ExecuteScalar<MiniOffice>(
+            connection.Execute(
                 _deleteProcedure,
                 new
                 {

@@ -9,7 +9,7 @@ using System.Linq;
 
 namespace CoCowork.DataLayer.Repositories
 {
-    class MiniOfficeOrderRepository
+    public class MiniOfficeOrderRepository
     {
         private const string _connectionString = "Server=(local);Integrated Security=True;Database=CoCowork.DB;";
         private const string _selectAllProcedure = "dbo.MiniOfficeOrder_SelectAll";
@@ -99,7 +99,7 @@ namespace CoCowork.DataLayer.Repositories
             using var connection = new SqlConnection(_connectionString);
             connection.Open();
 
-            connection.ExecuteScalar<MiniOfficeOrder>(
+            connection.Execute(
                 _insertProcedure,
                 new
                 {
@@ -117,7 +117,7 @@ namespace CoCowork.DataLayer.Repositories
             using var connection = new SqlConnection(_connectionString);
             connection.Open();
 
-            var affectedRows = connection.ExecuteScalar<MiniOfficeOrder>(
+            var affectedRows = connection.Execute(
                 _updateProcedure,
                 new
                 {
@@ -136,7 +136,7 @@ namespace CoCowork.DataLayer.Repositories
             using var connection = new SqlConnection(_connectionString);
             connection.Open();
 
-            connection.ExecuteScalar<MiniOfficeOrder>(
+            connection.Execute(
                 _deleteProcedure,
                 new
                 {

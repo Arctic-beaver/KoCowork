@@ -9,7 +9,7 @@ using System.Linq;
 
 namespace CoCowork.DataLayer.Repositories
 {
-    class PlaceRepository
+    public class PlaceRepository
     {
         private const string _connectionString = "Server=(local);Integrated Security=True;Database=CoCowork.DB;";
         private const string _selectAllProcedure = "dbo.Place_SelectAll";
@@ -99,7 +99,7 @@ namespace CoCowork.DataLayer.Repositories
             using var connection = new SqlConnection(_connectionString);
             connection.Open();
 
-            connection.ExecuteScalar<Place>(
+            connection.Execute(
                 _insertProcedure,
                 new
                 {
@@ -115,7 +115,7 @@ namespace CoCowork.DataLayer.Repositories
             using var connection = new SqlConnection(_connectionString);
             connection.Open();
 
-            var affectedRows = connection.ExecuteScalar<Place>(
+            var affectedRows = connection.Execute(
                 _updateProcedure,
                 new
                 {
@@ -131,7 +131,7 @@ namespace CoCowork.DataLayer.Repositories
             using var connection = new SqlConnection(_connectionString);
             connection.Open();
 
-            connection.ExecuteScalar<Place>(
+            connection.Execute(
                 _deleteProcedure,
                 new
                 {
