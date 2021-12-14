@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace CoCowork.BusinessLayer.Services
 {
-    class ClientService
+    public class ClientService
     {
+
     }
 }

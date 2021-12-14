@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CoCowork.BusinessLayer.Services
 {
-    class MiniOfficeOrderService
+    public class MiniOfficeOrderService
     {
     }
 }
