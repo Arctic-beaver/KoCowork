@@ -13,9 +13,9 @@ BEGIN
 		SubtotalPrice,
 		EndDate)
 	values 
-		(RoomId,
-		OrderId,
-		StartDate,
-		SubtotalPrice,
-		EndDate)
+		(@RoomId,
+		@OrderId,
+		@StartDate,
+		@SubtotalPrice,
+		@EndDate)
 END

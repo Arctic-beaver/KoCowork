@@ -13,7 +13,7 @@
     </RootPath>
     <RootNamespace>CoCowork.DB</RootNamespace>
     <AssemblyName>CoCowork.DB</AssemblyName>
-    <ModelCollation>1033, CI</ModelCollation>
+    <ModelCollation>1049,CI</ModelCollation>
     <DefaultFileStructure>BySchemaAndSchemaType</DefaultFileStructure>
     <DeployToDatabase>True</DeployToDatabase>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
@@ -23,6 +23,8 @@
     <IncludeCompositeObjects>True</IncludeCompositeObjects>
     <TargetDatabaseSet>True</TargetDatabaseSet>
     <TargetFrameworkProfile />
+    <ValidateCasingOnIdentifiers>False</ValidateCasingOnIdentifiers>
+    <DefaultCollation>Cyrillic_General_100_CI_AI</DefaultCollation>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <OutputPath>bin\Release\</OutputPath>
@@ -63,13 +65,12 @@
     <Folder Include="StoredProcedures\Laptop" />
     <Folder Include="StoredProcedures\LaptopOrder" />
     <Folder Include="StoredProcedures\Payment" />
-    <Folder Include="StoredProcedures\TypeOfRoom" />
+    <Folder Include="StoredProcedures\RoomType" />
     <Folder Include="StoredProcedures\Order" />
     <Folder Include="StoredProcedures\Room" />
     <Folder Include="StoredProcedures\RoomOrder" />
     <Folder Include="StoredProcedures\Client" />
     <Folder Include="StoredProcedures\Payment" />
-    <Folder Include="StoredProcedures\TypeOfRoom" />
     <Folder Include="StoredProcedures\Place" />
     <Folder Include="StoredProcedures\MiniOffice" />
     <Folder Include="StoredProcedures\PlaceOrder" />
@@ -101,11 +102,11 @@
     <Build Include="StoredProcedures\Payment\Payment_SelectAll.sql" />
     <Build Include="StoredProcedures\Payment\Payment_SelectById.sql" />
     <Build Include="StoredProcedures\Payment\Payment_Update.sql" />
-    <Build Include="StoredProcedures\TypeOfRoom\TypeOfRoom_Delete.sql" />
-    <Build Include="StoredProcedures\TypeOfRoom\TypeOfRoom_Insert.sql" />
-    <Build Include="StoredProcedures\TypeOfRoom\TypeOfRoom_SelectAll.sql" />
-    <Build Include="StoredProcedures\TypeOfRoom\TypeOfRoom_SelectById.sql" />
-    <Build Include="StoredProcedures\TypeOfRoom\TypeOfRoom_Update.sql" />
+    <Build Include="StoredProcedures\RoomType\RoomType_Delete.sql" />
+    <Build Include="StoredProcedures\RoomType\RoomType_Insert.sql" />
+    <Build Include="StoredProcedures\RoomType\RoomType_SelectAll.sql" />
+    <Build Include="StoredProcedures\RoomType\RoomType_SelectById.sql" />
+    <Build Include="StoredProcedures\RoomType\RoomType_Update.sql" />
     <Build Include="Tables\Place.sql" />
     <Build Include="Tables\MiniOffice.sql" />
     <Build Include="Tables\PlaceOrder.sql" />
@@ -123,11 +124,6 @@
     <Build Include="StoredProcedures\Payment\Payment_SelectAll.sql" />
     <Build Include="StoredProcedures\Payment\Payment_SelectById.sql" />
     <Build Include="StoredProcedures\Payment\Payment_Update.sql" />
-    <Build Include="StoredProcedures\TypeOfRoom\TypeOfRoom_Insert.sql" />
-    <Build Include="StoredProcedures\TypeOfRoom\TypeOfRoom_Delete.sql" />
-    <Build Include="StoredProcedures\TypeOfRoom\TypeOfRoom_SelectAll.sql" />
-    <Build Include="StoredProcedures\TypeOfRoom\TypeOfRoom_SelectById.sql" />
-    <Build Include="StoredProcedures\TypeOfRoom\TypeOfRoom_Update.sql" />
     <Build Include="StoredProcedures\Place\Place_Delete.sql" />
     <Build Include="StoredProcedures\Place\Place_Insert.sql" />
     <Build Include="StoredProcedures\Place\Place_SelectAll.sql" />

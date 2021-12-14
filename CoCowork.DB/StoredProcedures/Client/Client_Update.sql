@@ -1,6 +1,7 @@
 ﻿CREATE PROC dbo.Client_Update
 	@Id int,
-	@Name varchar(30), 
+	@FirstName varchar(20),
+	@LastName  varchar(20), 
 	@DateBirth date,
 	@Phone varchar(20),
 	@PaperAmount int,
@@ -8,7 +9,8 @@
 AS
 BEGIN
 	update dbo.Client
-	set Name = @Name, 
+	set FirstName = @FirstName, 
+		LastName = @LastName,
 		DateBirth = @DateBirth,
 		Phone = @Phone,
 		PaperAmount = @PaperAmount,

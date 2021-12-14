@@ -11,6 +11,8 @@ BEGIN
 		PricePerMonth,
 		Description)
 	values 
-		(@PricePerMonth,
+		(@Name,
+		@Amount,
+		@PricePerMonth,
 		@Description)
 END
