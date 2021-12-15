@@ -30,7 +30,6 @@ namespace CoCowork.DataLayer.Repositories
                     laptopOrder.Laptop = laptop;
                     return laptopOrder;
                 })
-                .Distinct()
                 .ToList();
         }
         public LaptopOrder GetLaptopOrderById(int id)
@@ -68,7 +67,6 @@ namespace CoCowork.DataLayer.Repositories
                 },
                 new { OrderId = orderId },
                 commandType: CommandType.StoredProcedure)
-                .Distinct()
                 .ToList();
         }
         public void Add(LaptopOrder laptopOrder)
