@@ -10,7 +10,7 @@ namespace CoCowork.DataLayer.Repositories
 {
     public class LaptopRepository
     {
-        private const string _connString = "Server=(local);Integrated Security=True;Database=CoCowork.DB;";
+        private const string _connString = "Server=80.78.240.16;User ID=student;Password=qwe!23;Database=CoCowork.DB;";//"Server=(local);Integrated Security=True;Database=CoCowork.DB;";
         private const string _selectAllProc = "dbo.Laptop_SelectAll";
         private const string _selectByIdProc = "dbo.Laptop_SelectById";
         private const string _insertProc = "dbo.Laptop_Insert";

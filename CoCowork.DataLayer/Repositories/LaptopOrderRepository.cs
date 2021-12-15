@@ -10,7 +10,7 @@ namespace CoCowork.DataLayer.Repositories
 {
     public class LaptopOrderRepository
     {
-        private const string _connString = "Server=(local);Integrated Security=True;Database=CoCowork.DB;";
+        private const string _connString = "Server=80.78.240.16;User ID=student;Password=qwe!23;Database=CoCowork.DB;";//"Server=(local);Integrated Security=True;Database=CoCowork.DB;";
         private const string _selectAllProc = "dbo.LaptopOrder_SelectAll";
         private const string _selectByIdProc = "dbo.LaptopOrder_SelectById";
         private const string _selectByOrderIdProc = "dbo.LaptopOrder_SelectByOrderId";
@@ -20,17 +20,15 @@ namespace CoCowork.DataLayer.Repositories
 
         public List<LaptopOrder> GetAllLaptopOrders()
         {
+
             using var connection = new SqlConnection(_connString);
             connection.Open();
 
-            return connection
-                .Query<LaptopOrder, Laptop, LaptopOrder>
-                (_selectAllProc, (laptopOrder, laptop) =>
-                {
-                    laptopOrder.Laptop = laptop;
-                    return laptopOrder;
-                })
-                .ToList();
+            var result = connection.Query<LaptopOrder>(_selectAllProc).ToList();
+
+            return result;
+
+
         }
         public LaptopOrder GetLaptopOrderById(int id)
         {
