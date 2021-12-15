@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace CoCowork.DataLayer.Repositories
 {
-    internal class LaptopRepository
+    public class LaptopRepository
     {
+        private const string _connString = "Server=(local);Integrated Security=True;Database=CoCowork.DB;";
     }
 }
