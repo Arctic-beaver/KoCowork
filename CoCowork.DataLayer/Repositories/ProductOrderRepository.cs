@@ -37,11 +37,12 @@ namespace CoCowork.DataLayer.Repositories
 
 
             return connection.
-                Query<ProductOrder, Product, ProductOrder>
+                Query<ProductOrder, Product, Order, ProductOrder>
                 (_selectByIdProcedure,
-                (productOrder, product) =>
+                (productOrder, product, order) =>
                 {
                     productOrder.ProductId = product;
+                    productOrder.OrderId = order;
                     return productOrder;
 
                 },

@@ -12,7 +12,14 @@ BEGIN
 		p.[Name],
 		p.PriceForOne,
 		p.Amount,
-		p.[Description]
-	from dbo.ProductOrder po inner join dbo.Product p on po.ProductId = p.Id
+		p.[Description],
+		o.Id,
+		o.IsCanceled,
+		o.IsPaid,
+		o.TotalPrice
+	from dbo.ProductOrder po 
+	inner join dbo.Product p on po.ProductId = p.Id 
+	inner join dbo.[Order] o on po.OrderId = o.Id
+	
 	where po.Id = @Id
 END
