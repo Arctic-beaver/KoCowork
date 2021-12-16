@@ -47,7 +47,8 @@ namespace CoCowork.DataLayer.Repositories
                 {
                     Id = id
                 },
-                commandType: CommandType.StoredProcedure)
+                commandType: CommandType.StoredProcedure,
+                splitOn: "Id")
                 .FirstOrDefault();
         }
         public List<LaptopOrder> GetLaptopOrderByOrderId(int orderId)
@@ -64,7 +65,9 @@ namespace CoCowork.DataLayer.Repositories
                     return laptopOrder;
                 },
                 new { OrderId = orderId },
-                commandType: CommandType.StoredProcedure)
+
+                commandType: CommandType.StoredProcedure,
+                splitOn: "Id")
                 .ToList();
         }
         public void Add(LaptopOrder laptopOrder)

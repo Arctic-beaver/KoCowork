@@ -9,6 +9,7 @@ BEGIN
 		lo.EndDate,
 		lo.SubtotalPrice,
 		lo.LaptopId,
+		l.Id,
 		l.Name,
 		l.PricePerMonth,
 		l.Description

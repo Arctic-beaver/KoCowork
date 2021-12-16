@@ -21,7 +21,9 @@ namespace CoCowork.DataLayer.Repositories
         {
             using var connection = new SqlConnection(_connString);
             connection.Open();
+
             var result = connection.Query<Laptop>(_selectAllProc).ToList();
+
             return result;
         }
         public Laptop GetLaptopsById(int id)
@@ -33,6 +35,7 @@ namespace CoCowork.DataLayer.Repositories
                 .QueryFirstOrDefault<Laptop>(
                 _selectByIdProc,
                 new { Id = id },
+
                 commandType: CommandType.StoredProcedure);
         }
         public void Add(Laptop laptop)
@@ -48,6 +51,7 @@ namespace CoCowork.DataLayer.Repositories
                    Price = laptop.Price,
                    Description = laptop.Description
                 },
+
                 commandType: CommandType.StoredProcedure);
         }
         public void UpdateLaptopById(int id, Laptop laptop)
@@ -64,6 +68,7 @@ namespace CoCowork.DataLayer.Repositories
                     Price = laptop.Price,
                     Description = laptop.Description
                 },
+
                 commandType: CommandType.StoredProcedure);
         }
         public void DeleteLaptopById(int id)
