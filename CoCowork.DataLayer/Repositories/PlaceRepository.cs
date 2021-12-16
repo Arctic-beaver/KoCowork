@@ -57,44 +57,6 @@ namespace CoCowork.DataLayer.Repositories
                 .FirstOrDefault();
         }
 
-        public List<Place> GetPlacesReferToMiniOffice(int miniOfficeId)
-        {
-            using var connection = new SqlConnection(_connectionString);
-            connection.Open();
-
-            return connection
-                .Query<Place, MiniOffice, Place>
-                    (_selectByMiniOfficeIdProcedure, 
-                    (place, miniOffice) =>
-                    {
-                        place.MiniOffice = miniOffice;
-                        return place;
-                    },
-                     new { MiniOfficeId = miniOfficeId },
-                    commandType: CommandType.StoredProcedure)
-                .Distinct()
-                .ToList();
-        }
-
-        public List<Place> GetPlacesReferToMiniOffice(MiniOffice miniOffice)
-        {
-            using var connection = new SqlConnection(_connectionString);
-            connection.Open();
-
-            return connection
-                 .Query<Place, MiniOffice, Place>
-                    (_selectByMiniOfficeIdProcedure,
-                    (place, miniOffice) =>
-                    {
-                        place.MiniOffice = miniOffice;
-                        return place;
-                    },
-                    new { MiniOfficeId = miniOffice.Id},
-                    commandType: CommandType.StoredProcedure)
-                 .Distinct()
-                 .ToList();
-        }
-
         public List<Place> GetPlacesThatNotInMiniOffice()
         {
             using var connection = new SqlConnection(_connectionString);
