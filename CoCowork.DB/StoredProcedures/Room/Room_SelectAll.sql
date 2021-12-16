@@ -3,7 +3,7 @@ AS
 BEGIN
 	select
 		Id,
-		TypeId,
+		Type,
 		AmountOfPeople,
 		PricePerHour
 	from dbo.Room

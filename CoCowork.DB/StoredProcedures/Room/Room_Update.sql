@@ -6,7 +6,7 @@
 AS
 BEGIN
 	update dbo.Room
-	set TypeId = @Type,
+	set Type = @Type,
 		AmountOfPeople = @AmountOfPeople,
 		PricePerHour = @PricePerHour
     where id = @Id
