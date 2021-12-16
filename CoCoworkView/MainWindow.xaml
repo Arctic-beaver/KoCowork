@@ -5,48 +5,139 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CoCoworkView"
         mc:Ignorable="d"
-        Title="Коворк под контролем" Height="450" Width="800">
+        Title="Коворк под контролем" Height="600" Width="1000" Background="#FFB7BBC2">
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="20*"/>
+            <ColumnDefinition Width="60*"/>
+            <ColumnDefinition Width="20*"/>
+        </Grid.ColumnDefinitions>
 
-        <Grid x:Name="MiniOfficeGrid" Visibility="Visible">
+        <Grid x:Name="LeftGrid" Grid.Column ="0" Background="#FFE0DFDF" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="15*"/>
+                <ColumnDefinition Width="70*"/>
+                <ColumnDefinition Width="15*"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            
+            <Button x:Name="MiniOfficeButton" Content="Миниофисы" Grid.Column="1" Grid.Row="1" Margin="0, 5, 0, 5"/>
+            <Button x:Name="ConferenceRoomButton" Content="Конференц-залы" Grid.Column="1" Grid.Row="2" Margin="0, 5, 0, 5"/>
+            <Button x:Name="MeetingRoomButton" Content="Переговорки" Grid.Column="1" Grid.Row="3" Margin="0, 5, 0, 5"/>
+            <Button x:Name="PlaceButton" Content="Места" Grid.Column="1" Grid.Row="4" Margin="0, 5, 0, 5"/>
+            <Button x:Name="ComputersButton" Content="Компьютеры" Grid.Column="1" Grid.Row="5" Margin="0, 5, 0, 5"/>
+            <Button x:Name="ProductsButton" Content="Прочие товары" Grid.Column="1" Grid.Row="6" Margin="0, 5, 0, 5"/>
+            <Button x:Name="ClientsButton" Content="Клиенты" Grid.Column="1" Grid.Row="7" Margin="0, 5, 0, 5"/>
+            <Button x:Name="OrderHistoryButton" Content="История заказов" Grid.Column="1" Grid.Row="8" Margin="0, 5, 0, 5"/>
+            <Button x:Name="ActualReservationsButton" Content="Актуальные брони" Grid.Column="1" Grid.Row="9" Margin="0, 5, 0, 5"/>
+            <Button x:Name="CurrentOrderButton" Content="Текущий заказ" Grid.Column="1" Grid.Row="10" Margin="0, 5, 0, 5"/>
+        </Grid>
+        
+        <Grid x:Name="MiniOfficeGrid" Visibility="Visible" Grid.Column ="1">
             <Label>Text in first grid</Label>
         </Grid>
 
-        <Grid x:Name="ConferenceRoomGrid">
+        <Grid x:Name="ConferenceRoomGrid" Grid.Column ="1">
             
         </Grid>
 
-        <Grid x:Name="MeetingRoomGrid" Visibility="Hidden">
+        <Grid x:Name="MeetingRoomGrid" Visibility="Hidden" Grid.Column ="1">
             <Label>Text in second grid</Label>
         </Grid>
 
-        <Grid x:Name="PlaceGrid">
+        <Grid x:Name="PlaceGrid" Grid.Column ="1">
             
         </Grid>
 
-        <Grid x:Name="ComputersGrid">
+        <Grid x:Name="ComputersGrid" Grid.Column ="1">
             
         </Grid>
 
-        <Grid x:Name="ProductsGrid">
+        <Grid x:Name="ProductsGrid" Grid.Column ="1">
             
         </Grid>
 
-        <Grid x:Name="ClientsGrid">
+        <Grid x:Name="ClientsGrid" Grid.Column ="1">
             
         </Grid>
 
-        <Grid x:Name="OrderHistoryGrid">
+        <Grid x:Name="OrderHistoryGrid" Grid.Column ="1">
             
         </Grid>
 
-        <Grid x:Name="ActualReservationsGrid">
+        <Grid x:Name="ActualReservationsGrid" Grid.Column ="1">
 
         </Grid>
 
-        <Grid x:Name="CurrentOrder">
+        <Grid x:Name="CurrentOrderGrid" Grid.Column ="1">
             
         </Grid>
-        
+
+
+
+        <Grid x:Name="MiniOfficeInsertGrid" Grid.Column ="1">
+            
+        </Grid>
+
+        <Grid x:Name="ConferenceRoomInsertGrid" Grid.Column ="1">
+
+        </Grid>
+
+        <Grid x:Name="MeetingRoomInsertGrid" Grid.Column ="1">
+
+        </Grid>
+
+        <Grid x:Name="PlaceInsertGrid" Grid.Column ="1">
+
+        </Grid>
+
+        <Grid x:Name="ComputersInsertGrid" Grid.Column ="1">
+
+        </Grid>
+
+        <Grid x:Name="ProductsInsertGrid" Grid.Column ="1">
+
+        </Grid>
+
+        <Grid x:Name="RightGrid" Grid.Column ="2" Background="#FFE0DFDF" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="15*"/>
+                <ColumnDefinition Width="70*"/>
+                <ColumnDefinition Width="15*"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Button x:Name="AddNewButton" Content="Инсертнуть" Grid.Column="1" Grid.Row="1" Margin="0, 15, 0, 15"/>
+            <Label Name="ItemTypeLabel" Content="Here will be item type" Grid.Column="1" Grid.Row="2" Margin="0, 15, 0, 15"/>
+            <Button x:Name="EditButton" Content="Редактировать" Grid.Column="1" Grid.Row="4" Margin="0, 15, 0, 15"/>
+            <Button x:Name="AddToOrderButton" Content="Добавить к заказу" Grid.Column="1" Grid.Row="5" Margin="0, 15, 0, 15"/>
+            <Button x:Name="DeleteButton" Content="Удалить" Grid.Column="1" Grid.Row="6" Margin="0, 15, 0, 15"/>
+            
+        </Grid>
+
     </Grid>
 </Window>
