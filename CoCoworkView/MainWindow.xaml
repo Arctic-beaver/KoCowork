@@ -8,5 +8,45 @@
         Title="Коворк под контролем" Height="450" Width="800">
     <Grid>
 
+        <Grid x:Name="MiniOfficeGrid" Visibility="Visible">
+            <Label>Text in first grid</Label>
+        </Grid>
+
+        <Grid x:Name="ConferenceRoomGrid">
+            
+        </Grid>
+
+        <Grid x:Name="MeetingRoomGrid" Visibility="Hidden">
+            <Label>Text in second grid</Label>
+        </Grid>
+
+        <Grid x:Name="PlaceGrid">
+            
+        </Grid>
+
+        <Grid x:Name="ComputersGrid">
+            
+        </Grid>
+
+        <Grid x:Name="ProductsGrid">
+            
+        </Grid>
+
+        <Grid x:Name="ClientsGrid">
+            
+        </Grid>
+
+        <Grid x:Name="OrderHistoryGrid">
+            
+        </Grid>
+
+        <Grid x:Name="ActualReservationsGrid">
+
+        </Grid>
+
+        <Grid x:Name="CurrentOrder">
+            
+        </Grid>
+        
     </Grid>
 </Window>
