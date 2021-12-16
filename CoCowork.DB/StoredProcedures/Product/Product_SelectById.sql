@@ -3,6 +3,7 @@
 AS
 BEGIN
 	select
+		p.Id,
 		p.[Name],
 		p.Amount,
 		p.PriceForOne,

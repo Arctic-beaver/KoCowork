@@ -12,7 +12,7 @@ namespace CoCowork.DataLayer.Repositories
 {
     public class RoomOrderRepository
     {
-        private const string _connectionString = "Server=(local);Integrated Security=True;Database=CoCowork.DB;";
+        private const string _connectionString = "Server=80.78.240.16;User ID=student;Password=qwe!23;Database=CoCowork.DB";
         private const string _selectAllProcedure = "dbo.RoomOrder_SelectAll";
         private const string _selectByIdProcedure = "dbo.RoomOrder_SelectById";
         private const string _insertProcedure = "dbo.RoomOrder_Insert";
@@ -35,19 +35,26 @@ namespace CoCowork.DataLayer.Repositories
             using var connection = new SqlConnection(_connectionString);
             connection.Open();
 
-            return connection.QueryFirstOrDefault<RoomOrder>(_selectByIdProcedure, new { Id = id },
-                commandType: CommandType.StoredProcedure);
+            return connection.Query<RoomOrder, Room, RoomOrder>
+                (_selectByIdProcedure,
+                (roomOrder, room) =>
+                {
+                    roomOrder.RoomId = room;
+                    return roomOrder;
+                },
+                new { Id = id },
+                commandType: CommandType.StoredProcedure)
+                .FirstOrDefault();
         }
 
         public void Add(RoomOrder roomorder)
         {
             using var connection = new SqlConnection(_connectionString);
             connection.Open();
-            connection.ExecuteScalar<RoomOrder>(
+            connection.Execute(
                 _insertProcedure,
                 new
                 {
-                    Id = roomorder.Id,
                     ClientId = roomorder.RoomId,
                     OrderId = roomorder.OrderId,
                     StartDate = roomorder.StartDate,
@@ -58,11 +65,12 @@ namespace CoCowork.DataLayer.Repositories
                 commandType: CommandType.StoredProcedure);
             ;
         }
+
         public void Update(RoomOrder roomorder)
         {
             using var connection = new SqlConnection(_connectionString);
             connection.Open();
-            connection.ExecuteScalar<RoomOrder>(
+            connection.Execute(
                 _updateProcedure,
                 new
                 {
@@ -77,12 +85,13 @@ namespace CoCowork.DataLayer.Repositories
                 commandType: CommandType.StoredProcedure);
             ;
         }
+
         public void Delete(int id)
         {
             using var connection = new SqlConnection(_connectionString);
             connection.Open();
 
-            connection.ExecuteScalar<RoomOrder>(
+            connection.Execute(
                 _deleteProcedure,
                 new
                 {

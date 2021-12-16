@@ -12,7 +12,7 @@ namespace CoCowork.DataLayer.Repositories
 {
     public class ProductRepository
     {
-        private const string _connectionString = "Server=(local);Integrated Security=True;Database=CoCowork.DB;";
+        private const string _connectionString = "Server=80.78.240.16;User ID=student;Password=qwe!23;Database=CoCowork.DB";
         private const string _selectAllProcedure = "dbo.Product_SelectAll";
         private const string _selectByIdProcedure = "dbo.Product_SelectById";
         private const string _insertProcedure = "dbo.Product_Insert";
@@ -43,11 +43,10 @@ namespace CoCowork.DataLayer.Repositories
         {
             using var connection = new SqlConnection(_connectionString);
             connection.Open();
-            connection.ExecuteScalar<Product>(
+            connection.Execute(
                 _insertProcedure,
                 new
                 {
-                    Id = product.Id,
                     Name = product.Name,
                     Amount = product.Amount,
                     PriceForOne = product.PriceForOne,
@@ -57,11 +56,12 @@ namespace CoCowork.DataLayer.Repositories
                 commandType: CommandType.StoredProcedure);
             ;
         }
+
         public void Update(Product product)
         {
             using var connection = new SqlConnection(_connectionString);
             connection.Open();
-            connection.ExecuteScalar<Product>(
+            connection.Execute(
                 _updateProcedure,
                 new
                 {
@@ -75,12 +75,13 @@ namespace CoCowork.DataLayer.Repositories
                 commandType: CommandType.StoredProcedure);
             ;
         }
+
         public void Delete(int id)
         {
             using var connection = new SqlConnection(_connectionString);
             connection.Open();
 
-            connection.ExecuteScalar<Product>(
+            connection.Execute(
                 _deleteProcedure,
                 new
                 {

@@ -3,7 +3,9 @@ AS
 BEGIN
 	select
 		r.Id,
+		r.TypeId,
 		r.AmountOfPeople,
-		r.PricePerHour
+		r.PricePerHour,
+		r.[Name]
 	from dbo.Room r 
 END

@@ -11,7 +11,7 @@ namespace CoCowork.DataLayer.Entities
         public int Id { get;  }
         public int Type { get; set; }
         public int AmountOfPeople { get; set; }
-        public int PricePerHour { get; set; }
+        public decimal PricePerHour { get; set; }
 
     }
 }

@@ -12,7 +12,7 @@ namespace CoCowork.DataLayer.Repositories
 {
     public class OrderRepository
     {
-        private const string _connectionString = "Server=(local);Integrated Security=True;Database=CoCowork.DB;";
+        private const string _connectionString = "Server=80.78.240.16;User ID=student;Password=qwe!23;Database=CoCowork.DB";
         private const string _selectAllProcedure = "dbo.Order_SelectAll";
         private const string _selectByIdProcedure = "dbo.Order_SelectById";
         private const string _insertProcedure = "dbo.Order_Insert";
@@ -35,7 +35,7 @@ namespace CoCowork.DataLayer.Repositories
             using var connection = new SqlConnection(_connectionString);
             connection.Open();
 
-            return connection.QueryFirstOrDefault<Order>(_selectByIdProcedure,new { Id = id },
+            return connection.QueryFirstOrDefault(_selectByIdProcedure,new { Id = id },
                 commandType: CommandType.StoredProcedure);
         }
 
@@ -43,11 +43,10 @@ namespace CoCowork.DataLayer.Repositories
         {
             using var connection = new SqlConnection(_connectionString);
             connection.Open();
-            connection.ExecuteScalar<Order>(
+            connection.Execute(
                 _insertProcedure,
                 new
                 {
-                    Id = order.Id,
                     ClientId = order.ClientId,
                     TotalPrice = order.TotalPrice,
                     IsPaid = order.IsPaid,
@@ -57,11 +56,12 @@ namespace CoCowork.DataLayer.Repositories
                 commandType: CommandType.StoredProcedure);
             ;
         } 
+
         public void Update (Order order)
         {
             using var connection = new SqlConnection(_connectionString);
             connection.Open();
-            connection.ExecuteScalar<Order>(
+            connection.Execute(
                 _updateProcedure,
                 new
                 {
@@ -75,12 +75,13 @@ namespace CoCowork.DataLayer.Repositories
                 commandType: CommandType.StoredProcedure);
             ;
         }
+
         public void Delete(int id)
         {
             using var connection = new SqlConnection(_connectionString);
             connection.Open();
 
-            connection.ExecuteScalar<Order>(
+            connection.Execute(
                 _deleteProcedure,
                 new
                 {

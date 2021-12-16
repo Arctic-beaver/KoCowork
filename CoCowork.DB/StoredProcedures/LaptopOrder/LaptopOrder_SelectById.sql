@@ -7,7 +7,11 @@ BEGIN
 		lo.OrderId,
 		lo.StartDate,
 		lo.EndDate,
-		lo.SubtotalPrice
-	from dbo.LaptopOrder lo
+		lo.SubtotalPrice,
+		l.Id,
+		l.[Name],
+		l.[Description],
+		l.Amount
+	from dbo.LaptopOrder lo left outer join dbo.Laptop l on l.Id = lo.LaptopId
 	where lo.Id = @Id
 END

@@ -4,7 +4,6 @@ AS
 BEGIN
 	select
 		ro.Id,
-		ro.RoomId,
 		ro.OrderId,
 		ro.StartDate,
 		ro.EndDate,
@@ -12,7 +11,8 @@ BEGIN
 		r.Id,
 		r.AmountOfPeople,
 		r.PricePerHour,
-		r.TypeId
+		r.TypeId,
+		r.[Name]
 	from dbo.RoomOrder ro
 	left outer join dbo.Room r on ro.RoomId = r.Id
 	where ro.Id =@Id

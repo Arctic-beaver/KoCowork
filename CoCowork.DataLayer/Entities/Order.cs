@@ -8,8 +8,8 @@ namespace CoCowork.DataLayer.Entities
 {
     public class Order
     {
-        public int Id { get;  }
-        public int ClientId { get; set; }
+        public int Id { get; set; }
+        public Client ClientId { get; set; }
         public int TotalPrice { get; set; }
         public bool IsPaid { get; set; }
         public bool IsCancelled { get; set; }

@@ -9,11 +9,11 @@ namespace CoCowork.DataLayer.Entities
     public class RoomOrder
     {
         public int Id { get;  }
-        public int RoomId { get; set; }
-        public int OrderId { get; set; }
+        public Room RoomId { get; set; }
+        public Order OrderId { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
-        public int SubtotalPrice { get; set; }
+        public decimal SubtotalPrice { get; set; }
 
     }
 }

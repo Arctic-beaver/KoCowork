@@ -4,6 +4,7 @@ BEGIN
 	select
 		lo.Id,
 		lo.OrderId,
+		lo.LaptopId,
 		lo.StartDate,
 		lo.EndDate,
 		lo.SubtotalPrice

@@ -4,6 +4,7 @@ AS
 BEGIN
 	select
 		o.Id,
+		o.ClientId,
 		o.TotalPrice,
 		o.IsPaid,
 		o.IsCanceled
