@@ -1,5 +1,5 @@
-﻿CREATE PROC dbo.PlaceOrder_SelectById	
-	@Id int
+﻿CREATE PROC dbo.PlaceOrder_SelectByOrderId	
+	@OrderId int
 AS
 BEGIN
 	select
@@ -14,5 +14,5 @@ BEGIN
 		p.PriceFixedPerDay
 	from dbo.PlaceOrder po
 	inner join dbo.Place p on po.PlaceId = p.Id
-	where po.Id = @Id
+	where po.OrderId = @OrderId
 END

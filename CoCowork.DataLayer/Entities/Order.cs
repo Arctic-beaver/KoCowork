@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace CoCowork.DataLayer.Entities
 {
-    public class RoomType
+    public class Order
     {
-        public string Name { get; set; }
+        public int Id { get; set; }
     }
 }

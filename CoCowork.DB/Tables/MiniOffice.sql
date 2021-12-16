@@ -5,5 +5,6 @@
     [AmountOfPlaces] INT NOT NULL, 
     [PricePerDay] DECIMAL(10, 2) NOT NULL, 
     [IsActive] BIT NOT NULL,
+     CONSTRAINT Name_unique UNIQUE([Name]) 
 
 )
