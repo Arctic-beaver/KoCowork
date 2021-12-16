@@ -23,9 +23,6 @@ namespace CoCowork.DataLayer.Repositories
             using var connection = new SqlConnection(_connectionString);
             connection.Open();
 
-            var place = new Place();
-            var placeOrder = new PlaceOrder();
-
             return connection
                 .Query<PlaceOrder, Place, PlaceOrder>
                     (_selectAllProcedure, (placeOrder, place) =>
@@ -40,9 +37,6 @@ namespace CoCowork.DataLayer.Repositories
         {
             using var connection = new SqlConnection(_connectionString);
             connection.Open();
-
-            var placeOrder = new PlaceOrder();
-            var place = new Place();
 
             return connection
                 .Query<PlaceOrder, Place, PlaceOrder>
