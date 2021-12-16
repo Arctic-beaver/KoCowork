@@ -3,15 +3,15 @@
 AS
 BEGIN
 	select
-		dbo.Place.Id,
-		dbo.Place.PricePerDay,
-		dbo.Place.PriceFixedPerDay,
-		dbo.MiniOffice.Id,
-		dbo.MiniOffice.[Name],
-		dbo.MiniOffice.AmountOfPlaces,
-		dbo.MiniOffice.PricePerDay,
-		dbo.MiniOffice.IsActive
-	from dbo.Place
-	left outer join dbo.MiniOffice on dbo.MiniOffice.Id = dbo.Place.MiniOfficeId
-	where dbo.Place.Id = @Id
+		p.Id,
+		p.PricePerDay,
+		p.PriceFixedPerDay,
+		mo.Id,
+		mo.[Name],
+		mo.AmountOfPlaces,
+		mo.PricePerDay,
+		mo.IsActive
+	from dbo.Place p
+	inner join dbo.MiniOffice mo on  p.MiniOfficeId = mo.Id
+	where p.Id = @Id
 END

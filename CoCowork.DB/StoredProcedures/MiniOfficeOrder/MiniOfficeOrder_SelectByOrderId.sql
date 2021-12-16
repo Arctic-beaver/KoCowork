@@ -1,6 +1,20 @@
-﻿CREATE PROCEDURE [dbo].[MiniOfficeOrder_SelectByOrderId]
-	@param1 int = 0,
-	@param2 int
+﻿CREATE PROC dbo.MiniOfficeOrder_SelectByOrderId	
+	@OrderId int
 AS
-	SELECT @param1, @param2
-RETURN 0
+BEGIN
+	select
+		mord.Id,
+		mord.MiniOfficeId,
+		mord.OrderId,
+		mord.StartDate,
+		mord.EndDate,
+		mord.SubtotalPrice,
+		mo.Id,
+		mo.[Name],
+		mo.AmountOfPlaces,
+		mo.PricePerDay,
+		mo.IsActive
+	from dbo.MiniOfficeOrder mord
+	inner join dbo.MiniOffice mo on mo.Id = mord.MiniOfficeId
+	where mord.OrderId = @OrderId
+END
