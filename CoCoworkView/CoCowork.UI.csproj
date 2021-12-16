@@ -10,8 +10,4 @@
     <ProjectReference Include="..\CoCowork.DataLayer\CoCowork.DataLayer.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="ViewModels\" />
-  </ItemGroup>
-
 </Project>
