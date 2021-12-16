@@ -30,7 +30,6 @@ namespace CoCowork.DataLayer.Repositories
                         miniOfficeOrder.MiniOffice = miniOffice;
                         return miniOfficeOrder;
                     })
-                .Distinct()
                 .ToList();
         }
         
@@ -70,7 +69,6 @@ namespace CoCowork.DataLayer.Repositories
                     },
                     new { OrderId = orderId },
                     commandType: CommandType.StoredProcedure)
-                .Distinct()
                 .ToList();
         }
 
@@ -89,7 +87,6 @@ namespace CoCowork.DataLayer.Repositories
                     },
                     new { OrderId = order.Id },
                     commandType: CommandType.StoredProcedure)
-                 .Distinct()
                  .ToList();
         }
 

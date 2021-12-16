@@ -2,9 +2,9 @@
 AS
 BEGIN
 	select
-		p.Id,
-		p.PricePerDay,
-		p.PriceFixedPerDay
+		Id,
+		PricePerDay,
+		PriceFixedPerDay
 	from dbo.Place p
 	where p.MiniOfficeId is null
 END

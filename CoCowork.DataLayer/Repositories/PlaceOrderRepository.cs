@@ -33,7 +33,6 @@ namespace CoCowork.DataLayer.Repositories
                         placeOrder.Place= place;
                         return placeOrder;
                     })
-                .Distinct()
                 .ToList();
         }
 
@@ -76,7 +75,6 @@ namespace CoCowork.DataLayer.Repositories
                     },
                     new { OrderId = orderId },
                     commandType: CommandType.StoredProcedure)
-                .Distinct()
                 .ToList();
         }
 
@@ -95,7 +93,6 @@ namespace CoCowork.DataLayer.Repositories
                     },
                     new { OrderId = order.Id },
                     commandType: CommandType.StoredProcedure)
-                 .Distinct()
                  .ToList();
         }
 

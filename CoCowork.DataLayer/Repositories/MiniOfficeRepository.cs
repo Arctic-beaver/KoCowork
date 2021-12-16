@@ -25,11 +25,10 @@ namespace CoCowork.DataLayer.Repositories
             return connection
                 .Query<MiniOffice>
                     (_selectAllProcedure)
-                .Distinct()
                 .ToList();
         }
 
-        public MiniOffice GetMiniOfficeById()
+        public MiniOffice GetMiniOfficeById(int id)
         {
             using var connection = new SqlConnection(_connectionString);
             connection.Open();
@@ -53,8 +52,11 @@ namespace CoCowork.DataLayer.Repositories
                         miniOfficeEntry.Places.Add(place);
                         return miniOfficeEntry;
                     },
+                    new
+                    {
+                        Id = id
+                    },
                     splitOn: "Id")
-                .Distinct()
                 .FirstOrDefault();
         }
 

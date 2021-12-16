@@ -32,7 +32,6 @@ namespace CoCowork.DataLayer.Repositories
                         place.MiniOffice = miniOffice;
                         return place;
                     })
-                .Distinct()
                 .ToList();
         }
 
@@ -71,7 +70,6 @@ namespace CoCowork.DataLayer.Repositories
                         return place;
                     },
                     commandType: CommandType.StoredProcedure)
-                 .Distinct()
                  .ToList();
         }
 

@@ -2,11 +2,11 @@
 AS
 BEGIN
 	select
-		po.Id,
-		po.PlaceId,
-		po.OrderId,
-		po.StartDate,
-		po.EndDate,
-		po.SubtotalPrice
-	from dbo.PlaceOrder po
+		Id,
+		PlaceId,
+		OrderId,
+		StartDate,
+		EndDate,
+		SubtotalPrice
+	from dbo.PlaceOrder 
 END
