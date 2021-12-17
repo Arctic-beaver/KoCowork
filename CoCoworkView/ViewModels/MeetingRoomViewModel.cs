@@ -1,7 +1,7 @@
 ﻿
 namespace CoCowork.UI.ViewModels
 {
-    public class MeetingRoomViewModel : BaseViewModel
+    public class MeetingRoomViewModel : BookingViewModel
     {
 
     }
