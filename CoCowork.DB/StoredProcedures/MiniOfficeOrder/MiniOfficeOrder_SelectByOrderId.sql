@@ -1,5 +1,5 @@
-﻿CREATE PROC dbo.MiniOfficeOrder_SelectById	
-	@Id int
+﻿CREATE PROC dbo.MiniOfficeOrder_SelectByOrderId	
+	@OrderId int
 AS
 BEGIN
 	select
@@ -15,6 +15,6 @@ BEGIN
 		mo.PricePerDay,
 		mo.IsActive
 	from dbo.MiniOfficeOrder mord
-	left outer join dbo.MiniOffice mo on mo.Id = mord.MiniOfficeId
-	where mord.Id = @Id
+	inner join dbo.MiniOffice mo on mo.Id = mord.MiniOfficeId
+	where mord.OrderId = @OrderId
 END
