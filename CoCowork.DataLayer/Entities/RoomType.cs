@@ -6,10 +6,8 @@ using System.Threading.Tasks;
 
 namespace CoCowork.DataLayer.Entities
 {
-    public class Payment
+    public class RoomType
     {
-        public decimal Amount { get; set; }
-        public DateTime PaymentDate { get; set; }
-        public int OrderId { get; set; }
+        public string Name { get; set; }
     }
 }
