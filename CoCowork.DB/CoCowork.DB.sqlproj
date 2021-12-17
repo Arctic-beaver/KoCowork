@@ -159,6 +159,7 @@
     <Build Include="StoredProcedures\Order\Order_Insert.sql" />
     <Build Include="StoredProcedures\Order\Order_SelectAll.sql" />
     <Build Include="StoredProcedures\Order\Order_SelectById.sql" />
+    <Build Include="StoredProcedures\LaptopOrder\LaptopOrder_SelectByOrderId.sql" />
     <Build Include="StoredProcedures\Place\Place_SelectByMiniOfficeId.sql" />
     <Build Include="StoredProcedures\MiniOfficeOrder\MiniOfficeOrder_SelectByOrderId.sql" />
     <Build Include="StoredProcedures\PlaceOrder\PlaceOrder_SelectByOrderId.sql" />
