@@ -47,7 +47,7 @@ namespace CoCowork.DataLayer.Repositories
                 _insertProcedure,
                 new
                 {
-                    ClientId = order.ClientId,
+                    ClientId = order.Client,
                     TotalPrice = order.TotalPrice,
                     IsPaid = order.IsPaid,
                     IsCancelled = order.IsCancelled
@@ -66,7 +66,7 @@ namespace CoCowork.DataLayer.Repositories
                 new
                 {
                     Id = order.Id,
-                    ClientId = order.ClientId,
+                    ClientId = order.Client,
                     TotalPrice = order.TotalPrice,
                     IsPaid = order.IsPaid,
                     IsCancelled = order.IsCancelled

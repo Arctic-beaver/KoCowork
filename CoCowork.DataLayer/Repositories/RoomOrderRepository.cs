@@ -35,11 +35,12 @@ namespace CoCowork.DataLayer.Repositories
             using var connection = new SqlConnection(_connectionString);
             connection.Open();
 
-            return connection.Query<RoomOrder, Room, RoomOrder>
+            return connection.Query<RoomOrder, Room, Order, RoomOrder>
                 (_selectByIdProcedure,
-                (roomOrder, room) =>
+                (roomOrder, room, order) =>
                 {
-                    roomOrder.RoomId = room;
+                    roomOrder.Room = room;
+                    roomOrder.Order = order;
                     return roomOrder;
                 },
                 new { Id = id },
@@ -55,8 +56,8 @@ namespace CoCowork.DataLayer.Repositories
                 _insertProcedure,
                 new
                 {
-                    ClientId = roomorder.RoomId,
-                    OrderId = roomorder.OrderId,
+                    ClientId = roomorder.Room,
+                    OrderId = roomorder.Order,
                     StartDate = roomorder.StartDate,
                     EndDate = roomorder.EndDate,
                     SubtotalPrice = roomorder.SubtotalPrice
@@ -75,8 +76,8 @@ namespace CoCowork.DataLayer.Repositories
                 new
                 {
                     Id = roomorder.Id,
-                    ClientId = roomorder.RoomId,
-                    OrderId = roomorder.OrderId,
+                    ClientId = roomorder.Room,
+                    OrderId = roomorder.Order,
                     StartDate = roomorder.StartDate,
                     EndDate = roomorder.EndDate,
                     SubtotalPrice = roomorder.SubtotalPrice

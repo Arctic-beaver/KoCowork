@@ -41,8 +41,8 @@ namespace CoCowork.DataLayer.Repositories
                 (_selectByIdProcedure,
                 (productOrder, product, order) =>
                 {
-                    productOrder.ProductId = product;
-                    productOrder.OrderId = order;
+                    productOrder.Product = product;
+                    productOrder.Order = order;
                     return productOrder;
 
                 },
@@ -62,8 +62,8 @@ namespace CoCowork.DataLayer.Repositories
                 _insertProcedure,
                 new
                 {
-                    ProductId = productorder.ProductId,
-                    OrderId = productorder.OrderId,
+                    ProductId = productorder.Product,
+                    OrderId = productorder.Order,
                     Amount = productorder.Amount,
                     SubtotalPrice = productorder.SubtotalPrice
 
@@ -81,8 +81,8 @@ namespace CoCowork.DataLayer.Repositories
                 new
                 {
                     Id = productorder.Id,
-                    ProductId = productorder.ProductId,
-                    OrderId = productorder.OrderId,
+                    ProductId = productorder.Product,
+                    OrderId = productorder.Order,
                     Amount = productorder.Amount,
                     SubtotalPrice = productorder.SubtotalPrice
 
