@@ -2,7 +2,7 @@
 	@Type int,
 	@AmountOfPeople int,
 	@PricePerHour decimal(10,2),
-	@Name varchar
+	@Name varchar(20)
 AS
 BEGIN
 	insert into dbo.Room
