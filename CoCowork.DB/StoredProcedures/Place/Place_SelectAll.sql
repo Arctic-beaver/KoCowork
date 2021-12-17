@@ -2,9 +2,9 @@
 AS
 BEGIN
 	select
-		p.Id,
-		p.MiniOfficeId,
-		p.PricePerDay,
-		p.PriceFixedPerDay
-	from dbo.Place p 
+		Id,
+    MiniOfficeId,
+		PricePerDay,
+		PriceFixedPerDay
+	from dbo.Place
 END

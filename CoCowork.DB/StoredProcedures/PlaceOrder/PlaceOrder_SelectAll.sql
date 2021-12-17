@@ -8,5 +8,5 @@ BEGIN
 		StartDate,
 		EndDate,
 		SubtotalPrice
-	from dbo.PlaceOrder
+	from dbo.PlaceOrder 
 END

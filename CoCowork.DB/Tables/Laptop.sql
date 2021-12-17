@@ -3,7 +3,7 @@
 	[Id] INT NOT NULL PRIMARY KEY IDENTITY,
 	[Name] varchar(30) NOT NULL,
 	[Amount] int,
-	[PricePerMonth] int NOT NULL,
+	[PricePerMonth] decimal(10,2) NOT NULL,
 	[Description] nvarchar(200) NOT NULL,
 	
 

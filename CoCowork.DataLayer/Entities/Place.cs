@@ -6,12 +6,11 @@ using System.Threading.Tasks;
 
 namespace CoCowork.DataLayer.Entities
 {
-    public class Order
+    public class Place
     {
         public int Id { get; set; }
-        public Client Client { get; set; }
-        public int TotalPrice { get; set; }
-        public bool IsPaid { get; set; }
-        public bool IsCancelled { get; set; }
+        public MiniOffice MiniOffice { get; set; }
+        public decimal PricePerDay { get; set; }
+        public decimal PriceFixedPerDay { get; set; }
     }
 }
