@@ -3,6 +3,7 @@ AS
 BEGIN
 	select
 		Id,
+    MiniOfficeId,
 		PricePerDay,
 		PriceFixedPerDay
 	from dbo.Place

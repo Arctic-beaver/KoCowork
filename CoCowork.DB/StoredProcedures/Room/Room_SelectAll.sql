@@ -2,9 +2,10 @@
 AS
 BEGIN
 	select
-		Id,
-		TypeId,
-		AmountOfPeople,
-		PricePerHour
-	from dbo.Room
+		r.Id,
+		r.TypeId,
+		r.AmountOfPeople,
+		r.PricePerHour,
+		r.[Name]
+	from dbo.Room r 
 END
