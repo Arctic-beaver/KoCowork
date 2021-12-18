@@ -9,8 +9,7 @@
     <ProjectGuid>{0fd7b480-e3ad-4a41-ab5b-86c1c131cb9b}</ProjectGuid>
     <DSP>Microsoft.Data.Tools.Schema.Sql.Sql130DatabaseSchemaProvider</DSP>
     <OutputType>Database</OutputType>
-    <RootPath>
-    </RootPath>
+    <RootPath />
     <RootNamespace>CoCowork.DB</RootNamespace>
     <AssemblyName>CoCowork.DB</AssemblyName>
     <ModelCollation>1049,CI</ModelCollation>
@@ -51,7 +50,6 @@
   </PropertyGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">11.0</VisualStudioVersion>
-    <!-- Default to the v11.0 targets path if the targets file for the current VS version is not found -->
     <SSDTExists Condition="Exists('$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets')">True</SSDTExists>
     <VisualStudioVersion Condition="'$(SSDTExists)' == ''">11.0</VisualStudioVersion>
   </PropertyGroup>
@@ -65,7 +63,6 @@
     <Folder Include="StoredProcedures\Laptop" />
     <Folder Include="StoredProcedures\LaptopOrder" />
     <Folder Include="StoredProcedures\Payment" />
-    <Folder Include="StoredProcedures\RoomType" />
     <Folder Include="StoredProcedures\Order" />
     <Folder Include="StoredProcedures\Room" />
     <Folder Include="StoredProcedures\RoomOrder" />
@@ -75,9 +72,10 @@
     <Folder Include="StoredProcedures\MiniOffice" />
     <Folder Include="StoredProcedures\PlaceOrder" />
     <Folder Include="StoredProcedures\MiniOfficeOrder" />
+    <Folder Include="StoredProcedures\Product" />
+    <Folder Include="StoredProcedures\ProductOrder" />
   </ItemGroup>
   <ItemGroup>
-    <Build Include="Tables\RoomType.sql" />
     <Build Include="Tables\Client.sql" />
     <Build Include="Tables\Payment.sql" />
     <Build Include="Tables\Laptop.sql" />
@@ -102,11 +100,6 @@
     <Build Include="StoredProcedures\Payment\Payment_SelectAll.sql" />
     <Build Include="StoredProcedures\Payment\Payment_SelectById.sql" />
     <Build Include="StoredProcedures\Payment\Payment_Update.sql" />
-    <Build Include="StoredProcedures\RoomType\RoomType_Delete.sql" />
-    <Build Include="StoredProcedures\RoomType\RoomType_Insert.sql" />
-    <Build Include="StoredProcedures\RoomType\RoomType_SelectAll.sql" />
-    <Build Include="StoredProcedures\RoomType\RoomType_SelectById.sql" />
-    <Build Include="StoredProcedures\RoomType\RoomType_Update.sql" />
     <Build Include="Tables\Place.sql" />
     <Build Include="Tables\MiniOffice.sql" />
     <Build Include="Tables\PlaceOrder.sql" />
@@ -159,6 +152,23 @@
     <Build Include="StoredProcedures\Order\Order_Insert.sql" />
     <Build Include="StoredProcedures\Order\Order_SelectAll.sql" />
     <Build Include="StoredProcedures\Order\Order_SelectById.sql" />
+    <Build Include="Tables\Product.sql" />
+    <Build Include="Tables\ProductOrder.sql" />
+    <Build Include="StoredProcedures\Product\Product_Delete.sql" />
+    <Build Include="StoredProcedures\Product\Product_Insert.sql" />
+    <Build Include="StoredProcedures\Product\Product_SelectAll.sql" />
+    <Build Include="StoredProcedures\Product\Product_SelectById.sql" />
+    <Build Include="StoredProcedures\Product\Product_Update.sql" />
+    <Build Include="StoredProcedures\ProductOrder\ProductOrder_Update.sql" />
+    <Build Include="StoredProcedures\ProductOrder\ProductOrder_Delete.sql" />
+    <Build Include="StoredProcedures\ProductOrder\ProductOrder_Insert.sql" />
+    <Build Include="StoredProcedures\ProductOrder\ProductOrder_SelectAll.sql" />
+    <Build Include="StoredProcedures\ProductOrder\ProductOrder_SelectById.sql" />
+    <Build Include="StoredProcedures\LaptopOrder\LaptopOrder_SelectByOrderId.sql" />
+    <Build Include="StoredProcedures\Place\Place_SelectByMiniOfficeId.sql" />
+    <Build Include="StoredProcedures\MiniOfficeOrder\MiniOfficeOrder_SelectByOrderId.sql" />
+    <Build Include="StoredProcedures\PlaceOrder\PlaceOrder_SelectByOrderId.sql" />
+    <Build Include="StoredProcedures\Place\Place_SelectThatNotInMiniOffice.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="CoCowork.DB.refactorlog" />

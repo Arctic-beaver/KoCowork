@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\CoCowork.DataLayer\CoCowork.DataLayer.csproj" />
+    <ProjectReference Include="..\CoCowork.BusinessLayer\CoCowork.BusinessLayer.csproj" />
   </ItemGroup>
 
 </Project>

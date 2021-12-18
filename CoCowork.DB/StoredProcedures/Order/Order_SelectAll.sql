@@ -2,10 +2,10 @@
 AS
 BEGIN
 	select
-		Id,
-		ClientId,
-		TotalPrice,
-		IsPaid,
-		IsCanceled
-	from dbo.[Order]
+		o.Id,
+		o.ClientId,
+		o.TotalPrice,
+		o.IsPaid,
+		o.IsCanceled
+	from dbo.[Order] o 
 END

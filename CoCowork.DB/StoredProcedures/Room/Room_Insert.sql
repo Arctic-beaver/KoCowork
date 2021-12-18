@@ -1,11 +1,11 @@
 ﻿CREATE PROC dbo.Room_Insert
-	@Type int,
+	@Type varchar(20),
 	@AmountOfPeople int,
 	@PricePerHour decimal(10,2)
 AS
 BEGIN
 	insert into dbo.Room
-		(TypeId,
+		(Type,
 		AmountOfPeople,
 		PricePerHour)
 	values 
