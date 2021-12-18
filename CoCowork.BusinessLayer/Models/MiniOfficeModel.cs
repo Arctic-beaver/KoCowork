@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace CoCowork.BusinessLayer.Models
 {
-    public class MiniOfficeModel
+    public class MiniOfficeModel : iItemModel
     {
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public const string Type = "Мини-офис";
     }
 }

@@ -6,10 +6,9 @@ using System.Threading.Tasks;
 
 namespace CoCowork.BusinessLayer.Models
 {
-    public class PlaceModel : iItemModel
+    public interface iItemModel
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public const string Type = "Место";
     }
 }
