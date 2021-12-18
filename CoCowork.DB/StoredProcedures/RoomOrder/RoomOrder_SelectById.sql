@@ -11,8 +11,7 @@ BEGIN
 		r.Id,
 		r.AmountOfPeople,
 		r.PricePerHour,
-		r.TypeId,
-		r.[Name]
+		r.Type
 	from dbo.RoomOrder ro
 	left outer join dbo.Room r on ro.RoomId = r.Id
 	where ro.Id =@Id

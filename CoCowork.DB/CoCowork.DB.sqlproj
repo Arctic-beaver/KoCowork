@@ -63,7 +63,6 @@
     <Folder Include="StoredProcedures\Laptop" />
     <Folder Include="StoredProcedures\LaptopOrder" />
     <Folder Include="StoredProcedures\Payment" />
-    <Folder Include="StoredProcedures\RoomType" />
     <Folder Include="StoredProcedures\Order" />
     <Folder Include="StoredProcedures\Room" />
     <Folder Include="StoredProcedures\RoomOrder" />
@@ -77,7 +76,6 @@
     <Folder Include="StoredProcedures\ProductOrder" />
   </ItemGroup>
   <ItemGroup>
-    <Build Include="Tables\RoomType.sql" />
     <Build Include="Tables\Client.sql" />
     <Build Include="Tables\Payment.sql" />
     <Build Include="Tables\Laptop.sql" />
@@ -102,11 +100,6 @@
     <Build Include="StoredProcedures\Payment\Payment_SelectAll.sql" />
     <Build Include="StoredProcedures\Payment\Payment_SelectById.sql" />
     <Build Include="StoredProcedures\Payment\Payment_Update.sql" />
-    <Build Include="StoredProcedures\RoomType\RoomType_Delete.sql" />
-    <Build Include="StoredProcedures\RoomType\RoomType_Insert.sql" />
-    <Build Include="StoredProcedures\RoomType\RoomType_SelectAll.sql" />
-    <Build Include="StoredProcedures\RoomType\RoomType_SelectById.sql" />
-    <Build Include="StoredProcedures\RoomType\RoomType_Update.sql" />
     <Build Include="Tables\Place.sql" />
     <Build Include="Tables\MiniOffice.sql" />
     <Build Include="Tables\PlaceOrder.sql" />
