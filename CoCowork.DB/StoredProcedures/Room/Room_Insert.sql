@@ -1,18 +1,15 @@
 ﻿CREATE PROC dbo.Room_Insert
-	@Type int,
+	@Type varchar(20),
 	@AmountOfPeople int,
-	@PricePerHour decimal(10,2),
-	@Name varchar(20)
+	@PricePerHour decimal(10,2)
 AS
 BEGIN
 	insert into dbo.Room
 		(Type,
 		AmountOfPeople,
-		PricePerHour, 
-		[Name])
+		PricePerHour)
 	values 
 		(@Type,
 		@AmountOfPeople,
-		@PricePerHour,
-		@Name)
+		@PricePerHour)
 END

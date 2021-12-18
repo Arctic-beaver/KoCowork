@@ -4,10 +4,9 @@ AS
 BEGIN
 	select
 		r.Id,
-		r.TypeId,
+		r.Type,
 		r.AmountOfPeople,
-		r.PricePerHour,
-		r.[Name]
+		r.PricePerHour
 	from dbo.Room r 
 	where r.id =@Id
 END
