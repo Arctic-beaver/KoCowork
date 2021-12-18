@@ -9,8 +9,7 @@
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="20*"/>
-            <ColumnDefinition Width="60*"/>
-            <ColumnDefinition Width="20*"/>
+            <ColumnDefinition Width="80*"/>
         </Grid.ColumnDefinitions>
 
         <Grid x:Name="LeftGrid" Grid.Column ="0" Background="#FFE0DFDF" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
@@ -28,69 +27,77 @@
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            
-            <Button x:Name="MiniOfficeButton" Content="Миниофисы" Grid.Column="1" Grid.Row="1" Margin="0, 5, 0, 5"/>
-            <Button x:Name="ConferenceRoomButton" Content="Конференц-залы" Grid.Column="1" Grid.Row="2" Margin="0, 5, 0, 5"/>
-            <Button x:Name="MeetingRoomButton" Content="Переговорки" Grid.Column="1" Grid.Row="3" Margin="0, 5, 0, 5"/>
-            <Button x:Name="PlaceButton" Content="Места" Grid.Column="1" Grid.Row="4" Margin="0, 5, 0, 5"/>
-            <Button x:Name="ComputersButton" Content="Компьютеры" Grid.Column="1" Grid.Row="5" Margin="0, 5, 0, 5"/>
-            <Button x:Name="ProductsButton" Content="Прочие товары" Grid.Column="1" Grid.Row="6" Margin="0, 5, 0, 5"/>
-            <Button x:Name="ClientsButton" Content="Клиенты" Grid.Column="1" Grid.Row="7" Margin="0, 5, 0, 5"/>
-            <Button x:Name="OrderHistoryButton" Content="История заказов" Grid.Column="1" Grid.Row="8" Margin="0, 5, 0, 5"/>
-            <Button x:Name="ActualReservationsButton" Content="Актуальные брони" Grid.Column="1" Grid.Row="9" Margin="0, 5, 0, 5"/>
-            <Button x:Name="CurrentOrderButton" Content="Текущий заказ" Grid.Column="1" Grid.Row="10" Margin="0, 5, 0, 5"/>
+
+            <Button x:Name="BookingButton" Content="Аренда" Grid.Column="1" Grid.Row="1" Margin="0, 18, 0, 18"/>
+            <Button x:Name="ProductsButton" Content="Товары" Grid.Column="1" Grid.Row="2" Margin="0, 18, 0, 18"/>
+            <Button x:Name="ClientsButton" Content="Клиенты" Grid.Column="1" Grid.Row="3" Margin="0, 18, 0, 18"/>
+            <Button x:Name="OrderHistoryButton" Content="История заказов" Grid.Column="1" Grid.Row="4" Margin="0, 18, 0, 18"/>
+            <Button x:Name="CurrentOrderButton" Content="Текущий заказ" Grid.Column="1" Grid.Row="5" Margin="0, 18, 0, 18"/>
         </Grid>
-        
-        <Grid x:Name="MiniOfficeGrid" Visibility="Visible" Grid.Column ="1">
+
+        <Grid x:Name="BookingGrid" Visibility="Visible" Grid.Column ="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="75*"/>
+                <ColumnDefinition Width="25*"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid x:Name="RightBoookingGrid" Grid.Column ="2" Background="#FFE0DFDF" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="15*"/>
+                    <ColumnDefinition Width="70*"/>
+                    <ColumnDefinition Width="15*"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <Button x:Name="AddNewButton" Content="Инсертнуть" Grid.Column="1" Grid.Row="1" Margin="0, 15, 0, 15"/>
+
+                <StackPanel x:Name="CheckStackPanel" Grid.Row="2" Grid.Column="1" Grid.RowSpan="2" Margin="0, 20, 0, 10">
+                    <CheckBox Content="CheckBox" Margin="0, 5, 0, 0"/>
+                    <CheckBox Content="CheckBox" Margin="0, 5, 0, 0"/>
+                    <CheckBox Content="CheckBox" Margin="0, 5, 0, 0"/>
+                    <CheckBox Content="CheckBox" Margin="0, 5, 0, 0"/>
+                    <CheckBox Content="CheckBox" Margin="0, 5, 0, 0"/>
+                </StackPanel>
+                <Button x:Name="EditButton" Content="Редактировать" Grid.Column="1" Grid.Row="4" Margin="0, 15, 0, 15"/>
+                <Button x:Name="AddToOrderButton" Content="Добавить к заказу" Grid.Column="1" Grid.Row="5" Margin="0, 15, 0, 15"/>
+                <Button x:Name="DeleteButton" Content="Удалить" Grid.Column="1" Grid.Row="6" Margin="0, 15, 0, 15"/>
+
+            </Grid>
+
             <Label>Text in first grid</Label>
         </Grid>
 
-        <Grid x:Name="ConferenceRoomGrid" Grid.Column ="1">
-            
-        </Grid>
-
-        <Grid x:Name="MeetingRoomGrid" Visibility="Hidden" Grid.Column ="1">
-            <Label>Text in second grid</Label>
-        </Grid>
-
-        <Grid x:Name="PlaceGrid" Grid.Column ="1">
-            
-        </Grid>
-
-        <Grid x:Name="ComputersGrid" Grid.Column ="1">
-            
-        </Grid>
-
         <Grid x:Name="ProductsGrid" Grid.Column ="1">
-            
+
         </Grid>
 
         <Grid x:Name="ClientsGrid" Grid.Column ="1">
-            
+
         </Grid>
 
         <Grid x:Name="OrderHistoryGrid" Grid.Column ="1">
-            
-        </Grid>
-
-        <Grid x:Name="ActualReservationsGrid" Grid.Column ="1">
 
         </Grid>
 
         <Grid x:Name="CurrentOrderGrid" Grid.Column ="1">
-            
+
         </Grid>
 
 
 
         <Grid x:Name="MiniOfficeInsertGrid" Grid.Column ="1">
-            
+
         </Grid>
 
         <Grid x:Name="ConferenceRoomInsertGrid" Grid.Column ="1">
@@ -109,35 +116,6 @@
 
         </Grid>
 
-        <Grid x:Name="ProductsInsertGrid" Grid.Column ="1">
-
-        </Grid>
-
-        <Grid x:Name="RightGrid" Grid.Column ="2" Background="#FFE0DFDF" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="15*"/>
-                <ColumnDefinition Width="70*"/>
-                <ColumnDefinition Width="15*"/>
-            </Grid.ColumnDefinitions>
-
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
-
-            <Button x:Name="AddNewButton" Content="Инсертнуть" Grid.Column="1" Grid.Row="1" Margin="0, 15, 0, 15"/>
-            <Label Name="ItemTypeLabel" Content="Here will be item type" Grid.Column="1" Grid.Row="2" Margin="0, 15, 0, 15"/>
-            <Button x:Name="EditButton" Content="Редактировать" Grid.Column="1" Grid.Row="4" Margin="0, 15, 0, 15"/>
-            <Button x:Name="AddToOrderButton" Content="Добавить к заказу" Grid.Column="1" Grid.Row="5" Margin="0, 15, 0, 15"/>
-            <Button x:Name="DeleteButton" Content="Удалить" Grid.Column="1" Grid.Row="6" Margin="0, 15, 0, 15"/>
-            
-        </Grid>
-
+        <Grid x:Name="ProductsInsertGrid" Grid.Column ="1"/>
     </Grid>
 </Window>
