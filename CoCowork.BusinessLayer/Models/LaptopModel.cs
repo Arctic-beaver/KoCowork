@@ -10,5 +10,7 @@ namespace CoCowork.BusinessLayer.Models
     {
         public int Id { get; set; }
         public string Name { get; set; }
+        public decimal PricePerMonth { get; set; }
+        public string Type = "Ноутбук";
     }
 }

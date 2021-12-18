@@ -10,6 +10,7 @@ namespace CoCowork.BusinessLayer.Models
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public const string Type = "Продукты";
+        public decimal PriceForOne { get; set; }
+        public string Type = "Продукты";
     }
 }
