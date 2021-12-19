@@ -1,14 +1,13 @@
 ﻿
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
 namespace CoCowork.UI.ViewModels
 {
-    public class PlaceViewModel : BaseViewModel
+    public class PlaceViewModel : BookingViewModel
     {
         private ObservableCollection<MiniOfficeViewModel> _miniOffices;
-        private decimal _pricePerDay;
-        private decimal? _fixedPricePerDay;
-        private int _number;
+        //private ObservableCollection<PlaceTest> _testPlaces;
         public ObservableCollection<MiniOfficeViewModel> MiniOffices
         {
             get => _miniOffices;
@@ -18,36 +17,28 @@ namespace CoCowork.UI.ViewModels
                 OnPropertyChanged(nameof(MiniOffices));
             }
         }
-        public decimal PricePerDay
-        {
-            get => _pricePerDay;
-            set
-            {
-                _pricePerDay = value;
-                OnPropertyChanged(nameof(PricePerDay));
-            }
-        }
-        public decimal? FixedPricePerDay
-        {
+        ////public ObservableCollection<PlaceTest> TestPlaces
+        //{
+        //    get => _testPlaces;
+        //    set
+        //    {
+        //        _testPlaces = value;
+        //        OnPropertyChanged(nameof(TestPlaces));
+        //    }
+        //}
 
-            get => _fixedPricePerDay;
-            set
-            {
-
-                _fixedPricePerDay = value;
-                OnPropertyChanged(nameof(FixedPricePerDay));
-            }
-
-        }
-        public int Number
+        public ObservableCollection<PlaceTest> GetPlaces()
         {
-            get => _number;
-            set
+            var places = new ObservableCollection<PlaceTest>();
+
+            places.Add(new PlaceTest() { PricePerDay = 600, FixedPricePerDay = 1000, Number = 9 });
+
+            for (int i = 1; i < 9; i++)
             {
-                _number = value;
-                OnPropertyChanged(nameof(Number));
+                places.Add(new PlaceTest() { PricePerDay = 600, FixedPricePerDay = 800, Number = i });
             }
+            places.Add(new PlaceTest() { PricePerDay = 800, FixedPricePerDay = 1100, Number = 10 });
+            return places;
         }
-        public string Type { get; } = "Место";
     }
 }
