@@ -63,11 +63,11 @@
                 <Button x:Name="AddNewButton" Content="Инсертнуть" Grid.Column="1" Grid.Row="1" Margin="0, 15, 0, 15"/>
 
                 <StackPanel x:Name="CheckStackPanel" Grid.Row="2" Grid.Column="1" Grid.RowSpan="2" Margin="0, 20, 0, 10">
-                    <CheckBox Content="CheckBox" Margin="0, 5, 0, 0"/>
-                    <CheckBox Content="CheckBox" Margin="0, 5, 0, 0"/>
-                    <CheckBox Content="CheckBox" Margin="0, 5, 0, 0"/>
-                    <CheckBox Content="CheckBox" Margin="0, 5, 0, 0"/>
-                    <CheckBox Content="CheckBox" Margin="0, 5, 0, 0"/>
+                    <CheckBox Content="Места" Margin="0, 5, 0, 0"/>
+                    <CheckBox Content="Миниофисы" Margin="0, 5, 0, 0"/>
+                    <CheckBox Content="Конференц-залы" Margin="0, 5, 0, 0"/>
+                    <CheckBox Content="Переговорные" Margin="0, 5, 0, 0"/>
+                    <CheckBox Content="ПК" Margin="0, 5, 0, 0"/>
                 </StackPanel>
                 <Button x:Name="EditButton" Content="Редактировать" Grid.Column="1" Grid.Row="4" Margin="0, 15, 0, 15"/>
                 <Button x:Name="AddToOrderButton" Content="Добавить к заказу" Grid.Column="1" Grid.Row="5" Margin="0, 15, 0, 15"/>
@@ -75,7 +75,28 @@
 
             </Grid>
 
-            <Label>Text in first grid</Label>
+            <DataGrid AutoGenerateColumns="False" CanUserAddRows="False">
+                <DataGrid.Resources>
+                    <Style TargetType="{x:Type DataGridColumnHeader}">
+                        <Setter Property="Background" Value="CornflowerBlue"/>
+                        <Setter Property="FontWeight" Value="SemiBold"/>
+                        <Setter Property="BorderThickness" Value="0, 0, 1, 2"/>
+                        <Setter Property="BorderBrush" Value="Black"/>
+                    </Style>
+                </DataGrid.Resources>
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Тип" Width="*"/>
+                    <DataGridTextColumn Header="Кол-во мест"  Width="80"/>
+                    <DataGridTextColumn Header="Цена за день"  Width="*"/>
+                    <DataGridTextColumn Header="Фикс цена за день"  Width="110"/>
+                    <DataGridTextColumn Header="Цена за месяц"  Width="90"/>
+                    <DataGridTextColumn Header="Вместимость"  Width="*"/>
+                    <DataGridTextColumn Header="Описание"  Width="70"/>
+
+
+                </DataGrid.Columns>
+                
+            </DataGrid>
         </Grid>
 
         <Grid x:Name="ProductsGrid" Grid.Column ="1">
