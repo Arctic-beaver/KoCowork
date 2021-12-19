@@ -7,7 +7,7 @@ using System.Runtime.CompilerServices;
 
 namespace CoCowork.UI.ViewModels
 {
-    class CurrentOrderViewModel : INotifyPropertyChanged
+    public class CurrentOrderViewModel : INotifyPropertyChanged
     {
         public CurrentOrderViewModel(iItemModel itemModel)
         {

@@ -110,8 +110,16 @@
                 </Grid.RowDefinitions>
 
 
-                <ListBox x:Name="CurrentOrderListbox" d:ItemsSource="{d:SampleData ItemCount=5}" Width="600" Margin="-600,0,30,0" Grid.RowSpan="8"/>
-
+                <ListView x:Name="CurrentOrderListview" ItemsSource="{Binding CurrentOrder}" Width="600" Margin="-600,0,30,0" Grid.RowSpan="8">
+                <ListView.ItemTemplate> 
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{Binding Name}"></TextBlock>
+                            <TextBlock Text="{Binding Type}"></TextBlock>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+                </ListView>
                 <Button x:Name="AcceptOrder" Content="Оформить заказ" Grid.Column="1" Grid.Row="5" Margin="0, 15, 0, 15" Height="47"/>
                 <Button x:Name="DeleteOrder" Content="Удалить из заказа" Grid.Column="1" Grid.Row="5" Margin="0,80,0,-60" Height="47"/>
 
