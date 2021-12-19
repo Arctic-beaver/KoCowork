@@ -9,6 +9,7 @@ namespace CoCowork.UI.ViewModels
         private ObservableCollection<MiniOfficeViewModel> _miniOffices;
         private ObservableCollection<MeetingRoomViewModel> _meetingRooms;
         private ObservableCollection<ConferenceRoomViewModel> _conferenceRooms;
+        private ObservableCollection<ComputerViewModel> _computers;
         public ObservableCollection<PlaceViewModel> Places
         { 
             get => _places;
@@ -45,6 +46,15 @@ namespace CoCowork.UI.ViewModels
                 OnPropertyChanged(nameof(ConferenceRooms));
             }
         }
+        public ObservableCollection<ComputerViewModel> Computers
+        {
+            get => _computers;
+            set
+            {
+                _computers = value;
+                OnPropertyChanged(nameof(Computers));
+            }
+        }
 
         public BookingViewModel()
         {
@@ -52,7 +62,7 @@ namespace CoCowork.UI.ViewModels
             MiniOffices = new ObservableCollection<MiniOfficeViewModel>();
             MeetingRooms = new ObservableCollection<MeetingRoomViewModel>();
             ConferenceRooms = new ObservableCollection<ConferenceRoomViewModel>();
-
+            Computers = new ObservableCollection<ComputerViewModel>();
         }
     }
 }

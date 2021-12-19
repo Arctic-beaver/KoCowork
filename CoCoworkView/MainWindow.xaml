@@ -80,21 +80,22 @@
 
             </Grid>
 
-            <DataGrid AutoGenerateColumns="False" CanUserAddRows="False" >
+            <DataGrid AutoGenerateColumns="False" CanUserAddRows="False" ItemsSource="{Binding Places}">
                 <DataGrid.Resources>
                     <Style TargetType="{x:Type DataGridColumnHeader}">
-                        <Setter Property="Background" Value="CornflowerBlue"/>
-                        <Setter Property="BorderThickness" Value="0, 0, 1, 2"/>
+                        <Setter Property="Background" Value="PaleTurquoise"/>
+                        <Setter Property="BorderThickness" Value="0, 0, 0.5, 1.8"/>
                         <Setter Property="BorderBrush" Value="Black"/>
                     </Style>
                 </DataGrid.Resources>
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header=" Тип" Width="*"/>
-                    <DataGridTextColumn Header=" Кол-во мест"  Width="80"/>
-                    <DataGridTextColumn Header=" Цена за день"  Width="90"/>
-                    <DataGridTextColumn Header=" Фикс цена за день"  Width="110"/>
+                    <DataGridTextColumn Header=" Тип" Width="*" Binding="{Binding Type}"/>
+                    <DataGridTextColumn Header=" Номер"  Width="45" Binding="{Binding Number}"/>
+                    <DataGridTextColumn Header=" Кол-во мест"  Width="75"/>
+                    <DataGridTextColumn Header=" Цена за день"  Width="80" Binding="{Binding PricePerDay}"/>
+                    <DataGridTextColumn Header=" Фикс цена за день"  Width="110" Binding="{Binding FixedPricePerDay}"/>
                     <DataGridTextColumn Header=" Цена за месяц"  Width="90"/>
-                    <DataGridTextColumn Header=" Вместимость"  Width="80"/>
+                    <DataGridTextColumn Header=" Вместимость"  Width="77"/>
                     <DataGridTextColumn Header=" Описание"  Width="*"/>
 
 

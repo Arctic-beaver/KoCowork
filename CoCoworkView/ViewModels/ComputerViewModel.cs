@@ -1,7 +1,7 @@
 ﻿
 namespace CoCowork.UI.ViewModels
 {
-    public class ComputerViewModel : BookingViewModel
+    public class ComputerViewModel : BaseViewModel
     {
 
     }

@@ -3,10 +3,12 @@ using System.Collections.ObjectModel;
 
 namespace CoCowork.UI.ViewModels
 {
-    public class PlaceViewModel : BookingViewModel
+    public class PlaceViewModel : BaseViewModel
     {
         private ObservableCollection<MiniOfficeViewModel> _miniOffices;
         private decimal _pricePerDay;
+        private decimal? _fixedPricePerDay;
+        private int _number;
         public ObservableCollection<MiniOfficeViewModel> MiniOffices
         {
             get => _miniOffices;
@@ -16,12 +18,36 @@ namespace CoCowork.UI.ViewModels
                 OnPropertyChanged(nameof(MiniOffices));
             }
         }
-        public decimal PricePerDay { get; }
-        public decimal FixedPricePerDay { get; }
-
-        public PlaceViewModel()
+        public decimal PricePerDay
+        {
+            get => _pricePerDay;
+            set
+            {
+                _pricePerDay = value;
+                OnPropertyChanged(nameof(PricePerDay));
+            }
+        }
+        public decimal? FixedPricePerDay
         {
 
+            get => _fixedPricePerDay;
+            set
+            {
+
+                _fixedPricePerDay = value;
+                OnPropertyChanged(nameof(FixedPricePerDay));
+            }
+
         }
+        public int Number
+        {
+            get => _number;
+            set
+            {
+                _number = value;
+                OnPropertyChanged(nameof(Number));
+            }
+        }
+        public string Type { get; } = "Место";
     }
 }
