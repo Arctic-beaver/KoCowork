@@ -17,7 +17,6 @@ namespace CoCowork.DataLayer.Repositories
         private const string _insertProcedure = "dbo.Place_Insert";
         private const string _updateProcedure = "dbo.Place_Update";
         private const string _deleteProcedure = "dbo.Place_Delete";
-        private const string _selectByMiniOfficeIdProcedure = "dbo.Place_SelectByMiniOfficeId";
         private const string _selectThatNotInMiniOfficeProcedure = "dbo.Place_SelectThatNotInMiniOffice";
         
         public List<Place> GetAllPlaces()
