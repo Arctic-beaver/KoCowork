@@ -6,6 +6,7 @@ namespace CoCowork.UI.ViewModels
         private int _number;
         private decimal _pricePerHour;
         private int _amountOfPlaces;
+
         public int Number
         {
             get => _number;
@@ -15,6 +16,7 @@ namespace CoCowork.UI.ViewModels
                 OnPropertyChanged(nameof(Number));
             }
         }
+
         public decimal PricePerHour
         {
             get => _pricePerHour;
@@ -24,6 +26,7 @@ namespace CoCowork.UI.ViewModels
                 OnPropertyChanged(nameof(PricePerHour));
             }
         }
+
         public int AmountOfPlaces
         {
             get => _amountOfPlaces;
@@ -33,5 +36,7 @@ namespace CoCowork.UI.ViewModels
                 OnPropertyChanged(nameof(AmountOfPlaces));
             }
         }
+
+        public bool IsActive { get; set; }
     }
 }

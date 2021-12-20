@@ -6,6 +6,7 @@ namespace CoCowork.UI.ViewModels
         private int _number;
         private decimal _pricePerMonth;
         private string _description;
+
         public int Number
         {
             get => _number;
@@ -15,6 +16,7 @@ namespace CoCowork.UI.ViewModels
                 OnPropertyChanged(nameof(Number));
             }
         }
+
         public decimal PricePerMonth
         {
             get => _pricePerMonth;
@@ -24,6 +26,7 @@ namespace CoCowork.UI.ViewModels
                 OnPropertyChanged(nameof(PricePerMonth));
             }
         }
+
         public string Description
         {
             get => _description;
@@ -33,5 +36,7 @@ namespace CoCowork.UI.ViewModels
                 OnPropertyChanged(nameof(Description));
             }
         }
+
+        public bool IsActive { get; set; }
     }
 }

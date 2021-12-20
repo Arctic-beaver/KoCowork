@@ -108,12 +108,11 @@
                     <Style TargetType="{x:Type DataGridColumnHeader}">
                         <Setter Property="HorizontalContentAlignment" Value="Center"/>
                         <Setter Property="Background" Value="Lavender"/>
-                        <Setter Property="BorderThickness" Value="0.1, 0.1, 1, 2"/>
+                        <Setter Property="BorderThickness" Value="0, 0, 1, 2"/>
                         <Setter Property="BorderBrush" Value="Black"/>
                     </Style>
                 </DataGrid.Resources>
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="№"  Width="30" Binding="{Binding Number}"/>
                     <DataGridTextColumn Header="Цена за день"  Width="80" Binding="{Binding PricePerDay}"/>
                     <DataGridTextColumn Header="Кол-во мест"  Width="110*" Binding="{Binding AmountOfPlaces}"/>
                 </DataGrid.Columns>
@@ -129,7 +128,6 @@
                     </Style>
                 </DataGrid.Resources>
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="№"  Width="30" Binding="{Binding Number}"/>
                     <DataGridTextColumn Header="Цена/день"  Width="70" Binding="{Binding PricePerDay}"/>
                     <DataGridTextColumn Header="Фикс цена/день"  Width="*" Binding="{Binding FixedPricePerDay}"/>
                 </DataGrid.Columns>
@@ -161,7 +159,6 @@
                     </Style>
                 </DataGrid.Resources>
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="№"  Width="30" Binding="{Binding Number}"/>
                     <DataGridTextColumn Header="Цена за час"  Width="78" Binding="{Binding PricePerHour}"/>
                     <DataGridTextColumn Header="Кол-во мест"  Width="110*" Binding="{Binding AmountOfPlaces}"/>
                 </DataGrid.Columns>
@@ -177,7 +174,6 @@
                     </Style>
                 </DataGrid.Resources>
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="№"  Width="30" Binding="{Binding Number}"/>
                     <DataGridTextColumn Header="Цена/месяц"  Width="78" Binding="{Binding PricePerMonth}"/>
                     <DataGridTextColumn Header="Описание"  Width="110*" Binding="{Binding Description}"/>
                 </DataGrid.Columns>

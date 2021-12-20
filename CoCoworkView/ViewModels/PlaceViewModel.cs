@@ -10,6 +10,7 @@ namespace CoCowork.UI.ViewModels
         private decimal _pricePerDay;
         private decimal? _fixedPricePerDay;
         private int _number;
+
         public ObservableCollection<MiniOfficeViewModel> MiniOffices
         {
             get => _miniOffices;
@@ -19,6 +20,7 @@ namespace CoCowork.UI.ViewModels
                 OnPropertyChanged(nameof(MiniOffices));
             }
         }
+
         public decimal PricePerDay
         {
             get => _pricePerDay;
@@ -28,6 +30,7 @@ namespace CoCowork.UI.ViewModels
                 OnPropertyChanged(nameof(PricePerDay));
             }
         }
+
         public decimal? FixedPricePerDay
         {
             get => _fixedPricePerDay;
@@ -37,6 +40,7 @@ namespace CoCowork.UI.ViewModels
                 OnPropertyChanged(nameof(FixedPricePerDay));
             }
         }
+
         public int Number
         {
             get => _number;
@@ -46,5 +50,7 @@ namespace CoCowork.UI.ViewModels
                 OnPropertyChanged(nameof(Number));
             }
         }
+
+        public bool IsActive { get; set; }
     }
 }
