@@ -28,26 +28,25 @@ namespace CoCoworkView
 
         public MainWindow()
         {
-            //InitializeComponent();
-            //_bookingVM = new BookingViewModel();
-            //DataContext = _bookingVM;
-            //FillViewModelWithData();
+            InitializeComponent();
+            _bookingVM = new BookingViewModel();
+            DataContext = _bookingVM;
+            FillViewModelWithData();
         }
 
         public void FillViewModelWithData()
         {
-            
-            //_bookingVM.ConferenceRooms.Add(new ConferenceRoomViewModel()); 
-            //_bookingVM.Places.Add(new PlaceViewModel() { PricePerDay = 600, FixedPricePerDay = 1000, Number = 9});
+            _bookingVM.ConferenceRooms.Add(new ConferenceRoomViewModel());
+            _bookingVM.Places.Add(new PlaceViewModel() { PricePerDay = 600, FixedPricePerDay = 1000, Number = 9 });
 
-            //for (int i = 1; i < 9; i++)
-            //{
-            //    _bookingVM.Places.Add(new PlaceViewModel() { PricePerDay = 600, FixedPricePerDay = 800, Number = i });
-            //}
-            //_bookingVM.Places.Add(new PlaceViewModel() { PricePerDay = 800, FixedPricePerDay = 1100, Number = 10 });
-            //_bookingVM.MeetingRooms.Add(new MeetingRoomViewModel());
-            //_bookingVM.MiniOffices.Add(new MiniOfficeViewModel() { PricePerDay = 2000, Number=1});
-            //_bookingVM.Computers.Add(new ComputerViewModel());
+            for (int i = 1; i < 9; i++)
+            {
+                _bookingVM.Places.Add(new PlaceViewModel() { PricePerDay = 600, FixedPricePerDay = 800, Number = i });
+            }
+            _bookingVM.Places.Add(new PlaceViewModel() { PricePerDay = 800, FixedPricePerDay = 1100, Number = 10 });
+            _bookingVM.MeetingRooms.Add(new MeetingRoomViewModel());
+            _bookingVM.MiniOffices.Add(new MiniOfficeViewModel() { PricePerDay = 2000, Number = 1 });
+            _bookingVM.Computers.Add(new ComputerViewModel());
         }
     }
 }

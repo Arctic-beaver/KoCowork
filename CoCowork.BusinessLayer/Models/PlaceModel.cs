@@ -8,5 +8,6 @@ namespace CoCowork.BusinessLayer.Models
 {
     public class PlaceModel
     {
+
     }
 }
