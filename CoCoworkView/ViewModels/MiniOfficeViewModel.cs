@@ -3,18 +3,9 @@ namespace CoCowork.UI.ViewModels
 {
     public class MiniOfficeViewModel : BaseViewModel
     {
-
-        private decimal _pricePerDay;
         private int _number;
-        public decimal PricePerDay
-        {
-            get => _pricePerDay;
-            set
-            {
-                _pricePerDay = value;
-                OnPropertyChanged(nameof(PricePerDay));
-            }
-        }
+        private decimal _pricePerDay;
+        private int _amountOfPlaces;
         public int Number
         {
             get => _number;
@@ -24,6 +15,23 @@ namespace CoCowork.UI.ViewModels
                 OnPropertyChanged(nameof(Number));
             }
         }
-        public string Type { get; } = "Миниофис";
+        public decimal PricePerDay
+        {
+            get => _pricePerDay;
+            set
+            {
+                _pricePerDay = value;
+                OnPropertyChanged(nameof(PricePerDay));
+            }
+        }
+        public int AmountOfPlaces
+        {
+            get => _amountOfPlaces;
+            set
+            {
+                _amountOfPlaces = value;
+                OnPropertyChanged(nameof(AmountOfPlaces));
+            }
+        }
     }
 }

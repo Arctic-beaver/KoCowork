@@ -44,8 +44,14 @@ namespace CoCoworkView
                 _bookingVM.Places.Add(new PlaceViewModel() { PricePerDay = 600, FixedPricePerDay = 800, Number = i });
             }
             _bookingVM.Places.Add(new PlaceViewModel() { PricePerDay = 800, FixedPricePerDay = 1100, Number = 10 });
-            _bookingVM.MeetingRooms.Add(new MeetingRoomViewModel());
-            _bookingVM.MiniOffices.Add(new MiniOfficeViewModel() { PricePerDay = 2000, Number = 1 });
+
+            for (int i = 1; i < 4; i++)
+            {
+                _bookingVM.MeetingRooms.Add(new MeetingRoomViewModel() { PricePerHour = 10, AmountOfPlaces = 4, Number = i });
+            }
+            _bookingVM.MiniOffices.Add(new MiniOfficeViewModel() { PricePerDay = 2000, Number = 1, AmountOfPlaces = 5 });
+            _bookingVM.MiniOffices.Add(new MiniOfficeViewModel() { PricePerDay = 2500, Number = 2, AmountOfPlaces = 8 });
+            _bookingVM.MiniOffices.Add(new MiniOfficeViewModel() { PricePerDay = 2000, Number = 3, AmountOfPlaces = 5 });
             _bookingVM.Computers.Add(new ComputerViewModel());
         }
     }
