@@ -31,12 +31,13 @@ namespace CoCoworkView
             InitializeComponent();
             _bookingVM = new BookingViewModel();
             DataContext = _bookingVM;
-            FillViewModelWithData();
+            FillViewModelsWithData();
         }
 
-        public void FillViewModelWithData()
+        public void FillViewModelsWithData()
         {
-            _bookingVM.ConferenceRooms.Add(new ConferenceRoomViewModel());
+            _bookingVM.ConferenceRooms.Add(new ConferenceRoomViewModel() { PricePerHour = 500, AmountOfPlaces = 20, Number = 1 });
+            _bookingVM.ConferenceRooms.Add(new ConferenceRoomViewModel() { PricePerHour = 700, AmountOfPlaces = 25, Number = 2 });
             _bookingVM.Places.Add(new PlaceViewModel() { PricePerDay = 600, FixedPricePerDay = 1000, Number = 9 });
 
             for (int i = 1; i < 9; i++)
@@ -47,12 +48,21 @@ namespace CoCoworkView
 
             for (int i = 1; i < 4; i++)
             {
-                _bookingVM.MeetingRooms.Add(new MeetingRoomViewModel() { PricePerHour = 10, AmountOfPlaces = 4, Number = i });
+                _bookingVM.MeetingRooms.Add(new MeetingRoomViewModel() { PricePerHour = 150, AmountOfPlaces = 4, Number = i });
             }
             _bookingVM.MiniOffices.Add(new MiniOfficeViewModel() { PricePerDay = 2000, Number = 1, AmountOfPlaces = 5 });
             _bookingVM.MiniOffices.Add(new MiniOfficeViewModel() { PricePerDay = 2500, Number = 2, AmountOfPlaces = 8 });
             _bookingVM.MiniOffices.Add(new MiniOfficeViewModel() { PricePerDay = 2000, Number = 3, AmountOfPlaces = 5 });
-            _bookingVM.Computers.Add(new ComputerViewModel());
+
+            for (int i = 1; i < 7; i++)
+            {
+                _bookingVM.Computers.Add(new ComputerViewModel() { PricePerMonth = 8000, Number = i, Description = "Мощный конь" });
+            }
+            for (int i = 7; i < 14; i++)
+            {
+                _bookingVM.Computers.Add(new ComputerViewModel() { PricePerMonth = 5000, Number = i, Description = "Стандартный" });
+            }
+            
         }
     }
 }

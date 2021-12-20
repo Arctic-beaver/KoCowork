@@ -49,12 +49,22 @@
                 <RowDefinition Height="26"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            
-            <Label Content="Места" HorizontalAlignment="Center" FontWeight="Bold" Grid.Column="0" Grid.Row="0"/>
-            <Label Content="Миниофисы" HorizontalAlignment="Center" FontWeight="Bold" Grid.Column="1" Grid.Row="0"/>
-            <Label Content="Переговорные" HorizontalAlignment="Center" FontWeight="Bold" Grid.Column="2" Grid.Row="0"/>
-            <Label Content="Конференц-залы" HorizontalAlignment="Center" FontWeight="Bold" Grid.Column="0" Grid.Row="2"/>
-            <Label Content="Компьютеры" HorizontalAlignment="Center" FontWeight="Bold" Grid.Column="1" Grid.Row="2"/>
+
+            <Label Content="Места" HorizontalAlignment="Center" FontWeight="Bold" Grid.Column="0" Grid.Row="0">
+
+            </Label>
+            <Label Content="Миниофисы" HorizontalAlignment="Center" FontWeight="Bold" Grid.Column="1" Grid.Row="0">
+
+            </Label>
+            <Label Content="Переговорные" HorizontalAlignment="Center" FontWeight="Bold" Grid.Column="2" Grid.Row="0">
+
+            </Label>
+            <Label Content="Конференц-залы" HorizontalAlignment="Center" FontWeight="Bold" Grid.Column="0" Grid.Row="2">
+
+            </Label>
+            <Label Content="Компьютеры" HorizontalAlignment="Center" FontWeight="Bold" Grid.Column="1" Grid.Row="2">
+
+            </Label>
             
             <Grid x:Name="RightBoookingGrid" Grid.Column ="3" Grid.RowSpan="4" Background="#FFE0DFDF" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                 <Grid.ColumnDefinitions>
@@ -91,55 +101,86 @@
                 <Button x:Name="EditButton" Content="Редактировать" Grid.Column="1" Grid.Row="4" Margin="0, 15, 0, 15"/>
                 <Button x:Name="AddToOrderButton" Content="Добавить к заказу" Grid.Column="1" Grid.Row="5" Margin="0, 15, 0, 15"/>
                 <Button x:Name="DeleteButton" Content="Удалить" Grid.Column="1" Grid.Row="6" Margin="0, 15, 0, 15"/>
-
             </Grid>
-            <DataGrid AutoGenerateColumns="False" Margin="1 0 1 0" Grid.Column="1" Grid.Row="1" CanUserAddRows="False" ItemsSource="{Binding MiniOffices}">
+            
+            <DataGrid AutoGenerateColumns="False" Margin="2 0 2 0" Grid.Column="1" Grid.Row="1" CanUserAddRows="False" ItemsSource="{Binding MiniOffices}">
                 <DataGrid.Resources>
                     <Style TargetType="{x:Type DataGridColumnHeader}">
-                        <Setter Property="Background" Value="PaleTurquoise"/>
+                        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                        <Setter Property="Background" Value="Lavender"/>
                         <Setter Property="BorderThickness" Value="0.1, 0.1, 1, 2"/>
                         <Setter Property="BorderBrush" Value="Black"/>
                     </Style>
                 </DataGrid.Resources>
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header=" Номер"  Width="45" Binding="{Binding Number}"/>
-                    <DataGridTextColumn Header=" Цена за день"  Width="78" Binding="{Binding PricePerDay}"/>
-                    <DataGridTextColumn Header=" Кол-во мест"  Width="110" Binding="{Binding AmountOfPlaces}"/>
+                    <DataGridTextColumn Header="№"  Width="30" Binding="{Binding Number}"/>
+                    <DataGridTextColumn Header="Цена за день"  Width="80" Binding="{Binding PricePerDay}"/>
+                    <DataGridTextColumn Header="Кол-во мест"  Width="110*" Binding="{Binding AmountOfPlaces}"/>
                 </DataGrid.Columns>
-
             </DataGrid>
-
+            
             <DataGrid AutoGenerateColumns="False" Grid.Column="0" Grid.Row="1" CanUserAddRows="False" ItemsSource="{Binding Places}">
                 <DataGrid.Resources>
                     <Style TargetType="{x:Type DataGridColumnHeader}">
-                        <Setter Property="Background" Value="PaleTurquoise"/>
-                        <Setter Property="BorderThickness" Value="0.1, 0.1, 1, 2"/>
+                        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                        <Setter Property="Background" Value="Lavender"/>
+                        <Setter Property="BorderThickness" Value="0, 0, 1, 2"/>
                         <Setter Property="BorderBrush" Value="Black"/>
                     </Style>
                 </DataGrid.Resources>
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header=" Номер"  Width="43" Binding="{Binding Number}"/>
-                    <DataGridTextColumn Header=" Цена/день"  Width="63" Binding="{Binding PricePerDay}"/>
-                    <DataGridTextColumn Header=" Фикс цена/день"  Width="*" Binding="{Binding FixedPricePerDay}"/>
-
+                    <DataGridTextColumn Header="№"  Width="30" Binding="{Binding Number}"/>
+                    <DataGridTextColumn Header="Цена/день"  Width="70" Binding="{Binding PricePerDay}"/>
+                    <DataGridTextColumn Header="Фикс цена/день"  Width="*" Binding="{Binding FixedPricePerDay}"/>
                 </DataGrid.Columns>
-                
             </DataGrid>
+            
             <DataGrid AutoGenerateColumns="False" Grid.Column="2" Grid.Row="1" CanUserAddRows="False" ItemsSource="{Binding MeetingRooms}">
                 <DataGrid.Resources>
                     <Style TargetType="{x:Type DataGridColumnHeader}">
-                        <Setter Property="Background" Value="PaleTurquoise"/>
-                        <Setter Property="BorderThickness" Value="0.1, 0.1, 1, 2"/>
-                        
+                        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                        <Setter Property="Background" Value="Lavender"/>
+                        <Setter Property="BorderThickness" Value="0, 0, 1, 2"/>
                         <Setter Property="BorderBrush" Value="Black"/>
                     </Style>
                 </DataGrid.Resources>
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header=" Номер"  Width="43" Binding="{Binding Number}"/>
-                    <DataGridTextColumn Header=" Цена/час"  Width="63" Binding="{Binding PricePerHour}"/>
-                    <DataGridTextColumn Header=" Кол-во мест"  Width="*" Binding="{Binding AmountOfPlaces}"/>
+                    <DataGridTextColumn Header="№"  Width="30" Binding="{Binding Number}"/>
+                    <DataGridTextColumn Header="Цена за час"  Width="75" Binding="{Binding PricePerHour}"/>
+                    <DataGridTextColumn Header="Кол-во мест"  Width="80*" Binding="{Binding AmountOfPlaces}"/>
                 </DataGrid.Columns>
+            </DataGrid>
 
+            <DataGrid AutoGenerateColumns="False" Margin="2 0 2 0" Grid.Column="0" Grid.Row="4" CanUserAddRows="False" ItemsSource="{Binding ConferenceRooms}">
+                <DataGrid.Resources>
+                    <Style TargetType="{x:Type DataGridColumnHeader}">
+                        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                        <Setter Property="Background" Value="Lavender"/>
+                        <Setter Property="BorderThickness" Value="0, 0, 1, 2"/>
+                        <Setter Property="BorderBrush" Value="Black"/>
+                    </Style>
+                </DataGrid.Resources>
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="№"  Width="30" Binding="{Binding Number}"/>
+                    <DataGridTextColumn Header="Цена за час"  Width="78" Binding="{Binding PricePerHour}"/>
+                    <DataGridTextColumn Header="Кол-во мест"  Width="110*" Binding="{Binding AmountOfPlaces}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+
+            <DataGrid AutoGenerateColumns="False" Margin="2 0 2 0" HorizontalAlignment="Left" Width="220" Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="2" CanUserAddRows="False" ItemsSource="{Binding Computers}">
+                <DataGrid.Resources>
+                    <Style TargetType="{x:Type DataGridColumnHeader}">
+                        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                        <Setter Property="Background" Value="Lavender"/>
+                        <Setter Property="BorderThickness" Value="0, 0, 1, 2"/>
+                        <Setter Property="BorderBrush" Value="Black"/>
+                    </Style>
+                </DataGrid.Resources>
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="№"  Width="30" Binding="{Binding Number}"/>
+                    <DataGridTextColumn Header="Цена/месяц"  Width="78" Binding="{Binding PricePerMonth}"/>
+                    <DataGridTextColumn Header="Описание"  Width="110*" Binding="{Binding Description}"/>
+                </DataGrid.Columns>
             </DataGrid>
         </Grid>
 
@@ -158,8 +199,6 @@
         <Grid x:Name="CurrentOrderGrid" Grid.Column ="1">
 
         </Grid>
-
-
 
         <Grid x:Name="MiniOfficeInsertGrid" Grid.Column ="1">
 
