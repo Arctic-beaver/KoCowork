@@ -28,11 +28,11 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <Button x:Name="BookingButton" Command="{Binding Booking.MakeBookingVisible}" CommandParameter="{Binding Booking}" Content="Аренда" Grid.Column="1" Grid.Row="1" Margin="0, 18, 0, 18"/>
-            <Button x:Name="ProductsButton" Command="{Binding Product.MakeProductVisible}" CommandParameter="{Binding Product}" Content="Товары" Grid.Column="1" Grid.Row="2" Margin="0, 18, 0, 18"/>
-            <Button x:Name="ClientsButton" Command="{Binding Client.MakeClientVisible}" CommandParameter="{Binding Client}" Content="Клиенты" Grid.Column="1" Grid.Row="3" Margin="0, 18, 0, 18"/>
-            <Button x:Name="OrderHistoryButton" Command="{Binding Order.MakeOrderVisible}" CommandParameter="{Binding Order}" Content="История заказов" Grid.Column="1" Grid.Row="4" Margin="0, 18, 0, 18"/>
-            <Button x:Name="CurrentOrderButton" Command="{Binding CurrentOrder.MakeCurrentOrderVisible}" CommandParameter="{Binding CurrentOrder}" Content="Текущий заказ" Grid.Column="1" Grid.Row="5" Margin="0, 18, 0, 18"/>
+            <Button x:Name="BookingButton" Command="{Binding Booking.MakeGridVisible}" CommandParameter="{Binding Booking}" Content="Аренда" Grid.Column="1" Grid.Row="1" Margin="0, 18, 0, 18"/>
+            <Button x:Name="ProductsButton" Command="{Binding Product.MakeGridVisible}" CommandParameter="{Binding Product}" Content="Товары" Grid.Column="1" Grid.Row="2" Margin="0, 18, 0, 18"/>
+            <Button x:Name="ClientsButton" Command="{Binding Client.MakeGridVisible}" CommandParameter="{Binding Client}" Content="Клиенты" Grid.Column="1" Grid.Row="3" Margin="0, 18, 0, 18"/>
+            <Button x:Name="OrderHistoryButton" Command="{Binding Order.MakeGridVisible}" CommandParameter="{Binding Order}" Content="История заказов" Grid.Column="1" Grid.Row="4" Margin="0, 18, 0, 18"/>
+            <Button x:Name="CurrentOrderButton" Command="{Binding CurrentOrder.MakeGridVisible}" CommandParameter="{Binding CurrentOrder}" Content="Текущий заказ" Grid.Column="1" Grid.Row="5" Margin="0, 18, 0, 18"/>
         </Grid>
 
         <Grid x:Name="BookingGrid" Grid.Column ="1" Visibility="{Binding Booking.GridVisibility}" IsEnabled="{Binding Booking.IsGridActive}">

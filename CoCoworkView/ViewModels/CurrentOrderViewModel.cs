@@ -6,10 +6,5 @@ namespace CoCowork.UI.ViewModels
 {
     class CurrentOrderViewModel : BaseViewModel
     {
-        public CurrentOrderViewModel()
-        {
-            MakeCurrentOrderVisible = new ChangeVisibleGridCommand(this);
-        }
-        public ICommand MakeCurrentOrderVisible { get; set; }
     }
 }
