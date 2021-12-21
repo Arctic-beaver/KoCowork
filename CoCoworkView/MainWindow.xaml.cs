@@ -35,6 +35,8 @@ namespace CoCoworkView
 
         public void FillViewModelsWithData()
         {
+            var testBooking1 = new ConferenceRoomViewModel { PricePerHour = 500, AmountOfPlaces = 20, Number = 1 };
+            //_mainVM.Booking.Add(testBooking1);
             //_mainVM.Booking.Add(new ConferenceRoomViewModel() { PricePerHour = 500, AmountOfPlaces = 20, Number = 1 });
             //_mainVM.ConferenceRooms.Add(new ConferenceRoomViewModel() { PricePerHour = 700, AmountOfPlaces = 25, Number = 2 });
             //_mainVM.Places.Add(new PlaceViewModel() { PricePerDay = 600, FixedPricePerDay = 1000, Number = 9 });
