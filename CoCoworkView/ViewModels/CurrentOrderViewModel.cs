@@ -1,5 +1,6 @@
 ﻿
 using CoCowork.UI.Commands;
+using System.Windows.Input;
 
 namespace CoCowork.UI.ViewModels
 {
@@ -9,6 +10,6 @@ namespace CoCowork.UI.ViewModels
         {
             MakeCurrentOrderVisible = new ChangeVisibleGridCommand(this);
         }
-        public ChangeVisibleGridCommand MakeCurrentOrderVisible { get; set; }
+        public ICommand MakeCurrentOrderVisible { get; set; }
     }
 }

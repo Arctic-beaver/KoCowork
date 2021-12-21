@@ -6,7 +6,7 @@ namespace CoCowork.UI.Commands
 {
     public class ChangeVisibleGridCommand : CommandBase
     {
-        public ChangeVisibleGridCommand()
+        public ChangeVisibleGridCommand(BaseViewModel viewModel)
         {
             _viewModel = viewModel;
         }

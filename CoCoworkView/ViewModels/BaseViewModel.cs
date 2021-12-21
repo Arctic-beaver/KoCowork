@@ -9,7 +9,7 @@ namespace CoCowork.UI.ViewModels
     {
         public BaseViewModel()
         {
-            MakeGridVisible = new ChangeVisibleGridCommand();
+            MakeGridVisible = new ChangeVisibleGridCommand(this);
         }
         public ChangeVisibleGridCommand MakeGridVisible { get; set; }
 

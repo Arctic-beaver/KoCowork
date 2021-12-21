@@ -1,5 +1,6 @@
 ﻿
 using CoCowork.UI.Commands;
+using System.Windows.Input;
 
 namespace CoCowork.UI.ViewModels
 {
@@ -9,6 +10,6 @@ namespace CoCowork.UI.ViewModels
         {
             MakeBookingVisible = new ChangeVisibleGridCommand(this);
         }
-        public ChangeVisibleGridCommand MakeBookingVisible { get; set; }
+        public ICommand MakeBookingVisible { get; set; }
     }
 }
