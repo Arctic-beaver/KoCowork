@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using CoCowork.UI.Commands;
+using System.Collections.ObjectModel;
 using System.Windows.Input;
 
 namespace CoCowork.UI.ViewModels
@@ -75,6 +76,8 @@ namespace CoCowork.UI.ViewModels
             MeetingRooms = new ObservableCollection<MeetingRoomViewModel>();
             ConferenceRooms = new ObservableCollection<ConferenceRoomViewModel>();
             Computers = new ObservableCollection<ComputerViewModel>();
+
+            DeleteBookingItem = new DeleteBookingItemCommand(this);
         }
     }
 }
