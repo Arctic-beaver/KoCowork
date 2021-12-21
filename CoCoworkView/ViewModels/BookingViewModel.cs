@@ -1,66 +1,72 @@
-﻿using CoCowork.BusinessLayer.Models;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
+using System.Windows.Input;
 
 namespace CoCowork.UI.ViewModels
 {
     public class BookingViewModel : BaseViewModel
     {
-        private ObservableCollection<PlaceViewModel> _places;
-        private ObservableCollection<MiniOfficeViewModel> _miniOffices;
-        private ObservableCollection<MeetingRoomViewModel> _meetingRooms;
-        private ObservableCollection<ConferenceRoomViewModel> _conferenceRooms;
-        private ObservableCollection<ComputerViewModel> _computers;
+        private decimal _pricePerDayField;
+        private decimal _pricePerHourField;
+        private int _amountOfPlacesField;
+        private decimal _pricePerMonthField;
+        private string _descriptionField;
 
-        public ObservableCollection<PlaceViewModel> Places
+        public decimal PricePerDayField
         {
-            get => _places;
+            get => _pricePerDayField;
             set
             {
-                _places = value;
-                OnPropertyChanged(nameof(Places));
+                _pricePerDayField = value;
+                OnPropertyChanged(nameof(PricePerDayField));
             }
         }
 
-        public ObservableCollection<MiniOfficeViewModel> MiniOffices
+        public decimal PricePerHourField
         {
-            get => _miniOffices;
+            get => _pricePerHourField;
             set
             {
-                _miniOffices = value;
-                OnPropertyChanged(nameof(MiniOffices));
+                _pricePerHourField = value;
+                OnPropertyChanged(nameof(PricePerHourField));
             }
         }
 
-        public ObservableCollection<MeetingRoomViewModel> MeetingRooms
+        public int AmountOfPlacesField
         {
-            get => _meetingRooms;
+            get => _amountOfPlacesField;
             set
             {
-                _meetingRooms = value;
-                OnPropertyChanged(nameof(MeetingRooms));
+                _amountOfPlacesField = value;
+                OnPropertyChanged(nameof(AmountOfPlacesField));
             }
         }
 
-        public ObservableCollection<ConferenceRoomViewModel> ConferenceRooms
+        public decimal PricePerMonthField
         {
-            get => _conferenceRooms;
+            get => _pricePerMonthField;
             set
             {
-                _conferenceRooms = value;
-                OnPropertyChanged(nameof(ConferenceRooms));
+                _pricePerMonthField = value;
+                OnPropertyChanged(nameof(PricePerMonthField));
             }
         }
 
-        public ObservableCollection<ComputerViewModel> Computers
+        public string DescriptionField
         {
-            get => _computers;
+            get => _descriptionField;
             set
             {
-                _computers = value;
-                OnPropertyChanged(nameof(Computers));
+                _descriptionField = value;
+                OnPropertyChanged(nameof(DescriptionField));
             }
         }
+
+        public ObservableCollection<PlaceViewModel> Places { get; set; }
+        public ObservableCollection<MiniOfficeViewModel> MiniOffices { get; set; }
+        public ObservableCollection<MeetingRoomViewModel> MeetingRooms { get; set; }
+        public ObservableCollection<ConferenceRoomViewModel> ConferenceRooms { get; set; }
+        public ObservableCollection<ComputerViewModel> Computers { get; set; }
+        public ICommand DeleteBookingItem { get; set; }
 
         public BookingViewModel()
         {

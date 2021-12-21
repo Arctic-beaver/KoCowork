@@ -6,20 +6,9 @@ namespace CoCowork.UI.ViewModels
 {
     public class PlaceViewModel : BaseViewModel
     {
-        private ObservableCollection<MiniOfficeViewModel> _miniOffices;
         private decimal _pricePerDay;
         private decimal? _fixedPricePerDay;
         private int _number;
-
-        public ObservableCollection<MiniOfficeViewModel> MiniOffices
-        {
-            get => _miniOffices;
-            set
-            {
-                _miniOffices = value;
-                OnPropertyChanged(nameof(MiniOffices));
-            }
-        }
 
         public decimal PricePerDay
         {
@@ -52,5 +41,6 @@ namespace CoCowork.UI.ViewModels
         }
 
         public bool IsActive { get; set; }
+        public ObservableCollection<MiniOfficeViewModel> MiniOffices { get; set; }
     }
 }
