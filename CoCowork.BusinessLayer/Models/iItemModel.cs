@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CoCowork.BusinessLayer.Models
 {
-    public interface iItemModel
+    public interface IItemModel
     {
         public int Id { get; set; }
         public int Number { get; set; }
