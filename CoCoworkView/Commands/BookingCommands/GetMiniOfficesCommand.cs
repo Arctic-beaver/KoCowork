@@ -12,11 +12,11 @@ namespace CoCowork.UI.Commands.BookingCommands
     {
         public GetMiniOfficesCommand(BookingViewModel vm, MiniOfficeService service)
         {
-            var miniOffices = service.GetAll();
-            foreach(var item in miniOffices)
-            {
-                vm.MiniOffices.Add(item);
-            }
+            //var miniOffices = service.GetAll();
+            //foreach(var item in miniOffices)
+            //{
+            //    vm.MiniOffices.Add(item);
+            //}
         }
 
         public override void Execute(object parameter)

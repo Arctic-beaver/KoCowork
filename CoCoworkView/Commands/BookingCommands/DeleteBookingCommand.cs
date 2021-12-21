@@ -8,8 +8,8 @@ namespace CoCowork.UI.Commands
     {
         public DeleteBookingCommand(BookingViewModel vm, MiniOfficeService service)
         {
-            service.DeleteMiniOffice();
-            vm.MiniOffices.Remove(vm.MiniOfficeSelectedItem);
+            //service.DeleteMiniOffice();
+            //vm.MiniOffices.Remove(vm.MiniOfficeSelectedItem);
         }
 
         public override void Execute(object parameter)

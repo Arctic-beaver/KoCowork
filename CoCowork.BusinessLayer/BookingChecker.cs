@@ -9,7 +9,7 @@ namespace CoCowork.BusinessLayer
 {
     public class BookingChecker
     {
-        public List<IItemModel> GetFree(DateTime StartTime, DateTime EndTime)
+        public List<ItemModel> GetFree(DateTime StartTime, DateTime EndTime)
         {
             IsWorkplaceBooked(StartTime, EndTime);
             throw new NotImplementedException();
