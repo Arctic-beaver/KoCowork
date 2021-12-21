@@ -1,16 +1,12 @@
-﻿
-using CoCowork.UI.Commands;
-using System.Windows;
-using System.Windows.Input;
+﻿using System.Windows;
 
 namespace CoCowork.UI.ViewModels
 {
-    class CurrentOrderViewModel : BaseViewModel
+    public class CurrentOrderViewModel : TabViewModel
     {
         public CurrentOrderViewModel()
         {
-            GridVisibility = Visibility.Collapsed;
-            IsGridActive = false;
+            GridVisibility = Visibility.Hidden;
         }
     }
 }

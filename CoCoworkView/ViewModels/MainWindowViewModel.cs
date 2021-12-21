@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using CoCowork.UI.Commands;
+using System.Windows.Input;
 
 namespace CoCowork.UI.ViewModels
 {
-    class MainWindowViewModel : BaseViewModel
+    public class MainWindowViewModel : BaseViewModel
     {
         public MainWindowViewModel()
         {
@@ -16,9 +12,13 @@ namespace CoCowork.UI.ViewModels
             Client = new ClientViewModel();
             Order = new OrderViewModel();
             CurrentOrder = new CurrentOrderViewModel();
+            MakeGridVisible = new ChangeVisibleGridCommand(this);
             VisibleVM = Booking;
         }
 
+        public ICommand MakeGridVisible { get; set; }
+
+        public TabViewModel VisibleVM { get; set; }
         public BookingViewModel Booking { get; set; }
         public ProductViewModel Product { get; set; }
         public ClientViewModel Client { get; set; }

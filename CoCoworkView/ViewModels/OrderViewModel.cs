@@ -1,16 +1,12 @@
-﻿
-using CoCowork.UI.Commands;
-using System.Windows;
-using System.Windows.Input;
+﻿using System.Windows;
 
 namespace CoCowork.UI.ViewModels
 {
-    public class OrderViewModel : BaseViewModel
+    public class OrderViewModel : TabViewModel
     {
         public OrderViewModel()
         {
             GridVisibility = Visibility.Hidden;
-            IsGridActive = false;            
         }
     }
 }

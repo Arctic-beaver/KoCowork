@@ -1,31 +1,32 @@
 ﻿using CoCowork.UI.ViewModels;
-using System;
 using System.Windows;
 
 namespace CoCowork.UI.Commands
 {
     public class ChangeVisibleGridCommand : CommandBase
     {
-        public ChangeVisibleGridCommand()
+        private MainWindowViewModel _mainWindowViewModel;
+
+        public ChangeVisibleGridCommand(MainWindowViewModel vm)
         {
+            _mainWindowViewModel = vm;
         }
+
 
         public override void Execute(object parameter)
         {
-            BaseViewModel viewModel = (BaseViewModel)parameter;
-            if (!viewModel.Equals(BaseViewModel.VisibleVM))
+            TabViewModel viewModel = (TabViewModel)parameter;
+            if (!viewModel.Equals(_mainWindowViewModel.VisibleVM))
             {
                 //делаем видимым и активным нужное окно
                 viewModel.GridVisibility = Visibility.Visible;
-                viewModel.IsGridActive = true;
 
                 //делаем невидимым и неактивным ненужное окно
-                BaseViewModel.VisibleVM.GridVisibility = Visibility.Hidden;
-                BaseViewModel.VisibleVM.IsGridActive = false;
+                _mainWindowViewModel.VisibleVM.GridVisibility = Visibility.Hidden;
 
                 //записываем инфу о том, какое сейчас активно
-                BaseViewModel.VisibleVM = viewModel;
-                MessageBox.Show($"{BaseViewModel.VisibleVM.GetType()}");
+                _mainWindowViewModel.VisibleVM = viewModel;
+                MessageBox.Show($"{_mainWindowViewModel.VisibleVM.GetType()}");
             }
         }
     }
