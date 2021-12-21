@@ -2,15 +2,13 @@
 using Dapper;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.SqlClient;
 using System.Linq;
 
 
 namespace CoCowork.DataLayer.Repositories
 {
-    public class LaptopOrderRepository
+    public class LaptopOrderRepository : BaseRepository
     {
-        private const string _connString = "Server=80.78.240.16;User ID=student;Password=qwe!23;Database=CoCowork.DB;";//"Server=(local);Integrated Security=True;Database=CoCowork.DB;";
         private const string _selectAllProc = "dbo.LaptopOrder_SelectAll";
         private const string _selectByIdProc = "dbo.LaptopOrder_SelectById";
         private const string _selectByOrderIdProc = "dbo.LaptopOrder_SelectByOrderId";
@@ -20,19 +18,17 @@ namespace CoCowork.DataLayer.Repositories
 
         public List<LaptopOrder> GetAllLaptopOrders()
         {
-
-            using var connection = new SqlConnection(_connString);
+            using IDbConnection connection = ProvideConnection();
             connection.Open();
 
             var result = connection.Query<LaptopOrder>(_selectAllProc).ToList();
 
             return result;
-
-
         }
+
         public LaptopOrder GetLaptopOrderById(int id)
         {
-            using var connection = new SqlConnection(_connString);
+            using IDbConnection connection = ProvideConnection();
             connection.Open();
 
             return connection
@@ -51,9 +47,10 @@ namespace CoCowork.DataLayer.Repositories
                 splitOn: "Id")
                 .FirstOrDefault();
         }
+
         public List<LaptopOrder> GetLaptopOrderByOrderId(int orderId)
         {
-            using var connection = new SqlConnection(_connString);
+            using IDbConnection connection = ProvideConnection();
             connection.Open();
 
             return connection
@@ -72,7 +69,7 @@ namespace CoCowork.DataLayer.Repositories
         }
         public void Add(LaptopOrder laptopOrder)
         {
-            using var connection = new SqlConnection(_connString);
+            using IDbConnection connection = ProvideConnection();
             connection.Open();
 
             connection.Execute(
@@ -88,16 +85,16 @@ namespace CoCowork.DataLayer.Repositories
                 commandType: CommandType.StoredProcedure);
         }
 
-        public void UpdateMiniOfficeOrderById(int id, LaptopOrder laptopOrder)
+        public void UpdateMiniOfficeOrderById(LaptopOrder laptopOrder)
         {
-            using var connection = new SqlConnection(_connString);
+            using IDbConnection connection = ProvideConnection();
             connection.Open();
 
             var affectedRows = connection.Execute(
                 _updateProc,
                 new
                 {
-                    Id = id,
+                    Id = laptopOrder.Id,
                     LaptopId = laptopOrder.Laptop.Id,
                     OrderId = laptopOrder.OrderId,
                     StartDate = laptopOrder.StartDate,
@@ -109,7 +106,7 @@ namespace CoCowork.DataLayer.Repositories
 
         public void DeleteLaptopOrderById(int id)
         {
-            using var connection = new SqlConnection(_connString);
+            using IDbConnection connection = ProvideConnection();
             connection.Open();
 
             connection.Execute(

@@ -1,6 +1,5 @@
 ﻿using CoCowork.DataLayer.Entities;
 using Dapper;
-using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -9,9 +8,8 @@ using System.Linq;
 
 namespace CoCowork.DataLayer.Repositories
 {
-    public class PlaceRepository
+    public class PlaceRepository : BaseRepository
     {
-        private const string _connectionString = "Server=80.78.240.16;User ID=student;Password=qwe!23;Database=CoCowork.DB;";
         private const string _selectAllProcedure = "dbo.Place_SelectAll";
         private const string _selectByIdProcedure = "dbo.Place_SelectById";
         private const string _insertProcedure = "dbo.Place_Insert";
@@ -22,7 +20,7 @@ namespace CoCowork.DataLayer.Repositories
         
         public List<Place> GetAllPlaces()
         {
-            using var connection = new SqlConnection(_connectionString);
+            using IDbConnection connection = ProvideConnection();
             connection.Open();
 
             return connection
@@ -37,7 +35,7 @@ namespace CoCowork.DataLayer.Repositories
 
         public Place GetPlaceById(int id)
         {
-            using var connection = new SqlConnection(_connectionString);
+            using IDbConnection connection = ProvideConnection();
             connection.Open();
 
             return connection
@@ -58,7 +56,7 @@ namespace CoCowork.DataLayer.Repositories
 
         public List<Place> GetPlacesThatNotInMiniOffice()
         {
-            using var connection = new SqlConnection(_connectionString);
+            using IDbConnection connection = ProvideConnection();
             connection.Open();
 
             return connection
@@ -75,7 +73,7 @@ namespace CoCowork.DataLayer.Repositories
 
         public void Add(Place place)
         {
-            using var connection = new SqlConnection(_connectionString);
+            using IDbConnection connection = ProvideConnection();
             connection.Open();
 
             connection.Execute(
@@ -89,16 +87,16 @@ namespace CoCowork.DataLayer.Repositories
                 commandType: CommandType.StoredProcedure);
         }
 
-        public void UpdatePlaceById(int id, Place place)
+        public void UpdatePlaceById(Place place)
         {
-            using var connection = new SqlConnection(_connectionString);
+            using IDbConnection connection = ProvideConnection();
             connection.Open();
 
             var affectedRows = connection.Execute( 
                 _updateProcedure,
                 new
                 {
-                    Id = id,
+                    Id = place.Id,
                     PricePerDay = place.PricePerDay,
                     PriceFixedPerDay = place.PriceFixedPerDay
                 },
@@ -107,7 +105,7 @@ namespace CoCowork.DataLayer.Repositories
 
         public void DeletePlaceById(int id)
         {
-            using var connection = new SqlConnection(_connectionString);
+            using IDbConnection connection = ProvideConnection();
             connection.Open();
 
             connection.Execute(

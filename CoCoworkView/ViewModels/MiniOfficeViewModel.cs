@@ -1,11 +1,28 @@
 ﻿
+using System.Collections.ObjectModel;
+
 namespace CoCowork.UI.ViewModels
 {
     public class MiniOfficeViewModel : BaseViewModel
     {
+        private string _name;
+        public string Name
+        {
+            get => _name;
+            set
+            {
+                _name = value;
+                OnPropertyChanged(nameof(Name));
+            }
+        }
+
+        public ObservableCollection<PlaceViewModel> Places { get; set; }
+
         private int _number;
         private decimal _pricePerDay;
         private int _amountOfPlaces;
+
+        public int Id { get; }
 
         public int Number
         {

@@ -6,8 +6,10 @@ using System.Threading.Tasks;
 
 namespace CoCowork.BusinessLayer.Models
 {
-    public class PlaceModel
+    public class PlaceModel : IItemModel
     {
-
+        public int Id { get; set; }
+        public bool IsActive { get; set; }
+        public BookingChecker BookingChecker { get; set; }
     }
 }

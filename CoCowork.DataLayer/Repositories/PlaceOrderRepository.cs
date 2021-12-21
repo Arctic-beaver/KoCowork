@@ -1,16 +1,13 @@
 ﻿using CoCowork.DataLayer.Entities;
 using Dapper;
-using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.SqlClient;
 using System.Linq;
 
 namespace CoCowork.DataLayer.Repositories
 {
-    public class PlaceOrderRepository
+    public class PlaceOrderRepository : BaseRepository
     {
-        private const string _connectionString = "Server=80.78.240.16;User ID=student;Password=qwe!23;Database=CoCowork.DB;";
         private const string _selectAllProcedure = "dbo.PlaceOrder_SelectAll";
         private const string _selectByIdProcedure = "dbo.PlaceOrder_SelectById";
         private const string _insertProcedure = "dbo.PlaceOrder_Insert";
@@ -20,7 +17,7 @@ namespace CoCowork.DataLayer.Repositories
 
         public List<PlaceOrder> GetAllPlaceOrders()
         {
-            using var connection = new SqlConnection(_connectionString);
+            using IDbConnection connection = ProvideConnection();
             connection.Open();
 
             return connection
@@ -35,7 +32,7 @@ namespace CoCowork.DataLayer.Repositories
 
         public PlaceOrder GetPlaceOrderById(int id)
         {
-            using var connection = new SqlConnection(_connectionString);
+            using IDbConnection connection = ProvideConnection();
             connection.Open();
 
             return connection
@@ -56,7 +53,7 @@ namespace CoCowork.DataLayer.Repositories
 
         public List<PlaceOrder> GetPlaceOrdersReferToOrder(int orderId)
         {
-            using var connection = new SqlConnection(_connectionString);
+            using IDbConnection connection = ProvideConnection();
             connection.Open();
 
             return connection
@@ -74,7 +71,7 @@ namespace CoCowork.DataLayer.Repositories
 
         public List<PlaceOrder> GetPlaceOrdersReferToOrder(Order order)
         {
-            using var connection = new SqlConnection(_connectionString);
+            using IDbConnection connection = ProvideConnection();
             connection.Open();
 
             return connection
@@ -92,7 +89,7 @@ namespace CoCowork.DataLayer.Repositories
 
         public void Add(PlaceOrder placeOrder)
         {
-            using var connection = new SqlConnection(_connectionString);
+            using IDbConnection connection = ProvideConnection();
             connection.Open();
 
             connection.Execute(
@@ -108,16 +105,16 @@ namespace CoCowork.DataLayer.Repositories
                 commandType: CommandType.StoredProcedure);
         }
 
-        public void UpdatePlaceOrderById(int id, PlaceOrder placeOrder)
+        public void UpdatePlaceOrderById(PlaceOrder placeOrder)
         {
-            using var connection = new SqlConnection(_connectionString);
+            using IDbConnection connection = ProvideConnection();
             connection.Open();
 
             var affectedRows = connection.Execute(
                 _updateProcedure,
                 new
                 {
-                    Id = id,
+                    Id = placeOrder.Id,
                     PlaceId = placeOrder.Place.Id,
                     OrderId = placeOrder.OrderId,
                     StartDate = placeOrder.StartDate,
@@ -129,7 +126,7 @@ namespace CoCowork.DataLayer.Repositories
 
         public void DeletePlaceOrderById(int id)
         {
-            using var connection = new SqlConnection(_connectionString);
+            using IDbConnection connection = ProvideConnection();
             connection.Open();
 
             connection.Execute(

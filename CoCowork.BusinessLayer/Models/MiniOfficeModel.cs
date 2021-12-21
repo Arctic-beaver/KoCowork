@@ -6,7 +6,14 @@ using System.Threading.Tasks;
 
 namespace CoCowork.BusinessLayer.Models
 {
-    public class MiniOfficeModel
+    public class MiniOfficeModel : IItemModel
     {
+        public int Id { get; set; }
+        public bool IsActive { get; set; }
+        public BookingChecker BookingChecker { get; set; }
+        public string Name { get; set; }
+        public int AmountOfPlaces { get; set; }
+        public decimal PricePerDay { get; set; }
+        public List<PlaceModel> Places { get; set; }
     }
 }

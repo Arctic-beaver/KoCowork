@@ -1,18 +1,13 @@
 ﻿using CoCowork.DataLayer.Entities;
 using Dapper;
-using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.SqlClient;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CoCowork.DataLayer.Repositories
 {
-    public class ProductOrderRepository
+    public class ProductOrderRepository : BaseRepository
     {
-        private const string _connectionString = "Server=80.78.240.16;User ID=student;Password=qwe!23;Database=CoCowork.DB";
         private const string _selectAllProcedure = "dbo.ProductOrder_SelectAll";
         private const string _selectByIdProcedure = "dbo.ProductOrder_SelectById";
         private const string _insertProcedure = "dbo.ProductOrder_Insert";
@@ -21,7 +16,7 @@ namespace CoCowork.DataLayer.Repositories
 
         public List<ProductOrder> GetAll()
         {
-            using var connection = new SqlConnection(_connectionString);
+            using IDbConnection connection = ProvideConnection();
             connection.Open();
 
             var result = connection.Query<ProductOrder>(_selectAllProcedure).ToList();
@@ -32,7 +27,7 @@ namespace CoCowork.DataLayer.Repositories
 
         public ProductOrder GetById(int id)
         {
-            using var connection = new SqlConnection(_connectionString);
+            using IDbConnection connection = ProvideConnection();
             connection.Open();
 
 
@@ -56,7 +51,7 @@ namespace CoCowork.DataLayer.Repositories
 
         public void Add(ProductOrder productorder)
         {
-            using var connection = new SqlConnection(_connectionString);
+            using IDbConnection connection = ProvideConnection();
             connection.Open();
             connection.Execute(
                 _insertProcedure,
@@ -74,7 +69,7 @@ namespace CoCowork.DataLayer.Repositories
 
         public void Update(ProductOrder productorder)
         {
-            using var connection = new SqlConnection(_connectionString);
+            using IDbConnection connection = ProvideConnection();
             connection.Open();
             connection.Execute(
                 _updateProcedure,
@@ -93,7 +88,7 @@ namespace CoCowork.DataLayer.Repositories
 
         public void Delete(int id)
         {
-            using var connection = new SqlConnection(_connectionString);
+            using IDbConnection connection = ProvideConnection();
             connection.Open();
 
             connection.Execute(

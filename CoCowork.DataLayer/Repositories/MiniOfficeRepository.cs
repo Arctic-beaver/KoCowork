@@ -1,16 +1,13 @@
 ﻿using CoCowork.DataLayer.Entities;
 using Dapper;
-using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.SqlClient;
 using System.Linq;
 
 namespace CoCowork.DataLayer.Repositories
 {
-    public class MiniOfficeRepository
+    public class MiniOfficeRepository : BaseRepository
     {
-        private const string _connectionString = "Server=80.78.240.16;User ID=student;Password=qwe!23;Database=CoCowork.DB;";
         private const string _selectAllProcedure = "dbo.MiniOffice_SelectAll";
         private const string _selectByIdProcedure = "dbo.MiniOffice_SelectById";
         private const string _insertProcedure = "dbo.MiniOffice_Insert";
@@ -19,7 +16,7 @@ namespace CoCowork.DataLayer.Repositories
 
         public List<MiniOffice> GetAll()
         {
-            using var connection = new SqlConnection(_connectionString);
+            using IDbConnection connection = ProvideConnection();
             connection.Open();
 
             return connection
@@ -30,7 +27,7 @@ namespace CoCowork.DataLayer.Repositories
 
         public MiniOffice GetMiniOfficeById(int id)
         {
-            using var connection = new SqlConnection(_connectionString);
+            using IDbConnection connection = ProvideConnection();
             connection.Open();
 
             var miniOfficeDictionary = new Dictionary<int, MiniOffice>();
@@ -62,7 +59,7 @@ namespace CoCowork.DataLayer.Repositories
 
         public void Add(MiniOffice miniOffice)
         {
-            using var connection = new SqlConnection(_connectionString);
+            using IDbConnection connection = ProvideConnection();
             connection.Open();
 
             connection.Execute(
@@ -77,16 +74,16 @@ namespace CoCowork.DataLayer.Repositories
                 commandType: CommandType.StoredProcedure);
         }
 
-        public void UpdateMiniOfficeById(int id, MiniOffice miniOffice)
+        public void UpdateMiniOfficeById(MiniOffice miniOffice)
         {
-            using var connection = new SqlConnection(_connectionString);
+            using IDbConnection connection = ProvideConnection();
             connection.Open();
 
             var affectedRows = connection.Execute(
                 _updateProcedure,
                 new
                 {
-                    Id = id,
+                    Id = miniOffice.Id,
                     Name = miniOffice.Name,
                     AmountOfPlaces = miniOffice.AmountOfPlaces,
                     PricePerDay = miniOffice.PricePerDay,
@@ -97,7 +94,7 @@ namespace CoCowork.DataLayer.Repositories
 
         public void DeleteMiniOfficeById(int id)
         {
-            using var connection = new SqlConnection(_connectionString);
+            using IDbConnection connection = ProvideConnection();
             connection.Open();
 
             connection.Execute(

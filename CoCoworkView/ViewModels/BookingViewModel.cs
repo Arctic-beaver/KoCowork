@@ -1,4 +1,5 @@
-﻿using CoCowork.UI.Commands;
+﻿using CoCowork.BusinessLayer.Services;
+using CoCowork.UI.Commands;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 
@@ -6,11 +7,26 @@ namespace CoCowork.UI.ViewModels
 {
     public class BookingViewModel : BaseViewModel
     {
+        private MiniOfficeService _miniOfficeService;
+        private MiniOfficeViewModel _miniOfficeSelectedItem;
         private decimal _pricePerDayField;
         private decimal _pricePerHourField;
         private int _amountOfPlacesField;
         private decimal _pricePerMonthField;
         private string _descriptionField;
+
+        public MiniOfficeViewModel MiniOfficeSelectedItem
+        {
+            get { return this._miniOfficeSelectedItem; }
+            set
+            {
+                if (value != this._miniOfficeSelectedItem)
+                {
+                    this._miniOfficeSelectedItem = value;
+                    this.OnPropertyChanged(nameof(MiniOfficeSelectedItem));
+                }
+            }
+        }
 
         public decimal PricePerDayField
         {
@@ -67,7 +83,7 @@ namespace CoCowork.UI.ViewModels
         public ObservableCollection<MeetingRoomViewModel> MeetingRooms { get; set; }
         public ObservableCollection<ConferenceRoomViewModel> ConferenceRooms { get; set; }
         public ObservableCollection<ComputerViewModel> Computers { get; set; }
-        public ICommand DeleteBookingItem { get; set; }
+        public ICommand DeleteBooking { get; set; }
 
         public BookingViewModel()
         {
@@ -77,7 +93,7 @@ namespace CoCowork.UI.ViewModels
             ConferenceRooms = new ObservableCollection<ConferenceRoomViewModel>();
             Computers = new ObservableCollection<ComputerViewModel>();
 
-            DeleteBookingItem = new DeleteBookingItemCommand(this);
+            DeleteBooking = new DeleteBookingCommand(this, _miniOfficeService);
         }
     }
 }
