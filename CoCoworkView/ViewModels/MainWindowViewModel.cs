@@ -17,17 +17,6 @@ namespace CoCowork.UI.ViewModels
             Order = new OrderViewModel();
             CurrentOrder = new CurrentOrderViewModel();
             VisibleVM = Booking;
-            
-            Booking.GridVisibility = Visibility.Visible;
-            Booking.IsGridActive = true;
-            Product.GridVisibility = Visibility.Hidden;
-            Product.IsGridActive = false;
-            Client.GridVisibility = Visibility.Hidden;
-            Client.IsGridActive = false;
-            Order.GridVisibility = Visibility.Hidden;
-            Order.IsGridActive = false;
-            CurrentOrder.GridVisibility = Visibility.Hidden;
-            CurrentOrder.IsGridActive = false;
         }
 
         public BookingViewModel Booking { get; set; }
