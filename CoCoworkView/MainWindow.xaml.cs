@@ -1,5 +1,6 @@
 ﻿using CoCowork.DataLayer.Entities;
 using CoCowork.DataLayer.Repositories;
+using CoCowork.UI.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,6 +26,7 @@ namespace CoCoworkView
         public MainWindow()
         {
             InitializeComponent();
+            DataContext = new MainWindowViewModel();           
         }
     }
 }
