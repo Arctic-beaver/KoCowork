@@ -24,9 +24,9 @@ namespace CoCowork.UI.ViewModels
             GridVisibility = Visibility.Hidden;
             ShowActiveAvailability = true;
             ShowCanceledAvailability = true;
+            CancelButtonAvailability = false;
             Service = new OrderService();
             GetOrdersCommand = new GetOrdersCommand(this, Service);
-
         }
 
         public ObservableCollection<OrderModel> Orders { get; set; }
@@ -139,6 +139,7 @@ namespace CoCowork.UI.ViewModels
                 if (value != _selectedItem)
                 {
                     _selectedItem = value;
+
                     OnPropertyChanged(nameof(SelectedItem));
                 }
             }

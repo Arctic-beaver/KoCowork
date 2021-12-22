@@ -80,5 +80,11 @@ namespace CoCowork.BusinessLayer.Services
             //}
             return result;
         }
+
+        public void UpdateOrder(OrderModel orderModel)
+        {
+            Order order = CustomMapper.GetInstance().Map<Order>(orderModel);
+            _orderRepository.Update(order);
+        }
     }
 }
