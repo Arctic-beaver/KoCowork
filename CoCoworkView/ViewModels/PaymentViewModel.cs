@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace CoCowork.UI.ViewModels
 {
-    public class PaymentViewModel : TabViewModel
+    public class PaymentViewModel : InnerGridViewModel
     {
         private decimal? _amount;
         private DateTime? _paymentDate;
@@ -15,7 +16,7 @@ namespace CoCowork.UI.ViewModels
 
         public PaymentViewModel()
         {
-
+            GridVisibility = Visibility.Collapsed;
         }
 
         public decimal? Amount
@@ -68,7 +69,7 @@ namespace CoCowork.UI.ViewModels
                 if (value != _isAddPaymentButtonAvailable)
                 {
                     _isAddPaymentButtonAvailable = value;
-                    OnPropertyChanged(nameof(IsPaymentButtonAvailable));
+                    OnPropertyChanged(nameof(IsAddPaymentButtonAvailable));
                 }
             }
         }
