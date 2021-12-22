@@ -17,7 +17,7 @@ namespace CoCowork.DataLayer.Repositories
         public List<Payment> GetAllPayments()
         {
             using IDbConnection connection = ProvideConnection();
-            connection.Open();
+
             var result = connection.Query<Payment>(_selectAllProc).ToList();
             return result;
         }
@@ -25,7 +25,6 @@ namespace CoCowork.DataLayer.Repositories
         public Payment GetPaymentById(int id)
         {
             using IDbConnection connection = ProvideConnection();
-            connection.Open();
 
             return connection
                 .QueryFirstOrDefault<Payment>(
@@ -37,7 +36,6 @@ namespace CoCowork.DataLayer.Repositories
         public void Add(Payment payment)
         {
             using IDbConnection connection = ProvideConnection();
-            connection.Open();
 
             connection.Execute(_insertProc,
                 new
@@ -52,7 +50,6 @@ namespace CoCowork.DataLayer.Repositories
         public void UpdatePaymentById(Payment payment)
         {
             using IDbConnection connection = ProvideConnection();
-            connection.Open();
 
             connection.Execute(_updateProc,
                 new
@@ -68,7 +65,7 @@ namespace CoCowork.DataLayer.Repositories
         public void DeletePaymentById(int id)
         {
             using IDbConnection connection = ProvideConnection();
-            connection.Open();
+
             connection.Execute(_deleteProc,
                         new { Id = id },
                         commandType: CommandType.StoredProcedure);

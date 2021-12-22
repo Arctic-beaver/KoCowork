@@ -32,7 +32,6 @@ namespace CoCowork.DataLayer.Repositories
         public Place GetPlaceById(int id)
         {
             using IDbConnection connection = ProvideConnection();
-            connection.Open();
 
             return connection
                 .Query<Place, MiniOffice, Place>
@@ -53,7 +52,6 @@ namespace CoCowork.DataLayer.Repositories
         public List<Place> GetPlacesThatNotInMiniOffice()
         {
             using IDbConnection connection = ProvideConnection();
-            connection.Open();
 
             return connection
                  .Query<Place, MiniOffice, Place>
@@ -69,7 +67,6 @@ namespace CoCowork.DataLayer.Repositories
         public void Add(Place place)
         {
             using IDbConnection connection = ProvideConnection();
-            connection.Open();
 
             connection.Execute(
                 _insertProcedure,
@@ -85,7 +82,6 @@ namespace CoCowork.DataLayer.Repositories
         public void UpdatePlaceById(Place place)
         {
             using IDbConnection connection = ProvideConnection();
-            connection.Open();
 
             var affectedRows = connection.Execute(
                 _updateProcedure,
@@ -101,7 +97,6 @@ namespace CoCowork.DataLayer.Repositories
         public void DeletePlaceById(int id)
         {
             using IDbConnection connection = ProvideConnection();
-            connection.Open();
 
             connection.Execute(
                 _deleteProcedure,

@@ -18,7 +18,6 @@ namespace CoCowork.DataLayer.Repositories
         public List<Product> GetAll()
         {
             using IDbConnection connection = ProvideConnection();
-            connection.Open();
             var result = connection.Query<Product>(_selectAllProcedure).ToList();
             return result;
         }
@@ -26,8 +25,6 @@ namespace CoCowork.DataLayer.Repositories
         public Product GetById(int id)
         {
             using IDbConnection connection = ProvideConnection();
-            connection.Open();
-
             return connection.QueryFirstOrDefault<Product>(_selectByIdProcedure, new { Id = id },
                 commandType: CommandType.StoredProcedure);
         }
@@ -35,7 +32,7 @@ namespace CoCowork.DataLayer.Repositories
         public void Add(Product product)
         {
             using IDbConnection connection = ProvideConnection();
-            connection.Open();
+
             connection.Execute(
                 _insertProcedure,
                 new
@@ -51,7 +48,7 @@ namespace CoCowork.DataLayer.Repositories
         public void Update(Product product)
         {
             using IDbConnection connection = ProvideConnection();
-            connection.Open();
+
             connection.Execute(
                 _updateProcedure,
                 new
@@ -68,7 +65,6 @@ namespace CoCowork.DataLayer.Repositories
         public void Delete(int id)
         {
             using IDbConnection connection = ProvideConnection();
-            connection.Open();
 
             connection.Execute(
                 _deleteProcedure,

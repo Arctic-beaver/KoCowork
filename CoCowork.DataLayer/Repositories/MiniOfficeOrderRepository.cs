@@ -18,7 +18,6 @@ namespace CoCowork.DataLayer.Repositories
         public List<MiniOfficeOrder> GetAllMiniOfficeOrders()
         {
             using IDbConnection connection = ProvideConnection();
-            connection.Open();
 
             return connection
                 .Query<MiniOfficeOrder, MiniOffice, MiniOfficeOrder>
@@ -33,7 +32,6 @@ namespace CoCowork.DataLayer.Repositories
         public MiniOfficeOrder GetMiniOfficeOrderById(int id)
         {
             using IDbConnection connection = ProvideConnection();
-            connection.Open();
 
             return connection
                 .Query<MiniOfficeOrder, MiniOffice, MiniOfficeOrder>
@@ -54,7 +52,6 @@ namespace CoCowork.DataLayer.Repositories
         public List<MiniOfficeOrder> GetMiniOfficeOrdersReferToOrder(int orderId)
         {
             using IDbConnection connection = ProvideConnection();
-            connection.Open();
 
             return connection
                 .Query<MiniOfficeOrder, MiniOffice, MiniOfficeOrder>
@@ -72,7 +69,6 @@ namespace CoCowork.DataLayer.Repositories
         public List<MiniOfficeOrder> GetMiniOfficeOrdersReferToOrder(Order order)
         {
             using IDbConnection connection = ProvideConnection();
-            connection.Open();
 
             return connection
                  .Query<MiniOfficeOrder, MiniOffice, MiniOfficeOrder>
@@ -90,7 +86,6 @@ namespace CoCowork.DataLayer.Repositories
         public void Add(MiniOfficeOrder miniOfficeOrder)
         {
             using IDbConnection connection = ProvideConnection();
-            connection.Open();
 
             connection.Execute(
                 _insertProcedure,
@@ -108,7 +103,6 @@ namespace CoCowork.DataLayer.Repositories
         public void UpdateMiniOfficeOrderById(MiniOfficeOrder miniOfficeOrder)
         {
             using IDbConnection connection = ProvideConnection();
-            connection.Open();
 
             var affectedRows = connection.Execute(
                 _updateProcedure,
@@ -127,7 +121,6 @@ namespace CoCowork.DataLayer.Repositories
         public void DeleteMiniOfficeOrderById(int id)
         {
             using IDbConnection connection = ProvideConnection();
-            connection.Open();
 
             connection.Execute(
                 _deleteProcedure,

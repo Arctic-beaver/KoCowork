@@ -18,17 +18,13 @@ namespace CoCowork.DataLayer.Repositories
         public List<Laptop> GetAllLaptops()
         {
             using IDbConnection connection = ProvideConnection();
-            connection.Open();
-
             var result = connection.Query<Laptop>(_selectAllProc).ToList();
-
             return result;
         }
 
         public Laptop GetLaptopsById(int id)
         {
             using IDbConnection connection = ProvideConnection();
-            connection.Open();
 
             return connection
                 .QueryFirstOrDefault<Laptop>(
@@ -41,7 +37,6 @@ namespace CoCowork.DataLayer.Repositories
         public void Add(Laptop laptop)
         {
             using IDbConnection connection = ProvideConnection();
-            connection.Open();
 
             connection.Execute(_insertProc,
                 new
@@ -58,7 +53,6 @@ namespace CoCowork.DataLayer.Repositories
         public void UpdateLaptopById(Laptop laptop)
         {
             using IDbConnection connection = ProvideConnection();
-            connection.Open();
 
             connection.Execute(_updateProc,
                 new
@@ -76,7 +70,7 @@ namespace CoCowork.DataLayer.Repositories
         public void DeleteLaptopById(int id)
         {
             using IDbConnection connection = ProvideConnection();
-            connection.Open();
+
             connection.Execute(_deleteProc,
                         new { Id = id },
                         commandType: CommandType.StoredProcedure);

@@ -18,7 +18,6 @@ namespace CoCowork.DataLayer.Repositories
         public List<PlaceOrder> GetAllPlaceOrders()
         {
             using IDbConnection connection = ProvideConnection();
-            connection.Open();
 
             return connection
                 .Query<PlaceOrder, Place, PlaceOrder>
@@ -33,7 +32,6 @@ namespace CoCowork.DataLayer.Repositories
         public PlaceOrder GetPlaceOrderById(int id)
         {
             using IDbConnection connection = ProvideConnection();
-            connection.Open();
 
             return connection
                 .Query<PlaceOrder, Place, PlaceOrder>
@@ -54,7 +52,6 @@ namespace CoCowork.DataLayer.Repositories
         public List<PlaceOrder> GetPlaceOrdersReferToOrder(int orderId)
         {
             using IDbConnection connection = ProvideConnection();
-            connection.Open();
 
             return connection
                 .Query<PlaceOrder, Place, PlaceOrder>
@@ -72,7 +69,6 @@ namespace CoCowork.DataLayer.Repositories
         public List<PlaceOrder> GetPlaceOrdersReferToOrder(Order order)
         {
             using IDbConnection connection = ProvideConnection();
-            connection.Open();
 
             return connection
                  .Query<PlaceOrder, Place, PlaceOrder>
@@ -90,7 +86,6 @@ namespace CoCowork.DataLayer.Repositories
         public void Add(PlaceOrder placeOrder)
         {
             using IDbConnection connection = ProvideConnection();
-            connection.Open();
 
             connection.Execute(
                 _insertProcedure,
@@ -108,7 +103,6 @@ namespace CoCowork.DataLayer.Repositories
         public void UpdatePlaceOrderById(PlaceOrder placeOrder)
         {
             using IDbConnection connection = ProvideConnection();
-            connection.Open();
 
             var affectedRows = connection.Execute(
                 _updateProcedure,
@@ -127,7 +121,6 @@ namespace CoCowork.DataLayer.Repositories
         public void DeletePlaceOrderById(int id)
         {
             using IDbConnection connection = ProvideConnection();
-            connection.Open();
 
             connection.Execute(
                 _deleteProcedure,

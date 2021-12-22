@@ -17,7 +17,6 @@ namespace CoCowork.DataLayer.Repositories
         public List<MiniOffice> GetAll()
         {
             using IDbConnection connection = ProvideConnection();
-            connection.Open();
 
             return connection
                 .Query<MiniOffice>
@@ -28,24 +27,19 @@ namespace CoCowork.DataLayer.Repositories
         public MiniOffice GetMiniOfficeById(int id)
         {
             using IDbConnection connection = ProvideConnection();
-            connection.Open();
-
             var miniOfficeDictionary = new Dictionary<int, MiniOffice>();
-
 
             return connection
                 .Query<MiniOffice, Place, MiniOffice>(
                      _selectByIdProcedure,
                     (miniOffice, place) =>
                     {
-
                         if (!miniOfficeDictionary.TryGetValue(miniOffice.Id, out MiniOffice miniOfficeEntry))
                         {
                             miniOfficeEntry = miniOffice;
                             miniOfficeEntry.Places = new List<Place>();
                             miniOfficeDictionary.Add(miniOfficeEntry.Id, miniOfficeEntry);
                         }
-
                         miniOfficeEntry.Places.Add(place);
                         return miniOfficeEntry;
                     },
@@ -60,7 +54,6 @@ namespace CoCowork.DataLayer.Repositories
         public void Add(MiniOffice miniOffice)
         {
             using IDbConnection connection = ProvideConnection();
-            connection.Open();
 
             connection.Execute(
                 _insertProcedure,
@@ -77,7 +70,6 @@ namespace CoCowork.DataLayer.Repositories
         public void UpdateMiniOfficeById(MiniOffice miniOffice)
         {
             using IDbConnection connection = ProvideConnection();
-            connection.Open();
 
             var affectedRows = connection.Execute(
                 _updateProcedure,
@@ -95,7 +87,6 @@ namespace CoCowork.DataLayer.Repositories
         public void DeleteMiniOfficeById(int id)
         {
             using IDbConnection connection = ProvideConnection();
-            connection.Open();
 
             connection.Execute(
                 _deleteProcedure,

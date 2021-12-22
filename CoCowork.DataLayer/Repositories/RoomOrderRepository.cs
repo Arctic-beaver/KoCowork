@@ -17,7 +17,6 @@ namespace CoCowork.DataLayer.Repositories
         public List<RoomOrder> GetAll()
         {
             using IDbConnection connection = ProvideConnection();
-            connection.Open();
             var result = connection.Query<RoomOrder>(_selectAllProcedure).ToList();
             return result;
         }
@@ -25,7 +24,6 @@ namespace CoCowork.DataLayer.Repositories
         public RoomOrder GetById(int id)
         {
             using IDbConnection connection = ProvideConnection();
-            connection.Open();
 
             return connection.Query<RoomOrder, Room, Order, RoomOrder>
                 (_selectByIdProcedure,
@@ -43,7 +41,7 @@ namespace CoCowork.DataLayer.Repositories
         public void Add(RoomOrder roomorder)
         {
             using IDbConnection connection = ProvideConnection();
-            connection.Open();
+
             connection.Execute(
                 _insertProcedure,
                 new
@@ -60,7 +58,7 @@ namespace CoCowork.DataLayer.Repositories
         public void Update(RoomOrder roomorder)
         {
             using IDbConnection connection = ProvideConnection();
-            connection.Open();
+
             connection.Execute(
                 _updateProcedure,
                 new
@@ -78,7 +76,6 @@ namespace CoCowork.DataLayer.Repositories
         public void Delete(int id)
         {
             using IDbConnection connection = ProvideConnection();
-            connection.Open();
 
             connection.Execute(
                 _deleteProcedure,

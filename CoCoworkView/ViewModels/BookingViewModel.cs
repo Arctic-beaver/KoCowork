@@ -9,10 +9,10 @@ namespace CoCowork.UI.ViewModels
 {
     public class BookingViewModel : BaseViewModel
     {
-        private MiniOfficeService _miniOfficeService = new();
-        private PlaceService _placeService = new();
-        private ComputerService _computerService = new();
-        private RoomService _roomService = new();
+        private MiniOfficeService _miniOfficeService;
+        private PlaceService _placeService;
+        private ComputerService _computerService;
+        private RoomService _roomService;
 
         private MiniOfficeModel _miniOfficeSelectedItem;
 
@@ -100,6 +100,11 @@ namespace CoCowork.UI.ViewModels
 
         public BookingViewModel()
         {
+            _placeService = new PlaceService();
+            _miniOfficeService = new MiniOfficeService();
+            _roomService = new RoomService();
+            _computerService = new ComputerService();
+
             Places = new ObservableCollection<PlaceModel>();
             MiniOffices = new ObservableCollection<MiniOfficeModel>();
             MeetingRooms = new ObservableCollection<RoomModel>();

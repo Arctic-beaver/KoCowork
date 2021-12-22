@@ -25,7 +25,6 @@ namespace CoCowork.DataLayer.Repositories
         public Client GetClientById(int id)
         {
             using IDbConnection connection = ProvideConnection();
-            connection.Open();
 
             return connection
                 .QueryFirstOrDefault<Client>(
@@ -37,7 +36,6 @@ namespace CoCowork.DataLayer.Repositories
         public void Add(Client client)
         {
             using IDbConnection connection = ProvideConnection();
-            connection.Open();
 
             connection.Execute(_insertProc,
                 new
@@ -56,7 +54,6 @@ namespace CoCowork.DataLayer.Repositories
         public void UpdateClientById(Client client)
         {
             using IDbConnection connection = ProvideConnection();
-            connection.Open();
 
             connection.Execute(_updateProc,
                 new
@@ -75,7 +72,7 @@ namespace CoCowork.DataLayer.Repositories
         public void DeleteClientById(int id)
         {
             using IDbConnection connection = ProvideConnection();
-            connection.Open();
+
             connection.Execute(_deleteProc,
                         new { Id = id },
                         commandType: CommandType.StoredProcedure);

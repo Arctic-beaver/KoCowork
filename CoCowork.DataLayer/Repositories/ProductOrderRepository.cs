@@ -17,19 +17,13 @@ namespace CoCowork.DataLayer.Repositories
         public List<ProductOrder> GetAll()
         {
             using IDbConnection connection = ProvideConnection();
-            connection.Open();
-
             var result = connection.Query<ProductOrder>(_selectAllProcedure).ToList();
-
             return result;
-
         }
 
         public ProductOrder GetById(int id)
         {
             using IDbConnection connection = ProvideConnection();
-            connection.Open();
-
 
             return connection.
                 Query<ProductOrder, Product, Order, ProductOrder>
@@ -39,7 +33,6 @@ namespace CoCowork.DataLayer.Repositories
                     productOrder.Product = product;
                     productOrder.Order = order;
                     return productOrder;
-
                 },
                 new 
                 { 
@@ -52,7 +45,7 @@ namespace CoCowork.DataLayer.Repositories
         public void Add(ProductOrder productorder)
         {
             using IDbConnection connection = ProvideConnection();
-            connection.Open();
+
             connection.Execute(
                 _insertProcedure,
                 new
@@ -64,13 +57,12 @@ namespace CoCowork.DataLayer.Repositories
 
                 },
                 commandType: CommandType.StoredProcedure);
-            ;
         }
 
         public void Update(ProductOrder productorder)
         {
             using IDbConnection connection = ProvideConnection();
-            connection.Open();
+
             connection.Execute(
                 _updateProcedure,
                 new
@@ -83,13 +75,11 @@ namespace CoCowork.DataLayer.Repositories
 
                 },
                 commandType: CommandType.StoredProcedure);
-            ;
         }
 
         public void Delete(int id)
         {
             using IDbConnection connection = ProvideConnection();
-            connection.Open();
 
             connection.Execute(
                 _deleteProcedure,
@@ -98,7 +88,6 @@ namespace CoCowork.DataLayer.Repositories
                     Id = id
                 },
                 commandType: CommandType.StoredProcedure);
-            ;
         }
     }
 }
