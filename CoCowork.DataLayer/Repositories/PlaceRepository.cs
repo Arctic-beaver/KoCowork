@@ -21,17 +21,11 @@ namespace CoCowork.DataLayer.Repositories
         public List<Place> GetAllPlaces()
         {
             using IDbConnection connection = ProvideConnection();
-            connection.Open();
 
             return connection
-                .Query<Place, MiniOffice, Place>
-                    (_selectAllProcedure, (place, miniOffice) =>
-                    {
-                        place.MiniOffice = miniOffice;
-                        return place;
-                    }, 
-                    commandType: CommandType.StoredProcedure,
-                    splitOn: "MiniOfficeId")
+                .Query<Place>
+                    (_selectAllProcedure,
+                    commandType: CommandType.StoredProcedure)
                 .ToList();
         }
 
@@ -68,7 +62,7 @@ namespace CoCowork.DataLayer.Repositories
                     {
                         place.MiniOffice = miniOffice;
                         return place;
-                    }, splitOn: "PlaceId")
+                    }, splitOn: "MiniOfficeId")
                  .ToList();
         }
 

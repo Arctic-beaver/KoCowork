@@ -6,19 +6,24 @@ namespace CoCowork.UI.Commands.BookingCommands
 {
     public class GetComputersCommand : CommandBase
     {
+        private BookingViewModel _vm;
+        private ComputerService _computerService;
+
         public GetComputersCommand(BookingViewModel vm, ComputerService computerService)
         {
-            var computers = computerService.GetAll();
-
-            foreach (var item in computers)
-            {
-                vm.Computers.Add(item);
-            }
+            _vm = vm;
+            _computerService = computerService;
+            Execute(vm);
         }
 
         public override void Execute(object parameter)
         {
-            throw new NotImplementedException();
+            var computers = _computerService.GetAll();
+
+            foreach (var item in computers)
+            {
+                _vm.Computers.Add(item);
+            }
         }
     }
 }

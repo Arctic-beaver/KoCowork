@@ -45,8 +45,7 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="26"/>
                 <RowDefinition Height="*"/>
-                <RowDefinition Height="26"/>
-                <RowDefinition Height="*"/>
+
                 <RowDefinition Height="26"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
@@ -57,13 +56,13 @@
             <Label Content="Миниофисы" HorizontalAlignment="Center" FontWeight="Bold" Grid.Column="0" Grid.Row="0">
 
             </Label>
-            <Label Content="Переговорные" HorizontalAlignment="Center" FontWeight="Bold" Grid.Column="0" Grid.Row="4">
+            <Label Content="Переговорные" HorizontalAlignment="Center" FontWeight="Bold" Grid.Column="2" Grid.Row="0">
 
             </Label>
             <Label Content="Конференц-залы" HorizontalAlignment="Center" FontWeight="Bold" Grid.Column="0" Grid.Row="2">
 
             </Label>
-            <Label Content="Компьютеры" HorizontalAlignment="Center" FontWeight="Bold" Grid.Column="2" Grid.Row="0">
+            <Label Content="Компьютеры" HorizontalAlignment="Center" Grid.ColumnSpan="2" FontWeight="Bold" Grid.Column="1" Grid.Row="2">
 
             </Label>
             
@@ -86,9 +85,9 @@
                 </Grid.RowDefinitions>
                 <Button Content="показать свободные"  Grid.Column="1" Grid.Row="0" Margin="0, 15, 0, 15"/>
                 <Label Content="с" Grid.Column="0" Grid.Row="1" Margin="12 0 0 0"/>
-                <DatePicker Grid.Column="1" Grid.Row="1" Margin="0 0 0 20"/>
+                <DatePicker Grid.Column="1" Grid.Row="1" Margin="0 0 0 40"/>
                 <Label Content="по" Grid.Column="0" Grid.Row="1" Margin="5 35 0 0" Grid.RowSpan="2"/>
-                <DatePicker Grid.Column="1" Grid.Row="1" Margin="0 37 0 70" Grid.RowSpan="2"/>
+                <DatePicker Grid.Column="1" Grid.Row="1" Margin="0 37 0 75" Grid.RowSpan="2"/>
 
                 <Button x:Name="AddNewButton" Content="Инсертнуть" Grid.Column="1" Grid.Row="2" Margin="0, 30, 0, 0"/>
 
@@ -102,11 +101,11 @@
                 <Button x:Name="EditButton" Content="Редактировать" Grid.Column="1" Grid.Row="4" Margin="0, 15, 0, 15"/>
                 <Button x:Name="AddToOrderButton" Content="Добавить к заказу" Grid.Column="1" Grid.Row="5" Margin="0, 15, 0, 15"/>
                 <Button x:Name="DeleteButton" Content="Удалить" Grid.Column="1" Grid.Row="6"
-                        Margin="0, 15, 0, 15" Command="{Binding Path=Booking.DeleteMiniOffice}"/>
+                        Margin="0, 15, 0, 15" Command="{Binding Booking.DeleteMiniOffice}"/>
             </Grid>
             
             <DataGrid AutoGenerateColumns="False" Margin="2 0 2 0" Grid.Column="0" Grid.Row="1" CanUserAddRows="False" 
-                      ItemsSource="{Binding Booking.MiniOffices}" SelectedItem="{Binding Booking.MiniOfficeSelectedItem}">
+                      ItemsSource="{Binding Booking.MiniOffices}" SelectedItem="{Binding Path=Booking.MiniOfficeSelectedItem, Mode=TwoWay}">
                 <DataGrid.Resources>
                     <Style TargetType="{x:Type DataGridColumnHeader}">
                         <Setter Property="HorizontalContentAlignment" Value="Center"/>
@@ -123,7 +122,7 @@
             </DataGrid>
             
             <DataGrid AutoGenerateColumns="False" Grid.Column="1" Margin="2 0 2 0" Grid.Row="1"
-                      Grid.RowSpan="5" CanUserAddRows="False" ItemsSource="{Binding Booking.Places}">
+                      CanUserAddRows="False" ItemsSource="{Binding Booking.Places}">
                 <DataGrid.Resources>
                     <Style TargetType="{x:Type DataGridColumnHeader}">
                         <Setter Property="HorizontalContentAlignment" Value="Center"/>
@@ -138,7 +137,7 @@
                 </DataGrid.Columns>
             </DataGrid>
             
-            <DataGrid AutoGenerateColumns="False" Grid.Column="0" Grid.Row="5" 
+            <DataGrid AutoGenerateColumns="False" Grid.Column="2" Grid.Row="1" 
                       CanUserAddRows="False" ItemsSource="{Binding Booking.MeetingRooms}">
                 <DataGrid.Resources>
                     <Style TargetType="{x:Type DataGridColumnHeader}">
@@ -171,8 +170,8 @@
                 </DataGrid.Columns>
             </DataGrid>
 
-            <DataGrid AutoGenerateColumns="False" Margin="0 0 0 0" Width="auto" Grid.Column="2"
-                      Grid.RowSpan="5" Grid.Row="1" CanUserAddRows="False" ItemsSource="{Binding Booking.Computers}">
+            <DataGrid AutoGenerateColumns="False" Margin="0 0 0 0" Width="auto" Grid.Column="1"
+                      Grid.Row="3" CanUserAddRows="False" Grid.ColumnSpan="2" ItemsSource="{Binding Booking.Computers}">
                 <DataGrid.Resources>
                     <Style TargetType="{x:Type DataGridColumnHeader}">
                         <Setter Property="HorizontalContentAlignment" Value="Center"/>
@@ -183,6 +182,7 @@
                 </DataGrid.Resources>
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Цена/месяц"  Width="auto" Binding="{Binding PricePerMonth}"/>
+                    <DataGridTextColumn Header="Кол-во"  Width="auto" Binding="{Binding Amount}"/>
                     <DataGridTextColumn Header="Описание"  Width="auto" Binding="{Binding Description}"/>
                 </DataGrid.Columns>
             </DataGrid>

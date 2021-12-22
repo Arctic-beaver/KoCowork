@@ -10,25 +10,23 @@ namespace CoCowork.UI.Commands
 
         public DeleteMiniOfficeCommand(BookingViewModel vm, MiniOfficeService miniOfficeService)
         {
-            //_vm = vm;
-            //_miniOfficeService = miniOfficeService;
+            _vm = vm;
+            _miniOfficeService = miniOfficeService;
+            Execute(vm);
+        }
 
-            if (vm.MiniOfficeSelectedItem is null)
+        public override void Execute(object parameter)
+        {
+            if (_vm.MiniOfficeSelectedItem is null)
             {
                 return;
             }
             else
             {
-                var miniOfficeId = vm.MiniOfficeSelectedItem.Id;
-                miniOfficeService.DeleteMiniOffice(miniOfficeId);
-                vm.MiniOffices.Remove(vm.MiniOfficeSelectedItem);
+                var miniOfficeId = _vm.MiniOfficeSelectedItem.Id;
+                _miniOfficeService.DeleteMiniOffice(miniOfficeId);
+                _vm.MiniOffices.Remove(_vm.MiniOfficeSelectedItem);
             }
-        }
-
-        public override void Execute(object parameter)
-        {
-
-
         }
     }
 }

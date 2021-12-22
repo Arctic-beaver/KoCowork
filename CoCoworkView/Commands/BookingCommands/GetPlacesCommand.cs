@@ -6,19 +6,23 @@ namespace CoCowork.UI.Commands.BookingCommands
 {
     public class GetPlacesCommand : CommandBase
     {
+        private BookingViewModel _vm;
+        private PlaceService _placeService;
         public GetPlacesCommand(BookingViewModel vm, PlaceService placeService)
         {
-            var miniOffices = placeService.GetAll();
-
-            foreach (var item in miniOffices)
-            {
-                vm.Places.Add(item);
-            }
+            _vm = vm;
+            _placeService = placeService;
+            Execute(vm);
         }
 
         public override void Execute(object parameter)
         {
-            throw new NotImplementedException();
+            var miniOffices = _placeService.GetAll();
+
+            foreach (var item in miniOffices)
+            {
+                _vm.Places.Add(item);
+            }
         }
     }
 }

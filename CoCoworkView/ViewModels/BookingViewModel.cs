@@ -24,14 +24,11 @@ namespace CoCowork.UI.ViewModels
 
         public MiniOfficeModel MiniOfficeSelectedItem
         {
-            get { return _miniOfficeSelectedItem; }
+            get => _miniOfficeSelectedItem;
             set
             {
-                if (value != _miniOfficeSelectedItem)
-                {
-                    _miniOfficeSelectedItem = value;
-                    OnPropertyChanged(nameof(MiniOfficeSelectedItem));
-                }
+                _miniOfficeSelectedItem = value;
+                OnPropertyChanged(nameof(MiniOfficeSelectedItem));
             }
         }
 
