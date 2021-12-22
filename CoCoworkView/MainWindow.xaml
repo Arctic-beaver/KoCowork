@@ -112,15 +112,15 @@
                 <Button x:Name="AddPaymentButton" Content="Добавить оплату" Grid.Column="1" Grid.Row="1" Margin="0, 30, 0, 0"/>
                 <Label Name="ShowLabel" Content="Показать:" Grid.Column="1" Grid.Row="2" Margin="0, 15, 0, 15" VerticalAlignment="Bottom"/>
                 <StackPanel x:Name="CharacteristicsOfOrdersStackPanel" Grid.Row="3" Grid.Column="1" Grid.RowSpan="2" Margin="0, 10, 0, 10">
-                    <CheckBox Content="Оплаченные" Margin="0, 5, 0, 0"/>
-                    <CheckBox Content="Неоплаченные" Margin="0, 5, 0, 0"/>
-                    <CheckBox Content="Текущие" Margin="0, 5, 0, 0"/>
-                    <CheckBox Content="Удалённые" Margin="0, 5, 0, 0"/>
+                    <CheckBox Content="Оплаченные" Margin="0, 5, 0, 0" IsChecked="{Binding Order.ShowPaid}"/>
+                    <CheckBox Content="Неоплаченные" Margin="0, 5, 0, 0" IsChecked="{Binding Order.ShowUnpaid}"/>
+                    <CheckBox Content="Текущие" Margin="0, 5, 0, 0" IsChecked="{Binding Order.ShowActive}" IsEnabled="{Binding Order.ShowActiveAvailability}" />
+                    <CheckBox Content="Отменённые" Margin="0, 5, 0, 0" IsChecked="{Binding Order.ShowCanceled}" IsEnabled="{Binding Order.ShowCanceledAvailability}"/>
                 </StackPanel>
-                <Button x:Name="DeleteOrderButton" Content="Удалить" Grid.Column="1" Grid.Row="6" Margin="0, 0, 0, 30"/>
+                <Button x:Name="CancelOrderButton" Content="Отменить заказ" Grid.Column="1" Grid.Row="6" Margin="0, 0, 0, 30" />
             </Grid>
 
-            <DataGrid x:Name="OrdersDataGrid" DataContext="{Binding Order.Orders}" Grid.Column="0"/>
+            <DataGrid x:Name="OrdersDataGrid" ItemsSource="{Binding Order.Orders}" SelectedItem="{Binding Order.SelectedItem}" Grid.Column="0"/>
         </Grid>
 
         <Grid x:Name="CurrentOrderGrid" Grid.Column ="1" Visibility="{Binding CurrentOrder.GridVisibility}">
