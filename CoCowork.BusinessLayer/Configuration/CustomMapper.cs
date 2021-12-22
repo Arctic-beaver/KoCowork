@@ -20,7 +20,6 @@ namespace PseudoCalc.BusinessLayer.Configuration
             _instance = new Mapper(new MapperConfiguration(cfg =>
             {
                 cfg.CreateMap<Client, ClientModel>();
-                cfg.CreateMap<Client, ClientShortModel>();
 
                 cfg.CreateMap<MiniOffice, MiniOfficeModel>();
 

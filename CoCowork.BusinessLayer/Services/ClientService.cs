@@ -18,12 +18,6 @@ namespace CoCowork.BusinessLayer.Services
             _clientRepository = new ClientRepository();
         }
 
-        public List<ClientShortModel> GetClientsWithoutSensitiveData()
-        {
-            var players = _clientRepository.GetAllClients();
-            return CustomMapper.GetInstance().Map<List<ClientShortModel>>(players);
-        }
-
         public List<ClientModel> GetClients()
         {
             var players = _clientRepository.GetAllClients();

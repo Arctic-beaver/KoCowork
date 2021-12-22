@@ -1,4 +1,6 @@
-﻿using System.Windows;
+﻿using CoCowork.BusinessLayer.Models;
+using System.Collections.ObjectModel;
+using System.Windows;
 
 namespace CoCowork.UI.ViewModels
 {
@@ -8,5 +10,13 @@ namespace CoCowork.UI.ViewModels
         {
             GridVisibility = Visibility.Hidden;
         }
+
+        public ObservableCollection<OrderModel> Orders { get; set; }
+
+        //public bool IsButtonDeleteAvailable => 
+        
+        
     }
 }
+    
+
