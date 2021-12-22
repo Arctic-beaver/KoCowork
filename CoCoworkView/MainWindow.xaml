@@ -117,7 +117,7 @@
                     <CheckBox Content="Текущие" Margin="0, 5, 0, 0" IsChecked="{Binding Order.ShowActive}" IsEnabled="{Binding Order.ShowActiveAvailability}" />
                     <CheckBox Content="Отменённые" Margin="0, 5, 0, 0" IsChecked="{Binding Order.ShowCanceled}" IsEnabled="{Binding Order.ShowCanceledAvailability}"/>
                 </StackPanel>
-                <Button x:Name="CancelOrderButton" Content="Отменить заказ" Grid.Column="1" Grid.Row="6" Margin="0, 0, 0, 30" IsEnabled="{Binding Order.CancelButtonAvailability}"/>
+                <Button x:Name="CancelOrderButton" Content="Отменить заказ" Grid.Column="1" Grid.Row="6" Margin="0, 0, 0, 30" IsEnabled="{Binding Order.IsCancelButtonAvailable}"/>
             </Grid>
 
             <DataGrid x:Name="OrdersDataGrid" ItemsSource="{Binding Order.Orders}" SelectedItem="{Binding Order.SelectedItem}" Grid.Column="0" ColumnWidth="*"/>

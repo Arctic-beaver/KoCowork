@@ -12,24 +12,26 @@ namespace CoCowork.UI.Commands
 {
     public class GetOrdersCommand : CommandBase
     {        
-        public GetOrdersCommand(OrderViewModel vm, OrderService orderService)
+        public GetOrdersCommand()
         {
+
+        }
+
+        public override void Execute(object viewModel)
+        {
+            OrderViewModel vm = (OrderViewModel)viewModel;
+
             vm.Orders?.Clear();
             var orders = new List<OrderModel>();
 
-            if (vm.ShowPaid) orders.AddRange(orderService.GetPaidOrders());
-            if (vm.ShowUnpaid) orders.AddRange(orderService.GetUnpaidOrders());
-            if (vm.ShowCanceled) orders.AddRange(orderService.GetCanceledOrders());
-            if (vm.ShowActive) orders.AddRange(orderService.GetActiveOrders());
+            if (vm.ShowPaid) orders.AddRange(vm.Service.GetPaidOrders());
+            if (vm.ShowUnpaid) orders.AddRange(vm.Service.GetUnpaidOrders());
+            if (vm.ShowCanceled) orders.AddRange(vm.Service.GetCanceledOrders());
+            if (vm.ShowActive) orders.AddRange(vm.Service.GetActiveOrders());
 
             orders.Distinct();
 
             vm.Orders = new ObservableCollection<OrderModel>(orders);
-        }
-
-        public override void Execute(object parameter)
-        {
-            throw new NotImplementedException();
         }
     }
 }

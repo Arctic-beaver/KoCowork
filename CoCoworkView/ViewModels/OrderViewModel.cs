@@ -16,7 +16,7 @@ namespace CoCowork.UI.ViewModels
 
         private bool _showCanceledAvailability;
         private bool _showActiveAvailability;
-        private bool _cancelButtonAvailability;
+        private bool _isCancelButtonAvailable;
 
         private OrderModel _selectedItem;
         public OrderViewModel()
@@ -24,9 +24,10 @@ namespace CoCowork.UI.ViewModels
             GridVisibility = Visibility.Hidden;
             ShowActiveAvailability = true;
             ShowCanceledAvailability = true;
-            CancelButtonAvailability = false;
             Service = new OrderService();
-            GetOrdersCommand = new GetOrdersCommand(this, Service);
+
+            GetOrdersCommand = new GetOrdersCommand();
+            GetOrdersCommand.Execute(this);
         }
 
         public ObservableCollection<OrderModel> Orders { get; set; }
@@ -44,7 +45,7 @@ namespace CoCowork.UI.ViewModels
                 {
                     _showPaid = value;
                     OnPropertyChanged(nameof(ShowPaid));
-
+                    GetOrdersCommand.Execute(this);
                 }
             }
         }
@@ -58,6 +59,7 @@ namespace CoCowork.UI.ViewModels
                 {
                     _showUnpaid = value;
                     OnPropertyChanged(nameof(ShowUnpaid));
+                    GetOrdersCommand.Execute(this);
                 }
             }
         }
@@ -73,6 +75,7 @@ namespace CoCowork.UI.ViewModels
                     if (value == true) ShowActiveAvailability = false;
                     else ShowActiveAvailability = true;
                     OnPropertyChanged(nameof(GridVisibility));
+                    GetOrdersCommand.Execute(this);
                 }
             }
         }
@@ -88,6 +91,7 @@ namespace CoCowork.UI.ViewModels
                     if (value == true) ShowCanceledAvailability = false;
                     else ShowCanceledAvailability = true;
                     OnPropertyChanged(nameof(ShowActive));
+                    GetOrdersCommand.Execute(this);
                 }
             }
         }
@@ -118,15 +122,15 @@ namespace CoCowork.UI.ViewModels
             }
         }
 
-        public bool CancelButtonAvailability
+        public bool IsCancelButtonAvailable
         {
-            get => _cancelButtonAvailability;
+            get => _isCancelButtonAvailable;
             set
             {
-                if (value != _cancelButtonAvailability)
+                if (value != _isCancelButtonAvailable)
                 {
-                    _cancelButtonAvailability = value;
-                    OnPropertyChanged(nameof(_cancelButtonAvailability));
+                    _isCancelButtonAvailable = value;
+                    OnPropertyChanged(nameof(IsCancelButtonAvailable));
                 }
             }
         }
@@ -141,6 +145,7 @@ namespace CoCowork.UI.ViewModels
                     _selectedItem = value;
 
                     OnPropertyChanged(nameof(SelectedItem));
+                    if (value != null) IsCancelButtonAvailable = true;
                 }
             }
         }
