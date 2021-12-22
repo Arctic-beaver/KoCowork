@@ -119,9 +119,30 @@
                 </StackPanel>
                 <Button x:Name="CancelOrderButton" Content="Отменить заказ" Grid.Column="1" Grid.Row="6" Margin="0, 0, 0, 30" IsEnabled="{Binding Order.IsCancelButtonAvailable}"/>
             </Grid>
+            <Grid x:Name="MainOrderGrid" Grid.Column ="0" Background="#FFE0DFDF" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="70*"/>
+                    <ColumnDefinition Width="30*"/>
+                </Grid.ColumnDefinitions>
+                <DataGrid x:Name="OrdersDataGrid" ItemsSource="{Binding Order.Orders}" SelectedItem="{Binding Order.SelectedItem}" CanUserAddRows="False" CanUserDeleteRows="False" CanUserReorderColumns="False" CanUserSortColumns="True"  Grid.Column="0" ColumnWidth="*"/>
+                <Grid x:Name="AddPaymentGrid" Grid.Column ="2" Background="#FFE0DFDF" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    
+                    
 
-            <DataGrid x:Name="OrdersDataGrid" ItemsSource="{Binding Order.Orders}" SelectedItem="{Binding Order.SelectedItem}" Grid.Column="0" ColumnWidth="*"/>
+                </Grid>
+            </Grid>
         </Grid>
+
 
         <Grid x:Name="CurrentOrderGrid" Grid.Column ="1" Visibility="{Binding CurrentOrder.GridVisibility}">
             <Label>Text in current order grid</Label>

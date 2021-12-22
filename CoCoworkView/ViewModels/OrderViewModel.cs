@@ -25,11 +25,12 @@ namespace CoCowork.UI.ViewModels
             ShowActiveAvailability = true;
             ShowCanceledAvailability = true;
             Service = new OrderService();
+            Payment = new PaymentViewModel();
 
             GetOrdersCommand = new GetOrdersCommand();
             GetOrdersCommand.Execute(this);
         }
-
+        public PaymentViewModel Payment { get; set; }
         public ObservableCollection<OrderModel> Orders { get; set; }
         public ObservableCollection<OrderModel> PaidOrders { get; set; }
         public ObservableCollection<OrderModel> UnpaidOrders { get; set; }
@@ -153,10 +154,6 @@ namespace CoCowork.UI.ViewModels
         public ICommand GetOrdersCommand;
 
         public OrderService Service;
-
-        //public bool IsButtonDeleteAvailable => 
-
-
     }
 }
     
