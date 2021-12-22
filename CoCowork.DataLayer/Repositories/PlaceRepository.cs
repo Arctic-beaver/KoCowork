@@ -17,7 +17,7 @@ namespace CoCowork.DataLayer.Repositories
         private const string _deleteProcedure = "dbo.Place_Delete";
         private const string _selectByMiniOfficeIdProcedure = "dbo.Place_SelectByMiniOfficeId";
         private const string _selectThatNotInMiniOfficeProcedure = "dbo.Place_SelectThatNotInMiniOffice";
-        
+
         public List<Place> GetAllPlaces()
         {
             using IDbConnection connection = ProvideConnection();
@@ -29,7 +29,9 @@ namespace CoCowork.DataLayer.Repositories
                     {
                         place.MiniOffice = miniOffice;
                         return place;
-                    })
+                    }, 
+                    commandType: CommandType.StoredProcedure,
+                    splitOn: "MiniOfficeId")
                 .ToList();
         }
 
@@ -43,13 +45,13 @@ namespace CoCowork.DataLayer.Repositories
                     (_selectByIdProcedure,
                     (place, miniOffice) =>
                     {
-                    place.MiniOffice = miniOffice;
-                    return place;
+                        place.MiniOffice = miniOffice;
+                        return place;
                     },
                     new
                     {
                         Id = id
-                     },
+                    },
                     commandType: CommandType.StoredProcedure)
                 .FirstOrDefault();
         }
@@ -66,8 +68,7 @@ namespace CoCowork.DataLayer.Repositories
                     {
                         place.MiniOffice = miniOffice;
                         return place;
-                    },
-                    commandType: CommandType.StoredProcedure)
+                    }, splitOn: "PlaceId")
                  .ToList();
         }
 
@@ -92,7 +93,7 @@ namespace CoCowork.DataLayer.Repositories
             using IDbConnection connection = ProvideConnection();
             connection.Open();
 
-            var affectedRows = connection.Execute( 
+            var affectedRows = connection.Execute(
                 _updateProcedure,
                 new
                 {
@@ -116,5 +117,5 @@ namespace CoCowork.DataLayer.Repositories
                 },
                 commandType: CommandType.StoredProcedure);
         }
-    }   
+    }
 }

@@ -4,15 +4,15 @@ using System;
 
 namespace CoCowork.UI.Commands.BookingCommands
 {
-    public class GetMiniOfficesCommand : CommandBase
+    public class GetComputersCommand : CommandBase
     {
-        public GetMiniOfficesCommand(BookingViewModel vm, MiniOfficeService miniOfficeService)
+        public GetComputersCommand(BookingViewModel vm, ComputerService computerService)
         {
-            var miniOffices = miniOfficeService.GetAll();
+            var computers = computerService.GetAll();
 
-            foreach (var item in miniOffices)
+            foreach (var item in computers)
             {
-                vm.MiniOffices.Add(item);
+                vm.Computers.Add(item);
             }
         }
 

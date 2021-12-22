@@ -1,7 +1,7 @@
 ﻿using CoCowork.BusinessLayer.Models;
 using CoCowork.DataLayer.Entities;
 using CoCowork.DataLayer.Repositories;
-using PseudoCalc.BusinessLayer.Configuration;
+using CoCowork.BusinessLayer.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,14 +32,14 @@ namespace CoCowork.BusinessLayer.Services
 
         public void UpdateMiniOffice(MiniOfficeModel miniOffice)
         {
-            var miniOfficeModel = CustomMapper.GetInstance().Map<MiniOffice>(miniOffice);
-            _miniOfficeRepository.UpdateMiniOfficeById(miniOfficeModel);
+            var mOffice = CustomMapper.GetInstance().Map<MiniOffice>(miniOffice);
+            _miniOfficeRepository.UpdateMiniOfficeById(mOffice);
         }
 
         public void InsertMiniOffice(MiniOfficeModel miniOffice)
         {
-            var miniOfficeModel = CustomMapper.GetInstance().Map<MiniOffice>(miniOffice);
-            _miniOfficeRepository.Add(miniOfficeModel);
+            var mOffice = CustomMapper.GetInstance().Map<MiniOffice>(miniOffice);
+            _miniOfficeRepository.Add(mOffice);
         }
     }
 }

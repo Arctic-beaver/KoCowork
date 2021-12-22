@@ -9,11 +9,11 @@ namespace CoCowork.UI.ViewModels
 {
     public class MainWindowViewModel : BaseViewModel
     {
-        public ObservableCollection<BookingViewModel> Booking { get; set; }
+        public BookingViewModel Booking { get; set; }
 
         public MainWindowViewModel()
         {
-            Booking = new ObservableCollection<BookingViewModel>();
+            Booking = new BookingViewModel();
         }
     }
 }

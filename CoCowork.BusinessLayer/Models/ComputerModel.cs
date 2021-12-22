@@ -6,11 +6,13 @@ using System.Threading.Tasks;
 
 namespace CoCowork.BusinessLayer.Models
 {
-    public interface IItemModel
+    public class ComputerModel : ItemModel
     {
         public int Id { get; set; }
-        public int Number { get; set; }
         public string Name { get; set; }
         public bool IsActive { get; set; }
+        public BookingChecker BookingChecker { get; set; }
+        public decimal PricePerMonth { get; set; }
+        public string Description { get; set; }
     }
 }

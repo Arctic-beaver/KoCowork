@@ -18,11 +18,8 @@ namespace CoCowork.DataLayer.Repositories
         {
             using IDbConnection connection = ProvideConnection();
             connection.Open();
-
             var result = connection.Query<Room>(_selectAllProcedure).ToList();
-
             return result;
-
         }
 
         public Room GetById(int id)
@@ -45,7 +42,6 @@ namespace CoCowork.DataLayer.Repositories
                     Type = room.Type,
                     AmountOfPeople = room.AmountOfPeople,
                     PricePerHour = room.PricePerHour
-
                 },
                 commandType: CommandType.StoredProcedure);
         }
