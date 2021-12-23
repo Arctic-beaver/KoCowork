@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CoCowork.BusinessLayer.Models
 {
-    public class LaptopModel : iItemModel
+    public class LaptopModel : IItemModel
     {
         public int Id { get; set; }
         public string Name { get; set; }

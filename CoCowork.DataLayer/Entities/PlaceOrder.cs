@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CoCowork.DataLayer.Entities
 {
-    public class PlaceOrder
+    public class PlaceOrder : IOrder
     {
         public int Id { get; set; }
         public Place Place { get; set; }

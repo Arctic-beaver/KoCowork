@@ -39,11 +39,11 @@ namespace CoCowork.DataLayer.Repositories
                 commandType: CommandType.StoredProcedure);
         }
 
-        public void Add (Order order)
+        public int Add(Order order)
         {
             using var connection = new SqlConnection(_connectionString);
             connection.Open();
-            connection.Execute(
+            return connection.QueryFirstOrDefault<int>(
                 _insertProcedure,
                 new
                 {
@@ -57,7 +57,7 @@ namespace CoCowork.DataLayer.Repositories
             ;
         } 
 
-        public void Update (Order order)
+        public void Update(Order order)
         {
             using var connection = new SqlConnection(_connectionString);
             connection.Open();

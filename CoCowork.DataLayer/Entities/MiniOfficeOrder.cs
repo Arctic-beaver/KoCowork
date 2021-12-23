@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CoCowork.DataLayer.Entities
 {
-    public class MiniOfficeOrder
+    public class MiniOfficeOrder : IOrder
     {
         public int Id { get; set; }
         public MiniOffice MiniOffice { get; set; }

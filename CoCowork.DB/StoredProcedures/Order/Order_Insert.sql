@@ -15,4 +15,5 @@ BEGIN
 		@TotalPrice,
 		@IsPaid,
 		@IsCanceled)
+	select SCOPE_IDENTITY()
 END

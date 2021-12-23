@@ -3,7 +3,7 @@
 
 namespace CoCowork.DataLayer.Entities
 {
-    public class LaptopOrder
+    public class LaptopOrder : IOrder
     {
         public int Id { get; set; }
         public Laptop Laptop { get; set; }

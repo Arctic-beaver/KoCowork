@@ -1,21 +1,49 @@
 ﻿
 using CoCowork.BusinessLayer.Models;
+using CoCowork.UI.Commands.CurrentOrder;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Windows.Input;
 
 namespace CoCowork.UI.ViewModels
 {
     public class CurrentOrderViewModel : INotifyPropertyChanged
     {
-        public CurrentOrderViewModel(iItemModel itemModel)
+        public CurrentOrderViewModel(IItemModel itemModel)
         {
-            Name = itemModel.Name;
-            Type = GetType(itemModel);
-            Price = GetPrice(itemModel);
-            
+            //Name = itemModel.Name;
+            //GetObjectProperties(itemModel);
+
+            //CurrentOrderList.Add(itemModel);
+
+            AddOrder = new AddOrdersToBD(this);
         }
+
+        private ObservableCollection<IItemModel> _currentOrder;
+        public ObservableCollection<IItemModel> CurrentOrder
+        {
+            get { return _currentOrder; }
+            set
+            {
+                _currentOrder = value;
+                OnPropertyChanged("CurrentOrder");
+            }
+        }
+
+        private ObservableCollection<ClientModel> _clients;
+        public ObservableCollection<ClientModel> Clients
+        {
+            get { return _clients; }
+            set
+            {
+                _clients = value;
+                OnPropertyChanged("Clients");
+            }
+        }
+
 
         private string _name;
         public string Name
@@ -48,46 +76,37 @@ namespace CoCowork.UI.ViewModels
                 OnPropertyChanged("Price");
             }
         }
-
-
-        public string GetType(iItemModel itemModel)
+        public ICommand AddOrder
         {
-            string type = "";
+            get;set;
+        }
 
+        public void GetObjectProperties(IItemModel itemModel)
+        {
             switch (itemModel)
             {
                 case LaptopModel laptop:
-                    return type = laptop.Type;
+                    Type = laptop.Type;
+                    Price = Convert.ToString(laptop.PricePerMonth);
+                    break;
                 case MiniOfficeModel miniOffice:
-                    return type = miniOffice.Type;
+                    Type = miniOffice.Type;
+                    Price = Convert.ToString(miniOffice.PricePerDay);
+                    break;
                 case PlaceModel place:
-                    return type = place.Type;
+                    Type = place.Type;
+                    Price = Convert.ToString(place.PricePerDay);
+                    break;
                 case ProductModel product:
-                    return type = product.Type;
+                    Type = product.Type;
+                    Price = Convert.ToString(product.PriceForOne);
+                    break;
                 case RoomModel room:
-                    return type = room.Type;
+                    Type = room.Type;
+                    Price = Convert.ToString(room.PricePerHour);
+                    break;
                 default:
-                    return type;
-            }
-        }
-
-        public string GetPrice(iItemModel iItemModel)
-        {
-            string price = "";
-            switch (iItemModel)
-            {
-                case LaptopModel laptop:
-                    return price = Convert.ToString(laptop.PricePerMonth) + " р. в месяц";
-                case MiniOfficeModel miniOffice:
-                    return price = Convert.ToString(miniOffice.PricePerDay) + " р. в день";
-                case PlaceModel place:
-                    return price = Convert.ToString(place.PricePerDay) + " р. в день";
-                case ProductModel product:
-                    return price = Convert.ToString(product.PriceForOne) + " р.";
-                case RoomModel room:
-                    return price = Convert.ToString(room.PricePerHour) + "р. в час";
-                default:
-                    return price;
+                    break;
             }
         }
 
