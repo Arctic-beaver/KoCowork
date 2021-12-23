@@ -27,7 +27,6 @@ namespace CoCowork.DataLayer.Repositories
             var result = connection.Query<Order>(_selectAllProcedure).ToList();
 
             return result;
-
         }
 
         public Order GetById(int id)
