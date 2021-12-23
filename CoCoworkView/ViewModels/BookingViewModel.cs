@@ -7,7 +7,7 @@ using System.Windows.Input;
 
 namespace CoCowork.UI.ViewModels
 {
-    public class BookingViewModel : BaseViewModel
+    public class BookingViewModel : TabViewModel
     {
         private MiniOfficeService _miniOfficeService;
         private PlaceService _placeService;
