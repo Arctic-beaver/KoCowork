@@ -17,7 +17,7 @@ namespace CoCowork.DataLayer.Repositories
         public List<Client> GetAllClients()
         {
             using IDbConnection connection = ProvideConnection();
-            connection.Open();
+
             var result = connection.Query<Client>(_selectAllProc).ToList();
             return result;
         }

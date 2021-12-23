@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace CoCowork.BusinessLayer
+﻿namespace CoCowork.BusinessLayer
 {
     public enum RoomType
     {

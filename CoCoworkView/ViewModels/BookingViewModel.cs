@@ -14,7 +14,7 @@ namespace CoCowork.UI.ViewModels
         private ComputerService _computerService;
         private RoomService _roomService;
 
-        private MiniOfficeModel _miniOfficeSelectedItem;
+        private ItemModel _bookingSelectedItem;
 
         private decimal _pricePerDayField;
         private decimal _pricePerHourField;
@@ -22,13 +22,13 @@ namespace CoCowork.UI.ViewModels
         private decimal _pricePerMonthField;
         private string _descriptionField;
 
-        public MiniOfficeModel MiniOfficeSelectedItem
+        public ItemModel BookingSelectedItem
         {
-            get => _miniOfficeSelectedItem;
+            get => _bookingSelectedItem;
             set
             {
-                _miniOfficeSelectedItem = value;
-                OnPropertyChanged(nameof(MiniOfficeSelectedItem));
+                _bookingSelectedItem = value;
+                OnPropertyChanged(nameof(BookingSelectedItem));
             }
         }
 
@@ -92,11 +92,7 @@ namespace CoCowork.UI.ViewModels
         public ICommand GetComputers { get; set; }
         public ICommand GetMeetingRooms { get; set; }
         public ICommand GetConferenceRooms { get; set; }
-        public ICommand DeleteMiniOffice { get; set; }
-        public ICommand DeletePlace { get; set; }
-        public ICommand DeleteMeetingRoom { get; set; }
-        public ICommand DeleteConferenceRoom { get; set; }
-        public ICommand DeleteComputer { get; set; }
+        public ICommand DeleteBookingItem { get; set; }
 
         public BookingViewModel()
         {
@@ -117,11 +113,7 @@ namespace CoCowork.UI.ViewModels
             GetConferenceRooms = new GetConferenceRoomsCommand(this, _roomService);
             GetComputers = new GetComputersCommand(this, _computerService);
 
-            DeletePlace = new DeletePlaceCommand(this, _placeService);
-            DeleteMiniOffice = new DeleteMiniOfficeCommand(this, _miniOfficeService);
-            DeleteMeetingRoom = new DeleteMeetingRoomCommand(this, _roomService);
-            DeleteConferenceRoom = new DeleteConferenceRoomCommand(this, _roomService);
-            DeleteComputer = new DeleteComputerCommand(this, _computerService);
+            DeleteBookingItem = new DeleteBookingItemCommand(this, _miniOfficeService, _roomService, _computerService, _placeService);
         }
     }
 }

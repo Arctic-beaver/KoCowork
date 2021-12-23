@@ -9,11 +9,8 @@ namespace CoCowork.UI.ViewModels
 {
     public class MainWindowViewModel : BaseViewModel
     {
-        public BookingViewModel Booking { get; set; }
-
         public MainWindowViewModel()
         {
-            Booking = new BookingViewModel();
         }
     }
 }
