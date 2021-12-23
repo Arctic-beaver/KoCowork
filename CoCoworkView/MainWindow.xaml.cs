@@ -31,19 +31,7 @@ namespace CoCoworkView
             DataContext = viewModel;
 
             InitializeComponent();
-
-            var testOrder1 = new LaptopModel { Name = "nout", PricePerMonth = 5000};
-            var testOrder2 = new MiniOfficeModel { Name = "mini", PricePerDay = 1000 };
-            var testOrder3 = new PlaceModel { Name = "mesto", PricePerDay = 666 };
-            var testOrder4 = new ProductModel { Name = "product", PriceForOne = 1 };
-            var testOrder5 = new RoomModel { Name = "komnata", PricePerHour = 44 };
-
-            //viewModel.CurrentOrder.Add(testOrder5);
-            //viewModel.CurrentOrder.Add(testOrder4);
-            //viewModel.CurrentOrder.Add(testOrder3);
-            //viewModel.CurrentOrder.Add(testOrder2);
-            //viewModel.CurrentOrder.Add(testOrder1);
-
+            DataContext = new MainWindowViewModel();           
         }
     }
 }
