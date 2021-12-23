@@ -77,9 +77,56 @@
             <Label>Text in booking grid</Label>
         </Grid>
 
-        <Grid x:Name="ProductsGrid" Grid.Column ="1" Visibility="{Binding Product.GridVisibility}">
-            <Label>Text in products grid</Label>
+        <Grid x:Name="ProductsGrid" Grid.Column ="1" Visibility="{Binding Product.GridVisibility}" DataContext="{Binding Product}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="75*"/>
+                <ColumnDefinition Width="25*"/>
+            </Grid.ColumnDefinitions>
+            <Grid x:Name="RightProductsGrid" Grid.Column ="2" Background="#FFE0DFDF" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="15*"/>
+                    <ColumnDefinition Width="70*"/>
+                    <ColumnDefinition Width="15*"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <Button x:Name="AddNewProductButton" Content="Инсертнуть" Grid.Column="1" Grid.Row="1" Margin="0, 0, 0, 50"/>
+                <StackPanel x:Name="ProductPanelChekBox" Grid.Column="1" Grid.Row="2"  Margin="0,0,0,20">
+                    <CheckBox Content="Товары в наличии" Margin="0, 5, 0, 0" />
+                    <CheckBox Content="Еда и напитки" Margin="0, 5, 0, 0"/>
+                    <CheckBox Content="Прочее" Margin="0, 5, 0, 0"/>
+                </StackPanel>
+                <Button x:Name="EditProductButton" Content="Редактировать" Grid.Column="1" Grid.Row="3" Margin="0, 0, 0, 50"/>
+                <Button x:Name="AddToProductOrderButton" Content="Добавить к заказу" Grid.Column="1" Grid.Row="4" Margin="0, 0, 0, 50"/>
+                <Button x:Name="DeleteProductButton" Content="Удалить" Grid.Column="1" Grid.Row="5" Margin="0, 0, 0, 50"/>
+
+            </Grid>
+            <DataGrid AutoGenerateColumns="False" CanUserAddRows ="False" CanUserDeleteRows="False" Grid.Column="0" Grid.Row="0" Margin="0,40">
+                <DataGrid.Resources>
+                    <Style TargetType="{x:Type DataGridColumnHeader}">
+                        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                        <Setter Property="Background" Value="Lavender"/>
+                        <Setter Property="BorderThickness" Value="0, 0, 1, 2"/>
+                        <Setter Property="BorderBrush" Value="Black"/>
+                    </Style>
+                </DataGrid.Resources>
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Наименование" Width ="auto"/>
+                    <DataGridTextColumn Header="Цена за шт" Width ="auto"/>
+                    <DataGridTextColumn Header="Количество" Width ="auto"/>
+                </DataGrid.Columns>
+            </DataGrid>
         </Grid>
+        
+    
 
         <Grid x:Name="ClientsGrid" Grid.Column ="1" Visibility="{Binding Client.GridVisibility}">
             <Label>Text in client grid</Label>
