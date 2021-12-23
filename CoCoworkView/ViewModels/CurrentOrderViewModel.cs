@@ -54,6 +54,38 @@ namespace CoCowork.UI.ViewModels
             }
         }
 
+        private bool _isPaid;
+        public bool IsPaid
+        {
+            get { return _isPaid; }
+            set
+            {
+                _isPaid = value;
+                OnPropertyChanged("IsPaid");
+            }
+        }
+        private bool _isCancelled;
+        public bool IsCancelled
+        {
+            get { return _isCancelled; }
+            set
+            {
+                _isPaid = value;
+                OnPropertyChanged("IsCancelled");
+            }
+        }
+
+        private ClientModel _selectedClient;
+        public ClientModel SelectedClient
+        {
+            get { return _selectedClient; }
+            set
+            {
+                _selectedClient = value;
+                OnPropertyChanged("SelectedClient");
+            }
+        }
+
 
         private string _name;
         public string Name
@@ -86,6 +118,18 @@ namespace CoCowork.UI.ViewModels
                 OnPropertyChanged("Price");
             }
         }
+
+        public int _totalPrice;
+        public int TotalPrice
+        {
+            get { return _totalPrice; }
+            set
+            {
+                _totalPrice = value;
+                OnPropertyChanged("TotalPrice");
+            }
+        }
+
         public ICommand AddOrder
         {
             get;set;

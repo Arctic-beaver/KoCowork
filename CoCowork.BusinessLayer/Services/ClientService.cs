@@ -1,4 +1,5 @@
 ﻿using CoCowork.BusinessLayer.Models;
+using CoCowork.DataLayer.Entities;
 using CoCowork.DataLayer.Repositories;
 using PseudoCalc.BusinessLayer.Configuration;
 using System;
@@ -28,6 +29,11 @@ namespace CoCowork.BusinessLayer.Services
         {
             var players = _clientRepository.GetAllClients();
             return CustomMapper.GetInstance().Map<List<ClientModel>>(players);
+        }
+
+        public Client ConvertClientModelToEntities(ClientModel clientModel)
+        {
+            return CustomMapper.GetInstance().Map<Client>(clientModel);
         }
     }
 }

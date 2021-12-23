@@ -19,13 +19,15 @@ namespace CoCowork.UI.Commands.CurrentOrder
 
         public List<IItemModel> ListOrders {get; set; }
 
-        public bool IsPaid { get; set; }
-        public decimal Price { get; set; }
+        private CurrentOrderViewModel _vm;
+
         public AddOrdersToBD(CurrentOrderViewModel vm)
         {
-            var newOrder = new Order();
+            _vm = vm;
+            
         }
 
+        public Client ClientEntity { get; set; }
 
 
         public bool CanExecute(object parameter)
@@ -35,43 +37,14 @@ namespace CoCowork.UI.Commands.CurrentOrder
 
         public void Execute(object parameter)
         {
-
-
+            var client = new ClientService();
+            var clientEntity = client.ConvertClientModelToEntities(_vm.SelectedClient);
             var newOrder = new OrderService();
-            //int orderId = OrderService.CreateNewOrder(client,);
+            var orderId = newOrder.CreateNewOrder(clientEntity, _vm.IsCancelled, _vm.IsPaid, _vm.TotalPrice);
 
-            //int idOrder = createNewOrder.Add(newOrder);
 
-            //foreach (var item in ListOrders)
-            //{
-            //    switch (item)
-            //    {
-            //        case LaptopModel laptop:
-            //            var laptopEntities = new Lap
-            //            var newLaptopOrder = new LaptopOrder { Laptop = laptop, };
-            //            var addLaptopOrder = new LaptopOrderRepository();
-            //            addLaptopOrder.Add(newLaptopOrder);
-            //            break;
-            //        case MiniOfficeModel miniOffice:
-            //            Type = miniOffice.Type;
-            //            Price = Convert.ToString(miniOffice.PricePerDay);
-            //            break;
-            //        case PlaceModel place:
-            //            Type = place.Type;
-            //            Price = Convert.ToString(place.PricePerDay);
-            //            break;
-            //        case ProductModel product:
-            //            Type = product.Type;
-            //            Price = Convert.ToString(product.PriceForOne);
-            //            break;
-            //        case RoomModel room:
-            //            Type = room.Type;
-            //            Price = Convert.ToString(room.PricePerHour);
-            //            break;
-            //        default:
-            //            break;
-            //    }
-            //}
+
+            
 
         }
     }
