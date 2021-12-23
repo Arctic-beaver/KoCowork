@@ -122,6 +122,7 @@
                     <DataGridTextColumn Header="Наименование" Width ="auto"/>
                     <DataGridTextColumn Header="Цена за шт" Width ="auto"/>
                     <DataGridTextColumn Header="Количество" Width ="auto"/>
+                    <DataGridTextColumn Header="Описание" Width ="auto"/>
                 </DataGrid.Columns>
             </DataGrid>
         </Grid>

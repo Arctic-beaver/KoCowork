@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using CoCowork.BusinessLayer.Models;
+using System.Collections.ObjectModel;
 using System.Windows;
 
 namespace CoCowork.UI.ViewModels
@@ -10,6 +11,14 @@ namespace CoCowork.UI.ViewModels
         private string _description;
         private int _amount;
         private decimal _priceForOne;
+        private bool _productInStock;
+        private bool _foodAndDrinks;
+        private bool _someOtherStuff;
+
+        public ProductViewModel()
+        {
+            GridVisibility = Visibility.Hidden;
+        }
 
         public ObservableCollection<ProductViewModel> Products { get; set; }
 
@@ -53,21 +62,7 @@ namespace CoCowork.UI.ViewModels
             }
         }
 
-        public ProductViewModel(ProductModel dataProduct)
-        {
-            Products = new ObservableCollection<ProductViewModel>();
-            Name = dataProduct.Name;
-            Description = dataProduct.Description;
-            Amount = dataProduct.Amount;
-            PriceForOne = dataProduct.PriceForOne;
-        }
-
-
-
-        public ProductViewModel()
-        {
-            GridVisibility = Visibility.Hidden;
-        }
+       
     }
 }
 
