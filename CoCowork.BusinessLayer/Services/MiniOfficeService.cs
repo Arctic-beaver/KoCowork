@@ -19,7 +19,7 @@ namespace CoCowork.BusinessLayer.Services
             _miniOfficeRepository = new MiniOfficeRepository();
         }
 
-        public List<MiniOfficeModel> GetLaptops()
+        public List<MiniOfficeModel> GetAll()
         {
             var laptops = _miniOfficeRepository.GetAll();
             return CustomMapper.GetInstance().Map<List<MiniOfficeModel>>(laptops);

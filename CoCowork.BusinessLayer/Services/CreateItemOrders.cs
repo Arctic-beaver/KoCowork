@@ -12,7 +12,7 @@ namespace CoCowork.BusinessLayer.Services
 {
     public class CreateItemOrders
     {
-        public void CreateOrdersForItem(ObservableCollection<IItemModel> ordersList, int orderId, int amountDays)
+        public void CreateOrdersForItem(ObservableCollection<IItemModel> ordersList, int orderId, int amountDays, int bookingHour)
         {
             foreach (var item in ordersList)
             {
@@ -34,11 +34,22 @@ namespace CoCowork.BusinessLayer.Services
                         break;
                     case PlaceModel place:
                         var placeService = new PlaceService();
-                        var placeEntity = placeService.
+                        var placeEntity = placeService.ConvertModelToEntities(place);
+                        var newPlaceOrder = new PlaceOrder { Place = placeEntity, OrderId = orderId, SubtotalPrice = placeEntity.PriceFixedPerDay };
+                        var addPlaceOrder = new PlaceOrderRepository();
+                        addPlaceOrder.Add(newPlaceOrder);
                         break;
                     case ProductModel product:
+                        var productService = new ProductService();
+                        var productEntity = productService.ConvertModelToEntities(product);
+                        var newProductOrder = new ProductOrder { Product = productEntity, OrderId = orderId, SubtotalPrice = productEntity.PriceForOne };
+                        var addProductOrder = new ProductOrderRepository();
+                        addProductOrder.Add(newProductOrder);
                         break;
                     case RoomModel room:
+                        var roomService = new RoomService();
+                        var roomEntity = roomService.ConvertModelToEntities(room);
+                        var newRoomOrder = new RoomOrder { Room = roomEntity, OrderId = orderId, SubtotalPrice = (roomEntity.PricePerHour * bookingHour) };
                         break;
                     default:
                         break;

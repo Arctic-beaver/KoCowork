@@ -19,7 +19,7 @@ namespace CoCowork.DataLayer.Repositories
         private const string _deleteProcedure = "dbo.Place_Delete";
         private const string _selectThatNotInMiniOfficeProcedure = "dbo.Place_SelectThatNotInMiniOffice";
         
-        public List<Place> GetAllPlaces()
+        public List<Place> GetAll()
         {
             using var connection = new SqlConnection(_connectionString);
             connection.Open();

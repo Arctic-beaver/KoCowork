@@ -21,7 +21,7 @@ namespace CoCowork.BusinessLayer.Services
 
         public List<LaptopModel> GetAll()
         {
-            var laptops = _laptopRepository.GetAllLaptops();
+            var laptops = _laptopRepository.GetAll();
             return CustomMapper.GetInstance().Map<List<LaptopModel>>(laptops);
         }
 

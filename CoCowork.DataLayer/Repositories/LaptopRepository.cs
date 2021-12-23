@@ -17,7 +17,7 @@ namespace CoCowork.DataLayer.Repositories
         private const string _updateProc = "dbo.Laptop_Update";
         private const string _deleteProc = "dbo.Laptop_Delete";
 
-        public List<Laptop> GetAllLaptops()
+        public List<Laptop> GetAll()
         {
             using var connection = new SqlConnection(_connString);
             connection.Open();

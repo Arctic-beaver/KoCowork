@@ -18,7 +18,7 @@ namespace CoCowork.BusinessLayer.Models
             GetObjectProperties(itemModel);
             CurrentOrderList.Add(itemModel);
             var laptops = new LaptopRepository();
-            LaptopsList = laptops.GetAllLaptops();
+            LaptopsList = laptops.GetAll();
 
         }
 
