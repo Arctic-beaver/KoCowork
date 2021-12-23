@@ -13,7 +13,7 @@ using CoCowork.BusinessLayer.Services;
 
 namespace CoCowork.UI.Commands.CurrentOrder
 {
-    public class AddOrdersToBD : ICommand
+    public class AddOrdersToDB : ICommand
     {
         public event EventHandler CanExecuteChanged;
 
@@ -21,7 +21,7 @@ namespace CoCowork.UI.Commands.CurrentOrder
 
         private CurrentOrderViewModel _vm;
 
-        public AddOrdersToBD(CurrentOrderViewModel vm)
+        public AddOrdersToDB(CurrentOrderViewModel vm)
         {
             _vm = vm;
             

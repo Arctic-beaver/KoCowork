@@ -21,7 +21,7 @@ namespace CoCowork.UI.ViewModels
             //CurrentOrderList.Add(itemModel);
 
 
-            AddOrder = new AddOrdersToBD(this);
+            AddOrder = new AddOrdersToDB(this);
 
             var clientService = new ClientService();
             var loadClients = clientService.GetClients();
