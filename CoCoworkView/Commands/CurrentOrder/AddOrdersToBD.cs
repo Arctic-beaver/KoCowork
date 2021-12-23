@@ -38,40 +38,40 @@ namespace CoCowork.UI.Commands.CurrentOrder
 
 
             var newOrder = new OrderService();
-            int orderId = OrderService.CreateNewOrder(client,);
+            //int orderId = OrderService.CreateNewOrder(client,);
 
-            int idOrder = createNewOrder.Add(newOrder);
+            //int idOrder = createNewOrder.Add(newOrder);
 
-            foreach (var item in ListOrders)
-            {
-                switch (item)
-                {
-                    case LaptopModel laptop:
-                        var laptopEntities = new Lap
-                        var newLaptopOrder = new LaptopOrder { Laptop = laptop, };
-                        var addLaptopOrder = new LaptopOrderRepository();
-                        addLaptopOrder.Add(newLaptopOrder);
-                        break;
-                    case MiniOfficeModel miniOffice:
-                        Type = miniOffice.Type;
-                        Price = Convert.ToString(miniOffice.PricePerDay);
-                        break;
-                    case PlaceModel place:
-                        Type = place.Type;
-                        Price = Convert.ToString(place.PricePerDay);
-                        break;
-                    case ProductModel product:
-                        Type = product.Type;
-                        Price = Convert.ToString(product.PriceForOne);
-                        break;
-                    case RoomModel room:
-                        Type = room.Type;
-                        Price = Convert.ToString(room.PricePerHour);
-                        break;
-                    default:
-                        break;
-                }
-            }
+            //foreach (var item in ListOrders)
+            //{
+            //    switch (item)
+            //    {
+            //        case LaptopModel laptop:
+            //            var laptopEntities = new Lap
+            //            var newLaptopOrder = new LaptopOrder { Laptop = laptop, };
+            //            var addLaptopOrder = new LaptopOrderRepository();
+            //            addLaptopOrder.Add(newLaptopOrder);
+            //            break;
+            //        case MiniOfficeModel miniOffice:
+            //            Type = miniOffice.Type;
+            //            Price = Convert.ToString(miniOffice.PricePerDay);
+            //            break;
+            //        case PlaceModel place:
+            //            Type = place.Type;
+            //            Price = Convert.ToString(place.PricePerDay);
+            //            break;
+            //        case ProductModel product:
+            //            Type = product.Type;
+            //            Price = Convert.ToString(product.PriceForOne);
+            //            break;
+            //        case RoomModel room:
+            //            Type = room.Type;
+            //            Price = Convert.ToString(room.PricePerHour);
+            //            break;
+            //        default:
+            //            break;
+            //    }
+            //}
 
         }
     }

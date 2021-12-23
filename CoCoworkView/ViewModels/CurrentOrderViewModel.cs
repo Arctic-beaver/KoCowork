@@ -1,5 +1,6 @@
 ﻿
 using CoCowork.BusinessLayer.Models;
+using CoCowork.BusinessLayer.Services;
 using CoCowork.UI.Commands.CurrentOrder;
 using System;
 using System.Collections.Generic;
@@ -12,14 +13,23 @@ namespace CoCowork.UI.ViewModels
 {
     public class CurrentOrderViewModel : INotifyPropertyChanged
     {
-        public CurrentOrderViewModel(IItemModel itemModel)
+        public CurrentOrderViewModel()
         {
             //Name = itemModel.Name;
             //GetObjectProperties(itemModel);
 
             //CurrentOrderList.Add(itemModel);
 
+
             AddOrder = new AddOrdersToBD(this);
+
+            var clientService = new ClientService();
+            var loadClients = clientService.GetClients();
+
+            foreach (var item in loadClients)
+            {
+                Clients.Add(item);
+            }
         }
 
         private ObservableCollection<IItemModel> _currentOrder;

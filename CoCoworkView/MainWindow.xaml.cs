@@ -38,11 +38,11 @@ namespace CoCoworkView
             var testOrder4 = new ProductModel { Name = "product", PriceForOne = 1 };
             var testOrder5 = new RoomModel { Name = "komnata", PricePerHour = 44 };
 
-            viewModel.CurrentOrder.Add(testOrder5);
-            viewModel.CurrentOrder.Add(testOrder4);
-            viewModel.CurrentOrder.Add(testOrder3);
-            viewModel.CurrentOrder.Add(testOrder2);
-            viewModel.CurrentOrder.Add(testOrder1);
+            //viewModel.CurrentOrder.Add(testOrder5);
+            //viewModel.CurrentOrder.Add(testOrder4);
+            //viewModel.CurrentOrder.Add(testOrder3);
+            //viewModel.CurrentOrder.Add(testOrder2);
+            //viewModel.CurrentOrder.Add(testOrder1);
 
         }
     }

@@ -14,6 +14,7 @@ namespace CoCowork.UI.ViewModels
     {
         public MainWindowViewModel()
         {
+
         }
         
     }
