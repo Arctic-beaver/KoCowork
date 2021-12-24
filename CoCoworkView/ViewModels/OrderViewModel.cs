@@ -34,10 +34,6 @@ namespace CoCowork.UI.ViewModels
         }
         public PaymentViewModel Payment { get; set; }
         public ObservableCollection<OrderModel> Orders { get; set; }
-        public ObservableCollection<OrderModel> PaidOrders { get; set; }
-        public ObservableCollection<OrderModel> UnpaidOrders { get; set; }
-        public ObservableCollection<OrderModel> CanceledOrders { get; set; }
-        public ObservableCollection<OrderModel> ActiveOrders { get; set; }
 
         public bool ShowPaid
         {
