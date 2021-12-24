@@ -26,9 +26,11 @@ namespace CoCowork.UI.ViewModels
             ShowCanceledAvailability = true;
             Service = new OrderService();
             Payment = new PaymentViewModel();
+            Orders = new ObservableCollection<OrderModel>();
 
             GetOrdersCommand = new GetOrdersCommand();
-            GetOrdersCommand.Execute(this);
+            ShowPaid = true;
+            ShowUnpaid = true;
         }
         public PaymentViewModel Payment { get; set; }
         public ObservableCollection<OrderModel> Orders { get; set; }

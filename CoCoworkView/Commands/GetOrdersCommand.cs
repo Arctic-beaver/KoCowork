@@ -21,7 +21,8 @@ namespace CoCowork.UI.Commands
         {
             OrderViewModel vm = (OrderViewModel)viewModel;
 
-            vm.Orders?.Clear();
+            vm.Orders.Clear();
+           
             var orders = new List<OrderModel>();
 
             if (vm.ShowPaid) orders.AddRange(vm.Service.GetPaidOrders());
@@ -31,7 +32,10 @@ namespace CoCowork.UI.Commands
 
             orders.Distinct();
 
-            vm.Orders = new ObservableCollection<OrderModel>(orders);
+            foreach (OrderModel order in orders)
+            {
+                vm.Orders.Add(order);
+            }
         }
     }
 }
