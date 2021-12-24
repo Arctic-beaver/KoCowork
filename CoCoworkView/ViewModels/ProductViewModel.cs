@@ -19,7 +19,7 @@ namespace CoCowork.UI.ViewModels
             GridVisibility = Visibility.Hidden;
         }
 
-        public ObservableCollection<ProductViewModel> Products { get; set; }
+        public ObservableCollection<ProductModel> Products { get; set; }
 
         public string Name
         {
