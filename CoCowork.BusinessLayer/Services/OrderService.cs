@@ -31,7 +31,7 @@ namespace CoCowork.BusinessLayer.Services
             var result = new List<OrderModel>();
             foreach (var order in orders)
             {
-                if (order.IsCancelled == true)
+                if (order.IsCancelled)
                 {
                     result.Add(order);
                 }
@@ -45,7 +45,7 @@ namespace CoCowork.BusinessLayer.Services
             var result = new List<OrderModel>();
             foreach (var order in orders)
             {
-                if (order.IsPaid == true)
+                if (order.IsPaid)
                 {
                     result.Add(order);
                 }
@@ -59,13 +59,14 @@ namespace CoCowork.BusinessLayer.Services
             var result = new List<OrderModel>();
             foreach (var order in orders)
             {
-                if (order.IsPaid == false)
+                if (!order.IsPaid)
                 {
                     result.Add(order);
                 }
             }
             return result;
         }
+
 
         public List<OrderModel> GetActiveOrders()
         {
