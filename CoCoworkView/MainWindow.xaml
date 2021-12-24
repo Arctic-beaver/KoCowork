@@ -108,7 +108,7 @@
                 
 
             </Grid>
-            <DataGrid AutoGenerateColumns="False" CanUserAddRows ="False" CanUserDeleteRows="False" Grid.Column="0" Grid.Row="0" Margin="0,40">
+            <DataGrid AutoGenerateColumns="False" CanUserAddRows ="False" CanUserDeleteRows="False" Grid.Column="0" Grid.Row="0" ColumnWidth="*">
                 <DataGrid.Resources>
                     <Style TargetType="{x:Type DataGridColumnHeader}">
                         <Setter Property="HorizontalContentAlignment" Value="Center"/>
