@@ -10,23 +10,23 @@ namespace CoCowork.UI.Commands
 {
     class VisibilityOfInnerGridCommand : CommandBase
     {
-        public VisibilityOfInnerGridCommand()
+        private readonly PaymentViewModel _viewModel;
+        public VisibilityOfInnerGridCommand(PaymentViewModel vm)
         {
-           
+            _viewModel = vm;
         }
 
         public override void Execute(object parameter)
         {
-            InnerGridViewModel vm = (InnerGridViewModel)parameter;
-            if (vm.MustBeCollapsed)
+            if (_viewModel.MustBeCollapsed)
             {
-                vm.GridVisibility = Visibility.Collapsed;
-                vm.MustBeCollapsed = false;
+                _viewModel.GridVisibility = Visibility.Collapsed;
+                _viewModel.MustBeCollapsed = false;
             }
             else
             {
-                vm.GridVisibility = Visibility.Visible;
-                vm.MustBeCollapsed = true;
+                _viewModel.GridVisibility = Visibility.Visible;
+                _viewModel.MustBeCollapsed = true;
             }
         }
     }

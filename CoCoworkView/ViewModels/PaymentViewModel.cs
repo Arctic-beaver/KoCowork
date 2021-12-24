@@ -1,9 +1,11 @@
-﻿using System;
+﻿using CoCowork.UI.Commands;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Input;
 
 namespace CoCowork.UI.ViewModels
 {
@@ -17,6 +19,9 @@ namespace CoCowork.UI.ViewModels
         public PaymentViewModel()
         {
             GridVisibility = Visibility.Collapsed;
+            Amount = 34;
+
+            ChangePaymentVisibility = new VisibilityOfInnerGridCommand(this);
         }
 
         public decimal? Amount
@@ -81,6 +86,7 @@ namespace CoCowork.UI.ViewModels
             OrderId != null) IsAddPaymentButtonAvailable = true;
             else IsAddPaymentButtonAvailable = false;
         }
-            
+
+        public ICommand ChangePaymentVisibility { get; set; }
     }
 }

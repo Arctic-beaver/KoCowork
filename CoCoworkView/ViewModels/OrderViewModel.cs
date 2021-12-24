@@ -29,8 +29,6 @@ namespace CoCowork.UI.ViewModels
 
             GetOrdersCommand = new GetOrdersCommand();
             GetOrdersCommand.Execute(this);
-
-            ChangePaymentVisibility = new VisibilityOfInnerGridCommand();
         }
         public PaymentViewModel Payment { get; set; }
         public ObservableCollection<OrderModel> Orders { get; set; }
@@ -151,7 +149,7 @@ namespace CoCowork.UI.ViewModels
 
         public ICommand GetOrdersCommand;
 
-        public ICommand ChangePaymentVisibility;
+        
 
         public OrderService Service;
     }
