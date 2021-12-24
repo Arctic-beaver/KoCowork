@@ -111,7 +111,7 @@
             </Grid>
 
             <DataGrid AutoGenerateColumns="False" Margin="2 0 2 0" Grid.Column="0" Grid.Row="1" CanUserAddRows="False" 
-                      ItemsSource="{Binding Booking.MiniOffices}" SelectedItem="{Binding Path=Booking.BookingSelectedItem, Mode=OneWay}">
+                      ItemsSource="{Binding Booking.MiniOffices}" SelectedItem="{Binding Path=Booking.BookingSelectedItem, Mode=TwoWay}">
                 <DataGrid.Resources>
                     <Style TargetType="{x:Type DataGridColumnHeader}">
                         <Setter Property="HorizontalContentAlignment" Value="Center"/>
@@ -128,7 +128,7 @@
             </DataGrid>
             
             <DataGrid AutoGenerateColumns="False" Grid.Column="1" Margin="2 0 2 0" Grid.Row="1" CanUserAddRows="False" 
-                      ItemsSource="{Binding Booking.Places}" SelectedItem="{Binding Path=Booking.BookingSelectedItem, Mode=OneWay}">
+                      ItemsSource="{Binding Booking.Places}" SelectedItem="{Binding Path=Booking.BookingSelectedItem, Mode=TwoWay}">
                 <DataGrid.Resources>
                     <Style TargetType="{x:Type DataGridColumnHeader}">
                         <Setter Property="HorizontalContentAlignment" Value="Center"/>
@@ -144,7 +144,7 @@
             </DataGrid>
             
             <DataGrid AutoGenerateColumns="False" Grid.Column="2" Grid.Row="1" CanUserAddRows="False" 
-                      ItemsSource="{Binding Booking.MeetingRooms}" SelectedItem="{Binding Path=Booking.BookingSelectedItem, Mode=OneWay}">
+                      ItemsSource="{Binding Booking.MeetingRooms}" SelectedItem="{Binding Path=Booking.BookingSelectedItem, Mode=TwoWay}">
                 <DataGrid.Resources>
                     <Style TargetType="{x:Type DataGridColumnHeader}">
                         <Setter Property="HorizontalContentAlignment" Value="Center"/>
@@ -161,7 +161,7 @@
             </DataGrid>
 
             <DataGrid AutoGenerateColumns="False" Margin="2 0 2 0" Grid.Column="0" Grid.Row="3" CanUserAddRows="False"
-                      ItemsSource="{Binding Booking.ConferenceRooms}" SelectedItem="{Binding Path=Booking.BookingSelectedItem, Mode=OneWay}">
+                      ItemsSource="{Binding Booking.ConferenceRooms}" SelectedItem="{Binding Path=Booking.BookingSelectedItem, Mode=TwoWay}">
                 <DataGrid.Resources>
                     <Style TargetType="{x:Type DataGridColumnHeader}">
                         <Setter Property="HorizontalContentAlignment" Value="Center"/>
@@ -177,7 +177,7 @@
             </DataGrid>
 
             <DataGrid AutoGenerateColumns="False" Margin="0 0 0 0" Width="auto" Grid.Column="1" Grid.Row="3" CanUserAddRows="False"
-                      Grid.ColumnSpan="2" ItemsSource="{Binding Booking.Computers}" SelectedItem="{Binding Path=Booking.BookingSelectedItem, Mode=OneWay}">
+                      Grid.ColumnSpan="2" ItemsSource="{Binding Booking.Computers}" SelectedItem="{Binding Path=Booking.BookingSelectedItem, Mode=TwoWay}">
                 <DataGrid.Resources>
                     <Style TargetType="{x:Type DataGridColumnHeader}">
                         <Setter Property="HorizontalContentAlignment" Value="Center"/>

@@ -54,12 +54,19 @@ namespace CoCowork.UI.Commands
             }
             else if (selectedItem is RoomModel)
             {
-                //RoomModel room = (RoomModel)selectedItem;
-                //if (room.RoomType == )
-
-                //_placeService.DeletePlace(place.Id);
-                //_vm.Places.Remove(place);
-                //MessageBox.Show("Выбранное место успешно удалено!");
+                RoomModel room = (RoomModel)selectedItem;
+                if (room.Type == "Переговорная")
+                {
+                    _roomService.DeleteRoom(room.Id);
+                    _vm.MeetingRooms.Remove(room);
+                    MessageBox.Show("Выбранная переговорная успешно удалена =)");
+                }
+                else
+                {
+                    _roomService.DeleteRoom(room.Id);
+                    _vm.ConferenceRooms.Remove(room);
+                    MessageBox.Show("Выбранный конференц-зал успешно удален =)");
+                }
             }
         }
     }
