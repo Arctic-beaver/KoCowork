@@ -37,6 +37,7 @@ namespace CoCowork.UI.ViewModels
             {
                 _currentOrder = value;
                 OnPropertyChanged("CurrentOrder");
+                
             }
         }
 
