@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CoCowork.UI.ViewModels
 {
-    public class InnerGridViewModel : TabViewModel
+    public abstract class InnerGridViewModel : TabViewModel
     {
         private bool _mustBeCollapsed;
         public InnerGridViewModel()

@@ -10,8 +10,8 @@ namespace CoCowork.UI.Commands
 {
     class VisibilityOfInnerGridCommand : CommandBase
     {
-        private readonly PaymentViewModel _viewModel;
-        public VisibilityOfInnerGridCommand(PaymentViewModel vm)
+        private readonly InnerGridViewModel _viewModel;
+        public VisibilityOfInnerGridCommand(InnerGridViewModel vm)
         {
             _viewModel = vm;
         }

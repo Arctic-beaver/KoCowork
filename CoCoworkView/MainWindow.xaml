@@ -110,7 +110,6 @@
                 </Grid.RowDefinitions>
 
                 <Button x:Name="AddPaymentButton" Command="{Binding Payment.ChangePaymentVisibility}" Content="Добавить оплату" Grid.Column="1" Grid.Row="1" Margin="0, 30, 0, 0"/>
-                <TextBox Text="{Binding Payment.Amount}" />
                 <Label Name="ShowLabel" Content="Показать:" Grid.Column="1" Grid.Row="2" Margin="0, 15, 0, 15" VerticalAlignment="Bottom"/>
                 <StackPanel x:Name="CharacteristicsOfOrdersStackPanel" Grid.Row="3" Grid.Column="1" Grid.RowSpan="2" Margin="0, 10, 0, 10">
                     <CheckBox Content="Оплаченные" Margin="0, 5, 0, 0" IsChecked="{Binding ShowPaid}"/>
