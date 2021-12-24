@@ -12,7 +12,7 @@ namespace CoCowork.BusinessLayer.Services
 {
     public class CreateItemOrders
     {
-        public void CreateOrdersForItem(ObservableCollection<IItemModel> ordersList, int orderId, int amountDays, int bookingHour)
+        public void CreateOrdersForItem(ObservableCollection<IItemModel> ordersList, Order order, int amountDays, int bookingHour)
         {
             foreach (var item in ordersList)
             {
@@ -28,7 +28,7 @@ namespace CoCowork.BusinessLayer.Services
                     case MiniOfficeModel miniOffice:
                         var miniOfficeService = new MiniOfficeService();
                         var miniOfficeEntity = miniOfficeService.ConvertModelToEntities(miniOffice);
-                        var newMiniOfficeOrder = new MiniOfficeOrder {MiniOffice = miniOfficeEntity, OrderId = orderId, SubtotalPrice = (miniOffice.PricePerDay * amountDays)};
+                        var newMiniOfficeOrder = new MiniOfficeOrder {MiniOffice = miniOfficeEntity,  = orderId, SubtotalPrice = (miniOffice.PricePerDay * amountDays)};
                         var addMiniOfficeOrder = new MiniOfficeOrderRepository();
                         addMiniOfficeOrder.Add(newMiniOfficeOrder);
                         break;

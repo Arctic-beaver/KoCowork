@@ -23,6 +23,8 @@ namespace CoCowork.UI.ViewModels
 
             AddOrder = new AddOrdersToDB(this);
 
+            _clientService = new ClientService();
+
             var clientService = new ClientService();
             var loadClients = clientService.GetClients();
 
@@ -53,6 +55,9 @@ namespace CoCowork.UI.ViewModels
                 OnPropertyChanged("Clients");
             }
         }
+
+        private ClientService _clientService;
+ 
 
         private bool _isPaid;
         public bool IsPaid
