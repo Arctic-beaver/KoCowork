@@ -8,8 +8,8 @@ namespace CoCowork.UI.Commands.BookingCommands
 {
     public class GetMiniOfficesCommand : CommandBase
     {
-        private BookingViewModel _vm;
-        private MiniOfficeService _miniOfficeService;
+        private readonly BookingViewModel _vm;
+        private readonly MiniOfficeService _miniOfficeService;
 
         public GetMiniOfficesCommand(BookingViewModel vm, MiniOfficeService miniOfficeService)
         {
@@ -19,7 +19,14 @@ namespace CoCowork.UI.Commands.BookingCommands
 
         public override void Execute(object parameter)
         {
-            _vm.MiniOffices = new ObservableCollection<MiniOfficeModel>(_miniOfficeService.GetAll());
+            //_vm.MiniOffices = new ObservableCollection<MiniOfficeModel>(_miniOfficeService.GetAll());
+
+            var miniOffices = _miniOfficeService.GetAll();
+
+            foreach (var item in miniOffices)
+            {
+                _vm.MiniOffices.Add(item);
+            }
         }
     }
 }

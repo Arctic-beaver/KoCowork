@@ -12,7 +12,6 @@ namespace CoCowork.UI.Commands
             _mainWindowViewModel = vm;
         }
 
-
         public override void Execute(object parameter)
         {
             TabViewModel viewModel = (TabViewModel)parameter;
@@ -26,7 +25,6 @@ namespace CoCowork.UI.Commands
 
                 //записываем инфу о том, какое сейчас активно
                 _mainWindowViewModel.VisibleVM = viewModel;
-                MessageBox.Show($"{_mainWindowViewModel.VisibleVM.GetType()}");
             }
         }
     }

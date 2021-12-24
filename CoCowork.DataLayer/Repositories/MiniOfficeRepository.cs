@@ -17,11 +17,7 @@ namespace CoCowork.DataLayer.Repositories
         public List<MiniOffice> GetAll()
         {
             using IDbConnection connection = ProvideConnection();
-
-            return connection
-                .Query<MiniOffice>
-                    (_selectAllProcedure)
-                .ToList();
+            return connection.Query<MiniOffice>(_selectAllProcedure).ToList();
         }
 
         public MiniOffice GetMiniOfficeById(int id)

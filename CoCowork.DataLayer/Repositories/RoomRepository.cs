@@ -17,8 +17,7 @@ namespace CoCowork.DataLayer.Repositories
         public List<Room> GetAll()
         {
             using IDbConnection connection = ProvideConnection();
-            var result = connection.Query<Room>(_selectAllProcedure).ToList();
-            return result;
+            return connection.Query<Room>(_selectAllProcedure).ToList();
         }
 
         public Room GetById(int id)

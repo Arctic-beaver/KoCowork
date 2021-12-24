@@ -1,27 +1,29 @@
-﻿using CoCowork.BusinessLayer.Services;
+﻿using CoCowork.BusinessLayer.Models;
+using CoCowork.BusinessLayer.Services;
 using CoCowork.UI.ViewModels;
 using System;
+using System.Collections.ObjectModel;
 
 namespace CoCowork.UI.Commands.BookingCommands
 {
     public class GetPlacesCommand : CommandBase
     {
-        private BookingViewModel _vm;
-        private PlaceService _placeService;
+        private readonly BookingViewModel _vm;
+        private readonly PlaceService _placeService;
+
         public GetPlacesCommand(BookingViewModel vm, PlaceService placeService)
         {
             _vm = vm;
             _placeService = placeService;
-            Execute(vm);
         }
 
         public override void Execute(object parameter)
         {
-            var miniOffices = _placeService.GetAll();
+            var places = _placeService.GetAll();
 
-            foreach (var item in miniOffices)
+            foreach (var item in places)
             {
-                _vm.Places.Add(item);
+                    _vm.Places.Add(item);
             }
         }
     }

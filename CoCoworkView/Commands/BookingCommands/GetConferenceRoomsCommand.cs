@@ -6,8 +6,8 @@ namespace CoCowork.UI.Commands.BookingCommands
 {
     public class GetConferenceRoomsCommand : CommandBase
     {
-        private BookingViewModel _vm;
-        private RoomService _roomService;
+        private readonly BookingViewModel _vm;
+        private readonly RoomService _roomService;
 
         public GetConferenceRoomsCommand(BookingViewModel vm, RoomService roomService)
         {
@@ -17,7 +17,15 @@ namespace CoCowork.UI.Commands.BookingCommands
 
         public override void Execute(object parameter)
         {
-            throw new NotImplementedException();
+            var rooms = _roomService.GetAll();
+
+            foreach (var item in rooms)
+            {
+                if (item.Type == "Конференц-зал")
+                {
+                    _vm.ConferenceRooms.Add(item);
+                }
+            }
         }
     }
 }

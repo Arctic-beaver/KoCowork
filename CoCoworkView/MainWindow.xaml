@@ -2,9 +2,23 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:viewmodels="clr-namespace:CoCowork.UI.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:MainWindowViewModel}"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+        xmlns:viewmodels="clr-namespace:CoCowork.UI.ViewModels" 
+        xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+        d:DataContext="{d:DesignInstance Type=viewmodels:MainWindowViewModel}"
         mc:Ignorable="d"
         Title="Коворк под контролем" Height="600"  Width="1000" Background="#FFB7BBC2">
+    
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding Booking.GetMiniOffices}"/>
+            <i:InvokeCommandAction Command="{Binding Booking.GetConferenceRooms}"/>
+            <i:InvokeCommandAction Command="{Binding Booking.GetMeetingRooms}"/>
+            <i:InvokeCommandAction Command="{Binding Booking.GetPlaces}"/>
+            <i:InvokeCommandAction Command="{Binding Booking.GetComputers}"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="20*"/>
@@ -95,7 +109,7 @@
                 <Button x:Name="DeleteButton" Content="Удалить" Grid.Column="1" Grid.Row="6"
                         Margin="0, 15, 0, 15" Command="{Binding Booking.DeleteBookingItem}"/>
             </Grid>
-            
+
             <DataGrid AutoGenerateColumns="False" Margin="2 0 2 0" Grid.Column="0" Grid.Row="1" CanUserAddRows="False" 
                       ItemsSource="{Binding Booking.MiniOffices}" SelectedItem="{Binding Path=Booking.BookingSelectedItem, Mode=OneWay}">
                 <DataGrid.Resources>
@@ -142,7 +156,7 @@
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="№"  Width="auto" Binding="{Binding Number}"/>
                     <DataGridTextColumn Header="Цена за час"  Width="auto" Binding="{Binding PricePerHour}"/>
-                    <DataGridTextColumn Header="Кол-во мест"  Width="auto" Binding="{Binding AmountOfPlaces}"/>
+                    <DataGridTextColumn Header="Кол-во мест"  Width="auto" Binding="{Binding AmountOfPeople}"/>
                 </DataGrid.Columns>
             </DataGrid>
 
@@ -158,7 +172,7 @@
                 </DataGrid.Resources>
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Цена за час"  Width="auto" Binding="{Binding PricePerHour}"/>
-                    <DataGridTextColumn Header="Кол-во мест"  Width="auto" Binding="{Binding AmountOfPlaces}"/>
+                    <DataGridTextColumn Header="Кол-во мест"  Width="auto" Binding="{Binding AmountOfPeople}"/>
                 </DataGrid.Columns>
             </DataGrid>
 

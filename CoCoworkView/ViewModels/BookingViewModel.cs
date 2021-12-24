@@ -3,6 +3,7 @@ using CoCowork.BusinessLayer.Services;
 using CoCowork.UI.Commands;
 using CoCowork.UI.Commands.BookingCommands;
 using System.Collections.ObjectModel;
+using System.Windows;
 using System.Windows.Input;
 
 namespace CoCowork.UI.ViewModels
@@ -96,6 +97,8 @@ namespace CoCowork.UI.ViewModels
 
         public BookingViewModel()
         {
+            GridVisibility = Visibility.Visible;
+
             _placeService = new PlaceService();
             _miniOfficeService = new MiniOfficeService();
             _roomService = new RoomService();
