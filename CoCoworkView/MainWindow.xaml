@@ -101,12 +101,11 @@
                 <Button x:Name="AddNewProductButton" Content="Инсертнуть" Grid.Column="1" Grid.Row="1" Margin="0, 0, 0, 50"/>
                 <StackPanel x:Name="ProductPanelChekBox" Grid.Column="1" Grid.Row="2"  Margin="0,0,0,20">
                     <CheckBox Content="Товары в наличии" Margin="0, 5, 0, 0" />
-                    <CheckBox Content="Еда и напитки" Margin="0, 5, 0, 0"/>
-                    <CheckBox Content="Прочее" Margin="0, 5, 0, 0"/>
+                    
                 </StackPanel>
                 <Button x:Name="EditProductButton" Content="Редактировать" Grid.Column="1" Grid.Row="3" Margin="0, 0, 0, 50"/>
-                <Button x:Name="AddToProductOrderButton" Content="Добавить к заказу" Grid.Column="1" Grid.Row="4" Margin="0, 0, 0, 50"/>
-                <Button x:Name="DeleteProductButton" Content="Удалить" Grid.Column="1" Grid.Row="5" Margin="0, 0, 0, 50"/>
+                <Button x:Name="AddToProductOrderButton" Content="Добавить к заказу" Grid.Column="1" Grid.Row="4" Margin="0, 45, 0, 0"/>
+                
 
             </Grid>
             <DataGrid AutoGenerateColumns="False" CanUserAddRows ="False" CanUserDeleteRows="False" Grid.Column="0" Grid.Row="0" Margin="0,40">

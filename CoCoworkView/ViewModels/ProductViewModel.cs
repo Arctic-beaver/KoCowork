@@ -12,8 +12,7 @@ namespace CoCowork.UI.ViewModels
         private int _amount;
         private decimal _priceForOne;
         private bool _productInStock;
-        private bool _foodAndDrinks;
-        private bool _someOtherStuff;
+        
 
         public ProductViewModel()
         {
