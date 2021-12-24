@@ -80,7 +80,7 @@ namespace CoCowork.DataLayer.Repositories
                 new
                 {
                     LaptopId = laptopOrder.Laptop.Id,
-                    OrderId = laptopOrder.OrderId,
+                    Order = laptopOrder.Order,
                     StartDate = laptopOrder.StartDate,
                     EndDate = laptopOrder.EndDate,
                     SubtotalPrice = laptopOrder.SubtotalPrice
@@ -99,7 +99,7 @@ namespace CoCowork.DataLayer.Repositories
                 {
                     Id = id,
                     LaptopId = laptopOrder.Laptop.Id,
-                    OrderId = laptopOrder.OrderId,
+                    Order = laptopOrder.Order,
                     StartDate = laptopOrder.StartDate,
                     EndDate = laptopOrder.EndDate,
                     SubtotalPrice = laptopOrder.SubtotalPrice

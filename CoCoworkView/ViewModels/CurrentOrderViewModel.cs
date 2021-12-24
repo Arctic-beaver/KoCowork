@@ -25,13 +25,8 @@ namespace CoCowork.UI.ViewModels
 
             _clientService = new ClientService();
 
-            var clientService = new ClientService();
-            var loadClients = clientService.GetClients();
-
-            foreach (var item in loadClients)
-            {
-                Clients.Add(item);
-            }
+            GetClients = new GetClientsCommand(this, _clientService);
+            
         }
 
         private ObservableCollection<IItemModel> _currentOrder;
@@ -133,6 +128,10 @@ namespace CoCowork.UI.ViewModels
                 _totalPrice = value;
                 OnPropertyChanged("TotalPrice");
             }
+        }
+
+        public ICommand GetClients { 
+            get; set; 
         }
 
         public ICommand AddOrder

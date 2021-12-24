@@ -24,11 +24,9 @@ namespace CoCoworkView
     /// </summary>
     public partial class MainWindow : Window
     {
-        public MainWindowViewModel viewModel = new MainWindowViewModel();
 
         public MainWindow()
         {
-            DataContext = viewModel;
 
             InitializeComponent();
             DataContext = new MainWindowViewModel();           
