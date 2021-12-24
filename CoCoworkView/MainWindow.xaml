@@ -77,7 +77,7 @@
             <Label>Text in booking grid</Label>
         </Grid>
 
-        <Grid x:Name="ProductsGrid" Grid.Column ="1" Visibility="{Binding Product.GridVisibility}" DataContext="{Binding Product}">
+        <Grid x:Name="ProductsGrid" Grid.Column ="1" Visibility="{Binding GridVisibility}" DataContext="{Binding Product}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="75*"/>
                 <ColumnDefinition Width="25*"/>
