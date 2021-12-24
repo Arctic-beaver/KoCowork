@@ -1,6 +1,9 @@
 ﻿using CoCowork.BusinessLayer.Models;
+using CoCowork.BusinessLayer.Services;
+using CoCowork.UI.Commands;
 using System.Collections.ObjectModel;
 using System.Windows;
+using System.Windows.Input;
 
 namespace CoCowork.UI.ViewModels
 {
@@ -11,12 +14,23 @@ namespace CoCowork.UI.ViewModels
         private string _description;
         private int _amount;
         private decimal _priceForOne;
-        private bool _productInStock;
-        
+        private bool _productsInStock;
+        private ProductModel _selectedItem;
+
+
+
+        private readonly ProductService _productService; 
+       
 
         public ProductViewModel()
         {
             GridVisibility = Visibility.Hidden;
+            _productService = new ProductService();
+            Products = new ObservableCollection<ProductModel>();
+            GetProductsCommand = new GetProductsCommand(this, _productService);
+            GetProductsCommand.Execute(Products);
+
+
         }
 
         public ObservableCollection<ProductModel> Products { get; set; }
@@ -60,6 +74,37 @@ namespace CoCowork.UI.ViewModels
                 OnPropertyChanged(nameof(Description));
             }
         }
+        public bool ProductsInStock
+        {
+            get => _productsInStock;
+            set
+            {
+                if (value != _productsInStock)
+                {
+                    _productsInStock = value;
+                    OnPropertyChanged(nameof(ProductsInStock));
+                    GetProductsCommand.Execute(this);
+                }
+            }
+        }
+
+        public ProductModel SelectedItem
+        {
+            get => _selectedItem;
+            set
+            {
+                if(value != _selectedItem)
+                {
+                    _selectedItem = value;
+                    OnPropertyChanged(nameof(SelectedItem));
+                    
+                }
+            }
+        }
+
+        public ICommand GetProductsCommand { get; set; }
+
+
 
        
     }

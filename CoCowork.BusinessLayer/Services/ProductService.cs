@@ -19,7 +19,7 @@ namespace CoCowork.BusinessLayer.Services
             _productRepository = new ProductRepository();
         }
 
-        public List<ProductModel> GetAllOrders()
+        public List<ProductModel> GetAll()
         {
             var products = _productRepository.GetAll();
             return CustomMapper.GetInstance().Map<List<ProductModel>>(products);

@@ -34,6 +34,8 @@ namespace PseudoCalc.BusinessLayer.Configuration
 
                 cfg.CreateMap<PlaceOrder, PlaceOrderModel>();
 
+                cfg.CreateMap<Product, ProductModel>();
+
             }));
         }
     }
