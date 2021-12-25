@@ -1,11 +1,18 @@
 ﻿
+using CoCowork.UI.Commands;
 using System.Collections.ObjectModel;
+using System.Windows;
+using System.Windows.Input;
 
 namespace CoCowork.UI.ViewModels
 {
-    public class MiniOfficeViewModel : BaseViewModel
+    public class MiniOfficeViewModel : InnerGridViewModel
     {
         private string _name;
+        private decimal? _pricePerDay;
+        private int? _amountOfPlaces;
+        private bool _isEditButtonAvailable;
+
         public string Name
         {
             get => _name;
@@ -13,47 +20,60 @@ namespace CoCowork.UI.ViewModels
             {
                 _name = value;
                 OnPropertyChanged(nameof(Name));
+                CheckIfAllFieldsFilledCorrectly();
             }
         }
 
-        public ObservableCollection<PlaceViewModel> Places { get; set; }
-
-        private int _number;
-        private decimal _pricePerDay;
-        private int _amountOfPlaces;
-
-        public int Id { get; }
-
-        public int Number
-        {
-            get => _number;
-            set
-            {
-                _number = value;
-                OnPropertyChanged(nameof(Number));
-            }
-        }
-
-        public decimal PricePerDay
+        public decimal? PricePerDay
         {
             get => _pricePerDay;
             set
             {
                 _pricePerDay = value;
                 OnPropertyChanged(nameof(PricePerDay));
+                CheckIfAllFieldsFilledCorrectly();
             }
         }
 
-        public int AmountOfPlaces
+        public int? AmountOfPlaces
         {
             get => _amountOfPlaces;
             set
             {
                 _amountOfPlaces = value;
                 OnPropertyChanged(nameof(AmountOfPlaces));
+                CheckIfAllFieldsFilledCorrectly();
             }
         }
 
-        public bool IsActive { get; set; }
+        public bool IsEditButtonAvailable
+        {
+            get => _isEditButtonAvailable;
+            set
+            {
+                if (value != _isEditButtonAvailable)
+                {
+                    _isEditButtonAvailable = value;
+                    OnPropertyChanged(nameof(IsEditButtonAvailable));
+                }
+            }
+        }
+
+        public ICommand ChangeMiniOfficeEditVisibility { get; set; }
+
+        public MiniOfficeViewModel()
+        {
+            GridVisibility = Visibility.Collapsed;
+
+            ChangeMiniOfficeEditVisibility = new VisibilityOfInnerGridCommand(this);
+        }
+
+        public void CheckIfAllFieldsFilledCorrectly()
+        {
+            if (Name != null &&
+            PricePerDay != null &&
+            AmountOfPlaces != null) IsEditButtonAvailable = true;
+            else IsEditButtonAvailable = false;
+        }
     }
 }
