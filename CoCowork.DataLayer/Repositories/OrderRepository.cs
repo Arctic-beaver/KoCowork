@@ -61,7 +61,6 @@ namespace CoCowork.DataLayer.Repositories
                 },
                 commandType: CommandType.StoredProcedure);
         }
-
         public void Delete(int id)
         {
             using IDbConnection connection = ProvideConnection();
