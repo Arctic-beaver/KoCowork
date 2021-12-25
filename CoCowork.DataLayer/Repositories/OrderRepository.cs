@@ -54,7 +54,6 @@ namespace CoCowork.DataLayer.Repositories
 
                 },
                 commandType: CommandType.StoredProcedure);
-            ;
         } 
 
         public void Update (Order order)
@@ -73,9 +72,7 @@ namespace CoCowork.DataLayer.Repositories
 
                 },
                 commandType: CommandType.StoredProcedure);
-            ;
         }
-
         public void Delete(int id)
         {
             using var connection = new SqlConnection(_connectionString);
@@ -88,9 +85,7 @@ namespace CoCowork.DataLayer.Repositories
                     Id = id
                 },
                 commandType: CommandType.StoredProcedure);
-            ;
         }
-
 
     }
 }

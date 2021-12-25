@@ -26,7 +26,6 @@ namespace CoCowork.UI.Commands
 
                 //записываем инфу о том, какое сейчас активно
                 _mainWindowViewModel.VisibleVM = viewModel;
-                MessageBox.Show($"{_mainWindowViewModel.VisibleVM.GetType()}");
             }
         }
     }
