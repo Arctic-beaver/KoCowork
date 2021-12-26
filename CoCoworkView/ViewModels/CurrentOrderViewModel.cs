@@ -2,8 +2,6 @@
 using CoCowork.BusinessLayer.Models;
 using CoCowork.BusinessLayer.Services;
 using CoCowork.UI.Commands.CurrentOrder;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
@@ -26,8 +24,12 @@ namespace CoCowork.UI.ViewModels
             _clientService = new ClientService();
 
             GetClients = new GetClientsCommand(this, _clientService);
+
             
+
         }
+
+       
 
         private ObservableCollection<IItemModel> _currentOrder;
         public ObservableCollection<IItemModel> CurrentOrder
@@ -36,8 +38,9 @@ namespace CoCowork.UI.ViewModels
             set
             {
                 _currentOrder = value;
+               
                 OnPropertyChanged("CurrentOrder");
-                
+
             }
         }
 
@@ -53,7 +56,7 @@ namespace CoCowork.UI.ViewModels
         }
 
         private ClientService _clientService;
- 
+
 
         private bool _isPaid;
         public bool IsPaid
@@ -71,8 +74,7 @@ namespace CoCowork.UI.ViewModels
             get { return _isCancelled; }
             set
             {
-                _isPaid = value;
-                OnPropertyChanged("IsCancelled");
+                _isCancelled = false;
             }
         }
 
@@ -83,45 +85,56 @@ namespace CoCowork.UI.ViewModels
             set
             {
                 _selectedClient = value;
+               
                 OnPropertyChanged("SelectedClient");
             }
         }
 
 
-        private string _name;
-        public string Name
+        //private string _name;
+        //public string Name
+        //{
+        //    get { return _name; }
+        //    set
+        //    {
+        //        _name = value;
+        //        OnPropertyChanged("Name");
+        //    }
+        //}
+        //private string _type;
+        //public string Type
+        //{
+        //    get { return _type; }
+        //    set
+        //    {
+        //        _type = value;
+        //        OnPropertyChanged("Type");
+        //    }
+        //}
+
+
+
+        //private string _price;
+        //public string Price
+        //{
+        //    get { return _price; }
+        //    set
+        //    {
+        //        _price = value;
+        //        OnPropertyChanged("Price");
+        //    }
+        //}
+
+        public void RecalculateSum()
         {
-            get { return _name; }
-            set
+            foreach (var item in _currentOrder)
             {
-                _name = value;
-                OnPropertyChanged("Name");
-            }
-        }
-        private string _type;
-        public string Type
-        {
-            get { return _type; }
-            set
-            {
-                _type = value;
-                OnPropertyChanged("Type");
+                _totalPrice += GetItemModelSum(item);
             }
         }
 
-        private string _price;
-        public string Price
-        {
-            get { return _price; }
-            set
-            {
-                _price = value;
-                OnPropertyChanged("Price");
-            }
-        }
-
-        public int _totalPrice;
-        public int TotalPrice
+        public decimal _totalPrice;
+        public decimal TotalPrice
         {
             get { return _totalPrice; }
             set
@@ -131,42 +144,36 @@ namespace CoCowork.UI.ViewModels
             }
         }
 
-        public ICommand GetClients { 
-            get; set; 
+        public ICommand GetClients
+        {
+            get; set;
         }
 
         public ICommand AddOrder
         {
-            get;set;
+            get; set;
         }
 
-        public void GetObjectProperties(IItemModel itemModel)
+        public decimal GetItemModelSum(IItemModel itemModel)
         {
+            decimal sum = 0;
+
             switch (itemModel)
             {
                 case LaptopModel laptop:
-                    Type = laptop.Type;
-                    Price = Convert.ToString(laptop.PricePerMonth);
-                    break;
+                    return sum = laptop.Price * laptop.AmountMonth;
                 case MiniOfficeModel miniOffice:
-                    Type = miniOffice.Type;
-                    Price = Convert.ToString(miniOffice.PricePerDay);
-                    break;
+                    return sum = miniOffice.Price * miniOffice.AmountDays;
                 case PlaceModel place:
-                    Type = place.Type;
-                    Price = Convert.ToString(place.PricePerDay);
-                    break;
+                    return sum = place.Price * place.AmountDays;
                 case ProductModel product:
-                    Type = product.Type;
-                    Price = Convert.ToString(product.PriceForOne);
-                    break;
+                    return sum = product.Price;
                 case RoomModel room:
-                    Type = room.Type;
-                    Price = Convert.ToString(room.PricePerHour);
-                    break;
+                    return sum = room.Price * room.AmountHours;
                 default:
                     break;
             }
+            return sum;
         }
 
 

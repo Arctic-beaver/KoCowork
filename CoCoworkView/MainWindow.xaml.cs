@@ -1,21 +1,7 @@
 ﻿using CoCowork.BusinessLayer.Models;
-using CoCowork.DataLayer.Entities;
-using CoCowork.DataLayer.Repositories;
 using CoCowork.UI.ViewModels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Collections.ObjectModel;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace CoCoworkView
 {
@@ -29,7 +15,23 @@ namespace CoCoworkView
         {
 
             InitializeComponent();
-            DataContext = new MainWindowViewModel();           
+            var vm = new MainWindowViewModel();
+            DataContext = vm;
+            var newItem = new LaptopModel { AmountMonth = 1, Id = 3, Name = "zhopa", Price = 500 };
+            var newItem1 = new MiniOfficeModel { AmountDays = 10, Price = 300, Name = "pisun", Id = 5 };
+            var newItem2 = new PlaceModel { Id = 1, Name = "zhopun", Price = 200, AmountDays = 20, IsFixed = false };
+            var newItem3 = new ProductModel { Price = 100, Name = "chipsi", Id = 0 };
+            var newItem4 = new RoomModel { Id = 1, AmountHours = 5, Name = "kokoko", Price = 1000 };
+
+            vm.CurrentOrder.CurrentOrder = new ObservableCollection<IItemModel>();
+            vm.CurrentOrder.CurrentOrder.Add(newItem);
+            vm.CurrentOrder.TotalPrice = newItem.Price * newItem.AmountMonth;
+            vm.CurrentOrder.CurrentOrder.Add(newItem1);
+            vm.CurrentOrder.CurrentOrder.Add(newItem2);
+            vm.CurrentOrder.CurrentOrder.Add(newItem3);
+            vm.CurrentOrder.CurrentOrder.Add(newItem4);
+            vm.CurrentOrder.RecalculateSum();
+            
         }
     }
 }

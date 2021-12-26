@@ -1,6 +1,5 @@
 ﻿using CoCowork.DataLayer.Entities;
 using Dapper;
-using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -27,7 +26,7 @@ namespace CoCowork.DataLayer.Repositories
                 .Query<PlaceOrder, Place, PlaceOrder>
                     (_selectAllProcedure, (placeOrder, place) =>
                     {
-                        placeOrder.Place= place;
+                        placeOrder.Place = place;
                         return placeOrder;
                     })
                 .ToList();

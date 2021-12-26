@@ -1,6 +1,5 @@
 ﻿using CoCowork.DataLayer.Entities;
 using Dapper;
-using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -32,7 +31,7 @@ namespace CoCowork.DataLayer.Repositories
                     })
                 .ToList();
         }
-        
+
         public MiniOfficeOrder GetMiniOfficeOrderById(int id)
         {
             using var connection = new SqlConnection(_connectionString);

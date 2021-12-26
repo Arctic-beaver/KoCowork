@@ -46,10 +46,10 @@ namespace CoCowork.DataLayer.Repositories
             connection.Execute(_insertProc,
                 new
                 {
-                   Name = laptop.Name,
-                   Amount = laptop.Amount,
-                   Price = laptop.Price,
-                   Description = laptop.Description
+                    Name = laptop.Name,
+                    Amount = laptop.Amount,
+                    Price = laptop.Price,
+                    Description = laptop.Description
                 },
 
                 commandType: CommandType.StoredProcedure);

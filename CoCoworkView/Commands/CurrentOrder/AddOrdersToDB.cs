@@ -1,15 +1,10 @@
 ﻿using CoCowork.BusinessLayer.Models;
+using CoCowork.BusinessLayer.Services;
+using CoCowork.DataLayer.Entities;
 using CoCowork.UI.ViewModels;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Windows.Input;
-using System.Linq;
-using Dapper;
-using CoCowork.DataLayer.Entities;
-using CoCowork.DataLayer.Repositories;
-using PseudoCalc.BusinessLayer.Configuration;
-using CoCowork.BusinessLayer.Services;
 
 namespace CoCowork.UI.Commands.CurrentOrder
 {
@@ -17,14 +12,14 @@ namespace CoCowork.UI.Commands.CurrentOrder
     {
         public event EventHandler CanExecuteChanged;
 
-        public List<IItemModel> ListOrders {get; set; }
+        public List<IItemModel> ListOrders { get; set; }
 
         private CurrentOrderViewModel _vm;
 
         public AddOrdersToDB(CurrentOrderViewModel vm)
         {
             _vm = vm;
-            
+
         }
 
         public Client ClientEntity { get; set; }
@@ -39,12 +34,12 @@ namespace CoCowork.UI.Commands.CurrentOrder
         {
             var client = new ClientService();
             var clientEntity = client.ConvertClientModelToEntities(_vm.SelectedClient);
-            var newOrder = new OrderService();
-            var orderId = newOrder.CreateNewOrder(clientEntity, _vm.IsCancelled, _vm.IsPaid, _vm.TotalPrice);
+            var orderService = new OrderService();
+            var newOrder = orderService.AddedOrderToDB(clientEntity, _vm.IsCancelled, _vm.IsPaid, _vm.TotalPrice);
 
 
 
-            
+
 
         }
     }

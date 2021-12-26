@@ -1,12 +1,9 @@
 ﻿using CoCowork.DataLayer.Entities;
 using Dapper;
-using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CoCowork.DataLayer.Repositories
 {
@@ -34,7 +31,7 @@ namespace CoCowork.DataLayer.Repositories
             using var connection = new SqlConnection(_connectionString);
             connection.Open();
 
-            return connection.QueryFirstOrDefault(_selectByIdProcedure,new { Id = id },
+            return connection.QueryFirstOrDefault(_selectByIdProcedure, new { Id = id },
                 commandType: CommandType.StoredProcedure);
         }
 
@@ -54,7 +51,7 @@ namespace CoCowork.DataLayer.Repositories
                 },
                 commandType: CommandType.StoredProcedure);
             ;
-        } 
+        }
 
         public void Update(Order order)
         {

@@ -9,13 +9,13 @@
         
         mc:Ignorable="d"
         Title="Коворк под контролем" Height="600" Width="1000" Background="#FFB7BBC2">
-    
+
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
             <i:InvokeCommandAction Command="{Binding CurrentOrder.GetClients}"/>
         </i:EventTrigger>
     </i:Interaction.Triggers>
-    
+
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="20*"/>
@@ -102,7 +102,7 @@
 
         <Grid x:Name="CurrentOrderGrid" Visibility="Visible" Grid.Column ="1">
 
-            <DataGrid x:Name="CurrentOrderDataGrid" AutoGenerateColumns="False" Grid.Column="0" CanUserAddRows="False" ItemsSource="{Binding CurrentOrder}" Margin="0,0,200,0"  >
+            <DataGrid x:Name="CurrentOrderDataGrid" CanUserDeleteRows="False" AutoGenerateColumns="False" Grid.Column="0" CanUserAddRows="False" ItemsSource="{Binding CurrentOrder.CurrentOrder}" Margin="0,0,200,0"  >
                 <DataGrid.Resources>
                     <Style TargetType="{x:Type DataGridColumnHeader}">
                         <Setter Property="Background" Value="PaleTurquoise"/>
@@ -136,11 +136,23 @@
                 </Grid.RowDefinitions>
 
 
-                
+
                 <Button x:Name="AcceptOrder" Content="Оформить заказ" Grid.Column="1" Grid.Row="5" Margin="0, 15, 0, 15" Height="47"/>
                 <Button x:Name="DeleteOrder" Content="Удалить из заказа" Grid.Column="1" Grid.Row="5" Margin="0,80,0,-60" Height="47"/>
-                <ComboBox  x:Name="ClientsComboBox" ItemsSource="{Binding CurrentOrder.Clients}" DisplayMemberPath="FullName" HorizontalAlignment="Center" Margin="0,57,0,0" Grid.Row="3" VerticalAlignment="Top" Width="140" Grid.RowSpan="2" Grid.Column="1"/>
+                <ComboBox  x:Name="ClientsComboBox" ItemsSource="{Binding CurrentOrder.Clients}" SelectedItem="{Binding CurrentOrder.SelectedClient}" DisplayMemberPath="FullName" HorizontalAlignment="Center" Margin="0,57,0,0" Grid.Row="3" VerticalAlignment="Top" Width="140" Grid.RowSpan="2" Grid.Column="1"/>
                 <Label Grid.Column="1" Content="Выберите клиента:" HorizontalAlignment="Left" Margin="0,8,0,0" Grid.Row="3" VerticalAlignment="Top" FontSize="14"/>
+                <CheckBox x:Name="CheckBoxNotFullPaid" Grid.Column="1" Content="Частичная оплата" IsChecked="{Binding CurrentOrder.IsPaid}" HorizontalAlignment="Left" Margin="0,47,0,0" Grid.Row="4" VerticalAlignment="Top" Height="36" Grid.RowSpan="2"/>
+                <TextBlock Grid.Column="1" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Общая цена:" VerticalAlignment="Top" FontSize="16" Margin="46,16,0,0"/>
+                <TextBlock Margin="0,44,0,0" TextWrapping="Wrap" Text="{Binding CurrentOrder.TotalPrice}" VerticalAlignment="Bottom" FontSize="14" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Right" Width="82" Grid.Column="1" TextAlignment="Right">
+                    <TextBlock.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform ScaleX="1"/>
+                            <SkewTransform/>
+                            <RotateTransform/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </TextBlock.RenderTransform>
+                </TextBlock>
 
             </Grid>
 

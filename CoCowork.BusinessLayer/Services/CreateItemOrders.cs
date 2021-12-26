@@ -1,12 +1,7 @@
 ﻿using CoCowork.BusinessLayer.Models;
 using CoCowork.DataLayer.Entities;
 using CoCowork.DataLayer.Repositories;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CoCowork.BusinessLayer.Services
 {
@@ -21,14 +16,14 @@ namespace CoCowork.BusinessLayer.Services
                     case LaptopModel laptop:
                         var laptopService = new LaptopService();
                         var laptopEntity = laptopService.ConvertModelToEntities(laptop);
-                        var newLaptopOrder = new LaptopOrder{ Laptop = laptopEntity, Order = order, SubtotalPrice = laptopEntity.Price};
+                        var newLaptopOrder = new LaptopOrder { Laptop = laptopEntity, Order = order, SubtotalPrice = laptopEntity.Price };
                         var addLaptopOrder = new LaptopOrderRepository();
                         addLaptopOrder.Add(newLaptopOrder);
                         break;
                     case MiniOfficeModel miniOffice:
                         var miniOfficeService = new MiniOfficeService();
                         var miniOfficeEntity = miniOfficeService.ConvertModelToEntities(miniOffice);
-                        var newMiniOfficeOrder = new MiniOfficeOrder {MiniOffice = miniOfficeEntity, Order = order, SubtotalPrice = (miniOffice.PricePerDay * amountDays)};
+                        var newMiniOfficeOrder = new MiniOfficeOrder { MiniOffice = miniOfficeEntity, Order = order, SubtotalPrice = (miniOffice.Price * amountDays) };
                         var addMiniOfficeOrder = new MiniOfficeOrderRepository();
                         addMiniOfficeOrder.Add(newMiniOfficeOrder);
                         break;
