@@ -14,14 +14,7 @@ namespace CoCowork.UI.ViewModels
         private PlaceService _placeService;
         private ComputerService _computerService;
         private RoomService _roomService;
-
         private ItemModel _bookingSelectedItem;
-
-        private decimal _pricePerDayField;
-        private decimal _pricePerHourField;
-        private int _amountOfPlacesField;
-        private decimal _pricePerMonthField;
-        private string _descriptionField;
 
         public ItemModel BookingSelectedItem
         {
@@ -30,56 +23,6 @@ namespace CoCowork.UI.ViewModels
             {
                 _bookingSelectedItem = value;
                 OnPropertyChanged(nameof(BookingSelectedItem));
-            }
-        }
-
-        public decimal PricePerDayField
-        {
-            get => _pricePerDayField;
-            set
-            {
-                _pricePerDayField = value;
-                OnPropertyChanged(nameof(PricePerDayField));
-            }
-        }
-
-        public decimal PricePerHourField
-        {
-            get => _pricePerHourField;
-            set
-            {
-                _pricePerHourField = value;
-                OnPropertyChanged(nameof(PricePerHourField));
-            }
-        }
-
-        public int AmountOfPlacesField
-        {
-            get => _amountOfPlacesField;
-            set
-            {
-                _amountOfPlacesField = value;
-                OnPropertyChanged(nameof(AmountOfPlacesField));
-            }
-        }
-
-        public decimal PricePerMonthField
-        {
-            get => _pricePerMonthField;
-            set
-            {
-                _pricePerMonthField = value;
-                OnPropertyChanged(nameof(PricePerMonthField));
-            }
-        }
-
-        public string DescriptionField
-        {
-            get => _descriptionField;
-            set
-            {
-                _descriptionField = value;
-                OnPropertyChanged(nameof(DescriptionField));
             }
         }
 
@@ -94,8 +37,8 @@ namespace CoCowork.UI.ViewModels
         public ICommand GetMeetingRooms { get; set; }
         public ICommand GetConferenceRooms { get; set; }
         public ICommand DeleteBookingItem { get; set; }
-        public MiniOfficeViewModel MiniOfficeVM {get;set;}
-
+        public MiniOfficeViewModel MiniOfficeVM { get; set; }
+         
         public BookingViewModel()
         {
             GridVisibility = Visibility.Visible;

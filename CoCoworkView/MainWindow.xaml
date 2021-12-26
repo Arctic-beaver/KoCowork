@@ -85,28 +85,30 @@
                 <Button x:Name="DeleteButton" Content="Удалить" Grid.Column="1" Grid.Row="6"
                         Margin="0, 15, 0, 15" Command="{Binding DeleteBookingItem}"/>
             </Grid>
-            <Grid x:Name="MainBookingGrid" Grid.Column ="0" Background="#FFE0DFDF" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+            <Grid x:Name="MainBookingGrid" Grid.Column ="0" Background="DarkGray" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="25*"/>
                     <ColumnDefinition Width="25*"/>
                     <ColumnDefinition Width="25*"/>
-                    <ColumnDefinition Width="25*"/>
+                    <ColumnDefinition Width="auto"/>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="26"/>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="26"/>
                     <RowDefinition Height="*"/>
+                    <RowDefinition Height="26"/>
+                    <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
 
-                <Label Content="Места" HorizontalAlignment="Center" FontWeight="Bold" Grid.Column="1" Grid.Row="0"/>
-                <Label Content="Миниофисы" HorizontalAlignment="Center" FontWeight="Bold" Grid.Column="0" Grid.Row="0"/>
-                <Label Content="Переговорные" HorizontalAlignment="Center" FontWeight="Bold" Grid.Column="2" Grid.Row="0"/>
-                <Label Content="Конференц-залы" HorizontalAlignment="Center" FontWeight="Bold" Grid.Column="0" Grid.Row="2"/>
-                <Label Content="Компьютеры" HorizontalAlignment="Center" Grid.ColumnSpan="2" FontWeight="Bold" Grid.Column="1" Grid.Row="2"/>
+                <Label Content="Места" HorizontalAlignment="Center" Grid.Column="1" Grid.Row="0" FontFamily="Arial Black"/>
+                <Label Content="Миниофисы" HorizontalAlignment="Center" Grid.Column="0" Grid.Row="0" FontFamily="Arial Black"/>
+                <Label Content="Переговорные" HorizontalAlignment="Center" Grid.Column="0" Grid.Row="4" FontFamily="Arial Black"/>
+                <Label Content="Конференц-залы" HorizontalAlignment="Center" Grid.Column="0" Grid.Row="2" FontFamily="Arial Black"/>
+                <Label Content="Компьютеры" HorizontalAlignment="Center" Grid.Column="2" Grid.Row="0" FontFamily="Arial Black"/>
 
                 <DataGrid x:Name="MiniOffices" AutoGenerateColumns="False" Margin="2 0 2 0" Grid.Column="0" Grid.Row="1" CanUserAddRows="False" 
-                      ItemsSource="{Binding MiniOffices}" SelectedItem="{Binding Path=BookingSelectedItem, Mode=TwoWay}">
+                      ItemsSource="{Binding MiniOffices}" SelectedItem="{Binding Path=BookingSelectedItem, Mode=TwoWay}" ColumnWidth="*" CanUserDeleteRows="False">
                     <DataGrid.Resources>
                         <Style TargetType="{x:Type DataGridColumnHeader}">
                             <Setter Property="HorizontalContentAlignment" Value="Center"/>
@@ -122,8 +124,8 @@
                     </DataGrid.Columns>
                 </DataGrid>
 
-                <DataGrid x:Name="Places" AutoGenerateColumns="False" Grid.Column="1" Margin="2 0 2 0" Grid.Row="1" CanUserAddRows="False" 
-                      ItemsSource="{Binding Places}" SelectedItem="{Binding Path=BookingSelectedItem, Mode=TwoWay}">
+                <DataGrid x:Name="Places" AutoGenerateColumns="False" Grid.Column="1" Margin="2 0 2 0" Grid.Row="1" CanUserAddRows="False" Grid.RowSpan="5"
+                      ItemsSource="{Binding Places}" SelectedItem="{Binding Path=BookingSelectedItem, Mode=TwoWay}" ColumnWidth="*" CanUserDeleteRows="False">
                     <DataGrid.Resources>
                         <Style TargetType="{x:Type DataGridColumnHeader}">
                             <Setter Property="HorizontalContentAlignment" Value="Center"/>
@@ -138,8 +140,8 @@
                     </DataGrid.Columns>
                 </DataGrid>
 
-                <DataGrid x:Name="MeetingRooms" AutoGenerateColumns="False" Grid.Column="2" Grid.Row="1" CanUserAddRows="False" 
-                      ItemsSource="{Binding MeetingRooms}" SelectedItem="{Binding Path=BookingSelectedItem, Mode=TwoWay}">
+                <DataGrid x:Name="MeetingRooms" AutoGenerateColumns="False" Grid.Column="0" Grid.Row="5" CanUserAddRows="False" CanUserDeleteRows="False" 
+                      ItemsSource="{Binding MeetingRooms}" SelectedItem="{Binding Path=BookingSelectedItem, Mode=TwoWay}" ColumnWidth="*">
                     <DataGrid.Resources>
                         <Style TargetType="{x:Type DataGridColumnHeader}">
                             <Setter Property="HorizontalContentAlignment" Value="Center"/>
@@ -156,7 +158,7 @@
                 </DataGrid>
 
                 <DataGrid x:Name="ConferenceRooms" AutoGenerateColumns="False" Margin="2 0 2 0" Grid.Column="0" Grid.Row="3" CanUserAddRows="False"
-                      ItemsSource="{Binding ConferenceRooms}" SelectedItem="{Binding Path=BookingSelectedItem, Mode=TwoWay}">
+                      ItemsSource="{Binding ConferenceRooms}" SelectedItem="{Binding Path=BookingSelectedItem, Mode=TwoWay}" ColumnWidth="*" CanUserDeleteRows="False">
                     <DataGrid.Resources>
                         <Style TargetType="{x:Type DataGridColumnHeader}">
                             <Setter Property="HorizontalContentAlignment" Value="Center"/>
@@ -171,8 +173,8 @@
                     </DataGrid.Columns>
                 </DataGrid>
 
-                <DataGrid x:Name="Computers" AutoGenerateColumns="False" Margin="0 0 0 0" Width="auto" Grid.Column="1" Grid.Row="3" CanUserAddRows="False"
-                      Grid.ColumnSpan="2" ItemsSource="{Binding Computers}" SelectedItem="{Binding Path=BookingSelectedItem, Mode=TwoWay}">
+                <DataGrid x:Name="Computers" AutoGenerateColumns="False" Margin="0 0 0 0" Width="auto" Grid.Column="2" Grid.Row="1" CanUserAddRows="False" Grid.RowSpan="5"
+                      ItemsSource="{Binding Computers}" SelectedItem="{Binding Path=BookingSelectedItem, Mode=TwoWay}" ColumnWidth="*" CanUserDeleteRows="False">
                     <DataGrid.Resources>
                         <Style TargetType="{x:Type DataGridColumnHeader}">
                             <Setter Property="HorizontalContentAlignment" Value="Center"/>
@@ -187,8 +189,11 @@
                         <DataGridTextColumn Header="Описание"  Width="auto" Binding="{Binding Description}"/>
                     </DataGrid.Columns>
                 </DataGrid>
-                <Grid x:Name="AddMiniOfficeGrid" Visibility="{Binding MiniOfficeVM.GridVisibility}" Grid.Column ="3" Background="#FFE0DFDF"
-                      HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                <Grid x:Name="AddMiniOfficeGrid" Visibility="{Binding MiniOfficeVM.GridVisibility}" Grid.Column ="3" Grid.RowSpan="6"
+                      Background="#FFE0DFDF" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                    <Grid.Effect>
+                        <DropShadowEffect Color="Black" ShadowDepth="0.01"/>
+                    </Grid.Effect>
                     <Grid.RowDefinitions>
                         <RowDefinition/>
                         <RowDefinition/>
@@ -200,7 +205,7 @@
                         <RowDefinition/>
                     </Grid.RowDefinitions>
                     <Button x:Name="AddFinallyMiniOfficeButton" Command="{Binding ChangeMiniOfficeEditVisibility}" CommandParameter="{Binding MiniOfficeVM}"
-                            Content="Добавить оплату" Grid.Column="1" Grid.Row="6" Margin="15, 0, 15, 30"/>
+                            Content="Добавить оплату" Grid.Column="0" Grid.Row="6" Margin="15, 0, 15, 30"/>
                 </Grid>
             </Grid>
         </Grid>
@@ -253,7 +258,7 @@
                     <ColumnDefinition Width="auto"/>
                 </Grid.ColumnDefinitions>
                 <DataGrid x:Name="OrdersDataGrid" ItemsSource="{Binding Orders}" SelectedItem="{Binding SelectedItem}" CanUserAddRows="False" CanUserDeleteRows="False" CanUserReorderColumns="False" CanUserSortColumns="True"  Grid.Column="0" ColumnWidth="*"/>
-                <Grid x:Name="AddPaymentGrid" Visibility="{Binding Payment.GridVisibility}" Grid.Column ="2" Background="#FFE0DFDF" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                <Grid x:Name="AddPaymentGrid" Visibility="{Binding Payment.GridVisibility}" Grid.Column ="1" Background="#FFE0DFDF" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                     <Grid.RowDefinitions>
                         <RowDefinition/>
                         <RowDefinition/>
