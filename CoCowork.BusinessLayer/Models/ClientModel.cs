@@ -13,6 +13,14 @@ namespace CoCowork.BusinessLayer.Models
         public DateTime BirthDate { get; set; }
         public int PaperAmount { get; set; }
         public DateTime PaperEndDate { get; set; }
+        public string FullName
+        {
+            get
+            {
+                return FirstName + " " + LastName;
+            }
+        }
+
 
 
     }

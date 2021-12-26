@@ -139,7 +139,7 @@
                 
                 <Button x:Name="AcceptOrder" Content="Оформить заказ" Grid.Column="1" Grid.Row="5" Margin="0, 15, 0, 15" Height="47"/>
                 <Button x:Name="DeleteOrder" Content="Удалить из заказа" Grid.Column="1" Grid.Row="5" Margin="0,80,0,-60" Height="47"/>
-                <ComboBox  x:Name="ClientsComboBox" ItemsSource="{Binding CurrentOrder.Clients}" DisplayMemberPath="FirstName" HorizontalAlignment="Center" Margin="0,57,0,0" Grid.Row="3" VerticalAlignment="Top" Width="140" Grid.RowSpan="2" Grid.Column="1"/>
+                <ComboBox  x:Name="ClientsComboBox" ItemsSource="{Binding CurrentOrder.Clients}" DisplayMemberPath="FullName" HorizontalAlignment="Center" Margin="0,57,0,0" Grid.Row="3" VerticalAlignment="Top" Width="140" Grid.RowSpan="2" Grid.Column="1"/>
                 <Label Grid.Column="1" Content="Выберите клиента:" HorizontalAlignment="Left" Margin="0,8,0,0" Grid.Row="3" VerticalAlignment="Top" FontSize="14"/>
 
             </Grid>

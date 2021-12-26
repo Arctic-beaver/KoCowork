@@ -28,7 +28,6 @@ namespace CoCowork.UI.Commands.CurrentOrder
         public override void Execute(object parameter)
         {
             _vm.Clients = new ObservableCollection<ClientModel>(_clientService.GetClients());
-            
         }
     }
 }
