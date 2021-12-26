@@ -100,7 +100,7 @@ namespace CoCowork.DataLayer.Repositories
                 new
                 {
                     MiniOfficeId = miniOfficeOrder.MiniOffice.Id,
-                    OrderId = miniOfficeOrder.OrderId,
+                    Order = miniOfficeOrder.Order,
                     StartDate = miniOfficeOrder.StartDate,
                     EndDate = miniOfficeOrder.EndDate,
                     SubtotalPrice = miniOfficeOrder.SubtotalPrice
@@ -119,7 +119,7 @@ namespace CoCowork.DataLayer.Repositories
                 {
                     Id = id,
                     MiniOfficeId = miniOfficeOrder.MiniOffice.Id,
-                    OrderId = miniOfficeOrder.OrderId,
+                    Order = miniOfficeOrder.Order,
                     StartDate = miniOfficeOrder.StartDate,
                     EndDate = miniOfficeOrder.EndDate,
                     SubtotalPrice = miniOfficeOrder.SubtotalPrice

@@ -100,7 +100,7 @@ namespace CoCowork.DataLayer.Repositories
                 new
                 {
                     PlaceId = placeOrder.Place.Id,
-                    OrderId = placeOrder.OrderId,
+                    Order = placeOrder.Order,
                     StartDate = placeOrder.StartDate,
                     EndDate = placeOrder.EndDate,
                     SubtotalPrice = placeOrder.SubtotalPrice
@@ -119,7 +119,7 @@ namespace CoCowork.DataLayer.Repositories
                 {
                     Id = id,
                     PlaceId = placeOrder.Place.Id,
-                    OrderId = placeOrder.OrderId,
+                    Order = placeOrder.Order,
                     StartDate = placeOrder.StartDate,
                     EndDate = placeOrder.EndDate,
                     SubtotalPrice = placeOrder.SubtotalPrice

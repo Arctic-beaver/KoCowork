@@ -63,7 +63,7 @@ namespace CoCowork.DataLayer.Repositories
                 new
                 {
                     ProductId = productorder.Product,
-                    OrderId = productorder.Order,
+                    Order = productorder.Order,
                     Amount = productorder.Amount,
                     SubtotalPrice = productorder.SubtotalPrice
 
@@ -82,7 +82,7 @@ namespace CoCowork.DataLayer.Repositories
                 {
                     Id = productorder.Id,
                     ProductId = productorder.Product,
-                    OrderId = productorder.Order,
+                    Order = productorder.Order,
                     Amount = productorder.Amount,
                     SubtotalPrice = productorder.SubtotalPrice
 

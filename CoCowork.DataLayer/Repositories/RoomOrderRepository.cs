@@ -57,7 +57,7 @@ namespace CoCowork.DataLayer.Repositories
                 new
                 {
                     ClientId = roomorder.Room,
-                    OrderId = roomorder.Order,
+                    Order = roomorder.Order,
                     StartDate = roomorder.StartDate,
                     EndDate = roomorder.EndDate,
                     SubtotalPrice = roomorder.SubtotalPrice

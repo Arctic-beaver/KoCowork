@@ -2,9 +2,11 @@
 using CoCowork.DataLayer.Repositories;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace CoCowork.BusinessLayer.Models
 {
@@ -25,9 +27,13 @@ namespace CoCowork.BusinessLayer.Models
         public List<IItemModel> CurrentOrderList { get; set; }
 
         public List<Laptop> LaptopsList { get; set; }
+        
+        public ObservableCollection<ClientModel> Clients { get; set; }
+
+        public ICommand GetClients { get; set; }
 
 
-        public string Name
+        public string Name 
         {
             get;set;
         }
