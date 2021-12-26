@@ -21,7 +21,7 @@ namespace CoCowork.BusinessLayer.Services
 
         public List<PlaceModel> GetAll()
         {
-            var places = _placeRepository.GetAllPlaces();
+            var places = _placeRepository.GetAll();
             return CustomMapper.GetInstance().Map<List<PlaceModel>>(places);
         }
 

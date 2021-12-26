@@ -7,7 +7,7 @@ namespace CoCowork.DataLayer.Repositories
     {
         void Add(Place place);
         void DeletePlaceById(int id);
-        List<Place> GetAllPlaces();
+        List<Place> GetAll();
         Place GetPlaceById(int id);
         List<Place> GetPlacesThatNotInMiniOffice();
         void UpdatePlaceById(Place place);

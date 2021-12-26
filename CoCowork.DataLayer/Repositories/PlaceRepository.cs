@@ -18,7 +18,7 @@ namespace CoCowork.DataLayer.Repositories
         private const string _selectByMiniOfficeIdProcedure = "dbo.Place_SelectByMiniOfficeId";
         private const string _selectThatNotInMiniOfficeProcedure = "dbo.Place_SelectThatNotInMiniOffice";
 
-        public List<Place> GetAllPlaces()
+        public List<Place> GetAll()
         {
             using IDbConnection connection = ProvideConnection();
 
