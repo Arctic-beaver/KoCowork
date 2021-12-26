@@ -15,23 +15,5 @@ namespace CoCowork.BusinessLayer.Models
         public decimal PricePerHour { get; set; }
         public bool IsActive { get; set; }
         public string Description { get; set; }
-        public RoomType RoomType { get; set; }
-
-        public RoomModel()
-        {
-            AssignRoomType();
-        }
-
-        private void AssignRoomType()
-        {
-            if (Type == "Конференц-зал")
-            {
-                RoomType = RoomType.ConferenceRoom;
-            }
-            else if (Type == "Переговорная")
-            {
-                RoomType = RoomType.MeetingRoom;
-            }
-        }
     }
 }
