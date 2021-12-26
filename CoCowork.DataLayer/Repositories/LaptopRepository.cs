@@ -43,7 +43,7 @@ namespace CoCowork.DataLayer.Repositories
                 {
                    Name = laptop.Name,
                    Amount = laptop.Amount,
-                   Price = laptop.Price,
+                   Price = laptop.PricePerMonth,
                    Description = laptop.Description
                 },
 
@@ -60,7 +60,7 @@ namespace CoCowork.DataLayer.Repositories
                     Id = laptop.Id,
                     Name = laptop.Name,
                     Amount = laptop.Amount,
-                    Price = laptop.Price,
+                    Price = laptop.PricePerMonth,
                     Description = laptop.Description
                 },
 
