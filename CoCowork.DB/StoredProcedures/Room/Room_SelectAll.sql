@@ -5,6 +5,7 @@ BEGIN
 		Id,
 		Type,
 		AmountOfPeople,
-		PricePerHour
+		PricePerHour,
+		Description
 	from dbo.Room 
 END

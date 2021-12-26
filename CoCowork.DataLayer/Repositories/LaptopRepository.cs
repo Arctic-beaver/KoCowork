@@ -42,11 +42,11 @@ namespace CoCowork.DataLayer.Repositories
                 new
                 {
                    Name = laptop.Name,
+                   Number = laptop.Number,
                    Amount = laptop.Amount,
                    Price = laptop.PricePerMonth,
                    Description = laptop.Description
                 },
-
                 commandType: CommandType.StoredProcedure);
         }
 
@@ -58,6 +58,7 @@ namespace CoCowork.DataLayer.Repositories
                 new
                 {
                     Id = laptop.Id,
+                    Number = laptop.Number,
                     Name = laptop.Name,
                     Amount = laptop.Amount,
                     Price = laptop.PricePerMonth,
