@@ -8,7 +8,7 @@ using System.Linq;
 
 namespace CoCowork.DataLayer.Repositories
 {
-    public class PlaceRepository : BaseRepository
+    public class PlaceRepository : BaseRepository, IPlaceRepository
     {
         private const string _selectAllProcedure = "dbo.Place_SelectAll";
         private const string _selectByIdProcedure = "dbo.Place_SelectById";

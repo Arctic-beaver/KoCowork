@@ -135,6 +135,8 @@
                         </Style>
                     </DataGrid.Resources>
                     <DataGrid.Columns>
+                        <DataGridTextColumn Header="№"  Width="auto" Binding="{Binding Number}"/>
+                        <DataGridTextColumn Header="Описание"  Width="auto" Binding="{Binding Description}"/>
                         <DataGridTextColumn Header="Цена/день"  Width="auto" Binding="{Binding PricePerDay}"/>
                         <DataGridTextColumn Header="Фикс цена/день"  Width="auto" Binding="{Binding PriceFixedPerDay}"/>
                     </DataGrid.Columns>
@@ -151,9 +153,9 @@
                         </Style>
                     </DataGrid.Resources>
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="№"  Width="auto" Binding="{Binding Number}"/>
                         <DataGridTextColumn Header="Цена за час"  Width="auto" Binding="{Binding PricePerHour}"/>
                         <DataGridTextColumn Header="Кол-во мест"  Width="auto" Binding="{Binding AmountOfPeople}"/>
+                        <DataGridTextColumn Header="Описание"  Width="auto" Binding="{Binding Description}"/>
                     </DataGrid.Columns>
                 </DataGrid>
 
@@ -170,6 +172,7 @@
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Цена за час"  Width="auto" Binding="{Binding PricePerHour}"/>
                         <DataGridTextColumn Header="Кол-во мест"  Width="auto" Binding="{Binding AmountOfPeople}"/>
+                        <DataGridTextColumn Header="Описание"  Width="auto" Binding="{Binding Description}"/>
                     </DataGrid.Columns>
                 </DataGrid>
 
@@ -184,9 +187,10 @@
                         </Style>
                     </DataGrid.Resources>
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="Цена/месяц"  Width="auto" Binding="{Binding PricePerMonth}"/>
-                        <DataGridTextColumn Header="Кол-во"  Width="auto" Binding="{Binding Amount}"/>
+                        <DataGridTextColumn Header="№"  Width="auto" Binding="{Binding Number}"/>
+                        <DataGridTextColumn Header="Тип"  Width="auto" Binding="{Binding Name}"/>
                         <DataGridTextColumn Header="Описание"  Width="auto" Binding="{Binding Description}"/>
+                        <DataGridTextColumn Header="Цена/месяц"  Width="auto" Binding="{Binding PricePerMonth}"/>
                     </DataGrid.Columns>
                 </DataGrid>
                 <Grid x:Name="AddMiniOfficeGrid" Visibility="{Binding MiniOfficeVM.GridVisibility}" Grid.Column ="3" Grid.RowSpan="6"
