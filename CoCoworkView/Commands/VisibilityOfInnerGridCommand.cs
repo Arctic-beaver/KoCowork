@@ -8,7 +8,7 @@ using System.Windows;
 
 namespace CoCowork.UI.Commands
 {
-    class VisibilityOfInnerGridCommand : CommandBase
+    public class VisibilityOfInnerGridCommand : CommandBase
     {
         private readonly InnerGridViewModel _viewModel;
         public VisibilityOfInnerGridCommand(InnerGridViewModel vm)

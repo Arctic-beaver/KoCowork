@@ -12,7 +12,6 @@ namespace CoCowork.UI.Commands
             _mainWindowViewModel = vm;
         }
 
-
         public override void Execute(object parameter)
         {
             TabViewModel viewModel = (TabViewModel)parameter;

@@ -3,10 +3,11 @@
 AS
 BEGIN
 	select
-		r.Id,
-		r.Type,
-		r.AmountOfPeople,
-		r.PricePerHour
-	from dbo.Room r 
-	where r.id =@Id
+		Id,
+		Type,
+		AmountOfPeople,
+		PricePerHour,
+		Description
+	from dbo.Room
+	where id =@Id
 END

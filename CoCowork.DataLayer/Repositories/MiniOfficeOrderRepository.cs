@@ -1,16 +1,13 @@
 ﻿using CoCowork.DataLayer.Entities;
 using Dapper;
-using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.SqlClient;
 using System.Linq;
 
 namespace CoCowork.DataLayer.Repositories
 {
-    public class MiniOfficeOrderRepository
+    public class MiniOfficeOrderRepository : BaseRepository, IMiniOfficeOrderRepository
     {
-        private const string _connectionString = "Server=80.78.240.16;User ID=student;Password=qwe!23;Database=CoCowork.DB;";
         private const string _selectAllProcedure = "dbo.MiniOfficeOrder_SelectAll";
         private const string _selectByIdProcedure = "dbo.MiniOfficeOrder_SelectById";
         private const string _insertProcedure = "dbo.MiniOfficeOrder_Insert";
@@ -20,8 +17,7 @@ namespace CoCowork.DataLayer.Repositories
 
         public List<MiniOfficeOrder> GetAllMiniOfficeOrders()
         {
-            using var connection = new SqlConnection(_connectionString);
-            connection.Open();
+            using IDbConnection connection = ProvideConnection();
 
             return connection
                 .Query<MiniOfficeOrder, MiniOffice, MiniOfficeOrder>
@@ -32,11 +28,10 @@ namespace CoCowork.DataLayer.Repositories
                     })
                 .ToList();
         }
-        
+
         public MiniOfficeOrder GetMiniOfficeOrderById(int id)
         {
-            using var connection = new SqlConnection(_connectionString);
-            connection.Open();
+            using IDbConnection connection = ProvideConnection();
 
             return connection
                 .Query<MiniOfficeOrder, MiniOffice, MiniOfficeOrder>
@@ -56,8 +51,7 @@ namespace CoCowork.DataLayer.Repositories
 
         public List<MiniOfficeOrder> GetMiniOfficeOrdersReferToOrder(int orderId)
         {
-            using var connection = new SqlConnection(_connectionString);
-            connection.Open();
+            using IDbConnection connection = ProvideConnection();
 
             return connection
                 .Query<MiniOfficeOrder, MiniOffice, MiniOfficeOrder>
@@ -74,8 +68,7 @@ namespace CoCowork.DataLayer.Repositories
 
         public List<MiniOfficeOrder> GetMiniOfficeOrdersReferToOrder(Order order)
         {
-            using var connection = new SqlConnection(_connectionString);
-            connection.Open();
+            using IDbConnection connection = ProvideConnection();
 
             return connection
                  .Query<MiniOfficeOrder, MiniOffice, MiniOfficeOrder>
@@ -92,8 +85,7 @@ namespace CoCowork.DataLayer.Repositories
 
         public void Add(MiniOfficeOrder miniOfficeOrder)
         {
-            using var connection = new SqlConnection(_connectionString);
-            connection.Open();
+            using IDbConnection connection = ProvideConnection();
 
             connection.Execute(
                 _insertProcedure,
@@ -108,16 +100,15 @@ namespace CoCowork.DataLayer.Repositories
                 commandType: CommandType.StoredProcedure);
         }
 
-        public void UpdateMiniOfficeOrderById(int id, MiniOfficeOrder miniOfficeOrder)
+        public void UpdateMiniOfficeOrderById(MiniOfficeOrder miniOfficeOrder)
         {
-            using var connection = new SqlConnection(_connectionString);
-            connection.Open();
+            using IDbConnection connection = ProvideConnection();
 
             var affectedRows = connection.Execute(
                 _updateProcedure,
                 new
                 {
-                    Id = id,
+                    Id = miniOfficeOrder.Id,
                     MiniOfficeId = miniOfficeOrder.MiniOffice.Id,
                     OrderId = miniOfficeOrder.OrderId,
                     StartDate = miniOfficeOrder.StartDate,
@@ -129,8 +120,7 @@ namespace CoCowork.DataLayer.Repositories
 
         public void DeleteMiniOfficeOrderById(int id)
         {
-            using var connection = new SqlConnection(_connectionString);
-            connection.Open();
+            using IDbConnection connection = ProvideConnection();
 
             connection.Execute(
                 _deleteProcedure,

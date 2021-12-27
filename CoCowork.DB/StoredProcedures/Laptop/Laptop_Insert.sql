@@ -1,18 +1,18 @@
 ﻿CREATE PROCEDURE [dbo].[Laptop_Insert]
 	@Name varchar(30),
-	@Amount int,
+	@Number int,
 	@PricePerMonth int,
 	@Description nvarchar(200)
 AS
 BEGIN
 	insert into dbo.Laptop
 		(Name,
-		Amount,
+		Number,
 		PricePerMonth,
 		Description)
 	values 
 		(@Name,
-		@Amount,
+		@Number,
 		@PricePerMonth,
 		@Description)
 END

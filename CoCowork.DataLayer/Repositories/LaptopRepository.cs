@@ -2,15 +2,13 @@
 using Dapper;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.SqlClient;
 using System.Linq;
 
 
 namespace CoCowork.DataLayer.Repositories
 {
-    public class LaptopRepository
+    public class LaptopRepository : BaseRepository, ILaptopRepository
     {
-        private const string _connString = "Server=80.78.240.16;User ID=student;Password=qwe!23;Database=CoCowork.DB;";//"Server=(local);Integrated Security=True;Database=CoCowork.DB;";
         private const string _selectAllProc = "dbo.Laptop_SelectAll";
         private const string _selectByIdProc = "dbo.Laptop_SelectById";
         private const string _insertProc = "dbo.Laptop_Insert";
@@ -19,17 +17,13 @@ namespace CoCowork.DataLayer.Repositories
 
         public List<Laptop> GetAllLaptops()
         {
-            using var connection = new SqlConnection(_connString);
-            connection.Open();
-
-            var result = connection.Query<Laptop>(_selectAllProc).ToList();
-
-            return result;
+            using IDbConnection connection = ProvideConnection();
+            return connection.Query<Laptop>(_selectAllProc).ToList();
         }
+
         public Laptop GetLaptopsById(int id)
         {
-            using var connection = new SqlConnection(_connString);
-            connection.Open();
+            using IDbConnection connection = ProvideConnection();
 
             return connection
                 .QueryFirstOrDefault<Laptop>(
@@ -38,43 +32,45 @@ namespace CoCowork.DataLayer.Repositories
 
                 commandType: CommandType.StoredProcedure);
         }
+
         public void Add(Laptop laptop)
         {
-            using var connection = new SqlConnection(_connString);
-            connection.Open();
+            using IDbConnection connection = ProvideConnection();
 
             connection.Execute(_insertProc,
                 new
                 {
-                   Name = laptop.Name,
-                   Amount = laptop.Amount,
-                   Price = laptop.Price,
-                   Description = laptop.Description
+                    Name = laptop.Name,
+                    Number = laptop.Number,
+                    Amount = laptop.Amount,
+                    Price = laptop.PricePerMonth,
+                    Description = laptop.Description
                 },
-
                 commandType: CommandType.StoredProcedure);
         }
-        public void UpdateLaptopById(int id, Laptop laptop)
+
+        public void UpdateLaptopById(Laptop laptop)
         {
-            using var connection = new SqlConnection(_connString);
-            connection.Open();
+            using IDbConnection connection = ProvideConnection();
 
             connection.Execute(_updateProc,
                 new
                 {
-                    Id = id,
+                    Id = laptop.Id,
+                    Number = laptop.Number,
                     Name = laptop.Name,
                     Amount = laptop.Amount,
-                    Price = laptop.Price,
+                    Price = laptop.PricePerMonth,
                     Description = laptop.Description
                 },
 
                 commandType: CommandType.StoredProcedure);
         }
+
         public void DeleteLaptopById(int id)
         {
-            using var connection = new SqlConnection(_connString);
-            connection.Open();
+            using IDbConnection connection = ProvideConnection();
+
             connection.Execute(_deleteProc,
                         new { Id = id },
                         commandType: CommandType.StoredProcedure);
