@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace CoCowork.DataLayer.Repositories
 {
-    public class OrderRepository : BaseRepository
+    public class OrderRepository : BaseRepository, IOrderRepository
     {
         private const string _selectAllProcedure = "dbo.Order_SelectAll";
         private const string _selectByIdProcedure = "dbo.Order_SelectById";
@@ -24,11 +24,11 @@ namespace CoCowork.DataLayer.Repositories
         public Order GetById(int id)
         {
             using IDbConnection connection = ProvideConnection();
-            return connection.QueryFirstOrDefault(_selectByIdProcedure,new { Id = id },
+            return connection.QueryFirstOrDefault(_selectByIdProcedure, new { Id = id },
                 commandType: CommandType.StoredProcedure);
         }
 
-        public void Add (Order order)
+        public void Add(Order order)
         {
             using IDbConnection connection = ProvideConnection();
 
@@ -42,7 +42,7 @@ namespace CoCowork.DataLayer.Repositories
                     IsCancelled = order.IsCancelled
                 },
                 commandType: CommandType.StoredProcedure);
-        } 
+        }
 
         public void Update(Order order)
         {

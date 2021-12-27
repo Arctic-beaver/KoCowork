@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace CoCowork.DataLayer.Repositories
 {
-    public class LaptopRepository : BaseRepository
+    public class LaptopRepository : BaseRepository, ILaptopRepository
     {
         private const string _selectAllProc = "dbo.Laptop_SelectAll";
         private const string _selectByIdProc = "dbo.Laptop_SelectById";
@@ -18,8 +18,7 @@ namespace CoCowork.DataLayer.Repositories
         public List<Laptop> GetAllLaptops()
         {
             using IDbConnection connection = ProvideConnection();
-            var result = connection.Query<Laptop>(_selectAllProc).ToList();
-            return result;
+            return connection.Query<Laptop>(_selectAllProc).ToList();
         }
 
         public Laptop GetLaptopsById(int id)
@@ -41,11 +40,11 @@ namespace CoCowork.DataLayer.Repositories
             connection.Execute(_insertProc,
                 new
                 {
-                   Name = laptop.Name,
-                   Number = laptop.Number,
-                   Amount = laptop.Amount,
-                   Price = laptop.PricePerMonth,
-                   Description = laptop.Description
+                    Name = laptop.Name,
+                    Number = laptop.Number,
+                    Amount = laptop.Amount,
+                    Price = laptop.PricePerMonth,
+                    Description = laptop.Description
                 },
                 commandType: CommandType.StoredProcedure);
         }

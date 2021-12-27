@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace CoCowork.DataLayer.Repositories
 {
-    public class ClientRepository : BaseRepository
+    public class ClientRepository : BaseRepository, IClientRepository
     {
         private const string _selectAllProc = "dbo.Client_SelectAll";
         private const string _selectByIdProc = "dbo.Client_SelectById";
@@ -17,9 +17,7 @@ namespace CoCowork.DataLayer.Repositories
         public List<Client> GetAllClients()
         {
             using IDbConnection connection = ProvideConnection();
-
-            var result = connection.Query<Client>(_selectAllProc).ToList();
-            return result;
+            return connection.Query<Client>(_selectAllProc).ToList();
         }
 
         public Client GetClientById(int id)

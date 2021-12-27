@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace CoCowork.DataLayer.Repositories
 {
-    public class MiniOfficeRepository : BaseRepository
+    public class MiniOfficeRepository : BaseRepository, IMiniOfficeRepository
     {
         private const string _selectAllProcedure = "dbo.MiniOffice_SelectAll";
         private const string _selectByIdProcedure = "dbo.MiniOffice_SelectById";

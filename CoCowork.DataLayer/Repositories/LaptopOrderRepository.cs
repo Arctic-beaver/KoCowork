@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace CoCowork.DataLayer.Repositories
 {
-    public class LaptopOrderRepository : BaseRepository
+    public class LaptopOrderRepository : BaseRepository, ILaptopOrderRepository
     {
         private const string _selectAllProc = "dbo.LaptopOrder_SelectAll";
         private const string _selectByIdProc = "dbo.LaptopOrder_SelectById";

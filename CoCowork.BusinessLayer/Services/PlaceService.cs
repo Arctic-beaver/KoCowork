@@ -12,7 +12,7 @@ namespace CoCowork.BusinessLayer.Services
 {
     public class PlaceService
     {
-        private readonly PlaceRepository _placeRepository;
+        private readonly IPlaceRepository _placeRepository;
 
         public PlaceService()
         {

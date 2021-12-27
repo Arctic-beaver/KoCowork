@@ -12,6 +12,7 @@ namespace CoCowork.UI.Commands
         private readonly RoomService _roomService;
         private readonly ComputerService _computerService;
         private readonly PlaceService _placeService;
+        private const string _meetingRoom = "Переговорная";
 
         public DeleteBookingItemCommand(BookingViewModel vm, MiniOfficeService miniOfficeService,
             RoomService roomService, ComputerService computerService, PlaceService placeService)
@@ -55,7 +56,7 @@ namespace CoCowork.UI.Commands
             else if (selectedItem is RoomModel)
             {
                 RoomModel room = (RoomModel)selectedItem;
-                if (room.Type == "Переговорная")
+                if (room.Type == _meetingRoom)
                 {
                     _roomService.DeleteRoom(room.Id);
                     _vm.MeetingRooms.Remove(room);

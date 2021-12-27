@@ -11,7 +11,7 @@ namespace CoCowork.BusinessLayer.Services
 {
     public class ClientService
     {
-        private readonly ClientRepository _clientRepository;
+        private readonly IClientRepository _clientRepository;
 
         public ClientService()
         {

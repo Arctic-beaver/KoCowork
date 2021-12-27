@@ -8,12 +8,14 @@ namespace CoCowork.BusinessLayer.Models
 {
     public class RoomModel : ItemModel
     {
-        public int Id { get; set; }
         public string Type { get; set; }
-        public BookingChecker BookingChecker { get; set; }
         public int AmountOfPeople { get; set; }
         public decimal PricePerHour { get; set; }
-        public bool IsActive { get; set; }
         public string Description { get; set; }
+
+        public override void Delete()
+        {
+
+        }
     }
 }

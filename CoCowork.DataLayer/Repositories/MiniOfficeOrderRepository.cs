@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace CoCowork.DataLayer.Repositories
 {
-    public class MiniOfficeOrderRepository : BaseRepository
+    public class MiniOfficeOrderRepository : BaseRepository, IMiniOfficeOrderRepository
     {
         private const string _selectAllProcedure = "dbo.MiniOfficeOrder_SelectAll";
         private const string _selectByIdProcedure = "dbo.MiniOfficeOrder_SelectById";
@@ -28,7 +28,7 @@ namespace CoCowork.DataLayer.Repositories
                     })
                 .ToList();
         }
-        
+
         public MiniOfficeOrder GetMiniOfficeOrderById(int id)
         {
             using IDbConnection connection = ProvideConnection();

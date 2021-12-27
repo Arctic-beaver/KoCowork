@@ -17,14 +17,11 @@ namespace CoCowork.UI.Commands.BookingCommands
 
         public override void Execute(object parameter)
         {
-            var rooms = _roomService.GetAll();
+            var meetingRooms = _roomService.GetMeetingRooms();
 
-            foreach (var item in rooms)
+            foreach (var item in meetingRooms)
             {
-                if (item.Type == "Переговорная")
-                {
-                    _vm.MeetingRooms.Add(item);
-                }
+                _vm.MeetingRooms.Add(item);
             }
         }
     }

@@ -12,7 +12,7 @@ namespace CoCowork.BusinessLayer.Services
 {
     public class MiniOfficeService
     {
-        private readonly MiniOfficeRepository _miniOfficeRepository;
+        private readonly IMiniOfficeRepository _miniOfficeRepository;
 
         public MiniOfficeService()
         {

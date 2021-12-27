@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace CoCowork.DataLayer.Repositories
 {
-    public class PlaceOrderRepository : BaseRepository
+    public class PlaceOrderRepository : BaseRepository, IPlaceOrderRepository
     {
         private const string _selectAllProcedure = "dbo.PlaceOrder_SelectAll";
         private const string _selectByIdProcedure = "dbo.PlaceOrder_SelectById";
@@ -23,7 +23,7 @@ namespace CoCowork.DataLayer.Repositories
                 .Query<PlaceOrder, Place, PlaceOrder>
                     (_selectAllProcedure, (placeOrder, place) =>
                     {
-                        placeOrder.Place= place;
+                        placeOrder.Place = place;
                         return placeOrder;
                     })
                 .ToList();

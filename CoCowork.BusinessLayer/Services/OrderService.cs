@@ -12,7 +12,7 @@ namespace CoCowork.BusinessLayer.Services
 {
     public class OrderService
     {
-        private readonly OrderRepository _orderRepository;
+        private readonly IOrderRepository _orderRepository;
 
         public OrderService()
         {

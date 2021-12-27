@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace CoCowork.DataLayer.Repositories
 {
-    class PaymentRepository : BaseRepository
+    public class PaymentRepository : BaseRepository, IPaymentRepository
     {
         private const string _selectAllProc = "dbo.Payment_SelectAll";
         private const string _selectByIdProc = "dbo.Payment_SelectById";
@@ -17,9 +17,7 @@ namespace CoCowork.DataLayer.Repositories
         public List<Payment> GetAllPayments()
         {
             using IDbConnection connection = ProvideConnection();
-
-            var result = connection.Query<Payment>(_selectAllProc).ToList();
-            return result;
+            return connection.Query<Payment>(_selectAllProc).ToList();
         }
 
         public Payment GetPaymentById(int id)

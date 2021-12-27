@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace CoCowork.DataLayer.Repositories
 {
-    public class ProductOrderRepository : BaseRepository
+    public class ProductOrderRepository : BaseRepository, IProductOrderRepository
     {
         private const string _selectAllProcedure = "dbo.ProductOrder_SelectAll";
         private const string _selectByIdProcedure = "dbo.ProductOrder_SelectById";
@@ -17,8 +17,7 @@ namespace CoCowork.DataLayer.Repositories
         public List<ProductOrder> GetAll()
         {
             using IDbConnection connection = ProvideConnection();
-            var result = connection.Query<ProductOrder>(_selectAllProcedure).ToList();
-            return result;
+            return connection.Query<ProductOrder>(_selectAllProcedure).ToList();
         }
 
         public ProductOrder GetById(int id)
@@ -34,9 +33,9 @@ namespace CoCowork.DataLayer.Repositories
                     productOrder.Order = order;
                     return productOrder;
                 },
-                new 
-                { 
-                    Id = id 
+                new
+                {
+                    Id = id
                 },
                 commandType: CommandType.StoredProcedure)
                 .FirstOrDefault();

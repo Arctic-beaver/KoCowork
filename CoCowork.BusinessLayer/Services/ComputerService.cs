@@ -8,7 +8,7 @@ namespace CoCowork.BusinessLayer.Services
 {
     public class ComputerService
     {
-        private readonly LaptopRepository _laptopRepository;
+        private readonly ILaptopRepository _laptopRepository;
 
         public ComputerService()
         {
