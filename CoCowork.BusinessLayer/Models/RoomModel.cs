@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CoCowork.BusinessLayer.Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,10 +13,5 @@ namespace CoCowork.BusinessLayer.Models
         public int AmountOfPeople { get; set; }
         public decimal PricePerHour { get; set; }
         public string Description { get; set; }
-
-        public override void Delete()
-        {
-
-        }
     }
 }

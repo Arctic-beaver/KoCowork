@@ -36,7 +36,6 @@ namespace CoCowork.UI.ViewModels
         public ICommand GetComputers { get; set; }
         public ICommand GetMeetingRooms { get; set; }
         public ICommand GetConferenceRooms { get; set; }
-        public ICommand DeleteBookingItem { get; set; }
         public MiniOfficeViewModel MiniOfficeVM { get; set; }
          
         public BookingViewModel()
@@ -61,8 +60,6 @@ namespace CoCowork.UI.ViewModels
             GetMeetingRooms = new GetMeetingRoomsCommand(this, _roomService);
             GetConferenceRooms = new GetConferenceRoomsCommand(this, _roomService);
             GetComputers = new GetComputersCommand(this, _computerService);
-
-            DeleteBookingItem = new DeleteBookingItemCommand(this, _miniOfficeService, _roomService, _computerService, _placeService);
         }
     }
 }

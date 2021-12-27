@@ -1,6 +1,5 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
+﻿using CoCowork.BusinessLayer.Services;
+using System.Collections.Generic;
 
 namespace CoCowork.BusinessLayer.Models
 {
@@ -10,10 +9,5 @@ namespace CoCowork.BusinessLayer.Models
         public int AmountOfPlaces { get; set; }
         public decimal PricePerDay { get; set; }
         public List<PlaceModel> Places { get; set; }
-
-        public override void Delete()
-        {
-
-        }
     }
 }

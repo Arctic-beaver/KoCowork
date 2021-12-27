@@ -7,7 +7,6 @@
         xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
         d:DataContext="{d:DesignInstance Type=viewmodels:MainWindowViewModel}"
         mc:Ignorable="d"
-        xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
         Title="Коворк под контролем" Height="600"  Width="1000" Background="#FFB7BBC2">
 
     <i:Interaction.Triggers>
@@ -84,7 +83,7 @@
                         Margin="0, 15, 0, 15" Command="{Binding MiniOfficeVM.ChangeMiniOfficeEditVisibility}"/>
                 <Button x:Name="AddToOrderButton" Content="Добавить к заказу" Grid.Column="1" Grid.Row="5" Margin="0, 15, 0, 15"/>
                 <Button x:Name="DeleteButton" Content="Удалить" Grid.Column="1" Grid.Row="6"
-                        Margin="0, 15, 0, 15" Command="{Binding DeleteBookingItem}"/>
+                        Margin="0, 15, 0, 15"/>
             </Grid>
             <Grid x:Name="MainBookingGrid" Grid.Column ="0" Background="DarkGray" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                 <Grid.ColumnDefinitions>

@@ -11,7 +11,5 @@ namespace CoCowork.BusinessLayer.Models
         public int Id { get; set; }
         public bool IsActive { get; set; }
         public BookingChecker BookingChecker { get; set; }
-
-        public abstract void Delete();
     }
 }
