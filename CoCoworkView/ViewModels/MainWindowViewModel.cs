@@ -13,6 +13,7 @@ namespace CoCowork.UI.ViewModels
             Order = new OrderViewModel();
             CurrentOrder = new CurrentOrderViewModel();
             MakeGridVisible = new ChangeVisibleGridCommand(this);
+            
             VisibleVM = Booking;
         }
 

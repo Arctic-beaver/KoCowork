@@ -8,9 +8,8 @@ using System.Linq;
 
 namespace CoCowork.DataLayer.Repositories
 {
-    public class PlaceRepository
+    public class PlaceRepository : BaseRepository, IPlaceRepository
     {
-        private const string _connectionString = "Server=80.78.240.16;User ID=student;Password=qwe!23;Database=CoCowork.DB;";
         private const string _selectAllProcedure = "dbo.Place_SelectAll";
         private const string _selectByIdProcedure = "dbo.Place_SelectById";
         private const string _insertProcedure = "dbo.Place_Insert";
@@ -20,23 +19,19 @@ namespace CoCowork.DataLayer.Repositories
 
         public List<Place> GetAll()
         {
-            using var connection = new SqlConnection(_connectionString);
-            connection.Open();
+            using IDbConnection connection = ProvideConnection();
 
             return connection
-                .Query<Place, MiniOffice, Place>
-                    (_selectAllProcedure, (place, miniOffice) =>
-                    {
-                        place.MiniOffice = miniOffice;
-                        return place;
-                    })
+                .Query<Place>
+                    (_selectAllProcedure,
+                    commandType: CommandType.StoredProcedure)
                 .ToList();
         }
 
+
         public Place GetPlaceById(int id)
         {
-            using var connection = new SqlConnection(_connectionString);
-            connection.Open();
+            using IDbConnection connection = ProvideConnection();
 
             return connection
                 .Query<Place, MiniOffice, Place>
@@ -56,8 +51,7 @@ namespace CoCowork.DataLayer.Repositories
 
         public List<Place> GetPlacesThatNotInMiniOffice()
         {
-            using var connection = new SqlConnection(_connectionString);
-            connection.Open();
+            using IDbConnection connection = ProvideConnection();
 
             return connection
                  .Query<Place, MiniOffice, Place>
@@ -66,15 +60,13 @@ namespace CoCowork.DataLayer.Repositories
                     {
                         place.MiniOffice = miniOffice;
                         return place;
-                    },
-                    commandType: CommandType.StoredProcedure)
+                    }, splitOn: "MiniOfficeId")
                  .ToList();
         }
 
         public void Add(Place place)
         {
-            using var connection = new SqlConnection(_connectionString);
-            connection.Open();
+            using IDbConnection connection = ProvideConnection();
 
             connection.Execute(
                 _insertProcedure,
@@ -87,16 +79,15 @@ namespace CoCowork.DataLayer.Repositories
                 commandType: CommandType.StoredProcedure);
         }
 
-        public void UpdatePlaceById(int id, Place place)
+        public void UpdatePlaceById(Place place)
         {
-            using var connection = new SqlConnection(_connectionString);
-            connection.Open();
+            using IDbConnection connection = ProvideConnection();
 
             var affectedRows = connection.Execute(
                 _updateProcedure,
                 new
                 {
-                    Id = id,
+                    Id = place.Id,
                     PricePerDay = place.PricePerDay,
                     PriceFixedPerDay = place.PriceFixedPerDay
                 },
@@ -105,8 +96,7 @@ namespace CoCowork.DataLayer.Repositories
 
         public void DeletePlaceById(int id)
         {
-            using var connection = new SqlConnection(_connectionString);
-            connection.Open();
+            using IDbConnection connection = ProvideConnection();
 
             connection.Execute(
                 _deleteProcedure,

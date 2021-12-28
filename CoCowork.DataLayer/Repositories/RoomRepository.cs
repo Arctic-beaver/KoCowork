@@ -2,14 +2,12 @@
 using Dapper;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.SqlClient;
 using System.Linq;
 
 namespace CoCowork.DataLayer.Repositories
 {
-    public class RoomRepository
+    public class RoomRepository : BaseRepository, IRoomRepository
     {
-        private const string _connectionString = "Server=80.78.240.16;User ID=student;Password=qwe!23;Database=CoCowork.DB";
         private const string _selectAllProcedure = "dbo.Room_SelectAll";
         private const string _selectByIdProcedure = "dbo.Room_SelectById";
         private const string _insertProcedure = "dbo.Room_Insert";
@@ -18,28 +16,21 @@ namespace CoCowork.DataLayer.Repositories
 
         public List<Room> GetAll()
         {
-            using var connection = new SqlConnection(_connectionString);
-            connection.Open();
-
-            var result = connection.Query<Room>(_selectAllProcedure).ToList();
-
-            return result;
-
+            using IDbConnection connection = ProvideConnection();
+            return connection.Query<Room>(_selectAllProcedure).ToList();
         }
 
         public Room GetById(int id)
         {
-            using var connection = new SqlConnection(_connectionString);
-            connection.Open();
-
+            using IDbConnection connection = ProvideConnection();
             return connection.QueryFirstOrDefault(_selectByIdProcedure, new { Id = id },
                 commandType: CommandType.StoredProcedure);
         }
 
         public void Add(Room room)
         {
-            using var connection = new SqlConnection(_connectionString);
-            connection.Open();
+            using IDbConnection connection = ProvideConnection();
+
             connection.Execute(
                 _insertProcedure,
                 new
@@ -47,16 +38,14 @@ namespace CoCowork.DataLayer.Repositories
                     Type = room.Type,
                     AmountOfPeople = room.AmountOfPeople,
                     PricePerHour = room.PricePerHour
-
                 },
                 commandType: CommandType.StoredProcedure);
-            ;
         }
 
         public void Update(Room room)
         {
-            using var connection = new SqlConnection(_connectionString);
-            connection.Open();
+            using IDbConnection connection = ProvideConnection();
+
             connection.Execute(
                 _updateProcedure,
                 new
@@ -65,16 +54,13 @@ namespace CoCowork.DataLayer.Repositories
                     Type = room.Type,
                     AmountOfPeople = room.AmountOfPeople,
                     PricePerHour = room.PricePerHour
-
                 },
                 commandType: CommandType.StoredProcedure);
-            ;
         }
 
         public void Delete(int id)
         {
-            using var connection = new SqlConnection(_connectionString);
-            connection.Open();
+            using IDbConnection connection = ProvideConnection();
 
             connection.Execute(
                 _deleteProcedure,
@@ -83,7 +69,6 @@ namespace CoCowork.DataLayer.Repositories
                     Id = id
                 },
                 commandType: CommandType.StoredProcedure);
-            ;
         }
     }
 }

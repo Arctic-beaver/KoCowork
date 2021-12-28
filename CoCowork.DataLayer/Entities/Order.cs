@@ -6,6 +6,6 @@
         public Client Client { get; set; }
         public decimal TotalPrice { get; set; }
         public bool IsPaid { get; set; }
-        public bool IsCancelled { get; set; }
+        public bool IsCanceled { get; set; }
     }
 }

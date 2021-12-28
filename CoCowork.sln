@@ -9,7 +9,7 @@ Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "CoCowork.DB", "CoCowork.DB\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoCowork.DataLayer", "CoCowork.DataLayer\CoCowork.DataLayer.csproj", "{5E19FC52-2074-4B5B-A0F9-C77AA3FFEA22}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoCowork.Tests", "CoCowork.Tests\CoCowork.Tests.csproj", "{99459397-A53C-44E1-AFA6-7D0ADB760A06}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoCowork.BusinessLayer.Tests", "CoCowork.Tests\CoCowork.BusinessLayer.Tests.csproj", "{99459397-A53C-44E1-AFA6-7D0ADB760A06}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoCowork.BusinessLayer", "CoCowork.BusinessLayer\CoCowork.BusinessLayer.csproj", "{3DA1ACDC-1163-4FFF-8693-D41C0E1854BF}"
 EndProject

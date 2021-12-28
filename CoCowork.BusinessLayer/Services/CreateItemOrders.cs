@@ -7,44 +7,46 @@ namespace CoCowork.BusinessLayer.Services
 {
     public class CreateItemOrders
     {
-        public void CreateOrdersForItem(ObservableCollection<IItemModel> ordersList, Order order, int amountDays, int bookingHour)
+        public void CreateOrdersForItem(ObservableCollection<IItemModel> ordersList, Order order)
         {
             foreach (var item in ordersList)
             {
                 switch (item)
                 {
                     case LaptopModel laptop:
-                        var laptopService = new LaptopService();
-                        var laptopEntity = laptopService.ConvertModelToEntities(laptop);
-                        var newLaptopOrder = new LaptopOrder { Laptop = laptopEntity, Order = order, SubtotalPrice = laptopEntity.Price };
+                        var laptopService = new LaptopRepository();
+                        Laptop laptopEntity = laptopService.GetAll().Find(x => x.Id == laptop.Id);
+                        var newLaptopOrder = new LaptopOrder { Laptop = laptopEntity, Order = order, SubtotalPrice = laptopEntity.Price, StartDate = System.DateTime.Now, EndDate = System.DateTime.Now };
                         var addLaptopOrder = new LaptopOrderRepository();
                         addLaptopOrder.Add(newLaptopOrder);
                         break;
                     case MiniOfficeModel miniOffice:
-                        var miniOfficeService = new MiniOfficeService();
-                        var miniOfficeEntity = miniOfficeService.ConvertModelToEntities(miniOffice);
-                        var newMiniOfficeOrder = new MiniOfficeOrder { MiniOffice = miniOfficeEntity, Order = order, SubtotalPrice = (miniOffice.Price * amountDays) };
+                        var miniOfficeService = new MiniOfficeRepository();
+                        MiniOffice miniOfficeEntity = miniOfficeService.GetAll().Find(x => x.Id.Equals(miniOffice.Id));
+                        var newMiniOfficeOrder = new MiniOfficeOrder { MiniOffice = miniOfficeEntity, Order = order, SubtotalPrice = miniOffice.Price, StartDate = System.DateTime.Now, EndDate = System.DateTime.Now};
                         var addMiniOfficeOrder = new MiniOfficeOrderRepository();
                         addMiniOfficeOrder.Add(newMiniOfficeOrder);
                         break;
                     case PlaceModel place:
-                        var placeService = new PlaceService();
-                        var placeEntity = placeService.ConvertModelToEntities(place);
-                        var newPlaceOrder = new PlaceOrder { Place = placeEntity, Order = order, SubtotalPrice = placeEntity.PriceFixedPerDay };
+                        var placeService = new PlaceRepository();
+                        Place placeEntity = placeService.GetAll().Find(x => x.Id.Equals(place.Id));
+                        var newPlaceOrder = new PlaceOrder { Place = placeEntity, Order = order, SubtotalPrice = placeEntity.PricePerDay, StartDate = System.DateTime.Now, EndDate = System.DateTime.Now };
                         var addPlaceOrder = new PlaceOrderRepository();
                         addPlaceOrder.Add(newPlaceOrder);
                         break;
                     case ProductModel product:
-                        var productService = new ProductService();
-                        var productEntity = productService.ConvertModelToEntities(product);
-                        var newProductOrder = new ProductOrder { Product = productEntity, Order = order, SubtotalPrice = productEntity.PriceForOne };
+                        var productService = new ProductRepository();
+                        Product productEntity = productService.GetAll().Find(x => x.Id.Equals(product.Id)); 
+                        var newProductOrder = new ProductOrder { Product = productEntity, Order = order, SubtotalPrice = productEntity.Price};
                         var addProductOrder = new ProductOrderRepository();
                         addProductOrder.Add(newProductOrder);
                         break;
                     case RoomModel room:
-                        var roomService = new RoomService();
-                        var roomEntity = roomService.ConvertModelToEntities(room);
-                        var newRoomOrder = new RoomOrder { Room = roomEntity, Order = order, SubtotalPrice = (roomEntity.PricePerHour * bookingHour) };
+                        var roomService = new RoomRepository();
+                        Room roomEntity = roomService.GetAll().Find(x => x.Id.Equals(room.Id));
+                        var newRoomOrder = new RoomOrder { Room = roomEntity, Order = order, SubtotalPrice = (roomEntity.Price), StartDate = System.DateTime.Now, EndDate = System.DateTime.Now };
+                        var addRoomOrder = new RoomOrderRepository();
+                        addRoomOrder.Add(newRoomOrder);
                         break;
                     default:
                         break;

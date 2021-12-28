@@ -2,7 +2,7 @@
 using CoCowork.BusinessLayer.Models;
 using CoCowork.DataLayer.Entities;
 
-namespace PseudoCalc.BusinessLayer.Configuration
+namespace CoCowork.BusinessLayer.Configuration
 {
     public static class CustomMapper
     {
@@ -22,7 +22,6 @@ namespace PseudoCalc.BusinessLayer.Configuration
             _instance = new Mapper(new MapperConfiguration(cfg =>
             {
                 cfg.CreateMap<Client, ClientModel>();
-
                 cfg.CreateMap<Client, ClientShortModel>();
 
                 cfg.CreateMap<MiniOffice, MiniOfficeModel>();
@@ -37,7 +36,23 @@ namespace PseudoCalc.BusinessLayer.Configuration
 
                 cfg.CreateMap<Place, PlaceModel>();
 
+                cfg.CreateMap<Product, ProductModel>();
+
+                cfg.CreateMap<Room, RoomModel>();
+
                 cfg.CreateMap<PlaceOrder, PlaceOrderModel>();
+
+                cfg.CreateMap<ClientModel, Client>();
+
+                cfg.CreateMap<RoomModel, Room>();
+
+                cfg.CreateMap<LaptopModel, Laptop>();
+
+                cfg.CreateMap<PlaceModel, Place>();
+
+                cfg.CreateMap<MiniOfficeModel, MiniOffice>();
+
+                cfg.CreateMap<ProductModel, Product>();
 
 
             }));

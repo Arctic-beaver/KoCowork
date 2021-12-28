@@ -21,9 +21,9 @@ namespace CoCowork.BusinessLayer.Services
             return CustomMapper.GetInstance().Map<List<ProductModel>>(Products);
         }
 
-        public Product ConvertModelToEntities(ProductModel Product)
+        public Product ConvertModelToEntities(ProductModel product)
         {
-            return CustomMapper.GetInstance().Map<Product>(Product);
+            return CustomMapper.GetInstance().Map<Product>(product);
         }
     }
 }

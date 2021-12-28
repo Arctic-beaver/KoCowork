@@ -90,49 +90,6 @@ namespace CoCowork.UI.ViewModels
             }
         }
 
-
-        //private string _name;
-        //public string Name
-        //{
-        //    get { return _name; }
-        //    set
-        //    {
-        //        _name = value;
-        //        OnPropertyChanged("Name");
-        //    }
-        //}
-        //private string _type;
-        //public string Type
-        //{
-        //    get { return _type; }
-        //    set
-        //    {
-        //        _type = value;
-        //        OnPropertyChanged("Type");
-        //    }
-        //}
-
-
-
-        //private string _price;
-        //public string Price
-        //{
-        //    get { return _price; }
-        //    set
-        //    {
-        //        _price = value;
-        //        OnPropertyChanged("Price");
-        //    }
-        //}
-
-        public void RecalculateSum()
-        {
-            foreach (var item in _currentOrder)
-            {
-                _totalPrice += GetItemModelSum(item);
-            }
-        }
-
         public decimal _totalPrice;
         public decimal TotalPrice
         {
@@ -176,6 +133,13 @@ namespace CoCowork.UI.ViewModels
             return sum;
         }
 
+        public void RecalculateSum()
+        {
+            foreach (var item in _currentOrder)
+            {
+                _totalPrice += GetItemModelSum(item);
+            }
+        }
 
         public event PropertyChangedEventHandler PropertyChanged;
         public void OnPropertyChanged([CallerMemberName] string prop = "")

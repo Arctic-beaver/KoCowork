@@ -1,14 +1,15 @@
 ﻿using CoCowork.BusinessLayer.Models;
 using CoCowork.DataLayer.Entities;
 using CoCowork.DataLayer.Repositories;
-using PseudoCalc.BusinessLayer.Configuration;
+using CoCowork.BusinessLayer.Configuration;
+using System;
 using System.Collections.Generic;
 
 namespace CoCowork.BusinessLayer.Services
 {
     public class PlaceService
     {
-        private readonly PlaceRepository _placeRepository;
+        private readonly IPlaceRepository _placeRepository;
 
         public PlaceService()
         {
@@ -21,9 +22,27 @@ namespace CoCowork.BusinessLayer.Services
             return CustomMapper.GetInstance().Map<List<PlaceModel>>(places);
         }
 
-        public Place ConvertModelToEntities(PlaceModel place)
+        public List<PlaceModel> GetAllThatNotInMiniOffices()
         {
-            return CustomMapper.GetInstance().Map<Place>(place);
+            var places = _placeRepository.GetPlacesThatNotInMiniOffice();
+            return CustomMapper.GetInstance().Map<List<PlaceModel>>(places);
+        }
+
+        public void DeletePlace(int id)
+        {
+            _placeRepository.DeletePlaceById(id);
+        }
+
+        public void UpdatePlace(PlaceModel place)
+        {
+            var placeModel = CustomMapper.GetInstance().Map<Place>(place);
+            _placeRepository.UpdatePlaceById(placeModel);
+        }
+
+        public void InsertPlace(PlaceModel place)
+        {
+            var placeModel = CustomMapper.GetInstance().Map<Place>(place);
+            _placeRepository.Add(placeModel);
         }
     }
 }

@@ -7,9 +7,8 @@ using System.Linq;
 
 namespace CoCowork.DataLayer.Repositories
 {
-    public class ProductRepository
+    public class ProductRepository : BaseRepository, IProductRepository
     {
-        private const string _connectionString = "Server=80.78.240.16;User ID=student;Password=qwe!23;Database=CoCowork.DB";
         private const string _selectAllProcedure = "dbo.Product_SelectAll";
         private const string _selectByIdProcedure = "dbo.Product_SelectById";
         private const string _insertProcedure = "dbo.Product_Insert";
@@ -18,46 +17,37 @@ namespace CoCowork.DataLayer.Repositories
 
         public List<Product> GetAll()
         {
-            using var connection = new SqlConnection(_connectionString);
-            connection.Open();
-
-            var result = connection.Query<Product>(_selectAllProcedure).ToList();
-
-            return result;
-
+            using IDbConnection connection = ProvideConnection();
+            return connection.Query<Product>(_selectAllProcedure).ToList();
         }
 
         public Product GetById(int id)
         {
-            using var connection = new SqlConnection(_connectionString);
-            connection.Open();
-
+            using IDbConnection connection = ProvideConnection();
             return connection.QueryFirstOrDefault<Product>(_selectByIdProcedure, new { Id = id },
                 commandType: CommandType.StoredProcedure);
         }
 
         public void Add(Product product)
         {
-            using var connection = new SqlConnection(_connectionString);
-            connection.Open();
+            using IDbConnection connection = ProvideConnection();
+
             connection.Execute(
                 _insertProcedure,
                 new
                 {
                     Name = product.Name,
                     Amount = product.Amount,
-                    PriceForOne = product.PriceForOne,
+                    PriceForOne = product.Price,
                     Description = product.Description
-
                 },
                 commandType: CommandType.StoredProcedure);
-            ;
         }
 
         public void Update(Product product)
         {
-            using var connection = new SqlConnection(_connectionString);
-            connection.Open();
+            using IDbConnection connection = ProvideConnection();
+
             connection.Execute(
                 _updateProcedure,
                 new
@@ -65,18 +55,15 @@ namespace CoCowork.DataLayer.Repositories
                     Id = product.Id,
                     Name = product.Name,
                     Amount = product.Amount,
-                    PriceForOne = product.PriceForOne,
+                    PriceForOne = product.Price,
                     Description = product.Description
-
                 },
                 commandType: CommandType.StoredProcedure);
-            ;
         }
 
         public void Delete(int id)
         {
-            using var connection = new SqlConnection(_connectionString);
-            connection.Open();
+            using IDbConnection connection = ProvideConnection();
 
             connection.Execute(
                 _deleteProcedure,
@@ -85,7 +72,6 @@ namespace CoCowork.DataLayer.Repositories
                     Id = id
                 },
                 commandType: CommandType.StoredProcedure);
-            ;
         }
     }
 }

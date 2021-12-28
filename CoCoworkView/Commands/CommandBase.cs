@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Input;
 
-namespace CoCowork.UI
+namespace CoCowork.UI.Commands
 {
     public abstract class CommandBase : ICommand
     {
@@ -19,4 +19,5 @@ namespace CoCowork.UI
             CanExecuteChanged?.Invoke(this, new EventArgs());
         }
     }
+
 }
