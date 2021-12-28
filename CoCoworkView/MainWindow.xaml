@@ -287,8 +287,8 @@
                     <Label Name="AmountLabel" Grid.Row="1" Grid.Column="1" Content="Введите сумму платежа:" Margin="2, 35, 2, 0"/>
                     <TextBox x:Name="AmountTextBox" Grid.Row="2" Grid.Column="1" Text ="{Binding Payment.Amount}" Margin="15, 15, 15, 15"/>
                     <Label Name="DateLabel" Grid.Row="3" Grid.Column="1" Content="Выберите дату:" Margin="2, 35, 2, 0"/>
-                    <DatePicker x:Name="PaymentDatePicker" Grid.Row="4" Grid.Column="1" Text ="{Binding Payment.PaymentDate}" Margin="15, 15, 15, 15"/> 
-                    <Button x:Name="AddFinallyPaymentButton" Command="{Binding ChangePaymentVisibility}" CommandParameter="{Binding Payment}" Content="Добавить оплату" Grid.Column="1" Grid.Row="6" Margin="15, 0, 15, 30"/>
+                    <DatePicker x:Name="PaymentDatePicker" Grid.Row="4" Grid.Column="1" SelectedDate ="{Binding Payment.PaymentDate}" Margin="15, 15, 15, 15"/> 
+                    <Button x:Name="AddFinallyPaymentButton" IsEnabled="{Binding Payment.IsAddPaymentButtonAvailable}"  Command="{Binding Payment.ChangePaymentVisibility}" Content="Добавить оплату" Grid.Column="1" Grid.Row="6" Margin="15, 0, 15, 30"/>
                 </Grid>
             </Grid>
         </Grid>

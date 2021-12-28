@@ -61,7 +61,6 @@ namespace CoCowork.UI.ViewModels
                 {
                     _orderId = value;
                     OnPropertyChanged(nameof(OrderId));
-                    CheckIfAllFieldsFilledCorrectly();
                 }
             }
         }
@@ -81,9 +80,10 @@ namespace CoCowork.UI.ViewModels
 
         public void CheckIfAllFieldsFilledCorrectly()
         {
-            if (Amount != null &&
-            PaymentDate != null &&
-            OrderId != null) IsAddPaymentButtonAvailable = true;
+            if (Amount != null && PaymentDate != null)
+            {
+                IsAddPaymentButtonAvailable = true;
+            }
             else IsAddPaymentButtonAvailable = false;
         }
 

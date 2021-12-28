@@ -164,6 +164,7 @@ namespace CoCowork.UI.ViewModels
                     {
                         AreButtonsAvailable = true;
                         IsToolTipOn = Visibility.Collapsed;
+                        Payment.OrderId = SelectedItem.Id;
                     }
                     else
                     {
