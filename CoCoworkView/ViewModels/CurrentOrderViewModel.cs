@@ -14,12 +14,6 @@ namespace CoCowork.UI.ViewModels
     {
         public CurrentOrderViewModel()
         {
-            //Name = itemModel.Name;
-            //GetObjectProperties(itemModel);
-
-            //CurrentOrderList.Add(itemModel);
-
-
             AddOrder = new AddOrdersToDB(this);
 
             _clientService = new ClientService();
@@ -31,8 +25,6 @@ namespace CoCowork.UI.ViewModels
 
 
         }
-
-
 
         private ObservableCollection<ItemModel> _currentOrder;
         public ObservableCollection<ItemModel> CurrentOrder
@@ -144,11 +136,6 @@ namespace CoCowork.UI.ViewModels
             }
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
-        public void OnPropertyChanged([CallerMemberName] string prop = "")
-        {
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(prop));
-        }
+       
     }
 }
