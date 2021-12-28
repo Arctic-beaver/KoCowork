@@ -2,7 +2,7 @@
 
 namespace CoCowork.BusinessLayer.Models
 {
-    public class ClientModel
+    public class ClientModel : ClientShortModel
     {
         public string Phone { get; set; }
         public string Email { get; set; }

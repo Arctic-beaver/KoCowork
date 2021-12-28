@@ -31,8 +31,8 @@ namespace CoCowork.UI.ViewModels
 
        
 
-        private ObservableCollection<IItemModel> _currentOrder;
-        public ObservableCollection<IItemModel> CurrentOrder
+        private ObservableCollection<ItemModel> _currentOrder;
+        public ObservableCollection<ItemModel> CurrentOrder
         {
             get { return _currentOrder; }
             set
@@ -111,7 +111,7 @@ namespace CoCowork.UI.ViewModels
             get; set;
         }
 
-        public decimal GetItemModelSum(IItemModel itemModel)
+        public decimal GetItemModelSum(ItemModel itemModel)
         {
             decimal sum = 0;
 

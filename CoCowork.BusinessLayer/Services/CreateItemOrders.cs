@@ -1,4 +1,5 @@
 ﻿using CoCowork.BusinessLayer.Models;
+using CoCowork.BusinessLayer.Models;
 using CoCowork.DataLayer.Entities;
 using CoCowork.DataLayer.Repositories;
 using System.Collections.ObjectModel;
@@ -7,7 +8,7 @@ namespace CoCowork.BusinessLayer.Services
 {
     public class CreateItemOrders
     {
-        public void CreateOrdersForItem(ObservableCollection<IItemModel> ordersList, Order order)
+        public void CreateOrdersForItem(ObservableCollection<ItemModel> ordersList, Order order)
         {
             foreach (var item in ordersList)
             {
@@ -16,7 +17,7 @@ namespace CoCowork.BusinessLayer.Services
                     case LaptopModel laptop:
                         var laptopService = new LaptopRepository();
                         Laptop laptopEntity = laptopService.GetAll().Find(x => x.Id == laptop.Id);
-                        var newLaptopOrder = new LaptopOrder { Laptop = laptopEntity, Order = order, SubtotalPrice = laptopEntity.Price, StartDate = System.DateTime.Now, EndDate = System.DateTime.Now };
+                        var newLaptopOrder = new LaptopOrder { Laptop = laptopEntity, Order = order, SubtotalPrice = laptopEntity.PricePerMonth, StartDate = System.DateTime.Now, EndDate = System.DateTime.Now };
                         var addLaptopOrder = new LaptopOrderRepository();
                         addLaptopOrder.Add(newLaptopOrder);
                         break;
@@ -44,7 +45,7 @@ namespace CoCowork.BusinessLayer.Services
                     case RoomModel room:
                         var roomService = new RoomRepository();
                         Room roomEntity = roomService.GetAll().Find(x => x.Id.Equals(room.Id));
-                        var newRoomOrder = new RoomOrder { Room = roomEntity, Order = order, SubtotalPrice = (roomEntity.Price), StartDate = System.DateTime.Now, EndDate = System.DateTime.Now };
+                        var newRoomOrder = new RoomOrder { Room = roomEntity, Order = order, SubtotalPrice = (roomEntity.PricePerHour), StartDate = System.DateTime.Now, EndDate = System.DateTime.Now };
                         var addRoomOrder = new RoomOrderRepository();
                         addRoomOrder.Add(newRoomOrder);
                         break;

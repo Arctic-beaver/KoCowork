@@ -1,14 +1,14 @@
-﻿using CoCowork.BusinessLayer.Models;
+﻿using CoCowork.BusinessLayer.Configuration;
+using CoCowork.BusinessLayer.Models;
 using CoCowork.DataLayer.Entities;
 using CoCowork.DataLayer.Repositories;
-using PseudoCalc.BusinessLayer.Configuration;
 using System.Collections.Generic;
 
 namespace CoCowork.BusinessLayer.Services
 {
     public class LaptopService
     {
-        private readonly LaptopRepository _laptopRepository;
+        private readonly ILaptopRepository _laptopRepository;
 
         public LaptopService()
         {
@@ -17,13 +17,25 @@ namespace CoCowork.BusinessLayer.Services
 
         public List<LaptopModel> GetAll()
         {
-            var laptops = _laptopRepository.GetAll();
-            return CustomMapper.GetInstance().Map<List<LaptopModel>>(laptops);
+            var computers = _laptopRepository.GetAllLaptops();
+            return CustomMapper.GetInstance().Map<List<LaptopModel>>(computers);
         }
 
-        public Laptop ConvertModelToEntities(LaptopModel laptop)
+        public void Delete(int id)
         {
-            return CustomMapper.GetInstance().Map<Laptop>(laptop);
+            _laptopRepository.DeleteLaptopById(id);
+        }
+
+        public void Update(LaptopModel laptop)
+        {
+            var computers = CustomMapper.GetInstance().Map<Laptop>(laptop);
+            _laptopRepository.UpdateLaptopById(computers);
+        }
+
+        public void Insert(LaptopModel laptop)
+        {
+            var computers = CustomMapper.GetInstance().Map<Laptop>(laptop);
+            _laptopRepository.Add(computers);
         }
     }
 }

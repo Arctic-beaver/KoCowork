@@ -1,5 +1,4 @@
-﻿namespace CoCowork.BusinessLayer.Models
-﻿using CoCowork.BusinessLayer.Services;
+﻿﻿using CoCowork.BusinessLayer.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;

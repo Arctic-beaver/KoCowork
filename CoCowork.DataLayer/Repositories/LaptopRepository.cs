@@ -75,5 +75,10 @@ namespace CoCowork.DataLayer.Repositories
                         new { Id = id },
                         commandType: CommandType.StoredProcedure);
         }
+
+        public List<Laptop> GetAllLaptops()
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }
