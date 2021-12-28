@@ -16,7 +16,7 @@ namespace CoCowork.UI.ViewModels
 
         private bool _showCanceledAvailability;
         private bool _showActiveAvailability;
-        private bool _isCancelButtonAvailable;
+        private bool _areButtonsAvailable;
 
         private OrderModel _selectedItem;
         public OrderViewModel()
@@ -121,15 +121,15 @@ namespace CoCowork.UI.ViewModels
             }
         }
 
-        public bool IsCancelButtonAvailable
+        public bool AreButtonsAvailable
         {
-            get => _isCancelButtonAvailable;
+            get => _areButtonsAvailable;
             set
             {
-                if (value != _isCancelButtonAvailable)
+                if (value != _areButtonsAvailable)
                 {
-                    _isCancelButtonAvailable = value;
-                    OnPropertyChanged(nameof(IsCancelButtonAvailable));
+                    _areButtonsAvailable = value;
+                    OnPropertyChanged(nameof(AreButtonsAvailable));
                 }
             }
         }
@@ -144,14 +144,13 @@ namespace CoCowork.UI.ViewModels
                     _selectedItem = value;
 
                     OnPropertyChanged(nameof(SelectedItem));
-                    if (value != null) IsCancelButtonAvailable = true;
+                    if (value != null && Payment.GridVisibility == Visibility.Collapsed) AreButtonsAvailable = true;
+                    else AreButtonsAvailable = false;
                 }
             }
         }
 
         public ICommand GetOrdersCommand;
-
-        
 
         public OrderService Service;
     }
