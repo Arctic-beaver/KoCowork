@@ -5,11 +5,12 @@ using CoCowork.UI.Commands.CurrentOrder;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Windows;
 using System.Windows.Input;
 
 namespace CoCowork.UI.ViewModels
 {
-    public class CurrentOrderViewModel : INotifyPropertyChanged
+    public class CurrentOrderViewModel : TabViewModel
     {
         public CurrentOrderViewModel()
         {
@@ -23,13 +24,15 @@ namespace CoCowork.UI.ViewModels
 
             _clientService = new ClientService();
 
+            Clients = new ObservableCollection<ClientModel>();
             GetClients = new GetClientsCommand(this, _clientService);
+            GridVisibility = Visibility.Visible;
 
-            
+
 
         }
 
-       
+
 
         private ObservableCollection<ItemModel> _currentOrder;
         public ObservableCollection<ItemModel> CurrentOrder

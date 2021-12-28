@@ -6,12 +6,12 @@ using System.Collections.ObjectModel;
 
 namespace CoCowork.UI.Commands.BookingCommands
 {
-    public class GetComputersCommand : CommandBase
+    public class GetLaptopsCommand : CommandBase
     {
         private readonly BookingViewModel _vm;
         private readonly LaptopService _computerService;
 
-        public GetComputersCommand(BookingViewModel vm, LaptopService computerService)
+        public GetLaptopsCommand(BookingViewModel vm, LaptopService computerService)
         {
             _vm = vm;
             _computerService = computerService;

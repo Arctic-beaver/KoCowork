@@ -17,7 +17,11 @@ namespace CoCowork.DataLayer.Repositories
         public List<Client> GetAllClients()
         {
             using IDbConnection connection = ProvideConnection();
-            return connection.Query<Client>(_selectAllProc).ToList();
+            return connection
+                .Query<Client>
+                    (_selectAllProc,
+                    commandType: CommandType.StoredProcedure)
+                .ToList();
         }
 
         public Client GetClientById(int id)

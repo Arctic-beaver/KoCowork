@@ -16,7 +16,6 @@
             <i:InvokeCommandAction Command="{Binding Booking.GetMeetingRooms}"/>
             <i:InvokeCommandAction Command="{Binding Booking.GetPlaces}"/>
             <i:InvokeCommandAction Command="{Binding Booking.GetComputers}"/>
-
             <i:InvokeCommandAction Command="{Binding CurrentOrder.GetClients}"/>
         </i:EventTrigger>
     </i:Interaction.Triggers>
@@ -280,7 +279,7 @@
             </Grid>
         </Grid>
 
-        <Grid x:Name="CurrentOrderGrid" Visibility="Visible" Grid.Column ="1">
+        <Grid x:Name="CurrentOrderGrid" Visibility="{Binding CurrentOrder.GridVisibility}" Grid.Column ="1">
 
             <DataGrid x:Name="CurrentOrderDataGrid" CanUserDeleteRows="False" AutoGenerateColumns="False" Grid.Column="0" CanUserAddRows="False" ItemsSource="{Binding CurrentOrder.CurrentOrder}" Margin="0,0,200,0"  >
                 <DataGrid.Resources>

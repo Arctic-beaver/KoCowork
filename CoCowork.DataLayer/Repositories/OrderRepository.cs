@@ -32,7 +32,7 @@ namespace CoCowork.DataLayer.Repositories
         {
             using IDbConnection connection = ProvideConnection();
 
-            return connection.QueryFirstOrDefault(
+            return connection.Query<int>(
                 _insertProcedure,
                 new
                 {

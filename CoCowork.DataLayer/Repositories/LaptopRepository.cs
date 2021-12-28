@@ -18,7 +18,11 @@ namespace CoCowork.DataLayer.Repositories
         public List<Laptop> GetAll()
         {
             using IDbConnection connection = ProvideConnection();
-            return connection.Query<Laptop>(_selectAllProc).ToList();
+            return connection
+                .Query<Laptop>
+                    (_selectAllProc,
+                    commandType: CommandType.StoredProcedure)
+                .ToList();
         }
 
         public Laptop GetLaptopsById(int id)

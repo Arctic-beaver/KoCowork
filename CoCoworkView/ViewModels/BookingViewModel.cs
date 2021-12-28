@@ -33,7 +33,7 @@ namespace CoCowork.UI.ViewModels
         public ObservableCollection<LaptopModel> Computers { get; set; }
         public ICommand GetMiniOffices { get; set; }
         public ICommand GetPlaces { get; set; }
-        public ICommand GetComputers { get; set; }
+        public ICommand GetLaptops { get; set; }
         public ICommand GetMeetingRooms { get; set; }
         public ICommand GetConferenceRooms { get; set; }
         public MiniOfficeViewModel MiniOfficeVM { get; set; }
@@ -59,7 +59,7 @@ namespace CoCowork.UI.ViewModels
             GetMiniOffices = new GetMiniOfficesCommand(this, _miniOfficeService);
             GetMeetingRooms = new GetMeetingRoomsCommand(this, _roomService);
             GetConferenceRooms = new GetConferenceRoomsCommand(this, _roomService);
-            GetComputers = new GetComputersCommand(this, _laptopService);
+            GetLaptops = new GetLaptopsCommand(this, _laptopService);
         }
     }
 }

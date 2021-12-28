@@ -20,7 +20,11 @@ namespace CoCowork.UI.Commands.CurrentOrder
 
         public override void Execute(object parameter)
         {
-            _vm.Clients = new ObservableCollection<ClientModel>(_clientService.GetClients());
+            var Clients = _clientService.GetClients();
+            foreach (var item in Clients)
+            {
+                _vm.Clients.Add(item);
+            }
         }
     }
 }
