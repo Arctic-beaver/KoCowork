@@ -17,6 +17,7 @@ namespace CoCowork.UI.ViewModels
         private bool _showCanceledAvailability;
         private bool _showActiveAvailability;
         private bool _areButtonsAvailable;
+        private Visibility _isToolTipOn;
 
         private OrderModel _selectedItem;
         public OrderViewModel()
@@ -27,6 +28,7 @@ namespace CoCowork.UI.ViewModels
             Service = new OrderService();
             Payment = new PaymentViewModel();
             Orders = new ObservableCollection<OrderModel>();
+            IsToolTipOn = Visibility.Visible;
 
             GetOrdersCommand = new GetOrdersCommand();
             ShowPaid = true;
@@ -134,6 +136,20 @@ namespace CoCowork.UI.ViewModels
             }
         }
 
+        public Visibility IsToolTipOn
+        {
+            get => _isToolTipOn;
+            set
+            {
+                if (value != _isToolTipOn)
+                {
+                    _isToolTipOn = value;
+
+                    OnPropertyChanged(nameof(IsToolTipOn));
+                }
+            }
+        }
+
         public OrderModel SelectedItem
         {
             get => _selectedItem;
@@ -144,8 +160,16 @@ namespace CoCowork.UI.ViewModels
                     _selectedItem = value;
 
                     OnPropertyChanged(nameof(SelectedItem));
-                    if (value != null && Payment.GridVisibility == Visibility.Collapsed) AreButtonsAvailable = true;
-                    else AreButtonsAvailable = false;
+                    if (value != null && Payment.GridVisibility == Visibility.Collapsed)
+                    {
+                        AreButtonsAvailable = true;
+                        IsToolTipOn = Visibility.Collapsed;
+                    }
+                    else
+                    {
+                        AreButtonsAvailable = false;
+                        IsToolTipOn = Visibility.Visible;
+                    }
                 }
             }
         }
