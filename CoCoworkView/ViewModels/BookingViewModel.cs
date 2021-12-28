@@ -36,6 +36,7 @@ namespace CoCowork.UI.ViewModels
         public ICommand GetLaptops { get; set; }
         public ICommand GetMeetingRooms { get; set; }
         public ICommand GetConferenceRooms { get; set; }
+        public ICommand AddToCurrentOrders { get; set; }
         public MiniOfficeViewModel MiniOfficeVM { get; set; }
          
         public BookingViewModel()
@@ -60,6 +61,7 @@ namespace CoCowork.UI.ViewModels
             GetMeetingRooms = new GetMeetingRoomsCommand(this, _roomService);
             GetConferenceRooms = new GetConferenceRoomsCommand(this, _roomService);
             GetLaptops = new GetLaptopsCommand(this, _laptopService);
+            AddToCurrentOrders = new AddToCurrentOrders(this);
         }
     }
 }
