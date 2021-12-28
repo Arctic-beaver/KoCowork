@@ -45,8 +45,8 @@ namespace CoCowork.DataLayer.Repositories
                 _insertProcedure,
                 new
                 {
-                    ClientId = roomorder.Room,
                     OrderId = roomorder.Order.Id,
+                    RoomId = roomorder.Room.Id,
                     StartDate = roomorder.StartDate,
                     EndDate = roomorder.EndDate,
                     SubtotalPrice = roomorder.SubtotalPrice

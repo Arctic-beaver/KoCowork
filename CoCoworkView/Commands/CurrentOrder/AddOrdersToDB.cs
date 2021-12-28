@@ -47,7 +47,7 @@ namespace CoCowork.UI.Commands.CurrentOrder
                 var newOrder = orderService.AddedOrderToDB(clientEntity, _vm.IsCancelled, _vm.IsPaid, _vm.TotalPrice);
                 var newItemOrders = new CreateItemOrders();
                 newItemOrders.CreateOrdersForItem(_vm.CurrentOrder, newOrder);
-
+                MessageBox.Show("Заказ успешно сформирован!");
             }
 
 
