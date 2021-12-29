@@ -71,19 +71,31 @@
                     <RowDefinition/>
                     <RowDefinition/>
                     <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
                 </Grid.RowDefinitions>
                 <Button Content="показать свободные"  Grid.Column="1" Grid.Row="0" Margin="0, 15, 0, 15"/>
                 <Label Content="с" Grid.Column="0" Grid.Row="1" Margin="12 0 0 0"/>
-                <DatePicker Grid.Column="1" Grid.Row="1" Margin="0 0 0 40"/>
+                <DatePicker Grid.Column="1" Grid.Row="1" Margin="0 0 0 30"/>
                 <Label Content="по" Grid.Column="0" Grid.Row="1" Margin="5 35 0 0" Grid.RowSpan="2"/>
-                <DatePicker Grid.Column="1" Grid.Row="1" Margin="0 37 0 75" Grid.RowSpan="2"/>
+                <DatePicker Grid.Column="1" Grid.Row="1" Margin="0 37 0 160" Grid.RowSpan="4"/>
 
-                <Button x:Name="AddNewButton" Content="Инсертнуть" Grid.Column="1" Grid.Row="2" Margin="0, 30, 0, 0"/>
-                <Button x:Name="EditButton" Content="Редактировать" Grid.Column="1" Grid.Row="4"
-                        Margin="0, 15, 0, 15" Command="{Binding MiniOfficeVM.ChangeMiniOfficeEditVisibility}"/>
-                <Button x:Name="AddToOrderButton" Content="Добавить к заказу" Grid.Column="1" Grid.Row="5" Margin="0, 15, 0, 15"/>
-                <Button x:Name="DeleteButton" Content="Удалить" Grid.Column="1" Grid.Row="6"
-                        Margin="0, 15, 0, 15"/>
+                <Label Content="Редактирование:" Grid.Column="1" Grid.Row="2" FontWeight="Bold" 
+                       HorizontalContentAlignment="Center" Margin="0 20 0 10"/>
+
+                <Button x:Name="MiniOfficeEditButton" Content="Миниофисы" Grid.Column="1" Grid.Row="3"
+                        Margin="0, 0, 0, 30" Command="{Binding MiniOfficeVM.ChangeMiniOfficeEditVisibility}"/>
+                <Button x:Name="PlaceEditButton" Content="Места" Grid.Column="1" Grid.Row="4"
+                        Margin="0, 0, 0, 30"/>
+                <Button x:Name="ConferenceRoomEditButton" Content="Конференц-залы" Grid.Column="1" Grid.Row="5"
+                        Margin="0, 0, 0, 30"/>
+                <Button x:Name="MeetingRoomEditButton" Content="Переговорные" Grid.Column="1" Grid.Row="6"
+                        Margin="0, 0, 0, 30"/>
+                <Button x:Name="ComputersEditButton" Content="Компьютеры" Grid.Column="1" Grid.Row="7"
+                        Margin="0, 0, 0, 30"/>
+                <Button x:Name="AddToOrderButton" Content="Добавить к заказу" Grid.Column="1" Grid.Row="8"
+                        Grid.RowSpan="2" Margin="0, 35, 0, 30"/>
+
             </Grid>
             <Grid x:Name="MainBookingGrid" Grid.Column ="0" Background="DarkGray" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                 <Grid.ColumnDefinitions>
@@ -193,7 +205,7 @@
                         <DataGridTextColumn Header="Цена/месяц"  Width="auto" Binding="{Binding PricePerMonth}"/>
                     </DataGrid.Columns>
                 </DataGrid>
-                <Grid x:Name="AddMiniOfficeGrid" Visibility="{Binding MiniOfficeVM.GridVisibility}" Grid.Column ="3" Grid.RowSpan="6"
+                <Grid x:Name="EditMiniOfficeGrid" Visibility="{Binding MiniOfficeVM.GridVisibility}" Grid.Column ="3" Grid.RowSpan="6"
                       Background="#FFE0DFDF" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                     <Grid.Effect>
                         <DropShadowEffect Color="Black" ShadowDepth="0.01"/>
@@ -207,9 +219,16 @@
                         <RowDefinition/>
                         <RowDefinition/>
                         <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
                     </Grid.RowDefinitions>
-                    <Button x:Name="AddFinallyMiniOfficeButton" Command="{Binding ChangeMiniOfficeEditVisibility}" CommandParameter="{Binding MiniOfficeVM}"
-                            Content="Добавить оплату" Grid.Column="0" Grid.Row="6" Margin="15, 0, 15, 30"/>
+                    <Label Content="Миниофис" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" Margin="0 20 0 0" FontWeight="Bold" FontFamily="Academy Engraved LET Plain"/>
+                    <Button x:Name="AddMiniOfficeButton" Command="{Binding ChangeMiniOfficeEditVisibility}" CommandParameter="{Binding MiniOfficeVM}"
+                            Content="Добавить" Grid.Column="0" Grid.Row="7" Margin="15, 0, 15, 30"/>
+                    <Button x:Name="EditFinallyMiniOfficeButton" Command="{Binding ChangeMiniOfficeEditVisibility}" CommandParameter="{Binding MiniOfficeVM}"
+                            Content="Редактировать" Grid.Column="0" Grid.Row="8" Margin="15, 0, 15, 30"/>
+                    <Button x:Name="DeleteMiniOfficeButton" Command="{Binding MiniOfficeVM.DeleteMiniOffice}" CommandParameter="{Binding MiniOfficeVM}"
+                            Content="Удалить" Grid.Column="0" Grid.Row="9" Margin="15, 0, 15, 30"/>
                 </Grid>
             </Grid>
         </Grid>

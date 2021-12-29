@@ -1,5 +1,8 @@
 ﻿
+using CoCowork.BusinessLayer.Models;
+using CoCowork.BusinessLayer.Services;
 using CoCowork.UI.Commands;
+using CoCowork.UI.Commands.BookingCommands;
 using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Input;
@@ -12,6 +15,8 @@ namespace CoCowork.UI.ViewModels
         private decimal? _pricePerDay;
         private int? _amountOfPlaces;
         private bool _isEditButtonAvailable;
+        private MiniOfficeService _service;
+        private ItemModel _selectedItem;
 
         public string Name
         {
@@ -59,12 +64,26 @@ namespace CoCowork.UI.ViewModels
             }
         }
 
-        public ICommand ChangeMiniOfficeEditVisibility { get; set; }
+        public ItemModel SelectedItem
+        {
+            get => _selectedItem;
+            set
+            {
+                _selectedItem = value;
+                OnPropertyChanged(nameof(SelectedItem));
+            }
+        }
 
-        public MiniOfficeViewModel()
+        public ICommand ChangeMiniOfficeEditVisibility { get; set; }
+        public ICommand AddMiniOffice { get; set; }
+        public ICommand EditMiniOffice { get; set; }
+        public ICommand DeleteMiniOffice { get; set; }
+
+        public MiniOfficeViewModel(BookingViewModel bookingVM)
         {
             GridVisibility = Visibility.Collapsed;
 
+            DeleteMiniOffice = new DeleteMiniOfficeCommand(bookingVM, _service);
             ChangeMiniOfficeEditVisibility = new VisibilityOfInnerGridCommand(this);
         }
 

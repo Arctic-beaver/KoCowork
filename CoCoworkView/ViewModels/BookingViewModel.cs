@@ -42,7 +42,7 @@ namespace CoCowork.UI.ViewModels
         {
             GridVisibility = Visibility.Visible;
 
-            MiniOfficeVM = new MiniOfficeViewModel();
+            MiniOfficeVM = new MiniOfficeViewModel(this);
 
             _placeService = new PlaceService();
             _miniOfficeService = new MiniOfficeService();
