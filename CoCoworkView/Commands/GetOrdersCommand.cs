@@ -1,17 +1,12 @@
 ﻿using CoCowork.BusinessLayer.Models;
-using CoCowork.BusinessLayer.Services;
 using CoCowork.UI.ViewModels;
-using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CoCowork.UI.Commands
 {
     public class GetOrdersCommand : CommandBase
-    {        
+    {
         public GetOrdersCommand()
         {
 
@@ -22,7 +17,7 @@ namespace CoCowork.UI.Commands
             OrderViewModel vm = (OrderViewModel)viewModel;
 
             vm.Orders.Clear();
-           
+
             var orders = new List<OrderModel>();
 
             if (vm.ShowPaid) orders.AddRange(vm.Service.GetPaidOrders());

@@ -7,13 +7,13 @@ namespace CoCowork.UI.ViewModels
     {
         public MainWindowViewModel()
         {
-            Booking = new BookingViewModel();
             Product = new ProductViewModel();
             Client = new ClientViewModel();
             Order = new OrderViewModel();
             CurrentOrder = new CurrentOrderViewModel();
+            Booking = new BookingViewModel(CurrentOrder);
             MakeGridVisible = new ChangeVisibleGridCommand(this);
-            
+
             VisibleVM = Booking;
         }
 

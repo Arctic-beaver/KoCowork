@@ -25,7 +25,7 @@ namespace CoCowork.DataLayer.Repositories
                 .ToList();
         }
 
-        public Laptop GetLaptopsById(int id)
+        public Laptop GetById(int id)
         {
             using IDbConnection connection = ProvideConnection();
 
@@ -80,9 +80,6 @@ namespace CoCowork.DataLayer.Repositories
                         commandType: CommandType.StoredProcedure);
         }
 
-        public List<Laptop> GetAllLaptops()
-        {
-            throw new System.NotImplementedException();
-        }
+       
     }
 }

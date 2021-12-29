@@ -1,11 +1,4 @@
-﻿using CoCowork.BusinessLayer.Services;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace CoCowork.BusinessLayer.Models
+﻿namespace CoCowork.BusinessLayer.Models
 {
     public class LaptopModel : ItemModel
     {
@@ -13,8 +6,7 @@ namespace CoCowork.BusinessLayer.Models
         public int Number { get; set; }
         public decimal PricePerMonth { get; set; }
         public string Description { get; set; }
-        public decimal Price { get; set; }
-        public string Type = "Ноутбук";
+        public string TypeForDisplayInUI = "Ноутбук";
         public int AmountMonth { get; set; }
     }
 }

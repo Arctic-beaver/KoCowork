@@ -1,8 +1,6 @@
-using CoCowork.DataLayer.Entities;
 using CoCowork.DataLayer.Repositories;
 using Moq;
 using NUnit.Framework;
-using System.Collections.Generic;
 
 namespace CoCowork.Tests
 {

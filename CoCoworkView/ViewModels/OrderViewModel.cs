@@ -151,10 +151,10 @@ namespace CoCowork.UI.ViewModels
 
         public ICommand GetOrdersCommand;
 
-        
+
 
         public OrderService Service;
     }
 }
-    
+
 

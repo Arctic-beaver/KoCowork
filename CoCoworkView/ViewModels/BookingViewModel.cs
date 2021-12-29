@@ -1,6 +1,5 @@
 ﻿using CoCowork.BusinessLayer.Models;
 using CoCowork.BusinessLayer.Services;
-using CoCowork.UI.Commands;
 using CoCowork.UI.Commands.BookingCommands;
 using System.Collections.ObjectModel;
 using System.Windows;
@@ -30,7 +29,7 @@ namespace CoCowork.UI.ViewModels
         public ObservableCollection<MiniOfficeModel> MiniOffices { get; set; }
         public ObservableCollection<RoomModel> MeetingRooms { get; set; }
         public ObservableCollection<RoomModel> ConferenceRooms { get; set; }
-        public ObservableCollection<LaptopModel> Computers { get; set; }
+        public ObservableCollection<LaptopModel> Laptops { get; set; }
         public ICommand GetMiniOffices { get; set; }
         public ICommand GetPlaces { get; set; }
         public ICommand GetLaptops { get; set; }
@@ -38,8 +37,8 @@ namespace CoCowork.UI.ViewModels
         public ICommand GetConferenceRooms { get; set; }
         public ICommand AddToCurrentOrders { get; set; }
         public MiniOfficeViewModel MiniOfficeVM { get; set; }
-         
-        public BookingViewModel()
+
+        public BookingViewModel(CurrentOrderViewModel currentOrderModel)
         {
             GridVisibility = Visibility.Visible;
 
@@ -54,14 +53,14 @@ namespace CoCowork.UI.ViewModels
             MiniOffices = new ObservableCollection<MiniOfficeModel>();
             MeetingRooms = new ObservableCollection<RoomModel>();
             ConferenceRooms = new ObservableCollection<RoomModel>();
-            Computers = new ObservableCollection<LaptopModel>();
+            Laptops = new ObservableCollection<LaptopModel>();
 
             GetPlaces = new GetPlacesCommand(this, _placeService);
             GetMiniOffices = new GetMiniOfficesCommand(this, _miniOfficeService);
             GetMeetingRooms = new GetMeetingRoomsCommand(this, _roomService);
             GetConferenceRooms = new GetConferenceRoomsCommand(this, _roomService);
             GetLaptops = new GetLaptopsCommand(this, _laptopService);
-            AddToCurrentOrders = new AddToCurrentOrders(this);
+            AddToCurrentOrders = new AddToCurrentOrders(currentOrderModel, BookingSelectedItem);
         }
     }
 }

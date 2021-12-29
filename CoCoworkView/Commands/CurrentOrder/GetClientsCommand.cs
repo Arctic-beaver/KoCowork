@@ -1,7 +1,5 @@
-﻿using CoCowork.BusinessLayer.Models;
-using CoCowork.BusinessLayer.Services;
+﻿using CoCowork.BusinessLayer.Services;
 using CoCowork.UI.ViewModels;
-using System.Collections.ObjectModel;
 
 namespace CoCowork.UI.Commands.CurrentOrder
 {
@@ -20,7 +18,7 @@ namespace CoCowork.UI.Commands.CurrentOrder
 
         public override void Execute(object parameter)
         {
-            var Clients = _clientService.GetClients();
+            var Clients = _clientService.GetAll();
             foreach (var item in Clients)
             {
                 _vm.Clients.Add(item);

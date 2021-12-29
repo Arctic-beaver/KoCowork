@@ -1,11 +1,4 @@
-﻿using CoCowork.BusinessLayer.Services;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using System.Threading.Tasks;
-namespace CoCowork.BusinessLayer.Models
+﻿namespace CoCowork.BusinessLayer.Models
 {
     public class RoomModel : ItemModel
     {
@@ -13,9 +6,8 @@ namespace CoCowork.BusinessLayer.Models
         public int AmountOfPeople { get; set; }
         public decimal PricePerHour { get; set; }
         public string Description { get; set; }
-        public decimal Price { get; set; }
         public string Name { get; set; }
         public int AmountHours { get; set; }
-        public string TypeForUI = "Комната";
+        public string TypeForDisplayInUI = "Комната";
     }
 }

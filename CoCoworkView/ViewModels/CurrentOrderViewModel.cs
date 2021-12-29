@@ -3,8 +3,6 @@ using CoCowork.BusinessLayer.Models;
 using CoCowork.BusinessLayer.Services;
 using CoCowork.UI.Commands.CurrentOrder;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Input;
 
@@ -14,16 +12,14 @@ namespace CoCowork.UI.ViewModels
     {
         public CurrentOrderViewModel()
         {
+            GridVisibility = Visibility.Visible;
+
             AddOrder = new AddOrdersToDB(this);
 
             _clientService = new ClientService();
 
             Clients = new ObservableCollection<ClientModel>();
             GetClients = new GetClientsCommand(this, _clientService);
-            GridVisibility = Visibility.Visible;
-
-
-
         }
 
         private ObservableCollection<ItemModel> _currentOrder;
@@ -33,7 +29,7 @@ namespace CoCowork.UI.ViewModels
             set
             {
                 _currentOrder = value;
-               
+
                 OnPropertyChanged("CurrentOrder");
 
             }
@@ -80,7 +76,7 @@ namespace CoCowork.UI.ViewModels
             set
             {
                 _selectedClient = value;
-               
+
                 OnPropertyChanged("SelectedClient");
             }
         }
@@ -136,6 +132,6 @@ namespace CoCowork.UI.ViewModels
             }
         }
 
-       
+
     }
 }
