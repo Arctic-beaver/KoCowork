@@ -247,7 +247,7 @@
             <Label>Text in client grid</Label>
         </Grid>
 
-        <Grid x:Name="OrderGrid" Grid.Column ="1" Visibility="Hidden" DataContext="{Binding Order}">
+        <Grid x:Name="OrderGrid" Grid.Column ="1" Visibility="{Binding GridVisibility}" DataContext="{Binding Order}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="75*"/>
                 <ColumnDefinition Width="25*"/>
@@ -271,7 +271,13 @@
                     <RowDefinition/>
                 </Grid.RowDefinitions>
 
-                <Button x:Name="AddPaymentButton" Command="{Binding Payment.ChangePaymentVisibility}" Content="Добавить оплату" Grid.Column="1" Grid.Row="1" Margin="0, 30, 0, 0"/>
+              
+                <Button x:Name="AddPaymentButton" IsEnabled="{Binding AreButtonsAvailable}" Command="{Binding Payment.ChangePaymentVisibility}" Content="Добавить оплату" Grid.Column="1" Grid.Row="1" Margin="0, 30, 0, 0"/>
+                <Label Visibility="{Binding IsToolTipOn}" Grid.Column="1" Grid.Row="1" Margin="0, 30, 0, 0">
+                    <Label.ToolTip>
+                        <TextBlock>Для начала выберите заказ, к которому хотите добавить оплату, в списке.</TextBlock>
+                    </Label.ToolTip>
+                </Label>
                 <Label Name="ShowLabel" Content="Показать:" Grid.Column="1" Grid.Row="2" Margin="0, 15, 0, 15" VerticalAlignment="Bottom"/>
                 <StackPanel x:Name="CharacteristicsOfOrdersStackPanel" Grid.Row="3" Grid.Column="1" Grid.RowSpan="2" Margin="0, 10, 0, 10">
                     <CheckBox Content="Оплаченные" Margin="0, 5, 0, 0" IsChecked="{Binding ShowPaid}"/>
@@ -279,7 +285,12 @@
                     <CheckBox Content="Текущие" Margin="0, 5, 0, 0" IsChecked="{Binding ShowActive}" IsEnabled="{Binding ShowActiveAvailability}" />
                     <CheckBox Content="Отменённые" Margin="0, 5, 0, 0" IsChecked="{Binding ShowCanceled}" IsEnabled="{Binding ShowCanceledAvailability}"/>
                 </StackPanel>
-                <Button x:Name="CancelOrderButton" Content="Отменить заказ" Grid.Column="1" Grid.Row="6" Margin="0, 0, 0, 30" IsEnabled="{Binding IsCancelButtonAvailable}"/>
+                <Button x:Name="CancelOrderButton" Content="Отменить заказ" Grid.Column="1" Grid.Row="6" Margin="0, 0, 0, 30" IsEnabled="{Binding AreButtonsAvailable}"/>
+                <Label Visibility="{Binding IsToolTipOn}" Grid.Column="1" Grid.Row="6" Margin="0, 0, 0, 30">
+                    <Label.ToolTip>
+                        <TextBlock>Для начала выберите заказ, который хотите удалить, в списке.</TextBlock>
+                    </Label.ToolTip>
+                </Label>
             </Grid>
             <Grid x:Name="MainOrderGrid" Grid.Column ="0" Background="#FFE0DFDF" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                 <Grid.ColumnDefinitions>
@@ -298,8 +309,11 @@
                         <RowDefinition/>
                         <RowDefinition/>
                     </Grid.RowDefinitions>
-
-                    <Button x:Name="AddFinallyPaymentButton" Command="{Binding ChangePaymentVisibility}" CommandParameter="{Binding Payment}" Content="Добавить оплату" Grid.Column="1" Grid.Row="6" Margin="15, 0, 15, 30"/>
+                    <Label Name="AmountLabel" Grid.Row="1" Grid.Column="1" Content="Введите сумму платежа:" Margin="2, 35, 2, 0"/>
+                    <TextBox x:Name="AmountTextBox" Grid.Row="2" Grid.Column="1" Text ="{Binding Payment.Amount}" Margin="15, 15, 15, 15"/>
+                    <Label Name="DateLabel" Grid.Row="3" Grid.Column="1" Content="Выберите дату:" Margin="2, 35, 2, 0"/>
+                    <DatePicker x:Name="PaymentDatePicker" Grid.Row="4" Grid.Column="1" SelectedDate ="{Binding Payment.PaymentDate}" Margin="15, 15, 15, 15"/> 
+                    <Button x:Name="AddFinallyPaymentButton" IsEnabled="{Binding Payment.IsAddPaymentButtonAvailable}"  Command="{Binding Payment.ChangePaymentVisibility}" Content="Добавить оплату" Grid.Column="1" Grid.Row="6" Margin="15, 0, 15, 30"/>
                 </Grid>
             </Grid>
         </Grid>

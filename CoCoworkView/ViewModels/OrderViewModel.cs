@@ -16,7 +16,8 @@ namespace CoCowork.UI.ViewModels
 
         private bool _showCanceledAvailability;
         private bool _showActiveAvailability;
-        private bool _isCancelButtonAvailable;
+        private bool _areButtonsAvailable;
+        private Visibility _isToolTipOn;
 
         private OrderModel _selectedItem;
         public OrderViewModel()
@@ -27,6 +28,7 @@ namespace CoCowork.UI.ViewModels
             Service = new OrderService();
             Payment = new PaymentViewModel();
             Orders = new ObservableCollection<OrderModel>();
+            IsToolTipOn = Visibility.Visible;
 
             GetOrdersCommand = new GetOrdersCommand();
             ShowPaid = true;
@@ -121,15 +123,29 @@ namespace CoCowork.UI.ViewModels
             }
         }
 
-        public bool IsCancelButtonAvailable
+        public bool AreButtonsAvailable
         {
-            get => _isCancelButtonAvailable;
+            get => _areButtonsAvailable;
             set
             {
-                if (value != _isCancelButtonAvailable)
+                if (value != _areButtonsAvailable)
                 {
-                    _isCancelButtonAvailable = value;
-                    OnPropertyChanged(nameof(IsCancelButtonAvailable));
+                    _areButtonsAvailable = value;
+                    OnPropertyChanged(nameof(AreButtonsAvailable));
+                }
+            }
+        }
+
+        public Visibility IsToolTipOn
+        {
+            get => _isToolTipOn;
+            set
+            {
+                if (value != _isToolTipOn)
+                {
+                    _isToolTipOn = value;
+
+                    OnPropertyChanged(nameof(IsToolTipOn));
                 }
             }
         }
@@ -144,14 +160,22 @@ namespace CoCowork.UI.ViewModels
                     _selectedItem = value;
 
                     OnPropertyChanged(nameof(SelectedItem));
-                    if (value != null) IsCancelButtonAvailable = true;
+                    if (value != null && Payment.GridVisibility == Visibility.Collapsed)
+                    {
+                        AreButtonsAvailable = true;
+                        IsToolTipOn = Visibility.Collapsed;
+                        Payment.OrderId = SelectedItem.Id;
+                    }
+                    else
+                    {
+                        AreButtonsAvailable = false;
+                        IsToolTipOn = Visibility.Visible;
+                    }
                 }
             }
         }
 
         public ICommand GetOrdersCommand;
-
-        
 
         public OrderService Service;
     }
