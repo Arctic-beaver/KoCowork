@@ -120,7 +120,7 @@
                 <Label Content="Компьютеры" HorizontalAlignment="Center" Grid.Column="2" Grid.Row="0" FontFamily="Arial Black"/>
 
                 <DataGrid x:Name="MiniOffices" AutoGenerateColumns="False" Margin="2 0 2 0" Grid.Column="0" Grid.Row="1" CanUserAddRows="False" 
-                      ItemsSource="{Binding MiniOffices}" SelectedItem="{Binding Path=BookingSelectedItem, Mode=TwoWay}" ColumnWidth="*" CanUserDeleteRows="False">
+                      ItemsSource="{Binding MiniOffices}" SelectedItem="{Binding Path=MiniOfficeVM.SelectedItem, Mode=TwoWay}" ColumnWidth="*" CanUserDeleteRows="False">
                     <DataGrid.Resources>
                         <Style TargetType="{x:Type DataGridColumnHeader}">
                             <Setter Property="HorizontalContentAlignment" Value="Center"/>
@@ -232,9 +232,9 @@
                     <Button x:Name="AddMiniOfficeButton" Command="{Binding ChangeMiniOfficeEditVisibility}" CommandParameter="{Binding MiniOfficeVM}"
                             Content="Добавить" Grid.Column="0" Grid.Row="7" Margin="15, 0, 15, 30"/>
                     <Button x:Name="EditFinallyMiniOfficeButton" Command="{Binding ChangeMiniOfficeEditVisibility}" CommandParameter="{Binding MiniOfficeVM}"
-                            Content="Редактировать" Grid.Column="0" Grid.Row="8" Margin="15, 0, 15, 30"/>
+                            Content="Редактировать" Grid.Column="0" Grid.Row="8" Margin="15, 0, 15, 30" IsEnabled="{Binding MiniOfficeVM.AreButtonsAvailable}"/>
                     <Button x:Name="DeleteMiniOfficeButton" Command="{Binding MiniOfficeVM.DeleteMiniOffice}" CommandParameter="{Binding MiniOfficeVM}"
-                            Content="Удалить" Grid.Column="0" Grid.Row="9" Margin="15, 0, 15, 30"/>
+                            Content="Удалить" Grid.Column="0" Grid.Row="9" Margin="15, 0, 15, 30" IsEnabled="{Binding MiniOfficeVM.AreButtonsAvailable}"/>
                 </Grid>
             </Grid>
         </Grid>

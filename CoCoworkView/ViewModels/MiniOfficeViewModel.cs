@@ -1,9 +1,7 @@
-﻿
-using CoCowork.BusinessLayer.Models;
+﻿using CoCowork.BusinessLayer.Models;
 using CoCowork.BusinessLayer.Services;
 using CoCowork.UI.Commands;
 using CoCowork.UI.Commands.BookingCommands;
-using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Input;
 
@@ -15,8 +13,10 @@ namespace CoCowork.UI.ViewModels
         private decimal? _pricePerDay;
         private int? _amountOfPlaces;
         private bool _isEditButtonAvailable;
-        private MiniOfficeService _service;
-        private ItemModel _selectedItem;
+        private readonly MiniOfficeService _service;
+        private MiniOfficeModel _selectedItem;
+        private bool _areButtonsAvailable;
+        private bool _isAddButtonAvailable;
 
         public string Name
         {
@@ -64,13 +64,51 @@ namespace CoCowork.UI.ViewModels
             }
         }
 
-        public ItemModel SelectedItem
+        public bool AreButtonsAvailable
+        {
+            get => _areButtonsAvailable;
+            set
+            {
+                if (value != _areButtonsAvailable)
+                {
+                    _areButtonsAvailable = value;
+                    OnPropertyChanged(nameof(AreButtonsAvailable));
+                }
+            }
+        }
+
+        public bool IsAddButtonAvailable
+        {
+            get => _isAddButtonAvailable;
+            set
+            {
+                if (value != _isAddButtonAvailable)
+                {
+                    _isAddButtonAvailable = value;
+                    OnPropertyChanged(nameof(IsAddButtonAvailable));
+                }
+            }
+        }
+
+        public MiniOfficeModel SelectedItem
         {
             get => _selectedItem;
             set
             {
-                _selectedItem = value;
-                OnPropertyChanged(nameof(SelectedItem));
+                if (value != _selectedItem)
+                {
+                    _selectedItem = value;
+
+                    OnPropertyChanged(nameof(SelectedItem));
+                    if (value != null)
+                    {
+                        AreButtonsAvailable = true;
+                    }
+                    else
+                    {
+                        AreButtonsAvailable = false;
+                    }
+                }
             }
         }
 
@@ -84,15 +122,23 @@ namespace CoCowork.UI.ViewModels
             GridVisibility = Visibility.Collapsed;
 
             DeleteMiniOffice = new DeleteMiniOfficeCommand(bookingVM, _service);
+            AddMiniOffice = new AddMiniOfficeCommand(this, bookingVM, _service);
+            //EditMiniOffice = new EditMiniOfficeCommand(this, _service);
             ChangeMiniOfficeEditVisibility = new VisibilityOfInnerGridCommand(this);
         }
 
         public void CheckIfAllFieldsFilledCorrectly()
         {
-            if (Name != null &&
-            PricePerDay != null &&
-            AmountOfPlaces != null) IsEditButtonAvailable = true;
-            else IsEditButtonAvailable = false;
+            if (Name != null && PricePerDay != null && AmountOfPlaces != null)
+            {
+                IsEditButtonAvailable = true;
+                IsAddButtonAvailable = true;
+            }
+            else
+            {
+                IsEditButtonAvailable = false;
+                IsAddButtonAvailable = false;
+            }
         }
     }
 }
