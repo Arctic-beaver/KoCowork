@@ -1,5 +1,4 @@
 ﻿using CoCowork.BusinessLayer.Models;
-using CoCowork.BusinessLayer.Models;
 using CoCowork.DataLayer.Entities;
 using CoCowork.DataLayer.Repositories;
 using System.Collections.ObjectModel;
@@ -24,7 +23,7 @@ namespace CoCowork.BusinessLayer.Services
                     case MiniOfficeModel miniOffice:
                         var miniOfficeService = new MiniOfficeRepository();
                         MiniOffice miniOfficeEntity = miniOfficeService.GetAll().Find(x => x.Id.Equals(miniOffice.Id));
-                        var newMiniOfficeOrder = new MiniOfficeOrder { MiniOffice = miniOfficeEntity, Order = order, SubtotalPrice = miniOffice.Price, StartDate = System.DateTime.Now, EndDate = System.DateTime.Now};
+                        var newMiniOfficeOrder = new MiniOfficeOrder { MiniOffice = miniOfficeEntity, Order = order, SubtotalPrice = miniOffice.Price, StartDate = System.DateTime.Now, EndDate = System.DateTime.Now };
                         var addMiniOfficeOrder = new MiniOfficeOrderRepository();
                         addMiniOfficeOrder.Add(newMiniOfficeOrder);
                         break;
@@ -37,8 +36,8 @@ namespace CoCowork.BusinessLayer.Services
                         break;
                     case ProductModel product:
                         var productService = new ProductRepository();
-                        Product productEntity = productService.GetAll().Find(x => x.Id.Equals(product.Id)); 
-                        var newProductOrder = new ProductOrder { Product = productEntity, Order = order, SubtotalPrice = productEntity.Price};
+                        Product productEntity = productService.GetAll().Find(x => x.Id.Equals(product.Id));
+                        var newProductOrder = new ProductOrder { Product = productEntity, Order = order, SubtotalPrice = productEntity.Price };
                         var addProductOrder = new ProductOrderRepository();
                         addProductOrder.Add(newProductOrder);
                         break;

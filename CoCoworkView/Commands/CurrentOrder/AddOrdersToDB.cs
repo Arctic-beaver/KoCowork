@@ -9,29 +9,32 @@ using System.Windows.Input;
 
 namespace CoCowork.UI.Commands.CurrentOrder
 {
-    public class AddOrdersToDB : ICommand
+    public class AddOrdersToDB : CommandBase
     {
         public event EventHandler CanExecuteChanged;
 
-        public List<IItemModel> ListOrders { get; set; }
-
         private CurrentOrderViewModel _vm;
+
+        private ClientService _clientService;
+        private OrderService _orderService;
+        private CreateItemOrders _createItemOrders;
 
         public AddOrdersToDB(CurrentOrderViewModel vm)
         {
             _vm = vm;
+            _clientService = new ClientService();
+            _orderService = new OrderService();
+            _createItemOrders = new CreateItemOrders();
+
 
         }
-
-        public Client ClientEntity { get; set; }
-
 
         public bool CanExecute(object parameter)
         {
             return true;
         }
 
-        public void Execute(object parameter)
+        public override void Execute(object parameter)
         {
             if (_vm.SelectedClient == null)
             {
@@ -40,13 +43,10 @@ namespace CoCowork.UI.Commands.CurrentOrder
             }
             else
             {
+                var clientEntity = _clientService.FindClientInDB(_vm.SelectedClient);
+                var newOrder = _orderService.GenerateNewOrder(clientEntity, _vm.IsCancelled, _vm.IsPaid, _vm.TotalPrice);
 
-                var client = new ClientService();
-                var clientEntity = client.ConvertClientModelToEntities(_vm.SelectedClient);
-                var orderService = new OrderService();
-                var newOrder = orderService.AddedOrderToDB(clientEntity, _vm.IsCancelled, _vm.IsPaid, _vm.TotalPrice);
-                var newItemOrders = new CreateItemOrders();
-                newItemOrders.CreateOrdersForItem(_vm.CurrentOrder, newOrder);
+                _createItemOrders.CreateOrdersForItem(_vm.CurrentOrder, newOrder);
                 MessageBox.Show("Заказ успешно сформирован!");
             }
 

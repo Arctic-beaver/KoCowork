@@ -2,20 +2,19 @@
 using CoCowork.BusinessLayer.Models;
 using CoCowork.DataLayer.Entities;
 using CoCowork.DataLayer.Repositories;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CoCowork.BusinessLayer.Services
 {
-    public class OrderService
+    public class OrderService : IOrderService
     {
         private readonly IOrderRepository _orderRepository;
 
+        private Order _order;
+
         public OrderService()
         {
+
             _orderRepository = new OrderRepository();
         }
 
@@ -72,13 +71,7 @@ namespace CoCowork.BusinessLayer.Services
         {
             var orders = CustomMapper.GetInstance().Map<List<OrderModel>>(_orderRepository.GetAll());
             var result = new List<OrderModel>();
-            //foreach (var order in orders)
-            //{
-            //    if (order. == true)
-            //    {
-            //        result.Add(order);
-            //    }
-            //}
+
             return result;
         }
 
@@ -89,13 +82,12 @@ namespace CoCowork.BusinessLayer.Services
         }
 
 
-        public Order AddedOrderToDB(Client client, bool isCanceled, bool isPaid, decimal totalPrice)
+        public Order GenerateNewOrder(Client client, bool isCanceled, bool isPaid, decimal totalPrice)
         {
-            var newOrder = new Order { Client = client, IsCanceled = isCanceled, IsPaid = isPaid, TotalPrice = totalPrice };
-            var newOrderRepository = new OrderRepository();
-            var idOrder = newOrderRepository.Add(newOrder);
-            newOrder.Id = idOrder;
-            return newOrder;
+            _order = new Order { Client = client, TotalPrice = totalPrice, IsCanceled = isCanceled, IsPaid = isPaid };
+            var idOrder = _orderRepository.Add(_order);
+            _order.Id = idOrder;
+            return _order;
         }
 
 

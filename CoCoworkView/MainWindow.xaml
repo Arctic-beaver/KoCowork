@@ -15,8 +15,8 @@
             <i:InvokeCommandAction Command="{Binding Booking.GetConferenceRooms}"/>
             <i:InvokeCommandAction Command="{Binding Booking.GetMeetingRooms}"/>
             <i:InvokeCommandAction Command="{Binding Booking.GetPlaces}"/>
-            <i:InvokeCommandAction Command="{Binding Booking.GetComputers}"/>
             <i:InvokeCommandAction Command="{Binding CurrentOrder.GetClients}"/>
+            <i:InvokeCommandAction Command="{Binding Booking.GetLaptops}"/>
         </i:EventTrigger>
     </i:Interaction.Triggers>
     <Grid>
@@ -81,7 +81,7 @@
                 <Button x:Name="AddNewButton" Content="Инсертнуть" Grid.Column="1" Grid.Row="2" Margin="0, 30, 0, 0"/>
                 <Button x:Name="EditButton" Content="Редактировать" Grid.Column="1" Grid.Row="4"
                         Margin="0, 15, 0, 15" Command="{Binding MiniOfficeVM.ChangeMiniOfficeEditVisibility}"/>
-                <Button x:Name="AddToOrderButton" Content="Добавить к заказу" Grid.Column="1" Grid.Row="5" Margin="0, 15, 0, 15"/>
+                <Button x:Name="AddToOrderButton" Content="Добавить к заказу" Command="{Binding AddToCurrentOrders}" Grid.Column="1" Grid.Row="5" Margin="0, 15, 0, 15"/>
                 <Button x:Name="DeleteButton" Content="Удалить" Grid.Column="1" Grid.Row="6"
                         Margin="0, 15, 0, 15"/>
             </Grid>
@@ -177,7 +177,7 @@
                 </DataGrid>
 
                 <DataGrid x:Name="Computers" AutoGenerateColumns="False" Margin="0 0 0 0" Width="auto" Grid.Column="2" Grid.Row="1" CanUserAddRows="False" Grid.RowSpan="5"
-                      ItemsSource="{Binding Computers}" SelectedItem="{Binding Path=BookingSelectedItem, Mode=TwoWay}" ColumnWidth="*" CanUserDeleteRows="False">
+                      ItemsSource="{Binding Laptops}" SelectedItem="{Binding Path=BookingSelectedItem, Mode=TwoWay}" ColumnWidth="*" CanUserDeleteRows="False">
                     <DataGrid.Resources>
                         <Style TargetType="{x:Type DataGridColumnHeader}">
                             <Setter Property="HorizontalContentAlignment" Value="Center"/>

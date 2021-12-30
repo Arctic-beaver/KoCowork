@@ -1,16 +1,12 @@
-﻿using CoCowork.BusinessLayer.Models;
-using CoCowork.DataLayer.Repositories;
-using CoCowork.BusinessLayer.Configuration;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using CoCowork.BusinessLayer.Configuration;
+using CoCowork.BusinessLayer.Models;
 using CoCowork.DataLayer.Entities;
+using CoCowork.DataLayer.Repositories;
+using System.Collections.Generic;
 
 namespace CoCowork.BusinessLayer.Services
 {
-    public class RoomService
+    public class RoomService : IRoomService
     {
         private readonly IRoomRepository _roomRepository;
         private const string _meetingRoom = "Переговорная";

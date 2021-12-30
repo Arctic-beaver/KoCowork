@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace CoCowork.BusinessLayer.Services
 {
-    public class LaptopService
+    public class LaptopService : ILaptopService
     {
         private readonly ILaptopRepository _laptopRepository;
 
@@ -17,7 +17,7 @@ namespace CoCowork.BusinessLayer.Services
 
         public List<LaptopModel> GetAll()
         {
-            var computers = _laptopRepository.GetAllLaptops();
+            var computers = _laptopRepository.GetAll();
             return CustomMapper.GetInstance().Map<List<LaptopModel>>(computers);
         }
 

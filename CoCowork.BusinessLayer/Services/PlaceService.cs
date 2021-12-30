@@ -1,13 +1,12 @@
-﻿using CoCowork.BusinessLayer.Models;
+﻿using CoCowork.BusinessLayer.Configuration;
+using CoCowork.BusinessLayer.Models;
 using CoCowork.DataLayer.Entities;
 using CoCowork.DataLayer.Repositories;
-using CoCowork.BusinessLayer.Configuration;
-using System;
 using System.Collections.Generic;
 
 namespace CoCowork.BusinessLayer.Services
 {
-    public class PlaceService
+    public class PlaceService : IPlaceService
     {
         private readonly IPlaceRepository _placeRepository;
 

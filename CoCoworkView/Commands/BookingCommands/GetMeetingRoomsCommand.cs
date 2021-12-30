@@ -1,6 +1,5 @@
 ﻿using CoCowork.BusinessLayer.Services;
 using CoCowork.UI.ViewModels;
-using System;
 
 namespace CoCowork.UI.Commands.BookingCommands
 {

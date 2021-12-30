@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace CoCowork.BusinessLayer.Services
 {
-    internal class ProductService
+    internal class ProductService : IProductService
     {
         private readonly ProductRepository _productRepository;
 
@@ -21,10 +21,7 @@ namespace CoCowork.BusinessLayer.Services
             return CustomMapper.GetInstance().Map<List<ProductModel>>(Products);
         }
 
-        public Product ConvertModelToEntities(ProductModel product)
-        {
-            return CustomMapper.GetInstance().Map<Product>(product);
-        }
+
     }
 }
 

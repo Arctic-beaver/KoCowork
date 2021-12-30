@@ -1,31 +1,28 @@
-﻿using CoCowork.BusinessLayer.Models;
-using CoCowork.BusinessLayer.Services;
+﻿using CoCowork.BusinessLayer.Services;
 using CoCowork.UI.ViewModels;
-using System;
-using System.Collections.ObjectModel;
 
 namespace CoCowork.UI.Commands.BookingCommands
 {
     public class GetLaptopsCommand : CommandBase
     {
         private readonly BookingViewModel _vm;
-        private readonly LaptopService _computerService;
+        private readonly LaptopService _laptopService;
 
-        public GetLaptopsCommand(BookingViewModel vm, LaptopService computerService)
+        public GetLaptopsCommand(BookingViewModel vm, LaptopService laptopService)
         {
             _vm = vm;
-            _computerService = computerService;
+            _laptopService = laptopService;
         }
 
         public override void Execute(object parameter)
         {
             //_vm.Computers = new ObservableCollection<ComputerModel>(_computerService.GetAll());
 
-            var computers = _computerService.GetAll();
+            var computers = _laptopService.GetAll();
 
             foreach (var item in computers)
             {
-                _vm.Computers.Add(item);
+                _vm.Laptops.Add(item);
             }
         }
     }
