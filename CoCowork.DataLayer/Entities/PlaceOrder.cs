@@ -2,12 +2,20 @@
 
 namespace CoCowork.DataLayer.Entities
 {
-    public class PlaceOrder : BaseOrder
+    public class PlaceOrder : BookingBaseOrder
     {
         public Place Place { get; set; }
-        public Order Order { get; set; }
         public int ClientId { get; set; }
-        public DateTime StartDate { get; set; }
-        public DateTime EndDate { get; set; }
+        private double _amountDays;
+
+
+
+        public override void CalculateSubtotalPrice(decimal price)
+        {
+            _amountDays = GetAmountDays();
+            SubtotalPrice = Convert.ToDecimal(_amountDays) * price;
+        }
+
+        
     }
 }

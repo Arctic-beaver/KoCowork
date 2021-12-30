@@ -3,11 +3,18 @@
 
 namespace CoCowork.DataLayer.Entities
 {
-    public class LaptopOrder : BaseOrder
+    public class LaptopOrder : BookingBaseOrder
     {
         public Laptop Laptop { get; set; }
-        public Order Order { get; set; } // make Order order once merge with main
-        public DateTime StartDate { get; set; }
-        public DateTime EndDate { get; set; }
+
+        private double _amountMonths;
+
+        public override void CalculateSubtotalPrice(decimal price)
+        {
+            _amountMonths = GetAmountMonth();
+            SubtotalPrice = Convert.ToDecimal(_amountMonths) * price;
+        }
+
+       
     }
 }

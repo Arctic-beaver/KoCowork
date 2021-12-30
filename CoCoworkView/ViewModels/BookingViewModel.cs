@@ -55,6 +55,7 @@ namespace CoCowork.UI.ViewModels
             ConferenceRooms = new ObservableCollection<RoomModel>();
             Laptops = new ObservableCollection<LaptopModel>();
 
+
             GetPlaces = new GetPlacesCommand(this, _placeService);
             GetMiniOffices = new GetMiniOfficesCommand(this, _miniOfficeService);
             GetMeetingRooms = new GetMeetingRoomsCommand(this, _roomService);
