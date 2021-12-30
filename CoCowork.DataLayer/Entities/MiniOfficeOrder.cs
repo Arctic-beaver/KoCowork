@@ -14,6 +14,6 @@ namespace CoCowork.DataLayer.Entities
             SubtotalPrice = Convert.ToDecimal(_amountDays) * price;
         }
 
-        
+
     }
 }

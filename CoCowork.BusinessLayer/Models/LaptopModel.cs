@@ -1,5 +1,4 @@
-﻿using CoCowork.BusinessLayer.Services;
-using CoCowork.DataLayer.Entities;
+﻿using CoCowork.DataLayer.Entities;
 using CoCowork.DataLayer.Repositories;
 using System;
 

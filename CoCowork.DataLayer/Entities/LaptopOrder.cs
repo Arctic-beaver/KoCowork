@@ -6,7 +6,6 @@ namespace CoCowork.DataLayer.Entities
     public class LaptopOrder : BookingBaseOrder
     {
         public Laptop Laptop { get; set; }
-
         private double _amountMonths;
 
         public override void CalculateSubtotalPrice(decimal price)
@@ -15,6 +14,6 @@ namespace CoCowork.DataLayer.Entities
             SubtotalPrice = Convert.ToDecimal(_amountMonths) * price;
         }
 
-       
+
     }
 }

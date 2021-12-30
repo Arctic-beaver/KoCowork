@@ -8,7 +8,7 @@ namespace CoCowork.BusinessLayer.Models
     {
         public string Name { get; set; }
         public string TypeForDisplayInUI = "Продукты";
-        
+
         private ProductRepository _repository;
         private Product _entitie;
         private ProductOrder _itemOrder;
@@ -24,7 +24,7 @@ namespace CoCowork.BusinessLayer.Models
         {
             _entitie = _repository.GetAll().Find(x => x.Id == id);
 
-            _itemOrder = new ProductOrder { Product = _entitie, Order = order, SubtotalPrice = price};
+            _itemOrder = new ProductOrder { Product = _entitie, Order = order, SubtotalPrice = price };
 
             _orderRepository.Add(_itemOrder);
         }

@@ -1,6 +1,5 @@
 ﻿using CoCowork.BusinessLayer.Configuration;
 using CoCowork.BusinessLayer.Models;
-using CoCowork.DataLayer.Entities;
 using CoCowork.DataLayer.Repositories;
 using System.Collections.Generic;
 

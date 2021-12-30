@@ -9,7 +9,6 @@ namespace CoCowork.DataLayer.Entities
 
         public abstract void CalculateSubtotalPrice(decimal price);
 
-
         public double GetAmountDays()
         {
             return (EndDate - StartDate).TotalDays;

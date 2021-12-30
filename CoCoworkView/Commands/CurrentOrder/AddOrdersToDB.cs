@@ -1,11 +1,7 @@
-﻿using CoCowork.BusinessLayer.Models;
-using CoCowork.BusinessLayer.Services;
-using CoCowork.DataLayer.Entities;
+﻿using CoCowork.BusinessLayer.Services;
 using CoCowork.UI.ViewModels;
 using System;
-using System.Collections.Generic;
 using System.Windows;
-using System.Windows.Input;
 
 namespace CoCowork.UI.Commands.CurrentOrder
 {

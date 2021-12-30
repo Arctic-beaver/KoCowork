@@ -1,6 +1,5 @@
 ﻿using CoCowork.BusinessLayer.Models;
 using CoCowork.DataLayer.Entities;
-using CoCowork.DataLayer.Repositories;
 using System;
 using System.Collections.ObjectModel;
 
@@ -15,9 +14,6 @@ namespace CoCowork.BusinessLayer.Services
             {
                 item.AddItemOrder(item.Id, order, DateTime.Now, DateTime.Now, item.Price);
             }
-
-           
-            
         }
     }
 }
