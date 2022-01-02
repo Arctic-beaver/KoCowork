@@ -14,17 +14,6 @@ namespace CoCowork.UI.ViewModels
         private PlaceService _placeService;
         private ComputerService _computerService;
         private RoomService _roomService;
-        private ItemModel _bookingSelectedItem;
-
-        public ItemModel BookingSelectedItem
-        {
-            get => _bookingSelectedItem;
-            set
-            {
-                _bookingSelectedItem = value;
-                OnPropertyChanged(nameof(BookingSelectedItem));
-            }
-        }
 
         public ObservableCollection<PlaceModel> Places { get; set; }
         public ObservableCollection<MiniOfficeModel> MiniOffices { get; set; }

@@ -15,7 +15,7 @@ namespace CoCowork.UI.ViewModels
         private bool _isEditButtonAvailable;
         private readonly MiniOfficeService _service;
         private MiniOfficeModel _selectedItem;
-        private bool _areButtonsAvailable;
+        private bool _isDeleteButtonAvailable;
         private bool _isAddButtonAvailable;
 
         public string Name
@@ -60,19 +60,20 @@ namespace CoCowork.UI.ViewModels
                 {
                     _isEditButtonAvailable = value;
                     OnPropertyChanged(nameof(IsEditButtonAvailable));
+                    CheckIfAllFieldsFilledCorrectly();
                 }
             }
         }
 
-        public bool AreButtonsAvailable
+        public bool IsDeleteButtonAvailable
         {
-            get => _areButtonsAvailable;
+            get => _isDeleteButtonAvailable;
             set
             {
-                if (value != _areButtonsAvailable)
+                if (value != _isDeleteButtonAvailable)
                 {
-                    _areButtonsAvailable = value;
-                    OnPropertyChanged(nameof(AreButtonsAvailable));
+                    _isDeleteButtonAvailable = value;
+                    OnPropertyChanged(nameof(IsDeleteButtonAvailable));
                 }
             }
         }
@@ -86,6 +87,7 @@ namespace CoCowork.UI.ViewModels
                 {
                     _isAddButtonAvailable = value;
                     OnPropertyChanged(nameof(IsAddButtonAvailable));
+                    CheckIfAllFieldsFilledCorrectly();
                 }
             }
         }
@@ -102,11 +104,11 @@ namespace CoCowork.UI.ViewModels
                     OnPropertyChanged(nameof(SelectedItem));
                     if (value != null)
                     {
-                        AreButtonsAvailable = true;
+                        IsDeleteButtonAvailable = true;
                     }
                     else
                     {
-                        AreButtonsAvailable = false;
+                        IsDeleteButtonAvailable = false;
                     }
                 }
             }
@@ -120,8 +122,9 @@ namespace CoCowork.UI.ViewModels
         public MiniOfficeViewModel(BookingViewModel bookingVM)
         {
             GridVisibility = Visibility.Collapsed;
+            _service = new MiniOfficeService();
 
-            DeleteMiniOffice = new DeleteMiniOfficeCommand(bookingVM, _service);
+            DeleteMiniOffice = new DeleteMiniOfficeCommand(this, bookingVM, _service);
             AddMiniOffice = new AddMiniOfficeCommand(this, bookingVM, _service);
             //EditMiniOffice = new EditMiniOfficeCommand(this, _service);
             ChangeMiniOfficeEditVisibility = new VisibilityOfInnerGridCommand(this);

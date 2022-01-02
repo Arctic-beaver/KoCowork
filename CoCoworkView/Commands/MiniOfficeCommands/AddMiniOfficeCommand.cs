@@ -3,30 +3,34 @@ using CoCowork.BusinessLayer.Services;
 using CoCowork.UI.ViewModels;
 using System.Windows;
 
-namespace CoCowork.UI.Commands.MiniOfficeCommands
+namespace CoCowork.UI.Commands.BookingCommands
 {
     public class AddMiniOfficeCommand : CommandBase
     {
-        private readonly MiniOfficeViewModel _vm;
+        private readonly MiniOfficeViewModel _miniOfficeVM;
+        private readonly BookingViewModel _bookingVM;
         private readonly MiniOfficeService _service;
 
-        public AddMiniOfficeCommand(MiniOfficeViewModel vm, MiniOfficeService service)
+        public AddMiniOfficeCommand(MiniOfficeViewModel miniOfficeVM, BookingViewModel bookingVM, MiniOfficeService service)
         {
-            _vm = vm;
+            _miniOfficeVM = miniOfficeVM;
+            _bookingVM = bookingVM;
             _service = service;
         }
 
         public override void Execute(object parameter)
         {
-            _vm.GridVisibility = Visibility.Collapsed;
             var miniOffice = new MiniOfficeModel()
             {
-                Name = _vm.Name,
-                PricePerDay = _vm.PricePerDay,
-                AmountOfPlaces = _vm.AmountOfPlaces,
+                Name = _miniOfficeVM.Name,
+                PricePerDay = _miniOfficeVM.PricePerDay,
+                AmountOfPlaces = _miniOfficeVM.AmountOfPlaces,
+                IsActive = true
             };
-            _service.InsertMiniOffice(miniOffice);
-
+            var insertedMiniOfficeId = _service.InsertMiniOffice(miniOffice);
+            miniOffice.Id = insertedMiniOfficeId;
+            _bookingVM.MiniOffices.Add(miniOffice);
+            _miniOfficeVM.GridVisibility = Visibility.Collapsed;
         }
     }
 }

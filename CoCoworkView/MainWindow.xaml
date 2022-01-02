@@ -229,12 +229,12 @@
                     <TextBox x:Name="PricePerDay"  Grid.Row="3" Margin="10, 0, 10, 30"/>
                     <Label Content="Кол-во человек" Grid.Row="3" Margin="5 25 5 0" HorizontalAlignment="Center"/>
                     <TextBox x:Name="AmountOfPeople"  Grid.Row="4" Margin="10, 0, 10, 30"/>
-                    <Button x:Name="AddMiniOfficeButton" Command="{Binding ChangeMiniOfficeEditVisibility}" CommandParameter="{Binding MiniOfficeVM}"
+                    <Button x:Name="AddMiniOfficeButton" IsEnabled="{Binding MiniOfficeVM.IsAddButtonAvailable}" Command="{Binding ChangeMiniOfficeEditVisibility}" CommandParameter="{Binding MiniOfficeVM}"
                             Content="Добавить" Grid.Column="0" Grid.Row="7" Margin="15, 0, 15, 30"/>
                     <Button x:Name="EditFinallyMiniOfficeButton" Command="{Binding ChangeMiniOfficeEditVisibility}" CommandParameter="{Binding MiniOfficeVM}"
-                            Content="Редактировать" Grid.Column="0" Grid.Row="8" Margin="15, 0, 15, 30" IsEnabled="{Binding MiniOfficeVM.AreButtonsAvailable}"/>
+                            Content="Редактировать" Grid.Column="0" Grid.Row="8" Margin="15, 0, 15, 30" IsEnabled="{Binding MiniOfficeVM.IsEditButtonAvailable}"/>
                     <Button x:Name="DeleteMiniOfficeButton" Command="{Binding MiniOfficeVM.DeleteMiniOffice}" CommandParameter="{Binding MiniOfficeVM}"
-                            Content="Удалить" Grid.Column="0" Grid.Row="9" Margin="15, 0, 15, 30" IsEnabled="{Binding MiniOfficeVM.AreButtonsAvailable}"/>
+                            Content="Удалить" Grid.Column="0" Grid.Row="9" Margin="15, 0, 15, 30" IsEnabled="{Binding MiniOfficeVM.IsDeleteButtonAvailable}"/>
                 </Grid>
             </Grid>
         </Grid>
