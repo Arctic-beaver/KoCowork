@@ -25,9 +25,9 @@ namespace CoCowork.BusinessLayer.Services
             return CustomMapper.GetInstance().Map<List<MiniOfficeModel>>(miniOffices);
         }
 
-        public void DeleteMiniOffice(int id)
+        public bool DeleteMiniOffice(int id)
         {
-            _miniOfficeRepository.DeleteMiniOfficeById(id);
+            return _miniOfficeRepository.DeleteMiniOfficeById(id);
         }
 
         public void UpdateMiniOffice(MiniOfficeModel miniOffice)

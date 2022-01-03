@@ -14,7 +14,7 @@ namespace CoCowork.UI.ViewModels
         private int? _amountOfPlaces;
         private bool _isEditButtonAvailable;
         private readonly MiniOfficeService _service;
-        private MiniOfficeModel _selectedItem;
+        private MiniOfficeModel _selectedMiniOffice;
         private bool _isDeleteButtonAvailable;
         private bool _isAddButtonAvailable;
 
@@ -92,16 +92,16 @@ namespace CoCowork.UI.ViewModels
             }
         }
 
-        public MiniOfficeModel SelectedItem
+        public MiniOfficeModel SelectedMiniOffice
         {
-            get => _selectedItem;
+            get => _selectedMiniOffice;
             set
             {
-                if (value != _selectedItem)
+                if (value != _selectedMiniOffice)
                 {
-                    _selectedItem = value;
+                    _selectedMiniOffice = value;
+                    OnPropertyChanged(nameof(SelectedMiniOffice));
 
-                    OnPropertyChanged(nameof(SelectedItem));
                     if (value != null)
                     {
                         IsDeleteButtonAvailable = true;

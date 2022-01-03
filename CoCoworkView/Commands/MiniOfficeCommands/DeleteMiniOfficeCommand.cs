@@ -1,5 +1,6 @@
 ﻿using CoCowork.BusinessLayer.Services;
 using CoCowork.UI.ViewModels;
+using System.Windows;
 
 namespace CoCowork.UI.Commands.BookingCommands
 {
@@ -18,9 +19,17 @@ namespace CoCowork.UI.Commands.BookingCommands
 
         public override void Execute(object parameter)
         {
-            //var miniOffice = _miniOfficeVM.SelectedItem;
-            _service.DeleteMiniOffice(_miniOfficeVM.SelectedItem.Id);
-            _bookingVM.MiniOffices.Remove(_miniOfficeVM.SelectedItem);
+            bool result = _service.DeleteMiniOffice(_miniOfficeVM.SelectedMiniOffice.Id);
+
+            if (result)
+            {
+                _bookingVM.MiniOffices.Remove(_miniOfficeVM.SelectedMiniOffice);
+                _miniOfficeVM.GridVisibility = Visibility.Collapsed;
+            }
+            else
+            {
+                MessageBox.Show("Выбранный миниофис не может быть удален");
+            }
         }
     }
 }

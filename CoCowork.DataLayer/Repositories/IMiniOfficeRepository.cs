@@ -6,7 +6,7 @@ namespace CoCowork.DataLayer.Repositories
     public interface IMiniOfficeRepository
     {
         int Add(MiniOffice miniOffice);
-        void DeleteMiniOfficeById(int id);
+        bool DeleteMiniOfficeById(int id);
         List<MiniOffice> GetAll();
         MiniOffice GetMiniOfficeById(int id);
         void UpdateMiniOfficeById(MiniOffice miniOffice);
