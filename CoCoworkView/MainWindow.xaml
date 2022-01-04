@@ -258,7 +258,7 @@
             <Label>Text in client grid</Label>
         </Grid>
 
-        <Grid x:Name="OrderGrid" Grid.Column ="1" Visibility="{Binding GridVisibility}" DataContext="{Binding Order}">
+        <Grid x:Name="OrderGrid" Grid.Column ="1" Visibility="Hidden" DataContext="{Binding Order}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="75*"/>
                 <ColumnDefinition Width="25*"/>
