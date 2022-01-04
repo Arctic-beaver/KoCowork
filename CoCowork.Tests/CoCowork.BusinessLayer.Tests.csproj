@@ -14,6 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\CoCowork.BusinessLayer\CoCowork.BusinessLayer.csproj" />
     <ProjectReference Include="..\CoCowork.DataLayer\CoCowork.DataLayer.csproj" />
   </ItemGroup>
 

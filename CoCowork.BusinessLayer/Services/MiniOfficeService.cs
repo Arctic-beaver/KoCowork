@@ -13,10 +13,18 @@ namespace CoCowork.BusinessLayer.Services
     public class MiniOfficeService
     {
         private readonly IMiniOfficeRepository _miniOfficeRepository;
+        private readonly IPlaceRepository _placeRepository;
 
         public MiniOfficeService()
         {
             _miniOfficeRepository = new MiniOfficeRepository();
+            _placeRepository = new PlaceRepository();
+        }
+
+        public MiniOfficeService(IMiniOfficeRepository fakeMiniOfficeRepository, IPlaceRepository fakePlaceRepository)
+        {
+            _miniOfficeRepository = fakeMiniOfficeRepository;
+            _placeRepository = fakePlaceRepository;
         }
 
         public List<MiniOfficeModel> GetAll()
@@ -36,10 +44,10 @@ namespace CoCowork.BusinessLayer.Services
             _miniOfficeRepository.UpdateMiniOfficeById(mOffice);
         }
 
-        public void InsertMiniOffice(MiniOfficeModel miniOffice)
+        public int InsertMiniOffice(MiniOfficeModel miniOffice)
         {
             var mOffice = CustomMapper.GetInstance().Map<MiniOffice>(miniOffice);
-            _miniOfficeRepository.Add(mOffice);
+            return _miniOfficeRepository.Add(mOffice);
         }
     }
 }

@@ -64,11 +64,11 @@ namespace CoCowork.DataLayer.Repositories
                  .ToList();
         }
 
-        public void Add(Place place)
+        public int Add(Place place)
         {
             using IDbConnection connection = ProvideConnection();
 
-            connection.Execute(
+            var result = connection.Execute(
                 _insertProcedure,
                 new
                 {
@@ -77,6 +77,7 @@ namespace CoCowork.DataLayer.Repositories
                     PriceFixedPerDay = place.PriceFixedPerDay
                 },
                 commandType: CommandType.StoredProcedure);
+            return result;
         }
 
         public void UpdatePlaceById(Place place)
