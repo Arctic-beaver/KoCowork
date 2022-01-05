@@ -16,6 +16,7 @@
             <i:InvokeCommandAction Command="{Binding Booking.GetMeetingRooms}"/>
             <i:InvokeCommandAction Command="{Binding Booking.GetPlaces}"/>
             <i:InvokeCommandAction Command="{Binding Booking.GetComputers}"/>
+            <i:InvokeCommandAction Command="{Binding Product.GetProductsCommand}"/>
         </i:EventTrigger>
     </i:Interaction.Triggers>
 
