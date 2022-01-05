@@ -1,18 +1,13 @@
 ﻿using CoCowork.DataLayer.Entities;
 using Dapper;
-using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.SqlClient;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CoCowork.DataLayer.Repositories
 {
-    class PaymentRepository
+    public class PaymentRepository : BaseRepository, IPaymentRepository
     {
-        private const string _connString = "Server=80.78.240.16;User ID=student;Password=qwe!23;Database=CoCowork.DB;";
         private const string _selectAllProc = "dbo.Payment_SelectAll";
         private const string _selectByIdProc = "dbo.Payment_SelectById";
         private const string _insertProc = "dbo.Payment_Insert";
@@ -21,16 +16,13 @@ namespace CoCowork.DataLayer.Repositories
 
         public List<Payment> GetAllPayments()
         {
-            using var connection = new SqlConnection(_connString);
-            connection.Open();
-            var result = connection.Query<Payment>(_selectAllProc).ToList();
-            return result;
+            using IDbConnection connection = ProvideConnection();
+            return connection.Query<Payment>(_selectAllProc).ToList();
         }
 
         public Payment GetPaymentById(int id)
         {
-            using var connection = new SqlConnection(_connString);
-            connection.Open();
+            using IDbConnection connection = ProvideConnection();
 
             return connection
                 .QueryFirstOrDefault<Payment>(
@@ -41,8 +33,7 @@ namespace CoCowork.DataLayer.Repositories
 
         public void Add(Payment payment)
         {
-            using var connection = new SqlConnection(_connString);
-            connection.Open();
+            using IDbConnection connection = ProvideConnection();
 
             connection.Execute(_insertProc,
                 new
@@ -54,15 +45,14 @@ namespace CoCowork.DataLayer.Repositories
                 commandType: CommandType.StoredProcedure);
         }
 
-        public void UpdatePaymentById(int id, Payment payment)
+        public void UpdatePaymentById(Payment payment)
         {
-            using var connection = new SqlConnection(_connString);
-            connection.Open();
+            using IDbConnection connection = ProvideConnection();
 
             connection.Execute(_updateProc,
                 new
                 {
-                    Id = id,
+                    Id = payment.Id,
                     Amount = payment.Amount,
                     PaymentDate = payment.PaymentDate,
                     OrderId = payment.OrderId
@@ -72,8 +62,8 @@ namespace CoCowork.DataLayer.Repositories
 
         public void DeletePaymentById(int id)
         {
-            using var connection = new SqlConnection(_connString);
-            connection.Open();
+            using IDbConnection connection = ProvideConnection();
+
             connection.Execute(_deleteProc,
                         new { Id = id },
                         commandType: CommandType.StoredProcedure);

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CoCowork.BusinessLayer.Models
 {
-    public class ClientModel : ClientShortModel
+    public class ClientModel
     {
         public string Phone { get; set; }
         public string Email { get; set; }
