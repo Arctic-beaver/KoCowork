@@ -20,15 +20,21 @@ namespace CoCowork.UI.Commands.MiniOfficeCommands
 
         public override void Execute(object parameter)
         {
-            var miniOffice = new MiniOfficeModel()
+            var userAnswer = MessageBox.Show("Вы действительно хотите редактировать выбранный миниофис?", "Редактирование", MessageBoxButton.YesNo, MessageBoxImage.Question);
+
+            if (userAnswer == MessageBoxResult.Yes)
             {
-                Name = _miniOfficeVM.Name,
-                PricePerDay = _miniOfficeVM.PricePerDay,
-                AmountOfPlaces = _miniOfficeVM.AmountOfPlaces
-            };
-            _service.UpdateMiniOffice(miniOffice);
-            _bookingVM.MiniOffices.Add(miniOffice);
-            _miniOfficeVM.GridVisibility = Visibility.Collapsed;
+                var miniOffice = new MiniOfficeModel()
+                {
+                    Name = _miniOfficeVM.Name,
+                    PricePerDay = _miniOfficeVM.PricePerDay,
+                    AmountOfPlaces = _miniOfficeVM.AmountOfPlaces
+                };
+                _service.UpdateMiniOffice(miniOffice);
+                _bookingVM.MiniOffices.Remove(_miniOfficeVM.SelectedMiniOffice);
+                _bookingVM.MiniOffices.Add(miniOffice);
+                _miniOfficeVM.GridVisibility = Visibility.Collapsed;
+            }
         }
     }
 }

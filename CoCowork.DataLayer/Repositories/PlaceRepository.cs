@@ -2,7 +2,6 @@
 using Dapper;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.SqlClient;
 using System.Linq;
 
 
@@ -38,7 +37,7 @@ namespace CoCowork.DataLayer.Repositories
                     (_selectByIdProcedure,
                     (place, miniOffice) =>
                     {
-                        place.MiniOffice = miniOffice;
+                        place.MiniOfficeId = miniOffice.Id;
                         return place;
                     },
                     new
@@ -53,15 +52,10 @@ namespace CoCowork.DataLayer.Repositories
         {
             using IDbConnection connection = ProvideConnection();
 
-            return connection
-                 .Query<Place, MiniOffice, Place>
+            return connection.Query<Place>
                     (_selectThatNotInMiniOfficeProcedure,
-                    (place, miniOffice) =>
-                    {
-                        place.MiniOffice = miniOffice;
-                        return place;
-                    }, splitOn: "MiniOfficeId")
-                 .ToList();
+                    commandType: CommandType.StoredProcedure)
+                .ToList();
         }
 
         public void Add(Place place)
@@ -72,7 +66,7 @@ namespace CoCowork.DataLayer.Repositories
                 _insertProcedure,
                 new
                 {
-                    MiniOffice = place.MiniOffice.Id,
+                    MiniOfficeId = place.MiniOfficeId,
                     PricePerDay = place.PricePerDay,
                     PriceFixedPerDay = place.PriceFixedPerDay
                 },

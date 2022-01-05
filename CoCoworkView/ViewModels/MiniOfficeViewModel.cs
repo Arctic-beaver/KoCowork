@@ -12,6 +12,8 @@ namespace CoCowork.UI.ViewModels
     {
         private string _name;
         private decimal? _pricePerDay;
+        private decimal? _placePricePerDay;
+        private decimal? _placePriceFixedPerDay;
         private int? _amountOfPlaces;
         private bool _isEditButtonAvailable;
         private readonly MiniOfficeService _service;
@@ -37,6 +39,28 @@ namespace CoCowork.UI.ViewModels
             {
                 _pricePerDay = value;
                 OnPropertyChanged(nameof(PricePerDay));
+                CheckIfAllFieldsFilledCorrectly();
+            }
+        }
+
+        public decimal? PlacePricePerDay
+        {
+            get => _placePricePerDay;
+            set
+            {
+                _placePricePerDay = value;
+                OnPropertyChanged(nameof(PlacePricePerDay));
+                CheckIfAllFieldsFilledCorrectly();
+            }
+        }
+
+        public decimal? PlacePriceFixedPerDay
+        {
+            get => _placePriceFixedPerDay;
+            set
+            {
+                _placePriceFixedPerDay = value;
+                OnPropertyChanged(nameof(PlacePriceFixedPerDay));
                 CheckIfAllFieldsFilledCorrectly();
             }
         }

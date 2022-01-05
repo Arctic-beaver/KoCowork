@@ -19,16 +19,20 @@ namespace CoCowork.UI.Commands.BookingCommands
 
         public override void Execute(object parameter)
         {
-            bool result = _service.DeleteMiniOffice(_miniOfficeVM.SelectedMiniOffice.Id);
-
-            if (result)
+            bool result = _service.DeleteMiniOffice(_miniOfficeVM.SelectedMiniOffice);
+            var userAnswer = MessageBox.Show("Вы действительно хотите удалить выбранный миниофис?", "Удаление", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            
+            if (userAnswer == MessageBoxResult.Yes)
             {
-                _bookingVM.MiniOffices.Remove(_miniOfficeVM.SelectedMiniOffice);
-                _miniOfficeVM.GridVisibility = Visibility.Collapsed;
-            }
-            else
-            {
-                MessageBox.Show("Выбранный миниофис не может быть удален");
+                if (result)
+                {
+                    _bookingVM.MiniOffices.Remove(_miniOfficeVM.SelectedMiniOffice);
+                    _miniOfficeVM.GridVisibility = Visibility.Collapsed;
+                }  
+                else
+                {
+                    MessageBox.Show("Ошибка при удалении из базы данных", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             }
         }
     }
