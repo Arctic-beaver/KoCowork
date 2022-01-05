@@ -64,7 +64,7 @@ namespace CoCowork.DataLayer.Repositories
             return result;
         }
 
-        public void UpdateMiniOfficeById(MiniOffice miniOffice)
+        public void UpdateMiniOffice(MiniOffice miniOffice)
         {
             using IDbConnection connection = ProvideConnection();
 

@@ -72,9 +72,11 @@ namespace CoCowork.DataLayer.Repositories
                 _insertProcedure,
                 new
                 {
+                    Number = place.Number,
                     MiniOffice = place.MiniOffice.Id,
                     PricePerDay = place.PricePerDay,
-                    PriceFixedPerDay = place.PriceFixedPerDay
+                    PriceFixedPerDay = place.PriceFixedPerDay,
+                    Description = place.Description
                 },
                 commandType: CommandType.StoredProcedure);
             return result;

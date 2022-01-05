@@ -5,6 +5,7 @@ using CoCowork.DataLayer.Repositories;
 using Moq;
 using NUnit.Framework;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace CoCowork.BusinessLayer.Tests
 {
@@ -12,56 +13,23 @@ namespace CoCowork.BusinessLayer.Tests
     {
         private readonly Mock<IMiniOfficeRepository> _miniOfficeRepositoryMock;
         private readonly Mock<IPlaceRepository> _placeRepositoryMock;
+        private readonly MiniOfficeTestData _miniOfficeTestData;
 
         public MiniOfficeServiceTests()
         {
             _miniOfficeRepositoryMock = new Mock<IMiniOfficeRepository>();
-        }
-
-        [SetUp]
-        public void Setup()
-        {
+            _placeRepositoryMock = new Mock<IPlaceRepository>();
+            _miniOfficeTestData = new MiniOfficeTestData();
         }
 
         [Test]
         public void GetAllMiniOffices_ShouldReturnMiniOfficesWithPlaces()
         {
             //arrange
-            _miniOfficeRepositoryMock.Setup(m => m.GetAll()).Returns(new List<MiniOffice>
-            {
-                new MiniOffice
-                {
-                    Id = 1,
-                    Name = "Офис с диваном",
-                    AmountOfPlaces = 5,
-                    PricePerDay = 1000,
-                    IsActive = true,
-                    Places = new List<Place> {
-                        new Place {
-                            Id = 1,
-                            Number = 1,
-                            PricePerDay = 500,
-                            PriceFixedPerDay = 800,
-                            Description = "Офис с диваном"
-                        },
-                        new Place {
-                            Id = 2,
-                            Number = 2,
-                            PricePerDay = 500,
-                            PriceFixedPerDay = 800,
-                            Description = "Офис с диваном"
-                        },
-                        new Place {
-                            Id = 3,
-                            Number = 3,
-                            PricePerDay = 500,
-                            PriceFixedPerDay = 800,
-                            Description = "Офис с диваном"
-                        }
-                    }
-                }
-            });
-            var sut = new MiniOfficeService(_miniOfficeRepositoryMock.Object);
+            var miniOffices = _miniOfficeTestData.GetMiniOfficesListForTests();
+            _miniOfficeRepositoryMock.Setup(m => m.GetAll()).Returns(miniOffices);
+            _placeRepositoryMock.Setup(m => m.Add(It.IsAny<Place>())).Returns(42);
+            var sut = new MiniOfficeService(_miniOfficeRepositoryMock.Object, _placeRepositoryMock.Object);
 
             //act
             var actual = sut.GetAll();
@@ -75,43 +43,52 @@ namespace CoCowork.BusinessLayer.Tests
         }
 
         [Test]
-        public void AddMiniOffice()
+        public void AddMiniOfficeWithPlaces()
         {
             //arrange
-            var miniOfficeWithPlaces = new MiniOfficeModel
-            {
-                Id = 1,
-                Name = "Офис с диваном",
-                AmountOfPlaces = 5,
-                PricePerDay = 1000,
-                IsActive = true,
-                Places = new List<PlaceModel> {
-                    new PlaceModel {
-                        Id = 1,
-                        Number = 1,
-                        PricePerDay = 500,
-                        PriceFixedPerDay = 800,
-                        Description = "Офис с диваном"
-                    },
-                    new PlaceModel {
-                        Id = 2,
-                        Number = 2,
-                        PricePerDay = 500,
-                        PriceFixedPerDay = 800,
-                        Description = "Офис с диваном"
-                    }
-                }
-            };
-
+            var miniOfficeWithPlaces = _miniOfficeTestData.GetMiniOfficeModelForTests();
             _miniOfficeRepositoryMock.Setup(m => m.Add(It.IsAny<MiniOffice>())).Returns(23);
             _placeRepositoryMock.Setup(m => m.Add(It.IsAny<Place>())).Returns(42);
-            var sut = new MiniOfficeService(_miniOfficeRepositoryMock.Object);
+            var sut = new MiniOfficeService(_miniOfficeRepositoryMock.Object, _placeRepositoryMock.Object);
 
             //act
-            var actual = sut.InsertMiniOffice(miniOfficeWithPlaces);
+            var actual = sut.InsertMiniOfficeWithPlaces(miniOfficeWithPlaces);
 
             //assert
+            _miniOfficeRepositoryMock.Verify(m => m.Add(It.IsAny<MiniOffice>()), Times.Once());
+            _placeRepositoryMock.Verify(m => m.Add(It.IsAny<Place>()), Times.Exactly(miniOfficeWithPlaces.Places.Count));
+        }
 
+        [Test]
+        public void DeleteMiniOffice()
+        {
+            //arrange
+            var miniOfficeWithPlaces = _miniOfficeTestData.GetMiniOfficeModelForTests();
+            _miniOfficeRepositoryMock.Setup(m => m.DeleteMiniOfficeById(It.IsAny<int>()));
+            _placeRepositoryMock.Setup(m => m.Add(It.IsAny<Place>())).Returns(42);
+            var sut = new MiniOfficeService(_miniOfficeRepositoryMock.Object, _placeRepositoryMock.Object);
+
+            //act
+            sut.DeleteMiniOffice(miniOfficeWithPlaces);
+
+            //assert
+            _miniOfficeRepositoryMock.Verify(m => m.DeleteMiniOfficeById(It.IsAny<int>()), Times.Once());
+        }
+
+        [Test]
+        public void UpdateMiniOffice()
+        {
+            //arrange
+            var miniOfficeWithPlaces = _miniOfficeTestData.GetMiniOfficeModelForTests();
+            _miniOfficeRepositoryMock.Setup(m => m.UpdateMiniOffice(It.IsAny<MiniOffice>()));
+            _placeRepositoryMock.Setup(m => m.Add(It.IsAny<Place>())).Returns(42);
+            var sut = new MiniOfficeService(_miniOfficeRepositoryMock.Object, _placeRepositoryMock.Object);
+
+            //act
+            sut.UpdateMiniOffice(miniOfficeWithPlaces);
+
+            //assert
+            _miniOfficeRepositoryMock.Verify(m => m.UpdateMiniOffice(It.IsAny<MiniOffice>()), Times.Once());
         }
     }
 }

@@ -33,20 +33,27 @@ namespace CoCowork.BusinessLayer.Services
             return CustomMapper.GetInstance().Map<List<MiniOfficeModel>>(miniOffices);
         }
 
-        public void DeleteMiniOffice(int id)
+        public void DeleteMiniOffice(MiniOfficeModel miniOffice)
         {
-            _miniOfficeRepository.DeleteMiniOfficeById(id);
+            _miniOfficeRepository.DeleteMiniOfficeById(miniOffice.Id);
         }
 
         public void UpdateMiniOffice(MiniOfficeModel miniOffice)
         {
             var mOffice = CustomMapper.GetInstance().Map<MiniOffice>(miniOffice);
-            _miniOfficeRepository.UpdateMiniOfficeById(mOffice);
+            _miniOfficeRepository.UpdateMiniOffice(mOffice);
         }
 
-        public int InsertMiniOffice(MiniOfficeModel miniOffice)
+        public int InsertMiniOfficeWithPlaces(MiniOfficeModel miniOffice)
         {
             var mOffice = CustomMapper.GetInstance().Map<MiniOffice>(miniOffice);
+
+            foreach (var placeEntity in miniOffice.Places)
+            {
+                var place = CustomMapper.GetInstance().Map<Place>(placeEntity);
+                _placeRepository.Add(place);
+            }
+
             return _miniOfficeRepository.Add(mOffice);
         }
     }
