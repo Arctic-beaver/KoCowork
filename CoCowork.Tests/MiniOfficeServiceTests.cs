@@ -4,8 +4,6 @@ using CoCowork.DataLayer.Entities;
 using CoCowork.DataLayer.Repositories;
 using Moq;
 using NUnit.Framework;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace CoCowork.BusinessLayer.Tests
 {
@@ -60,19 +58,35 @@ namespace CoCowork.BusinessLayer.Tests
         }
 
         [Test]
-        public void DeleteMiniOffice()
+        public void DeleteMiniOffice_ShouldReturnTrue()
         {
             //arrange
             var miniOfficeWithPlaces = _miniOfficeTestData.GetMiniOfficeModelForTests();
-            _miniOfficeRepositoryMock.Setup(m => m.DeleteMiniOfficeById(It.IsAny<int>()));
+            _miniOfficeRepositoryMock.Setup(m => m.DeleteMiniOfficeById(It.IsAny<int>())).Returns(true);
             _placeRepositoryMock.Setup(m => m.Add(It.IsAny<Place>())).Returns(42);
             var sut = new MiniOfficeService(_miniOfficeRepositoryMock.Object, _placeRepositoryMock.Object);
 
             //act
-            sut.DeleteMiniOffice(miniOfficeWithPlaces);
+            var actual = sut.DeleteMiniOffice(miniOfficeWithPlaces);
 
             //assert
+            Assert.IsTrue(actual);
             _miniOfficeRepositoryMock.Verify(m => m.DeleteMiniOfficeById(It.IsAny<int>()), Times.Once());
+        }
+
+        [Test]
+        public void DeleteMiniOffice_ShouldReturnFalse()
+        {
+            //arrange
+            var miniOfficeWithPlaces = _miniOfficeTestData.GetMiniOfficeModelForTests();
+            var sut = new MiniOfficeService();
+
+            //act
+            //Нельзя удалить миниофис с Id = 1 из БД из-за внешнего ключа
+            var actual = sut.DeleteMiniOffice(miniOfficeWithPlaces);
+
+            //assert
+            Assert.IsFalse(actual);
         }
 
         [Test]
