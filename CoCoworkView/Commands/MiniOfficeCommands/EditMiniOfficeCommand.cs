@@ -30,6 +30,7 @@ namespace CoCowork.UI.Commands.MiniOfficeCommands
                     PricePerDay = _miniOfficeVM.PricePerDay,
                     AmountOfPlaces = _miniOfficeVM.AmountOfPlaces
                 };
+                miniOffice.Id = _miniOfficeVM.SelectedMiniOffice.Id;
                 _service.UpdateMiniOffice(miniOffice);
                 _bookingVM.MiniOffices.Remove(_miniOfficeVM.SelectedMiniOffice);
                 _bookingVM.MiniOffices.Add(miniOffice);

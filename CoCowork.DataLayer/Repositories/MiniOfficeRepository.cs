@@ -53,7 +53,7 @@ namespace CoCowork.DataLayer.Repositories
         {
             using IDbConnection connection = ProvideConnection();
 
-            var result = connection.Execute(
+            var insertedId = connection.ExecuteScalar<int>(
                 _insertProcedure,
                 new
                 {
@@ -63,14 +63,14 @@ namespace CoCowork.DataLayer.Repositories
                     IsActive = miniOffice.IsActive
                 },
                 commandType: CommandType.StoredProcedure);
-            return result;
+            return insertedId;
         }
 
         public void UpdateMiniOfficeById(MiniOffice miniOffice)
         {
             using IDbConnection connection = ProvideConnection();
 
-            var affectedRows = connection.Execute(
+            connection.Execute(
                 _updateProcedure,
                 new
                 {

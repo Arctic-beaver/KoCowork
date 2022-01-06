@@ -1,9 +1,9 @@
 ﻿using CoCowork.DataLayer.Entities;
 using Dapper;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
-
 
 namespace CoCowork.DataLayer.Repositories
 {
@@ -16,6 +16,7 @@ namespace CoCowork.DataLayer.Repositories
         private const string _deleteProcedure = "dbo.Place_Delete";
         private const string _selectByMiniOfficeIdProcedure = "dbo.Place_SelectByMiniOfficeId";
         private const string _selectThatNotInMiniOfficeProcedure = "dbo.Place_SelectThatNotInMiniOffice";
+        private bool _isSucceeded;
 
         public List<Place> GetAll()
         {
@@ -58,19 +59,29 @@ namespace CoCowork.DataLayer.Repositories
                 .ToList();
         }
 
-        public void Add(Place place)
+        public bool Add(Place place)
         {
             using IDbConnection connection = ProvideConnection();
 
-            connection.Execute(
+            try
+            {
+                connection.Execute(
                 _insertProcedure,
                 new
                 {
+                    Number = place.Number,
                     MiniOfficeId = place.MiniOfficeId,
                     PricePerDay = place.PricePerDay,
-                    PriceFixedPerDay = place.PriceFixedPerDay
+                    PriceFixedPerDay = place.PriceFixedPerDay,
+                    Description = place.Description
                 },
                 commandType: CommandType.StoredProcedure);
+            }
+            catch (Exception)
+            {
+                return _isSucceeded = false;
+            }
+            return _isSucceeded = true;
         }
 
         public void UpdatePlaceById(Place place)
@@ -88,17 +99,25 @@ namespace CoCowork.DataLayer.Repositories
                 commandType: CommandType.StoredProcedure);
         }
 
-        public void DeletePlaceById(int id)
+        public bool DeletePlace(int id)
         {
             using IDbConnection connection = ProvideConnection();
 
-            connection.Execute(
+            try
+            {
+                connection.Execute(
                 _deleteProcedure,
                 new
                 {
                     Id = id
                 },
                 commandType: CommandType.StoredProcedure);
+            }
+            catch (Exception)
+            {
+                return _isSucceeded = false;
+            }
+            return _isSucceeded = true;
         }
     }
 }

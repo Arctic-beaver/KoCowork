@@ -19,4 +19,5 @@ BEGIN
 			@PricePerDay,
 			@IsActive
 		)
+SELECT SCOPE_IDENTITY()
 END

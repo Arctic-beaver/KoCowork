@@ -1,15 +1,10 @@
-﻿using CoCowork.BusinessLayer.Services;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using CoCowork.DataLayer.Entities;
 
 namespace CoCowork.BusinessLayer.Models
 {
     public class PlaceModel : ItemModel
     {
-        public int Number { get; set; }
+        public int? Number { get; set; }
         public decimal? PricePerDay { get; set; }
         public decimal? PriceFixedPerDay { get; set; }
         public int MiniOfficeId { get; set; }

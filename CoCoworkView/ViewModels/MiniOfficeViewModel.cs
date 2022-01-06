@@ -14,6 +14,7 @@ namespace CoCowork.UI.ViewModels
         private decimal? _pricePerDay;
         private decimal? _placePricePerDay;
         private decimal? _placePriceFixedPerDay;
+        private int? _placeNumber;
         private int? _amountOfPlaces;
         private bool _isEditButtonAvailable;
         private readonly MiniOfficeService _service;
@@ -61,6 +62,17 @@ namespace CoCowork.UI.ViewModels
             {
                 _placePriceFixedPerDay = value;
                 OnPropertyChanged(nameof(PlacePriceFixedPerDay));
+                CheckIfAllFieldsFilledCorrectly();
+            }
+        }
+
+        public int? PlaceNumber
+        {
+            get => _placeNumber;
+            set
+            {
+                _placeNumber = value;
+                OnPropertyChanged(nameof(PlaceNumber));
                 CheckIfAllFieldsFilledCorrectly();
             }
         }
@@ -130,6 +142,7 @@ namespace CoCowork.UI.ViewModels
                     if (value != null)
                     {
                         IsDeleteButtonAvailable = true;
+                        FillMiniOfficeFields.Execute(this);
                     }
                     else
                     {
@@ -143,6 +156,7 @@ namespace CoCowork.UI.ViewModels
         public ICommand AddMiniOffice { get; set; }
         public ICommand EditMiniOffice { get; set; }
         public ICommand DeleteMiniOffice { get; set; }
+        public ICommand FillMiniOfficeFields { get; set; }
 
         public MiniOfficeViewModel(BookingViewModel bookingVM)
         {
@@ -152,6 +166,7 @@ namespace CoCowork.UI.ViewModels
             DeleteMiniOffice = new DeleteMiniOfficeCommand(this, bookingVM, _service);
             AddMiniOffice = new AddMiniOfficeCommand(this, bookingVM, _service);
             EditMiniOffice = new EditMiniOfficeCommand(this, bookingVM, _service);
+            FillMiniOfficeFields = new FillMiniOfficeFieldsCommand(this);
             ChangeMiniOfficeEditVisibility = new VisibilityOfInnerGridCommand(this);
         }
 
@@ -160,11 +175,19 @@ namespace CoCowork.UI.ViewModels
             if (Name != null && PricePerDay != null && AmountOfPlaces != null)
             {
                 IsEditButtonAvailable = true;
-                IsAddButtonAvailable = true;
             }
             else
             {
                 IsEditButtonAvailable = false;
+            }
+
+            if (Name != null && PricePerDay != null && AmountOfPlaces != null
+                && PlaceNumber != null && PlacePricePerDay != null && PlacePriceFixedPerDay != null)
+            {
+                IsAddButtonAvailable = true;
+            }
+            else
+            {
                 IsAddButtonAvailable = false;
             }
         }

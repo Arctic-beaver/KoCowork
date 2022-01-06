@@ -28,17 +28,7 @@ namespace CoCowork.UI.Commands.BookingCommands
                 MessageBox.Show("Миниофис с таким описанием уже существует");
                 return;
             }
-            List<PlaceModel> places = new List<PlaceModel>();
-
-            for (int i = 0; i < _miniOfficeVM.AmountOfPlaces; i++)
-            {
-                places.Add(new PlaceModel
-                {
-                    PricePerDay = _miniOfficeVM.PlacePricePerDay,
-                    PriceFixedPerDay = _miniOfficeVM.PlacePriceFixedPerDay,
-                    Description = _miniOfficeVM.Name.Trim()
-                });
-            }
+            var places = CreateListOfPlaces();
 
             var miniOffice = new MiniOfficeModel()
             {
@@ -50,9 +40,36 @@ namespace CoCowork.UI.Commands.BookingCommands
             };
 
             int insertedMiniOfficeId = _service.InsertMiniOfficeWithPlaces(miniOffice);
-            miniOffice.Id = insertedMiniOfficeId;
-            _bookingVM.MiniOffices.Add(miniOffice);
-            _miniOfficeVM.GridVisibility = Visibility.Collapsed;
+
+            if (insertedMiniOfficeId == -1)
+            {
+                MessageBox.Show("Ошибка при записи в базу данных", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+            else
+            {
+                miniOffice.Id = insertedMiniOfficeId;
+                _bookingVM.MiniOffices.Add(miniOffice);
+                _miniOfficeVM.GridVisibility = Visibility.Collapsed;
+            }
+        }
+
+        private List<PlaceModel> CreateListOfPlaces()
+        {
+            List<PlaceModel> places = new List<PlaceModel>();
+
+            for (int i = 0; i < _miniOfficeVM.AmountOfPlaces; i++)
+            {
+                places.Add(new PlaceModel
+                {
+                    Number = _miniOfficeVM.PlaceNumber,
+                    PricePerDay = _miniOfficeVM.PlacePricePerDay,
+                    PriceFixedPerDay = _miniOfficeVM.PlacePriceFixedPerDay,
+                    Description = _miniOfficeVM.Name.Trim()
+                });
+                _miniOfficeVM.PlaceNumber++;
+            }
+            return places;
         }
     }
 }

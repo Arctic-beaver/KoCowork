@@ -5,8 +5,8 @@ namespace CoCowork.DataLayer.Repositories
 {
     public interface IPlaceRepository
     {
-        void Add(Place place);
-        void DeletePlaceById(int id);
+        bool Add(Place place);
+        bool DeletePlace(int id);
         List<Place> GetAll();
         Place GetPlaceById(int id);
         List<Place> GetPlacesThatNotInMiniOffice();

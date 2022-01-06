@@ -41,14 +41,20 @@ namespace CoCowork.BusinessLayer.Services
         public int InsertMiniOfficeWithPlaces(MiniOfficeModel miniOffice)
         {
             var mOffice = CustomMapper.GetInstance().Map<MiniOffice>(miniOffice);
+            var insertedMiniOfficeId = _miniOfficeRepository.Add(mOffice);
 
             foreach (var placeEntity in miniOffice.Places)
             {
                 var place = CustomMapper.GetInstance().Map<Place>(placeEntity);
-                _placeRepository.Add(place);
-            }
+                place.MiniOfficeId = insertedMiniOfficeId;
+                bool isSucceeded = _placeRepository.Add(place);
 
-            return _miniOfficeRepository.Add(mOffice);
+                if (isSucceeded == false)
+                {
+                    return -1;
+                }
+            }
+            return insertedMiniOfficeId;
         }
     }
 }
