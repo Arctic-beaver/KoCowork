@@ -1,36 +1,30 @@
 ﻿using CoCowork.BusinessLayer.Models;
-using System;
+using CoCowork.UI.Commands;
 using System.Collections.ObjectModel;
-using System.Windows.Input;
 
 namespace CoCowork.UI.ViewModels
 {
-    internal class AddToCurrentOrders : ICommand
+    internal class AddToCurrentOrders : CommandBase
     {
 
-        private CurrentOrderViewModel _vm;
-        private ObservableCollection<ItemModel> _currentOrders;
-        private ItemModel _selectedItem;
+        private CurrentOrderViewModel _vmCurrentOrder;
+        private BookingViewModel _vm;
 
-        public AddToCurrentOrders(CurrentOrderViewModel vm, ItemModel selectedItem)
+        public AddToCurrentOrders(CurrentOrderViewModel vmCurrentOrder, BookingViewModel vm)
         {
+            _vmCurrentOrder = vmCurrentOrder;
             _vm = vm;
-            vm.CurrentOrder = new ObservableCollection<ItemModel>();
-            _selectedItem = selectedItem;
+            if (vmCurrentOrder.CurrentOrder.Count == 0)
+            {
+                vmCurrentOrder.CurrentOrder = new ObservableCollection<ItemModel>();
+            }
 
         }
 
-        public event EventHandler CanExecuteChanged;
-
-        public bool CanExecute(object parameter)
+        public override void Execute(object parameter)
         {
-            return true;
-        }
-
-        public void Execute(object parameter)
-        {
-            _vm.CurrentOrder.Add(_selectedItem);
-            _vm.RecalculateSum();
+            _vmCurrentOrder.CurrentOrder.Add(_vm.BookingSelectedItem);
+            _vmCurrentOrder.RecalculateSum();
         }
     }
 }

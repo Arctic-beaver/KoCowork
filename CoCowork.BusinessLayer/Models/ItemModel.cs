@@ -1,7 +1,4 @@
-﻿using CoCowork.DataLayer.Entities;
-using System;
-
-namespace CoCowork.BusinessLayer.Models
+﻿namespace CoCowork.BusinessLayer.Models
 {
     public abstract class ItemModel
     {
@@ -9,7 +6,9 @@ namespace CoCowork.BusinessLayer.Models
         public bool IsActive { get; set; }
         public BookingChecker BookingChecker { get; set; }
         public decimal Price { get; set; }
+        public string Name { get; set; }
+        public string Description { get; set; }
 
-        public abstract void AddItemOrder(int id, Order order, DateTime startDate, DateTime endDate, decimal price);
+
     }
 }

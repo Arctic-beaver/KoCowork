@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace CoCowork.BusinessLayer.Models
+﻿namespace CoCowork.BusinessLayer.Models
 {
     public class OrderModel
     {
@@ -9,6 +7,5 @@ namespace CoCowork.BusinessLayer.Models
         public decimal TotalPrice { get; set; }
         public bool IsPaid { get; set; }
         public bool IsCancelled { get; set; }
-        public List<PaymentModel> Payments { get; set; }
     }
 }

@@ -28,11 +28,11 @@ namespace CoCowork.BusinessLayer.Configuration
 
                 cfg.CreateMap<Laptop, LaptopModel>();
 
-                cfg.CreateMap<MiniOfficeOrder, MiniOfficeOrderModel>();
+                //cfg.CreateMap<MiniOfficeOrder, MiniOfficeOrderModel>();
 
                 cfg.CreateMap<Order, OrderModel>();
 
-                cfg.CreateMap<Payment, PaymentModel>();
+                //cfg.CreateMap<Payment, PaymentModel>();
 
                 cfg.CreateMap<Place, PlaceModel>();
 

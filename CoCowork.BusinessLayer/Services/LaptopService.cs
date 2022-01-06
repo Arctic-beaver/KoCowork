@@ -2,17 +2,20 @@
 using CoCowork.BusinessLayer.Models;
 using CoCowork.DataLayer.Entities;
 using CoCowork.DataLayer.Repositories;
+using System;
 using System.Collections.Generic;
 
 namespace CoCowork.BusinessLayer.Services
 {
-    public class LaptopService : ILaptopService
+    public class LaptopService : IItemService, ILaptopService
     {
         private readonly ILaptopRepository _laptopRepository;
-
+        private LaptopOrder _itemOrder;
+        private LaptopOrderRepository _orderRepository;
         public LaptopService()
         {
             _laptopRepository = new LaptopRepository();
+            _orderRepository = new LaptopOrderRepository();
         }
 
         public List<LaptopModel> GetAll()
@@ -36,6 +39,15 @@ namespace CoCowork.BusinessLayer.Services
         {
             var computers = CustomMapper.GetInstance().Map<Laptop>(laptop);
             _laptopRepository.Add(computers);
+        }
+        public void AddItemOrder(int id, Order order, DateTime startDate, DateTime endDate, decimal price)
+        {
+            var _entity = _laptopRepository.GetAll().Find(x => x.Id == id);
+
+            _itemOrder = new LaptopOrder { Laptop = _entity, Order = order, StartDate = startDate, EndDate = endDate };
+            _itemOrder.CalculateSubtotalPrice(price);
+
+            _orderRepository.Add(_itemOrder);
         }
     }
 }

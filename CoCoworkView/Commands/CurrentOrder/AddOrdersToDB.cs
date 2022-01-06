@@ -1,13 +1,11 @@
 ﻿using CoCowork.BusinessLayer.Services;
 using CoCowork.UI.ViewModels;
-using System;
 using System.Windows;
 
 namespace CoCowork.UI.Commands.CurrentOrder
 {
     public class AddOrdersToDB : CommandBase
     {
-        public event EventHandler CanExecuteChanged;
 
         private CurrentOrderViewModel _vm;
 
@@ -25,10 +23,6 @@ namespace CoCowork.UI.Commands.CurrentOrder
 
         }
 
-        public bool CanExecute(object parameter)
-        {
-            return true;
-        }
 
         public override void Execute(object parameter)
         {

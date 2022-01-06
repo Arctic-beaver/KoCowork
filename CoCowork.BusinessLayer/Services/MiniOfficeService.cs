@@ -2,17 +2,22 @@
 using CoCowork.BusinessLayer.Models;
 using CoCowork.DataLayer.Entities;
 using CoCowork.DataLayer.Repositories;
+using System;
 using System.Collections.Generic;
 
 namespace CoCowork.BusinessLayer.Services
 {
-    public class MiniOfficeService : IMiniOfficeService
+    public class MiniOfficeService : IMiniOfficeService, IItemService
     {
         private readonly IMiniOfficeRepository _miniOfficeRepository;
+        private MiniOfficeOrder _itemOrder;
+        private MiniOfficeOrderRepository _orderRepository;
 
         public MiniOfficeService()
         {
             _miniOfficeRepository = new MiniOfficeRepository();
+            _orderRepository = new MiniOfficeOrderRepository();
+
         }
 
         public List<MiniOfficeModel> GetAll()
@@ -36,6 +41,16 @@ namespace CoCowork.BusinessLayer.Services
         {
             var mOffice = CustomMapper.GetInstance().Map<MiniOffice>(miniOffice);
             _miniOfficeRepository.Add(mOffice);
+        }
+
+        public void AddItemOrder(int id, Order order, DateTime startDate, DateTime endDate, decimal price)
+        {
+            var _entity = _repository.GetAll().Find(x => x.Id == id);
+
+            _itemOrder = new MiniOfficeOrder { MiniOffice = _entity, Order = order, StartDate = startDate, EndDate = endDate };
+            _itemOrder.CalculateSubtotalPrice(price);
+
+            _orderRepository.Add(_itemOrder);
         }
     }
 }
