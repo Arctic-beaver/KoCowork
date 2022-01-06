@@ -7,7 +7,7 @@ using System.Windows.Input;
 
 namespace CoCowork.UI.ViewModels
 {
-    public class ProductViewModel : TabViewModel
+    public class ProductViewModel : InnerGridViewModel
     {
         
         private string _name;
@@ -29,8 +29,7 @@ namespace CoCowork.UI.ViewModels
             Products = new ObservableCollection<ProductModel>();
             GetProductsCommand = new GetProductsCommand(this, _productService);
             GetProductsCommand.Execute(Products);
-
-
+            AddNewProduct = new AddNewProductViewModel();
         }
 
         public ObservableCollection<ProductModel> Products { get; set; }
@@ -102,11 +101,15 @@ namespace CoCowork.UI.ViewModels
             }
         }
 
+        public AddNewProductViewModel AddNewProduct { get; set; }
+
         public ICommand GetProductsCommand { get; set; }
 
-
-
        
+
+
+
+
     }
 }
 

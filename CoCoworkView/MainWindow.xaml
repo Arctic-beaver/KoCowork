@@ -215,7 +215,7 @@
             </Grid>
         </Grid>
 
-        <Grid x:Name="ProductsGrid" Grid.Column ="1" Visibility="{Binding Product.GridVisibility}">
+        <Grid x:Name="ProductsGrid" Grid.Column ="1" Visibility="Visible" DataContext="{Binding Product}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="75*"/>
                 <ColumnDefinition Width="25*"/>
@@ -243,7 +243,15 @@
                 </StackPanel>
                 <Button x:Name="EditProductButton" Content="Редактировать" Grid.Column="1" Grid.Row="3" Margin="0, 0, 0, 50"/>
                 <Button x:Name="AddToProductOrderButton" Content="Добавить к заказу" Grid.Column="1" Grid.Row="4" Margin="0, 45, 0, 0"/>
-                
+            </Grid>
+            <Grid x:Name ="MainProductGrid" Grid.Column ="0" Background="#FFE0DFDF" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="600" Height="584">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="70*"/>
+                    <ColumnDefinition Width="auto"/>
+                </Grid.ColumnDefinitions>
+                <Grid x:Name ="AddProductGrid" Visibility ="{Binding AddNewProduct.GridVisibility}" Grid.Column ="1" Background="#FFE0DFDF" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="129.11">
+                    
+                </Grid>
 
             </Grid>
             <DataGrid AutoGenerateColumns="False" CanUserAddRows ="False" CanUserDeleteRows="False" Grid.Column="0" Grid.Row="0" ColumnWidth="*" ItemsSource="{Binding Product.Products}" SelectedItem="{Binding Path=Product.SelectedItem, Mode=TwoWay}">
@@ -270,7 +278,7 @@
             <Label>Text in client grid</Label>
         </Grid>
 
-        <Grid x:Name="OrderGrid" Grid.Column ="1" Visibility="{Binding GridVisibility}" DataContext="{Binding Order}">
+        <Grid x:Name="OrderGrid" Grid.Column ="1" Visibility="Hidden" DataContext="{Binding Order}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="75*"/>
                 <ColumnDefinition Width="25*"/>
