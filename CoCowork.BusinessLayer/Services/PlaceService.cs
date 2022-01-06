@@ -19,6 +19,11 @@ namespace CoCowork.BusinessLayer.Services
             _placeRepository = new PlaceRepository();
         }
 
+        public PlaceService(IPlaceRepository fakePlaceRepository)
+        {
+            _placeRepository = fakePlaceRepository;
+        }
+
         public List<PlaceModel> GetAll()
         {
             var places = _placeRepository.GetAll();
@@ -42,10 +47,10 @@ namespace CoCowork.BusinessLayer.Services
             _placeRepository.UpdatePlaceById(placeModel);
         }
 
-        public void InsertPlace(PlaceModel place)
+        public int InsertPlace(PlaceModel place)
         {
             var placeModel = CustomMapper.GetInstance().Map<Place>(place);
-            _placeRepository.Add(placeModel);
+            return _placeRepository.Add(placeModel);
         }
     }
 }
