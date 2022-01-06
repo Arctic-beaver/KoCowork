@@ -8,12 +8,7 @@
         public decimal PricePerHour { get; set; }
         public int AmountHours { get; set; }
         public string TypeForDisplayInUI = "Комната";
-
-        public RoomModel()
-        {
-        }
-
-
+        
 
     }
 }

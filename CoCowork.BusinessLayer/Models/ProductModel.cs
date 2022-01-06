@@ -6,14 +6,6 @@ namespace CoCowork.BusinessLayer.Models
 {
     public class ProductModel : ItemModel
     {
-        private ProductRepository _repository;
-        public string TypeForDisplayInUI = "Продукты";
-
-        public ProductModel()
-        {
-            _repository = new ProductRepository();
-        }
-
-        
+        public string TypeForDisplayInUI = "Продукты";        
     }
 }

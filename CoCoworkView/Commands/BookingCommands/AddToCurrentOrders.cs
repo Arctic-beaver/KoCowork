@@ -14,7 +14,7 @@ namespace CoCowork.UI.ViewModels
         {
             _vmCurrentOrder = vmCurrentOrder;
             _vm = vm;
-            if (vmCurrentOrder.CurrentOrder.Count == 0)
+            if (vmCurrentOrder.CurrentOrder == null)
             {
                 vmCurrentOrder.CurrentOrder = new ObservableCollection<ItemModel>();
             }

@@ -11,9 +11,5 @@ namespace CoCowork.BusinessLayer.Models
         public int Number { get; set; }
         public decimal PricePerDay { get; set; }
         public decimal PriceFixedPerDay { get; set; }
-
-        public PlaceModel()
-        {        }
-
     }
 }

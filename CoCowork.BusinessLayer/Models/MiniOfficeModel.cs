@@ -10,10 +10,5 @@ namespace CoCowork.BusinessLayer.Models
         public int AmountOfPlaces { get; set; }
         public List<PlaceModel> Places { get; set; }
 
-        public MiniOfficeModel()
-        {
-        }
-
-
     }
 }

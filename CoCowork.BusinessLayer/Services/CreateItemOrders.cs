@@ -12,7 +12,7 @@ namespace CoCowork.BusinessLayer.Services
 
             foreach (var item in ordersList)
             {
-                item.AddItemOrder(item.Id, order, DateTime.Now, DateTime.Now, item.Price);
+                item.ItemService.AddItemOrder(item.Id, order, DateTime.Now, DateTime.Now, item.Price);
             }
         }
     }
