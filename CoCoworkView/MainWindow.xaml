@@ -215,7 +215,7 @@
             </Grid>
         </Grid>
 
-        <Grid x:Name="ProductsGrid" Grid.Column ="1" Visibility="Visible" DataContext="{Binding Product}">
+        <Grid x:Name="ProductsGrid" Grid.Column ="1" Visibility="{Binding Product.GridVisibility}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="75*"/>
                 <ColumnDefinition Width="25*"/>
@@ -249,7 +249,18 @@
                     <ColumnDefinition Width="70*"/>
                     <ColumnDefinition Width="auto"/>
                 </Grid.ColumnDefinitions>
+                <DataGrid x:Name="ProductsDataGrid" ItemsSource="{Binding Products}" SelectedItem="{Binding SelectedItem}" CanUserAddRows="False" CanUserDeleteRows="False" CanUserReorderColumns="False" CanUserSortColumns="True"  Grid.Column="0" ColumnWidth="*"/>
                 <Grid x:Name ="AddProductGrid" Visibility ="{Binding AddNewProduct.GridVisibility}" Grid.Column ="1" Background="#FFE0DFDF" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="129.11">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
                     
                 </Grid>
 
