@@ -6,7 +6,7 @@ namespace CoCowork.BusinessLayer.Services
 {
     public interface IOrderService
     {
-        Order GenerateNewOrder(Client client, bool isCanceled, bool isPaid, decimal totalPrice);
+        Order InsertOrder(Client client, bool isCanceled, bool isPaid, decimal totalPrice);
         List<OrderModel> GetActiveOrders();
         List<OrderModel> GetAllOrders();
         List<OrderModel> GetCanceledOrders();

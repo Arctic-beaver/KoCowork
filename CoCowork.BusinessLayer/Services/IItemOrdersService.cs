@@ -4,7 +4,7 @@ using System.Collections.ObjectModel;
 
 namespace CoCowork.BusinessLayer.Services
 {
-    public interface ICreateItemOrders
+    public interface IItemOrdersService
     {
         void CreateOrdersForItem(ObservableCollection<ItemModel> ordersList, Order order);
     }

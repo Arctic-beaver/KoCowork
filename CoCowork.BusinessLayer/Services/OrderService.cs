@@ -11,6 +11,7 @@ namespace CoCowork.BusinessLayer.Services
         private readonly IOrderRepository _orderRepository;
 
         private Order _order;
+        private ClientService _clientService;
 
         public OrderService(IOrderRepository fakeOrderRepository)
         {
@@ -19,6 +20,7 @@ namespace CoCowork.BusinessLayer.Services
         public OrderService()
         {
             _orderRepository = new OrderRepository();
+            _clientService = new ClientService();
         }
         public List<OrderModel> GetAllOrders()
         {
@@ -83,14 +85,23 @@ namespace CoCowork.BusinessLayer.Services
             _orderRepository.Update(order);
         }
 
-
-        public Order GenerateNewOrder(Client client, bool isCanceled, bool isPaid, decimal totalPrice)
+        public Order InsertOrder(OrderModel orderModel)
         {
-            _order = new Order { Client = client, TotalPrice = totalPrice, IsCanceled = isCanceled, IsPaid = isPaid };
+            _order = CustomMapper.GetInstance().Map<Order>(orderModel);
+            _order.Client = _clientService.FindClientInDB(orderModel.Client);
             var idOrder = _orderRepository.Add(_order);
             _order.Id = idOrder;
+
             return _order;
         }
+
+        //public Order InsertOrder(Client client, bool isCanceled, bool isPaid, decimal totalPrice)
+        //{
+        //    _order = new Order { Client = client, TotalPrice = totalPrice, IsCanceled = isCanceled, IsPaid = isPaid };
+        //    var idOrder = _orderRepository.Add(_order);
+        //    _order.Id = idOrder;
+        //    return _order;
+        //}
 
 
 

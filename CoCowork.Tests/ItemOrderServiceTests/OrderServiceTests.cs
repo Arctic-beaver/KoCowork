@@ -40,7 +40,7 @@ namespace CoCowork.BusinessLayer.Tests
             var sut = new OrderService(_orderRepositoryMock.Object);
 
             //act
-            var actual = sut.GenerateNewOrder(client: client, isCanceled: true, isPaid: true, totalPrice: 1000);
+            var actual = sut.InsertOrder(client: client, isCanceled: true, isPaid: true, totalPrice: 1000);
 
             //assert
             _orderRepositoryMock.Verify(m => m.Add(It.IsAny<Order>()), Times.Once());

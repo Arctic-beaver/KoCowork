@@ -3,16 +3,13 @@
 
 namespace CoCowork.DataLayer.Entities
 {
-    public class LaptopOrder : BookingBaseOrder
+    public class LaptopOrder : BaseOrder
     {
+        public DateTime StartDate { get; set; }
+        public DateTime EndDate { get; set; }
         public Laptop Laptop { get; set; }
         private double _amountMonths;
 
-        //public override void CalculateSubtotalPrice(decimal price)
-        //{
-        //    _amountMonths = GetAmountMonth();
-        //    SubtotalPrice = Convert.ToDecimal(_amountMonths) * price;
-        //}
 
 
     }

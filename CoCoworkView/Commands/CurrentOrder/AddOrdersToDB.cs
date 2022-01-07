@@ -1,4 +1,5 @@
-﻿using CoCowork.BusinessLayer.Services;
+﻿using CoCowork.BusinessLayer.Models;
+using CoCowork.BusinessLayer.Services;
 using CoCowork.UI.ViewModels;
 using System.Windows;
 
@@ -11,14 +12,15 @@ namespace CoCowork.UI.Commands.CurrentOrder
 
         private ClientService _clientService;
         private OrderService _orderService;
-        private CreateItemOrders _createItemOrders;
+        private ItemOrdersService _createItemOrders;
+        private OrderModel _orderModel;
 
         public AddOrdersToDB(CurrentOrderViewModel vm)
         {
             _vm = vm;
             _clientService = new ClientService();
             _orderService = new OrderService();
-            _createItemOrders = new CreateItemOrders();
+            _createItemOrders = new ItemOrdersService();
 
 
         }
@@ -26,15 +28,17 @@ namespace CoCowork.UI.Commands.CurrentOrder
 
         public override void Execute(object parameter)
         {
-            if (_vm.SelectedClient == null)
+            if (_vm.SelectClient == null)
             {
                 MessageBox.Show("Сначала выберите клиента!");
 
             }
             else
             {
-                var clientEntity = _clientService.FindClientInDB(_vm.SelectedClient);
-                var newOrder = _orderService.GenerateNewOrder(clientEntity, _vm.IsCancelled, _vm.IsPaid, _vm.TotalPrice);
+                _orderModel = new OrderModel {Client = _vm.SelectClient, IsCancelled = _vm.IsCancelled, IsPaid = _vm.IsPaid, TotalPrice = _vm.TotalPrice };
+
+                //var clientEntity = _clientService.FindClientInDB(_vm.SelectClient);
+                var newOrder = _orderService.InsertOrder(_orderModel);
 
                 _createItemOrders.CreateOrdersForItem(_vm.CurrentOrder, newOrder);
                 MessageBox.Show("Заказ успешно сформирован!");

@@ -23,7 +23,8 @@ namespace CoCowork.BusinessLayer.Services
 
         public Client FindClientInDB(ClientModel clientModel)
         {
-            return _clientRepository.GetAll().Find(x => x.Id == clientModel.Id);
+            var client = _clientRepository.GetClientById(clientModel.Id);
+            return client;
         }
     }
 }

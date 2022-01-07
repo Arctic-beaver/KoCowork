@@ -59,7 +59,7 @@ namespace CoCowork.UI.ViewModels
         }
 
         private ClientModel _selectedClient;
-        public ClientModel SelectedClient
+        public ClientModel SelectClient
         {
             get { return _selectedClient; }
             set
