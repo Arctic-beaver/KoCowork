@@ -57,7 +57,7 @@ namespace CoCowork.DataLayer.Repositories
                 .ToList();
         }
 
-        public void Add(Place place)
+        public int Add(Place place)
         {
             using IDbConnection connection = ProvideConnection();
 

@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using CoCowork.BusinessLayer.Models;
 using CoCowork.DataLayer.Entities;
+using System;
 
 namespace CoCowork.BusinessLayer.Configuration
 {
@@ -41,6 +42,9 @@ namespace CoCowork.BusinessLayer.Configuration
 
                 cfg.CreateMap<Laptop, ComputerModel>();
 
+                cfg.CreateMap<Object, MiniOffice>();
+
+                cfg.CreateMap<Object, Place>();
             }));
         }
     }
