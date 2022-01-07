@@ -10,14 +10,18 @@ namespace CoCowork.BusinessLayer.Services
     public class MiniOfficeService : IMiniOfficeService, IItemService
     {
         private readonly IMiniOfficeRepository _miniOfficeRepository;
-        private MiniOfficeOrder _itemOrder;
-        private MiniOfficeOrderRepository _orderRepository;
+        private readonly IPlaceRepository _placeRepository;
 
         public MiniOfficeService()
         {
             _miniOfficeRepository = new MiniOfficeRepository();
-            _orderRepository = new MiniOfficeOrderRepository();
+            _placeRepository = new PlaceRepository();
+        }
 
+        public MiniOfficeService(IMiniOfficeRepository fakeMiniOfficeRepository, IPlaceRepository fakePlaceRepository)
+        {
+            _miniOfficeRepository = fakeMiniOfficeRepository;
+            _placeRepository = fakePlaceRepository;
         }
 
         public List<MiniOfficeModel> GetAll()
@@ -26,21 +30,28 @@ namespace CoCowork.BusinessLayer.Services
             return CustomMapper.GetInstance().Map<List<MiniOfficeModel>>(miniOffices);
         }
 
-        public void DeleteMiniOffice(int id)
+        public bool DeleteMiniOffice(MiniOfficeModel miniOffice)
         {
-            _miniOfficeRepository.DeleteMiniOfficeById(id);
+            return _miniOfficeRepository.DeleteMiniOfficeById(miniOffice.Id);
         }
 
         public void UpdateMiniOffice(MiniOfficeModel miniOffice)
         {
             var mOffice = CustomMapper.GetInstance().Map<MiniOffice>(miniOffice);
-            _miniOfficeRepository.UpdateMiniOfficeById(mOffice);
+            _miniOfficeRepository.UpdateMiniOffice(mOffice);
         }
 
-        public void InsertMiniOffice(MiniOfficeModel miniOffice)
+        public int InsertMiniOfficeWithPlaces(MiniOfficeModel miniOffice)
         {
             var mOffice = CustomMapper.GetInstance().Map<MiniOffice>(miniOffice);
-            _miniOfficeRepository.Add(mOffice);
+
+            foreach (var placeEntity in miniOffice.Places)
+            {
+                var place = CustomMapper.GetInstance().Map<Place>(placeEntity);
+                _placeRepository.Add(place);
+            }
+
+            return _miniOfficeRepository.Add(mOffice);
         }
 
         public void AddItemOrder(int id, Order order, DateTime startDate, DateTime endDate, decimal price)

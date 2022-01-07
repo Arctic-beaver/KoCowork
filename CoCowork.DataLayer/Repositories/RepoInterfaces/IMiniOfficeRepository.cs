@@ -5,10 +5,10 @@ namespace CoCowork.DataLayer.Repositories
 {
     public interface IMiniOfficeRepository
     {
-        void Add(MiniOffice miniOffice);
-        void DeleteMiniOfficeById(int id);
+        int Add(MiniOffice miniOffice);
+        bool DeleteMiniOfficeById(int id);
         List<MiniOffice> GetAll();
         MiniOffice GetMiniOfficeById(int id);
-        void UpdateMiniOfficeById(MiniOffice miniOffice);
+        void UpdateMiniOffice(MiniOffice miniOffice);
     }
 }

@@ -63,19 +63,22 @@ namespace CoCowork.DataLayer.Repositories
                  .ToList();
         }
 
-        public void Add(Place place)
+        public int Add(Place place)
         {
             using IDbConnection connection = ProvideConnection();
 
-            connection.Execute(
+            var result = connection.Execute(
                 _insertProcedure,
                 new
                 {
+                    Number = place.Number,
                     MiniOffice = place.MiniOffice.Id,
                     PricePerDay = place.PricePerDay,
-                    PriceFixedPerDay = place.PriceFixedPerDay
+                    PriceFixedPerDay = place.PriceFixedPerDay,
+                    Description = place.Description
                 },
                 commandType: CommandType.StoredProcedure);
+            return result;
         }
 
         public void UpdatePlaceById(Place place)
