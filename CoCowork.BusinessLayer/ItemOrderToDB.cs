@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CoCowork.BusinessLayer.Services
+namespace CoCowork.BusinessLayer
 {
-    public class MiniOfficeOrderService
+    internal class ItemOrderToDB
     {
     }
 }

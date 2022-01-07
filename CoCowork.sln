@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.31313.79
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31912.275
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoCowork.UI", "CoCoworkView\CoCowork.UI.csproj", "{7D456203-6DC5-43EF-8050-C9C024E63840}"
 EndProject
@@ -9,9 +9,9 @@ Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "CoCowork.DB", "CoCowork.DB\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoCowork.DataLayer", "CoCowork.DataLayer\CoCowork.DataLayer.csproj", "{5E19FC52-2074-4B5B-A0F9-C77AA3FFEA22}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoCowork.Tests", "CoCowork.Tests\CoCowork.Tests.csproj", "{99459397-A53C-44E1-AFA6-7D0ADB760A06}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoCowork.BusinessLayer.Tests", "CoCowork.Tests\CoCowork.BusinessLayer.Tests.csproj", "{99459397-A53C-44E1-AFA6-7D0ADB760A06}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoCowork.BusinessLayer", "CoCowork.BusinessLayer\CoCowork.BusinessLayer.csproj", "{3DA1ACDC-1163-4FFF-8693-D41C0E1854BF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoCowork.BusinessLayer", "CoCowork.BusinessLayer\CoCowork.BusinessLayer.csproj", "{3DA1ACDC-1163-4FFF-8693-D41C0E1854BF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

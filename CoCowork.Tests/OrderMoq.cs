@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CoCowork.BusinessLayer.Services
+namespace CoCowork.BusinessLayer.Tests
 {
-    public class RoomTypeService
+    internal class OrderMoq
     {
     }
 }

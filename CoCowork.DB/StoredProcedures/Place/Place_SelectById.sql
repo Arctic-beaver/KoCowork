@@ -4,8 +4,10 @@ AS
 BEGIN
 	select
 		p.Id,
+		p.Number,
 		p.PricePerDay,
 		p.PriceFixedPerDay,
+		p.[Description],
 		mo.Id,
 		mo.[Name],
 		mo.AmountOfPlaces,

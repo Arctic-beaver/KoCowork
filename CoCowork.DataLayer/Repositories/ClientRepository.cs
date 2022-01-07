@@ -2,32 +2,31 @@
 using Dapper;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.SqlClient;
 using System.Linq;
 
 namespace CoCowork.DataLayer.Repositories
 {
-    public class ClientRepository
+    public class ClientRepository : BaseRepository, IClientRepository
     {
-        private const string _connString = "Server=80.78.240.16;User ID=student;Password=qwe!23;Database=CoCowork.DB;";
         private const string _selectAllProc = "dbo.Client_SelectAll";
         private const string _selectByIdProc = "dbo.Client_SelectById";
         private const string _insertProc = "dbo.Client_Insert";
         private const string _updateProc = "dbo.Client_Update";
         private const string _deleteProc = "dbo.Client_Delete";
 
-        public List<Client> GetAllClients()
+        public List<Client> GetAll()
         {
-            using var connection = new SqlConnection(_connString);
-            connection.Open();
-            var result = connection.Query<Client>(_selectAllProc).ToList();
-            return result;
+            using IDbConnection connection = ProvideConnection();
+            return connection
+                .Query<Client>
+                    (_selectAllProc,
+                    commandType: CommandType.StoredProcedure)
+                .ToList();
         }
 
         public Client GetClientById(int id)
         {
-            using var connection = new SqlConnection(_connString);
-            connection.Open();
+            using IDbConnection connection = ProvideConnection();
 
             return connection
                 .QueryFirstOrDefault<Client>(
@@ -38,8 +37,7 @@ namespace CoCowork.DataLayer.Repositories
 
         public void Add(Client client)
         {
-            using var connection = new SqlConnection(_connString);
-            connection.Open();
+            using IDbConnection connection = ProvideConnection();
 
             connection.Execute(_insertProc,
                 new
@@ -55,15 +53,14 @@ namespace CoCowork.DataLayer.Repositories
                 commandType: CommandType.StoredProcedure);
         }
 
-        public void UpdateClientById(int id, Client client)
+        public void UpdateClientById(Client client)
         {
-            using var connection = new SqlConnection(_connString);
-            connection.Open();
+            using IDbConnection connection = ProvideConnection();
 
             connection.Execute(_updateProc,
                 new
                 {
-                    Id = id,
+                    Id = client.Id,
                     FirstName = client.FirstName,
                     LastName = client.LastName,
                     DateBirth = client.DateBirth,
@@ -76,8 +73,8 @@ namespace CoCowork.DataLayer.Repositories
 
         public void DeleteClientById(int id)
         {
-            using var connection = new SqlConnection(_connString);
-            connection.Open();
+            using IDbConnection connection = ProvideConnection();
+
             connection.Execute(_deleteProc,
                         new { Id = id },
                         commandType: CommandType.StoredProcedure);

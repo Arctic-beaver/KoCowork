@@ -1,33 +1,29 @@
-﻿using CoCowork.BusinessLayer.Models;
+﻿using CoCowork.BusinessLayer.Configuration;
+using CoCowork.BusinessLayer.Models;
+using CoCowork.DataLayer.Entities;
 using CoCowork.DataLayer.Repositories;
-using PseudoCalc.BusinessLayer.Configuration;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CoCowork.BusinessLayer.Services
 {
-    public class ClientService
+    public class ClientService : IClientService
     {
-        private readonly ClientRepository _clientRepository;
+        private readonly IClientRepository _clientRepository;
 
         public ClientService()
         {
             _clientRepository = new ClientRepository();
         }
 
-        public List<ClientShortModel> GetClientsWithoutSensitiveData()
+        public List<ClientModel> GetAll()
         {
-            var players = _clientRepository.GetAllClients();
-            return CustomMapper.GetInstance().Map<List<ClientShortModel>>(players);
+            var players = _clientRepository.GetAll();
+            return CustomMapper.GetInstance().Map<List<ClientModel>>(players);
         }
 
-        public List<ClientModel> GetClients()
+        public Client FindClientInDB(ClientModel clientModel)
         {
-            var players = _clientRepository.GetAllClients();
-            return CustomMapper.GetInstance().Map<List<ClientModel>>(players);
+            return _clientRepository.GetAll().Find(x => x.Id == clientModel.Id);
         }
     }
 }

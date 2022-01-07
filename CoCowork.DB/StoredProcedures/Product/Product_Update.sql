@@ -1,6 +1,6 @@
 ﻿CREATE PROC dbo.Product_Update
 	@Id int,
-	@Name varchar,
+	@Name varchar(20),
 	@Amount int,
 	@PriceForOne decimal,
 	@Description text
