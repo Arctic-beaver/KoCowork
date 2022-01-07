@@ -1,10 +1,19 @@
-﻿namespace CoCowork.BusinessLayer.Models
+﻿using System;
+
+namespace CoCowork.BusinessLayer.Models
 {
-    public class LaptopModel : ItemModel
+    public class LaptopModel : BookingItemModel
     {
         public int Number { get; set; }
         public decimal PricePerMonth { get; set; }
         public string TypeForDisplayInUI = "Ноутбук";
         public int AmountMonth { get; set; }
+        private double _amountMonths;
+
+        public override void CalculateSubtotalPrice(decimal price)
+        {
+            _amountMonths = GetAmountMonth();
+            SubtotalPrice = Convert.ToDecimal(_amountMonths) * price;
+        }
     }
 }

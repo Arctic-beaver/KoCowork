@@ -7,9 +7,9 @@ namespace CoCowork.DataLayer.Entities
         public Room Room { get; set; }
         public Order Order { get; set; }
 
-        public override void CalculateSubtotalPrice(decimal price)
-        {
-            SubtotalPrice = Convert.ToDecimal(GetAmountHours()) * price;
-        }
+        //public override void CalculateSubtotalPrice(decimal price)
+        //{
+        //    SubtotalPrice = Convert.ToDecimal(GetAmountHours()) * price;
+        //}
     }
 }

@@ -8,11 +8,11 @@ namespace CoCowork.DataLayer.Entities
         public int ClientId { get; set; }
         private double _amountDays;
 
-        public override void CalculateSubtotalPrice(decimal price)
-        {
-            _amountDays = GetAmountDays();
-            SubtotalPrice = Convert.ToDecimal(_amountDays) * price;
-        }
+        //public override void CalculateSubtotalPrice(decimal price)
+        //{
+        //    _amountDays = GetAmountDays();
+        //    SubtotalPrice = Convert.ToDecimal(_amountDays) * price;
+        //}
 
 
     }

@@ -52,7 +52,7 @@ namespace CoCowork.BusinessLayer.Services
             var _entity = _placeRepository.GetAll().Find(x => x.Id == id);
 
             _itemOrder = new PlaceOrder { Place = _entity, Order = order, StartDate = startDate, EndDate = endDate };
-            _itemOrder.CalculateSubtotalPrice(price);
+            //_itemOrder.CalculateSubtotalPrice(price);
 
             _orderRepository.Add(_itemOrder);
         }

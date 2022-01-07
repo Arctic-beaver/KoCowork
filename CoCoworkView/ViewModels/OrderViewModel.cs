@@ -21,7 +21,7 @@ namespace CoCowork.UI.ViewModels
         private OrderModel _selectedItem;
         public OrderViewModel()
         {
-            GridVisibility = Visibility.Visible;
+            GridVisibility = Visibility.Collapsed;
             ShowActiveAvailability = true;
             ShowCanceledAvailability = true;
             Service = new OrderService();

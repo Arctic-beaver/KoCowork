@@ -45,7 +45,7 @@ namespace CoCowork.BusinessLayer.Services
             var _entity = _laptopRepository.GetAll().Find(x => x.Id == id);
 
             _itemOrder = new LaptopOrder { Laptop = _entity, Order = order, StartDate = startDate, EndDate = endDate };
-            _itemOrder.CalculateSubtotalPrice(price);
+            //_itemOrder.CalculateSubtotalPrice(price);
 
             _orderRepository.Add(_itemOrder);
         }

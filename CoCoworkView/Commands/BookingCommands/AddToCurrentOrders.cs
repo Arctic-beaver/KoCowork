@@ -14,16 +14,13 @@ namespace CoCowork.UI.ViewModels
         {
             _vmCurrentOrder = vmCurrentOrder;
             _vm = vm;
-            if (vmCurrentOrder.CurrentOrder == null)
-            {
-                vmCurrentOrder.CurrentOrder = new ObservableCollection<ItemModel>();
-            }
-
         }
 
         public override void Execute(object parameter)
         {
+            _vm.BookingSelectedItem.CalculateSubtotalPrice(_vm.BookingSelectedItem.Price);
             _vmCurrentOrder.CurrentOrder.Add(_vm.BookingSelectedItem);
+            
             _vmCurrentOrder.RecalculateSum();
         }
     }

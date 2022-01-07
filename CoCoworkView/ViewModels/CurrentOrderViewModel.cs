@@ -10,17 +10,6 @@ namespace CoCowork.UI.ViewModels
 {
     public class CurrentOrderViewModel : TabViewModel
     {
-        public CurrentOrderViewModel()
-        {
-            GridVisibility = Visibility.Visible;
-
-            AddOrder = new AddOrdersToDB(this);
-
-            _clientService = new ClientService();
-
-            Clients = new ObservableCollection<ClientModel>();
-            GetClients = new GetClientsCommand(this, _clientService);
-        }
 
         private ObservableCollection<ItemModel> _currentOrder;
         public ObservableCollection<ItemModel> CurrentOrder
@@ -91,16 +80,21 @@ namespace CoCowork.UI.ViewModels
                 OnPropertyChanged("TotalPrice");
             }
         }
-
-        public ICommand GetClients
+        public CurrentOrderViewModel()
         {
-            get; set;
+            Clients = new ObservableCollection<ClientModel>();
+            CurrentOrder = new ObservableCollection<ItemModel>();
+
+            _clientService = new ClientService();
+            GetClients = new GetClientsCommand(this, _clientService);
+            
+            GridVisibility = Visibility.Collapsed;
+            AddOrder = new AddOrdersToDB(this);
         }
 
-        public ICommand AddOrder
-        {
-            get; set;
-        }
+        public ICommand GetClients { get; set; }
+
+        public ICommand AddOrder { get; set; }
 
         public decimal GetItemModelSum(ItemModel itemModel)
         {
