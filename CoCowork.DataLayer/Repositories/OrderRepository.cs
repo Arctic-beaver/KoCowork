@@ -24,9 +24,30 @@ namespace CoCowork.DataLayer.Repositories
         public Order GetById(int id)
         {
             using IDbConnection connection = ProvideConnection();
-            return connection.QueryFirstOrDefault(_selectByIdProcedure, new { Id = id },
-                commandType: CommandType.StoredProcedure);
+            var OrderDictionary = new Dictionary<int, Order>();
+
+            return connection
+                .Query<Order, Payment, Order>(
+                     _selectByIdProcedure,
+                    (order, payment) =>
+                    {
+                        if (!OrderDictionary.TryGetValue(order.Id, out Order orderEntry))
+                        {
+                            orderEntry = order;
+                            orderEntry.Payments = new List<Payment>();
+                            OrderDictionary.Add(orderEntry.Id, orderEntry);
+                        }
+                        orderEntry.Payments.Add(payment);
+                        return orderEntry;
+                    },
+                    new
+                    {
+                        Id = id
+                    },
+                    splitOn: "Id")
+                .FirstOrDefault();
         }
+
 
         public void Add(Order order)
         {

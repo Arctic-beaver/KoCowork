@@ -35,9 +35,9 @@ namespace CoCowork.BusinessLayer.Services
             return result;
         }
 
-        //public List<PaymentModel> GetPaymentsByOrderId(int orderId)
-        //{
+        public List<PaymentModel> GetPaymentsByOrderId(int orderId)
+        {
 
-        //}
+        }
     }
 }
