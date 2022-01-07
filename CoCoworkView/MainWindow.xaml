@@ -19,6 +19,37 @@
             <i:InvokeCommandAction Command="{Binding Product.GetProductsCommand}"/>
         </i:EventTrigger>
     </i:Interaction.Triggers>
+    <Window.Resources>
+        <Style x:Key="placeHolder" TargetType="{x:Type TextBox}" BasedOn="{StaticResource {x:Type TextBox}}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type TextBox}">
+                        <Grid>
+                            <TextBox Text="{Binding Path=Text,
+                                                RelativeSource={RelativeSource TemplatedParent},
+                                                Mode=TwoWay,
+                                                UpdateSourceTrigger=PropertyChanged}"
+                                 x:Name="textSource"
+                                 Background="Transparent"
+                                 Panel.ZIndex="2" />
+                            <TextBox Text="{TemplateBinding Tag}" Background="{TemplateBinding Background}" Panel.ZIndex="1">
+                                <TextBox.Style>
+                                    <Style TargetType="{x:Type TextBox}">
+                                        <Setter Property="Foreground" Value="Transparent"/>
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding Path=Text, Source={x:Reference textSource}}" Value="">
+                                                <Setter Property="Foreground" Value="#FF807463"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </TextBox.Style>
+                            </TextBox>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
 
     <Grid>
         <Grid.ColumnDefinitions>
@@ -215,7 +246,7 @@
             </Grid>
         </Grid>
 
-        <Grid x:Name="ProductsGrid" Grid.Column ="1" Visibility="{Binding GridVisibility}" DataContext="{Binding Product}">
+        <Grid x:Name="ProductsGrid" Grid.Column ="1" DataContext="{Binding Product}" Visibility="{Binding GridVisibility}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="75*"/>
                 <ColumnDefinition Width="25*"/>
@@ -236,7 +267,7 @@
                     <RowDefinition/>
                 </Grid.RowDefinitions>
 
-                <Button x:Name="AddNewProductButton" Command="{Binding AddNewProduct.ChangeProductVisibility}" Content="Инсертнуть" Grid.Column="1" Grid.Row="1" Margin="0, 0, 0, 50"/>
+                <Button x:Name="AddNewProductButton" Command="{Binding AddNewProductViewModel.ChangeProductVisibility}" Content="Инсертнуть" Grid.Column="1" Grid.Row="1" Margin="0, 0, 0, 50"/>
                 <StackPanel x:Name="ProductPanelChekBox" Grid.Column="1" Grid.Row="2"  Margin="0,0,0,20">
                     <CheckBox Content="Товары в наличии" Margin="0, 5, 0, 0" />
 
@@ -250,7 +281,7 @@
                     <ColumnDefinition Width="auto"/>
                 </Grid.ColumnDefinitions>
                 <DataGrid x:Name="ProductsDataGrid" ItemsSource="{Binding Products}" CanUserAddRows="False" CanUserDeleteRows="False" CanUserReorderColumns="False" 
-                          CanUserSortColumns="True" AutoGenerateColumns="False" Grid.Column="0" Grid.Row="0" ColumnWidth="*" SelectedItem="{Binding Path=Product.SelectedItem, Mode=TwoWay}">
+                          CanUserSortColumns="True" AutoGenerateColumns="False" Grid.Column="0" Grid.Row="0" ColumnWidth="*" SelectedItem="{Binding Path=SelectedItem, Mode=TwoWay}">
                     <DataGrid.Resources>
                         <Style TargetType="{x:Type DataGridColumnHeader}">
                             <Setter Property="HorizontalContentAlignment" Value="Center"/>
@@ -261,12 +292,12 @@
                     </DataGrid.Resources>
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Наименование" Width ="auto" Binding="{Binding Name}"/>
-                        <DataGridTextColumn Header="Цена за шт" Width ="auto" Binding="{Binding Price}"/>
+                        <DataGridTextColumn Header="Цена за шт" Width ="auto" Binding="{Binding PriceForOne}"/>
                         <DataGridTextColumn Header="Количество" Width ="auto" Binding="{Binding Amount}"/>
                         <DataGridTextColumn Header="Описание" Width ="auto" Binding="{Binding Description}"/>
                     </DataGrid.Columns>
                 </DataGrid>
-                <Grid x:Name ="AddProductGrid" Visibility ="{Binding AddNewProduct.GridVisibility}" Grid.Column ="1" Background="#FFE0DFDF" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="129">
+                <Grid x:Name ="AddProductGrid" Visibility ="{Binding AddNewProductViewModel.GridVisibility}" Grid.Column ="1" Background="#FFE0DFDF" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="200">
                     <Grid.RowDefinitions>
                         <RowDefinition/>
                         <RowDefinition/>
@@ -276,7 +307,18 @@
                         <RowDefinition/>
                         <RowDefinition/>
                         <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
                     </Grid.RowDefinitions>
+                    <Label Name="ProductNameLabel" Grid.Row="2" Grid.Column ="1" Content="Введите товар:" Margin="15,0,0,0" />
+                    <TextBox x:Name ="ProductName" Grid.Row ="2" Grid.Column ="1" Margin="15,25,15,0" Style="{StaticResource placeHolder}" Tag="Введите товар" Text="{Binding AddNewProductViewModel.Name}"/>
+                    <Label Name="ProductPriceLabel" Grid.Row="3" Grid.Column ="1" Content="Введите цену:" Margin="15,0,0,0" />
+                    <TextBox x:Name ="ProductPrice" Grid.Row ="3" Grid.Column ="1" Margin="15,25,15,0" Style="{StaticResource placeHolder}" Tag="Введите цену" Text="{Binding AddNewProductViewModel.PriceForOne}"/>
+                    <Label Name="ProductAmountLabel" Grid.Row="4" Grid.Column ="1" Content="Введите количество:" Margin="15,0,0,0" />
+                    <TextBox x:Name ="ProductAmount" Grid.Row ="4" Grid.Column ="1" Margin="15,25,15,0" Style="{StaticResource placeHolder}" Tag="Введите количество" Text="{Binding AddNewProductViewModel.Amount}"/>
+                    <Label Name="ProductDescriptionLabel" Grid.Row="5" Grid.Column ="1" Content="Введите описание:" Margin="15,0,0,0" />
+                    <TextBox x:Name ="ProductDescription" Grid.Row ="5" Grid.Column ="1" Margin="15,25,15,0" Style="{StaticResource placeHolder}" Tag="Введите описание" Text="{Binding AddNewProductViewModel.Description}"/>
+                    <Button x:Name ="AddFinallyProduct" Content="Добавить новый товар" Grid.Row="7" Margin="15" Command="{Binding AddNewProduct}" />
                 </Grid>
             </Grid>
         </Grid>

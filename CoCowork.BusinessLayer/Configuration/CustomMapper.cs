@@ -39,6 +39,8 @@ namespace CoCowork.BusinessLayer.Configuration
 
                 cfg.CreateMap<Laptop, ComputerModel>();
 
+                cfg.CreateMap<ProductModel, Product>();
+
             }));
         }
     }

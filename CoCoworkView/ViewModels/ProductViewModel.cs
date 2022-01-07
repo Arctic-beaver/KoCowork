@@ -16,6 +16,7 @@ namespace CoCowork.UI.ViewModels
         private decimal _priceForOne;
         private bool _productsInStock;
         private ProductModel _selectedItem;
+        
 
 
 
@@ -26,10 +27,11 @@ namespace CoCowork.UI.ViewModels
         {
             GridVisibility = Visibility.Hidden;
             _productService = new ProductService();
+            AddNewProductViewModel = new AddNewProductViewModel();
             Products = new ObservableCollection<ProductModel>();
             GetProductsCommand = new GetProductsCommand(this, _productService);
             GetProductsCommand.Execute(Products);
-            AddNewProduct = new AddNewProductViewModel();
+            AddNewProduct = new AddNewProductCommand (AddNewProductViewModel, this, _productService);
         }
 
         public ObservableCollection<ProductModel> Products { get; set; }
@@ -73,6 +75,7 @@ namespace CoCowork.UI.ViewModels
                 OnPropertyChanged(nameof(Description));
             }
         }
+
         public bool ProductsInStock
         {
             get => _productsInStock;
@@ -101,11 +104,13 @@ namespace CoCowork.UI.ViewModels
             }
         }
 
-        public AddNewProductViewModel AddNewProduct { get; set; }
+        public AddNewProductViewModel AddNewProductViewModel { get; set; }  
 
         public ICommand GetProductsCommand { get; set; }
 
-       
+        public ICommand AddNewProduct { get; set; }
+
+
 
 
 

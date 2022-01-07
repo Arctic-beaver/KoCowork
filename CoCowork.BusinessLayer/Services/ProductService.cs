@@ -45,10 +45,21 @@ namespace CoCowork.BusinessLayer.Services
             _productRepository.Update(product);
         }
 
-        public void AddProduct(ProductModel productModel)
+        public string AddProduct(ProductModel productModel)
         {
             Product product = CustomMapper.GetInstance().Map<Product>(productModel);
-            _productRepository.Add(product);
+            string result = string.Empty;
+            try
+            {
+                _productRepository.Add(product);
+                result = "Успех";
+            }
+            catch(Exception ex)
+            {
+                result = ex.Message; 
+            }
+            return result;
+            
         }
     }
 }
