@@ -26,14 +26,16 @@ namespace CoCowork.BusinessLayer.Tests
             _placeOrderRepository = new Mock<IPlaceOrderRepository>();
             _productOrderRepository = new Mock<IProductOrderRepository>();
             _roomOrderRepository = new Mock<IRoomOrderRepository>();
+            _clientTestData = new ClientTestData();
         }
 
         [Test]
         public void AddOrder()
         {
             //arrange
-            var order = _ordersTestData.GetOrderWithClientModelForTests();
+            //var order = _ordersTestData.GetOrderWithClientModelForTests();
             var client = _clientTestData.GetClientForTests();
+
             _orderRepositoryMock.Setup(m => m.Add(It.IsAny<Order>())).Returns(1);
             var sut = new OrderService(_orderRepositoryMock.Object);
 
@@ -42,6 +44,20 @@ namespace CoCowork.BusinessLayer.Tests
 
             //assert
             _orderRepositoryMock.Verify(m => m.Add(It.IsAny<Order>()), Times.Once());
+        }
+
+        [Test]
+        public void AddLaptopOrder()
+        {
+            //arrange
+
+            _laptopRepositoryMock.Setup(m => m.Add(It.IsAny<LaptopOrder>()));
+
+            //act
+            
+
+            //assert
+        
         }
     }
 }

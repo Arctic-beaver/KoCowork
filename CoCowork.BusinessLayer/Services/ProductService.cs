@@ -22,7 +22,7 @@ namespace CoCowork.BusinessLayer.Services
 
         public void AddItemOrder(int id, Order order, DateTime startDate, DateTime endDate, decimal price)
         {
-            var _entity = _productRepository.GetAll().Find(x => x.Id == id);
+            var _entity = _productRepository.GetById(id);
 
             _itemOrder = new ProductOrder { Product = _entity, Order = order, SubtotalPrice = price };
 

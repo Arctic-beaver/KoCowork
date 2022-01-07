@@ -30,7 +30,6 @@ namespace CoCowork.BusinessLayer.Configuration
                 cfg.CreateMap<Laptop, LaptopModel>();
                 cfg.CreateMap<MiniOfficeModel, MiniOffice>();
 
-                cfg.CreateMap<MiniOfficeOrder, MiniOfficeOrderModel>();
 
                 //cfg.CreateMap<MiniOfficeOrder, MiniOfficeOrderModel>();
 

@@ -54,12 +54,16 @@ namespace CoCowork.BusinessLayer.Services
 
         public void AddItemOrder(int id, Order order, DateTime startDate, DateTime endDate, decimal price)
         {
-            var _entity = _placeRepository.GetAll().Find(x => x.Id == id);
+            var _entity = _placeRepository.GetPlaceById(id);
 
             _itemOrder = new PlaceOrder { Place = _entity, Order = order, StartDate = startDate, EndDate = endDate };
-            //_itemOrder.CalculateSubtotalPrice(price);
 
             _orderRepository.Add(_itemOrder);
+        }
+
+        void IPlaceService.InsertPlace(PlaceModel place)
+        {
+            throw new NotImplementedException();
         }
     }
 }

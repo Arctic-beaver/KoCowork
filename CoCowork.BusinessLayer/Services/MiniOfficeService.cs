@@ -11,7 +11,7 @@ namespace CoCowork.BusinessLayer.Services
     {
         private readonly IMiniOfficeRepository _miniOfficeRepository;
         private readonly IPlaceRepository _placeRepository;
-        private OrderRepository _orderRepository;
+        private MiniOfficeOrderRepository _orderRepository;
         public MiniOfficeService()
         {
             _miniOfficeRepository = new MiniOfficeRepository();
@@ -56,12 +56,21 @@ namespace CoCowork.BusinessLayer.Services
 
         public void AddItemOrder(int id, Order order, DateTime startDate, DateTime endDate, decimal price)
         {
-            var _entity = _miniOfficeRepository.GetAll().Find(x => x.Id == id);
+            var _entity = _miniOfficeRepository.GetMiniOfficeById(id);
 
             var itemOrder = new MiniOfficeOrder { MiniOffice = _entity, Order = order, StartDate = startDate, EndDate = endDate };
-            //_itemOrder.CalculateSubtotalPrice(price);
 
             _orderRepository.Add(itemOrder);
+        }
+
+        public void DeleteMiniOffice(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void InsertMiniOffice(MiniOfficeModel miniOffice)
+        {
+            throw new NotImplementedException();
         }
     }
 }

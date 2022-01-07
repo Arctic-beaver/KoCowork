@@ -42,10 +42,9 @@ namespace CoCowork.BusinessLayer.Services
         }
         public void AddItemOrder(int id, Order order, DateTime startDate, DateTime endDate, decimal price)
         {
-            var _entity = _laptopRepository.GetAll().Find(x => x.Id == id);
+            var _entity = _laptopRepository.GetById(id);
 
             _itemOrder = new LaptopOrder { Laptop = _entity, Order = order, StartDate = startDate, EndDate = endDate };
-            //_itemOrder.CalculateSubtotalPrice(price);
 
             _orderRepository.Add(_itemOrder);
         }
