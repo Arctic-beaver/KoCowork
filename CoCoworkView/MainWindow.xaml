@@ -280,23 +280,7 @@
                     <ColumnDefinition Width="70*"/>
                     <ColumnDefinition Width="auto"/>
                 </Grid.ColumnDefinitions>
-                <DataGrid x:Name="ProductsDataGrid" ItemsSource="{Binding Products}" CanUserAddRows="False" CanUserDeleteRows="False" CanUserReorderColumns="False" 
-                          CanUserSortColumns="True" AutoGenerateColumns="False" Grid.Column="0" Grid.Row="0" ColumnWidth="*" SelectedItem="{Binding Path=SelectedItem, Mode=TwoWay}">
-                    <DataGrid.Resources>
-                        <Style TargetType="{x:Type DataGridColumnHeader}">
-                            <Setter Property="HorizontalContentAlignment" Value="Center"/>
-                            <Setter Property="Background" Value="Lavender"/>
-                            <Setter Property="BorderThickness" Value="0, 0, 1, 2"/>
-                            <Setter Property="BorderBrush" Value="Black"/>
-                        </Style>
-                    </DataGrid.Resources>
-                    <DataGrid.Columns>
-                        <DataGridTextColumn Header="Наименование" Width ="auto" Binding="{Binding Name}"/>
-                        <DataGridTextColumn Header="Цена за шт" Width ="auto" Binding="{Binding PriceForOne}"/>
-                        <DataGridTextColumn Header="Количество" Width ="auto" Binding="{Binding Amount}"/>
-                        <DataGridTextColumn Header="Описание" Width ="auto" Binding="{Binding Description}"/>
-                    </DataGrid.Columns>
-                </DataGrid>
+                <DataGrid x:Name="ProductDataGrid" ItemsSource="{Binding Products}" SelectedItem="{Binding SelectedItem}" CanUserAddRows="False" CanUserDeleteRows="False" CanUserReorderColumns="False" CanUserSortColumns="True"  Grid.Column="0" ColumnWidth="*"/>
                 <Grid x:Name ="AddProductGrid" Visibility ="{Binding AddNewProductViewModel.GridVisibility}" Grid.Column ="1" Background="#FFE0DFDF" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="200">
                     <Grid.RowDefinitions>
                         <RowDefinition/>
