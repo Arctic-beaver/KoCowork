@@ -11,7 +11,7 @@ namespace CoCowork.BusinessLayer.Services
     {
         private readonly IMiniOfficeRepository _miniOfficeRepository;
         private readonly IPlaceRepository _placeRepository;
-
+        private OrderRepository _orderRepository;
         public MiniOfficeService()
         {
             _miniOfficeRepository = new MiniOfficeRepository();
@@ -58,10 +58,10 @@ namespace CoCowork.BusinessLayer.Services
         {
             var _entity = _miniOfficeRepository.GetAll().Find(x => x.Id == id);
 
-            _itemOrder = new MiniOfficeOrder { MiniOffice = _entity, Order = order, StartDate = startDate, EndDate = endDate };
+            var itemOrder = new MiniOfficeOrder { MiniOffice = _entity, Order = order, StartDate = startDate, EndDate = endDate };
             //_itemOrder.CalculateSubtotalPrice(price);
 
-            _orderRepository.Add(_itemOrder);
+            _orderRepository.Add(itemOrder);
         }
     }
 }

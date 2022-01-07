@@ -5,7 +5,6 @@ namespace CoCowork.DataLayer.Entities
     public class RoomOrder : BookingBaseOrder
     {
         public Room Room { get; set; }
-        public Order Order { get; set; }
 
         //public override void CalculateSubtotalPrice(decimal price)
         //{

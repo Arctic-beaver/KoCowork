@@ -12,12 +12,14 @@ namespace CoCowork.BusinessLayer.Services
 
         private Order _order;
 
-        public OrderService()
+        public OrderService(IOrderRepository fakeOrderRepository)
         {
-
             _orderRepository = new OrderRepository();
         }
-
+        public OrderService()
+        {
+            _orderRepository = new OrderRepository();
+        }
         public List<OrderModel> GetAllOrders()
         {
             var orders = _orderRepository.GetAll();

@@ -62,7 +62,7 @@ namespace CoCowork.UI.ViewModels
 
         public MiniOfficeViewModel()
         {
-            GridVisibility = Visibility.Collapsed;
+            GridVisibility = Visibility.Hidden;
 
             ChangeMiniOfficeEditVisibility = new VisibilityOfInnerGridCommand(this);
         }

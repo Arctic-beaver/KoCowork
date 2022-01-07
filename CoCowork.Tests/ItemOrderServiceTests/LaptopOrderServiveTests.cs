@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CoCowork.BusinessLayer.Tests
 {
-    internal class OrderMoq
+    internal class LaptopOrderServiveTests
     {
     }
 }
