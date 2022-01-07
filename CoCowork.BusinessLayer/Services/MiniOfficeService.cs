@@ -52,7 +52,16 @@ namespace CoCowork.BusinessLayer.Services
         public int InsertMiniOfficeWithPlaces(MiniOfficeModel miniOffice)
         {
             var mOffice = CustomMapper.GetInstance().Map<MiniOffice>(miniOffice);
-            var insertedMiniOfficeId = _miniOfficeRepository.Add(mOffice);
+            int insertedMiniOfficeId = 0;
+
+            try
+            {
+                insertedMiniOfficeId = _miniOfficeRepository.Add(mOffice);
+            }
+            catch (Exception)
+            {
+                return -1;
+            }
 
             foreach (var placeEntity in miniOffice.Places)
             {
