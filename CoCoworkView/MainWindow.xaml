@@ -50,7 +50,7 @@
             <Button x:Name="CurrentOrderButton" Command="{Binding MakeGridVisible}" CommandParameter="{Binding CurrentOrder}" Content="Текущий заказ" Grid.Column="1" Grid.Row="5" Margin="0, 18, 0, 18"/>
         </Grid>
 
-        <Grid x:Name="BookingGrid" Grid.Column ="1" Visibility="{Binding Booking.GridVisibility}" DataContext="{Binding Booking}">
+        <Grid x:Name="BookingGrid" Grid.Column ="1" Visibility="{Binding GridVisibility}" DataContext="{Binding Booking}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="70*"/>
                 <ColumnDefinition Width="25*"/>
@@ -215,7 +215,7 @@
             </Grid>
         </Grid>
 
-        <Grid x:Name="ProductsGrid" Grid.Column ="1" Visibility="Visible" DataContext="{Binding Product}">
+        <Grid x:Name="ProductsGrid" Grid.Column ="1" Visibility="{Binding GridVisibility}" DataContext="{Binding Product}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="75*"/>
                 <ColumnDefinition Width="25*"/>
@@ -236,43 +236,53 @@
                     <RowDefinition/>
                 </Grid.RowDefinitions>
 
-                <Button x:Name="AddNewProductButton" Content="Инсертнуть" Grid.Column="1" Grid.Row="1" Margin="0, 0, 0, 50"/>
+                <Button x:Name="AddNewProductButton" Command="{Binding AddNewProduct.ChangeProductVisibility}" Content="Инсертнуть" Grid.Column="1" Grid.Row="1" Margin="0, 0, 0, 50"/>
                 <StackPanel x:Name="ProductPanelChekBox" Grid.Column="1" Grid.Row="2"  Margin="0,0,0,20">
                     <CheckBox Content="Товары в наличии" Margin="0, 5, 0, 0" />
-                    
+
                 </StackPanel>
                 <Button x:Name="EditProductButton" Content="Редактировать" Grid.Column="1" Grid.Row="3" Margin="0, 0, 0, 50"/>
                 <Button x:Name="AddToProductOrderButton" Content="Добавить к заказу" Grid.Column="1" Grid.Row="4" Margin="0, 45, 0, 0"/>
             </Grid>
-            <Grid x:Name ="MainProductGrid" Grid.Column ="0" Background="#FFE0DFDF" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="600" Height="584">
+            <Grid x:Name ="MainProductGrid" Grid.Column ="0" Background="#FFE0DFDF" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="70*"/>
                     <ColumnDefinition Width="auto"/>
                 </Grid.ColumnDefinitions>
-                <Grid x:Name ="AddProductGrid" Visibility ="{Binding AddNewProduct.GridVisibility}" Grid.Column ="1" Background="#FFE0DFDF" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="129.11">
-                    
+                <DataGrid x:Name="ProductsDataGrid" ItemsSource="{Binding Products}" CanUserAddRows="False" CanUserDeleteRows="False" CanUserReorderColumns="False" 
+                          CanUserSortColumns="True" AutoGenerateColumns="False" Grid.Column="0" Grid.Row="0" ColumnWidth="*" SelectedItem="{Binding Path=Product.SelectedItem, Mode=TwoWay}">
+                    <DataGrid.Resources>
+                        <Style TargetType="{x:Type DataGridColumnHeader}">
+                            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                            <Setter Property="Background" Value="Lavender"/>
+                            <Setter Property="BorderThickness" Value="0, 0, 1, 2"/>
+                            <Setter Property="BorderBrush" Value="Black"/>
+                        </Style>
+                    </DataGrid.Resources>
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Наименование" Width ="auto" Binding="{Binding Name}"/>
+                        <DataGridTextColumn Header="Цена за шт" Width ="auto" Binding="{Binding Price}"/>
+                        <DataGridTextColumn Header="Количество" Width ="auto" Binding="{Binding Amount}"/>
+                        <DataGridTextColumn Header="Описание" Width ="auto" Binding="{Binding Description}"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+                <Grid x:Name ="AddProductGrid" Visibility ="{Binding AddNewProduct.GridVisibility}" Grid.Column ="1" Background="#FFE0DFDF" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="129">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
                 </Grid>
-
             </Grid>
-            <DataGrid AutoGenerateColumns="False" CanUserAddRows ="False" CanUserDeleteRows="False" Grid.Column="0" Grid.Row="0" ColumnWidth="*" ItemsSource="{Binding Product.Products}" SelectedItem="{Binding Path=Product.SelectedItem, Mode=TwoWay}">
-                <DataGrid.Resources>
-                    <Style TargetType="{x:Type DataGridColumnHeader}">
-                        <Setter Property="HorizontalContentAlignment" Value="Center"/>
-                        <Setter Property="Background" Value="Lavender"/>
-                        <Setter Property="BorderThickness" Value="0, 0, 1, 2"/>
-                        <Setter Property="BorderBrush" Value="Black"/>
-                    </Style>
-                </DataGrid.Resources>
-                <DataGrid.Columns>
-                    <DataGridTextColumn Header="Наименование" Width ="auto" Binding="{Binding Name}"/>
-                    <DataGridTextColumn Header="Цена за шт" Width ="auto" Binding="{Binding Price}"/>
-                    <DataGridTextColumn Header="Количество" Width ="auto" Binding="{Binding Amount}"/>
-                    <DataGridTextColumn Header="Описание" Width ="auto" Binding="{Binding Description}"/>
-                </DataGrid.Columns>
-            </DataGrid>
         </Grid>
-        
-    
+
+
+
 
         <Grid x:Name="ClientsGrid" Grid.Column ="1" Visibility="{Binding Client.GridVisibility}">
             <Label>Text in client grid</Label>
