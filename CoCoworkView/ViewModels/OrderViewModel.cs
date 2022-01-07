@@ -175,7 +175,7 @@ namespace CoCowork.UI.ViewModels
             }
         }
 
-        public ICommand GetOrdersCommand;
+        public ICommand GetOrdersCommand { get; set; }
 
         public OrderService Service;
     }

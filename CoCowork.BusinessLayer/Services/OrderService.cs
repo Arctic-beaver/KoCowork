@@ -19,6 +19,12 @@ namespace CoCowork.BusinessLayer.Services
             _orderRepository = new OrderRepository();
         }
 
+        public void MarkAsPaid(Order order)
+        {
+            order.IsPaid = true;
+            _orderRepository.Update(order);
+        }
+
         public List<OrderModel> GetAllOrders()
         {
             var orders = _orderRepository.GetAll();
