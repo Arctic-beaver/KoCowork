@@ -29,7 +29,15 @@ namespace CoCowork.BusinessLayer.Services
 
         public bool DeleteMiniOffice(MiniOfficeModel miniOffice)
         {
-            return _miniOfficeRepository.DeleteMiniOfficeById(miniOffice.Id);
+            try
+            {
+                _miniOfficeRepository.DeleteMiniOfficeById(miniOffice.Id);
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+            return true;
         }
 
         public void UpdateMiniOffice(MiniOfficeModel miniOffice)
@@ -47,9 +55,12 @@ namespace CoCowork.BusinessLayer.Services
             {
                 var place = CustomMapper.GetInstance().Map<Place>(placeEntity);
                 place.MiniOfficeId = insertedMiniOfficeId;
-                bool isSucceeded = _placeRepository.Add(place);
 
-                if (isSucceeded == false)
+                try
+                {
+                    _placeRepository.Add(place);
+                }
+                catch (Exception)
                 {
                     return -1;
                 }

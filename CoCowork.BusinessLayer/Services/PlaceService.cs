@@ -33,7 +33,15 @@ namespace CoCowork.BusinessLayer.Services
 
         public bool DeletePlace(PlaceModel place)
         {
-            return _placeRepository.DeletePlace(place.Id);
+            try
+            {
+                _placeRepository.DeletePlace(place.Id);
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+            return true;
         }
 
         public void UpdatePlace(PlaceModel place)

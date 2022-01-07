@@ -172,24 +172,10 @@ namespace CoCowork.UI.ViewModels
 
         public void CheckIfAllFieldsFilledCorrectly()
         {
-            if (Name != null && PricePerDay != null && AmountOfPlaces != null)
-            {
-                IsEditButtonAvailable = true;
-            }
-            else
-            {
-                IsEditButtonAvailable = false;
-            }
+            IsEditButtonAvailable = (Name != null && PricePerDay != null && AmountOfPlaces != null);
 
-            if (Name != null && PricePerDay != null && AmountOfPlaces != null
-                && PlaceNumber != null && PlacePricePerDay != null && PlacePriceFixedPerDay != null)
-            {
-                IsAddButtonAvailable = true;
-            }
-            else
-            {
-                IsAddButtonAvailable = false;
-            }
+            IsAddButtonAvailable = (Name != null && PricePerDay != null && AmountOfPlaces != null)
+            && (PlaceNumber != null && PlacePricePerDay != null && PlacePriceFixedPerDay != null);
         }
     }
 }

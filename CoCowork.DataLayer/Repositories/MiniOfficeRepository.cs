@@ -1,6 +1,5 @@
 ﻿using CoCowork.DataLayer.Entities;
 using Dapper;
-using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -14,7 +13,6 @@ namespace CoCowork.DataLayer.Repositories
         private const string _insertProcedure = "dbo.MiniOffice_Insert";
         private const string _updateProcedure = "dbo.MiniOffice_Update";
         private const string _deleteProcedure = "dbo.MiniOffice_Delete";
-        private bool _isSucceeded;
 
         public List<MiniOffice> GetAll()
         {
@@ -83,25 +81,17 @@ namespace CoCowork.DataLayer.Repositories
                 commandType: CommandType.StoredProcedure);
         }
 
-        public bool DeleteMiniOfficeById(int id)
+        public void DeleteMiniOfficeById(int id)
         {
             using IDbConnection connection = ProvideConnection();
 
-            try
-            {
-                connection.Execute(_deleteProcedure,
-                    new
-                    {
-                        Id = id
-                    },
-                    commandType: CommandType.StoredProcedure);
-            }
-            catch (Exception)
-            {
-                return _isSucceeded = false;
-            }
-
-            return _isSucceeded = true;
+            connection.Execute(_deleteProcedure,
+                new
+                {
+                    Id = id
+                },
+                commandType: CommandType.StoredProcedure);
         }
     }
 }
+
