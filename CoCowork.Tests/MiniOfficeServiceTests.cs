@@ -62,7 +62,7 @@ namespace CoCowork.BusinessLayer.Tests
         {
             //arrange
             var miniOfficeWithPlaces = _miniOfficeTestData.GetMiniOfficeModelForTests();
-            _miniOfficeRepositoryMock.Setup(m => m.DeleteMiniOfficeById(It.IsAny<int>())).Returns(true);
+            _miniOfficeRepositoryMock.Setup(m => m.DeleteMiniOffice(It.IsAny<int>()));
             _placeRepositoryMock.Setup(m => m.Add(It.IsAny<Place>())).Returns(42);
             var sut = new MiniOfficeService(_miniOfficeRepositoryMock.Object, _placeRepositoryMock.Object);
 
@@ -71,7 +71,7 @@ namespace CoCowork.BusinessLayer.Tests
 
             //assert
             Assert.IsTrue(actual);
-            _miniOfficeRepositoryMock.Verify(m => m.DeleteMiniOfficeById(It.IsAny<int>()), Times.Once());
+            _miniOfficeRepositoryMock.Verify(m => m.DeleteMiniOffice(It.IsAny<int>()), Times.Once());
         }
 
         [Test]

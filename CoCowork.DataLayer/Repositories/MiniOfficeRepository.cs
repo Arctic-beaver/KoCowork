@@ -22,7 +22,7 @@ namespace CoCowork.DataLayer.Repositories
             return connection.Query<MiniOffice>(_selectAllProcedure).ToList();
         }
 
-        public MiniOffice GetMiniOfficeById(int id)
+        public MiniOffice GetMiniOffice(int id)
         {
             using IDbConnection connection = ProvideConnection();
             var miniOfficeDictionary = new Dictionary<int, MiniOffice>();
@@ -63,6 +63,7 @@ namespace CoCowork.DataLayer.Repositories
                     IsActive = miniOffice.IsActive
                 },
                 commandType: CommandType.StoredProcedure);
+
             return insertedId;
         }
 
@@ -83,7 +84,7 @@ namespace CoCowork.DataLayer.Repositories
                 commandType: CommandType.StoredProcedure);
         }
 
-        public bool DeleteMiniOfficeById(int id)
+        public void DeleteMiniOffice(int id)
         {
             using IDbConnection connection = ProvideConnection();
 
@@ -93,12 +94,6 @@ namespace CoCowork.DataLayer.Repositories
                     Id = id
                 },
                 commandType: CommandType.StoredProcedure);
-            }
-            catch (Exception)
-            {
-                return _isSucceeded = false;
-            }
-            return _isSucceeded = true;
         }
     }
 }

@@ -60,18 +60,20 @@ namespace CoCowork.DataLayer.Repositories
         public int Add(Place place)
         {
             using IDbConnection connection = ProvideConnection();
+            int insertedId = 0;
 
-            connection.Execute(
-            _insertProcedure,
-            new
-            {
-                Number = place.Number,
-                MiniOfficeId = place.MiniOfficeId,
-                PricePerDay = place.PricePerDay,
-                PriceFixedPerDay = place.PriceFixedPerDay,
-                Description = place.Description
-            },
-            commandType: CommandType.StoredProcedure);
+            insertedId = connection.ExecuteScalar<int>(_insertProcedure,
+                new
+                {
+                    Number = place.Number,
+                    MiniOfficeId = place.MiniOfficeId,
+                    PricePerDay = place.PricePerDay,
+                    PriceFixedPerDay = place.PriceFixedPerDay,
+                    Description = place.Description
+                },
+                commandType: CommandType.StoredProcedure);
+
+            return insertedId;
         }
 
         public void UpdatePlaceById(Place place)
