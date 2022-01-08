@@ -1,6 +1,7 @@
 ﻿using CoCowork.BusinessLayer.Models;
 using CoCowork.BusinessLayer.Services;
 using CoCowork.UI.Commands;
+using CoCowork.UI.Commands.OrderHistoryCommands;
 using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Input;
@@ -31,6 +32,10 @@ namespace CoCowork.UI.ViewModels
             IsToolTipOn = Visibility.Visible;
 
             GetOrdersCommand = new GetOrdersCommand();
+            AddPaymentCommand = new AddPaymentCommand(Payment);
+            CheckIfOrderIsPaidCommand = new CheckIfOrderIsPaidCommand(this);
+
+
             ShowPaid = true;
             ShowUnpaid = true;
         }
@@ -176,6 +181,11 @@ namespace CoCowork.UI.ViewModels
         }
 
         public ICommand GetOrdersCommand { get; set; }
+
+        public ICommand AddPaymentCommand { get; set; }
+
+        public ICommand CheckIfOrderIsPaidCommand { get; set; }
+
 
         public OrderService Service;
     }

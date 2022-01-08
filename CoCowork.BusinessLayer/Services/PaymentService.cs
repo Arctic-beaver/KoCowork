@@ -34,10 +34,5 @@ namespace CoCowork.BusinessLayer.Services
             }
             return result;
         }
-
-        public List<PaymentModel> GetPaymentsByOrderId(int orderId)
-        {
-
-        }
     }
 }

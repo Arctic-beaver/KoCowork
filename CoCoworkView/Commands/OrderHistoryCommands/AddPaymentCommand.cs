@@ -11,16 +11,16 @@ namespace CoCowork.UI.Commands.OrderHistoryCommands
 {
     class AddPaymentCommand : CommandBase
     {
-        private readonly PaymentViewModel _viewModel;
+        private readonly PaymentViewModel _paymentViewModel;
         public AddPaymentCommand(PaymentViewModel vm)
         {
-            _viewModel = vm;
+            _paymentViewModel = vm;
         }
 
         public override void Execute(object parameter)
         {
-            PaymentModel payment = new PaymentModel(_viewModel.Amount, _viewModel.PaymentDate, _viewModel.OrderId);
-            string message = _viewModel.Service.Add(payment);
+            PaymentModel payment = new PaymentModel(_paymentViewModel.Amount, _paymentViewModel.PaymentDate, _paymentViewModel.OrderId);
+            string message = _paymentViewModel.Service.Add(payment);
             if (message.Equals("Success"))
             {
                 MessageBox.Show("Оплата успешно добавлена!");

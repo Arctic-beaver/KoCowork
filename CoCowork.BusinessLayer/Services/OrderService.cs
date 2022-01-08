@@ -19,9 +19,27 @@ namespace CoCowork.BusinessLayer.Services
             _orderRepository = new OrderRepository();
         }
 
-        public void MarkAsPaid(Order order)
+        public bool CheckPayment(int id)
         {
+            var order = _orderRepository.GetById(id);
+            decimal realPaidSumm = 0;
+            foreach (Payment payment in order.Payments)
+            {
+                realPaidSumm += payment.Amount;
+            }
+            return realPaidSumm >= order.TotalPrice;
+        }
+
+        public void MarkAsPaid(int id)
+        {
+            Order order = _orderRepository.GetById(id);
             order.IsPaid = true;
+
+            Update(order);
+        }
+
+        public void Update(Order order)
+        {
             _orderRepository.Update(order);
         }
 
