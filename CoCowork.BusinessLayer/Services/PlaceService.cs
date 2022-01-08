@@ -13,6 +13,7 @@ namespace CoCowork.BusinessLayer.Services
     public class PlaceService
     {
         private readonly IPlaceRepository _placeRepository;
+        
 
         public PlaceService()
         {
