@@ -29,7 +29,8 @@ namespace CoCowork.UI.Commands.MiniOfficeCommands
                     Id = _miniOfficeVM.SelectedMiniOffice.Id,
                     Name = _miniOfficeVM.Name,
                     PricePerDay = _miniOfficeVM.PricePerDay,
-                    AmountOfPlaces = _miniOfficeVM.AmountOfPlaces
+                    AmountOfPlaces = _miniOfficeVM.AmountOfPlaces,
+                    IsActive = true
                 };
                 _service.UpdateMiniOffice(miniOffice);
                 _bookingVM.MiniOffices.Remove(_miniOfficeVM.SelectedMiniOffice);
