@@ -1,37 +1,20 @@
-﻿using CoCowork.BusinessLayer.Models;
-using CoCowork.BusinessLayer.Services;
-using CoCowork.UI.Commands;
-using System;
-using System.Collections.ObjectModel;
-using System.Windows;
-using System.Windows.Input;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace CoCowork.UI.ViewModels
+namespace CoCowork.UI.ViewModels.ClientViewModel
 {
-    public class ClientViewModel : TabViewModel
+    public abstract class AddAndEditClientViewModel:InnerGridViewModel
     {
-
         private string _phone;
         private string _email;
         private DateTime _birthDate;
         private int _paperAmount;
         private DateTime _paperEndDate;
-        private ClientModel _selectedItem;
 
-        private readonly ClientService _clientService;
 
-        public ClientViewModel()
-        {
-            GridVisibility = Visibility.Hidden;
-
-            _clientService = new ClientService();
-
-            Clients = new ObservableCollection<ClientModel>();
-
-            GetClientsCommand = new GetClientsCommand(this, _clientService);
-        }
-
-        public ObservableCollection<ClientModel> Clients { get; set; }
         public string Phone
         {
             get => _phone;
@@ -81,25 +64,5 @@ namespace CoCowork.UI.ViewModels
                 OnPropertyChanged(nameof(PaperAmount));
             }
         }
-
-        public ClientModel SelectedItem
-        {
-            get => _selectedItem;
-            set
-            {
-                if (value != _selectedItem)
-                {
-                    _selectedItem = value;
-                    OnPropertyChanged(nameof(SelectedItem));
-
-                }
-            }
-        }
-
-        public ICommand GetClientsCommand { get; set; }
-
-
-
-
     }
 }
