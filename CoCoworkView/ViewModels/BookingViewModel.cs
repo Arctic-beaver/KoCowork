@@ -1,6 +1,5 @@
 ﻿using CoCowork.BusinessLayer.Models;
 using CoCowork.BusinessLayer.Services;
-using CoCowork.UI.Commands;
 using CoCowork.UI.Commands.BookingCommands;
 using System.Collections.ObjectModel;
 using System.Windows;
@@ -14,17 +13,6 @@ namespace CoCowork.UI.ViewModels
         private PlaceService _placeService;
         private ComputerService _computerService;
         private RoomService _roomService;
-        private ItemModel _bookingSelectedItem;
-
-        public ItemModel BookingSelectedItem
-        {
-            get => _bookingSelectedItem;
-            set
-            {
-                _bookingSelectedItem = value;
-                OnPropertyChanged(nameof(BookingSelectedItem));
-            }
-        }
 
         public ObservableCollection<PlaceModel> Places { get; set; }
         public ObservableCollection<MiniOfficeModel> MiniOffices { get; set; }
@@ -37,12 +25,12 @@ namespace CoCowork.UI.ViewModels
         public ICommand GetMeetingRooms { get; set; }
         public ICommand GetConferenceRooms { get; set; }
         public MiniOfficeViewModel MiniOfficeVM { get; set; }
-         
+
         public BookingViewModel()
         {
             GridVisibility = Visibility.Visible;
 
-            MiniOfficeVM = new MiniOfficeViewModel();
+            MiniOfficeVM = new MiniOfficeViewModel(this);
 
             _placeService = new PlaceService();
             _miniOfficeService = new MiniOfficeService();
