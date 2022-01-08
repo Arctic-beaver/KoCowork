@@ -1,6 +1,5 @@
 ﻿using CoCowork.BusinessLayer.Models;
 using CoCowork.BusinessLayer.Services;
-using CoCowork.UI.Commands;
 using CoCowork.UI.Commands.BookingCommands;
 using System.Collections.ObjectModel;
 using System.Windows;
