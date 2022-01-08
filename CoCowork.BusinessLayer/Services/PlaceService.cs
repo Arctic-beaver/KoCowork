@@ -50,16 +50,17 @@ namespace CoCowork.BusinessLayer.Services
         public int InsertPlace(PlaceModel place)
         {
             var placeModel = CustomMapper.GetInstance().Map<Place>(place);
+            int insertedPlaceId = 0;
 
             try
             {
-                int insertedId = _placeRepository.Add(placeModel);
+                insertedPlaceId = _placeRepository.Add(placeModel);
             }
             catch (Exception)
             {
                 return -1;
             }
-            return 1;
+            return insertedPlaceId;
         }
     }
 }

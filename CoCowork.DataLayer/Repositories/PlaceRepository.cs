@@ -68,7 +68,7 @@ namespace CoCowork.DataLayer.Repositories
         {
             using IDbConnection connection = ProvideConnection();
 
-            var result = connection.Execute(
+            int insertedPlaceId = connection.ExecuteScalar<int>(
                 _insertProcedure,
                 new
                 {
@@ -79,7 +79,8 @@ namespace CoCowork.DataLayer.Repositories
                     Description = place.Description
                 },
                 commandType: CommandType.StoredProcedure);
-            return result;
+
+            return insertedPlaceId;
         }
 
         public void UpdatePlaceById(Place place)
