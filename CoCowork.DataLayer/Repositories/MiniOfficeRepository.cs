@@ -22,7 +22,7 @@ namespace CoCowork.DataLayer.Repositories
             return connection.Query<MiniOffice>(_selectAllProcedure).ToList();
         }
 
-        public MiniOffice GetMiniOfficeById(int id)
+        public MiniOffice GetMiniOffice(int id)
         {
             using IDbConnection connection = ProvideConnection();
             var miniOfficeDictionary = new Dictionary<int, MiniOffice>();
@@ -54,7 +54,7 @@ namespace CoCowork.DataLayer.Repositories
         {
             using IDbConnection connection = ProvideConnection();
 
-            var result = connection.Execute(
+            var insertedId = connection.ExecuteScalar<int>(
                 _insertProcedure,
                 new
                 {
@@ -64,14 +64,15 @@ namespace CoCowork.DataLayer.Repositories
                     IsActive = miniOffice.IsActive
                 },
                 commandType: CommandType.StoredProcedure);
-            return result;
+
+            return insertedId;
         }
 
         public void UpdateMiniOffice(MiniOffice miniOffice)
         {
             using IDbConnection connection = ProvideConnection();
 
-            var affectedRows = connection.Execute(
+            connection.Execute(
                 _updateProcedure,
                 new
                 {
@@ -84,25 +85,17 @@ namespace CoCowork.DataLayer.Repositories
                 commandType: CommandType.StoredProcedure);
         }
 
-        public bool DeleteMiniOfficeById(int id)
+        public void DeleteMiniOffice(int id)
         {
             using IDbConnection connection = ProvideConnection();
 
-            try
-            {
-                connection.Execute(
-                _deleteProcedure,
+            connection.Execute(_deleteProcedure,
                 new
                 {
                     Id = id
                 },
                 commandType: CommandType.StoredProcedure);
-            }
-            catch (Exception)
-            {
-                return _isSucceeded = false;
-            }
-            return _isSucceeded = true;
         }
     }
 }
+

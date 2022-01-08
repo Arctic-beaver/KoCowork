@@ -15,4 +15,5 @@ BEGIN
 		@Number,
 		@PricePerMonth,
 		@Description)
+SELECT SCOPE_IDENTITY()
 END

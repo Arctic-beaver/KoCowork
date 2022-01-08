@@ -4,6 +4,7 @@ using CoCowork.DataLayer.Entities;
 using CoCowork.DataLayer.Repositories;
 using Moq;
 using NUnit.Framework;
+using System.IO;
 
 namespace CoCowork.BusinessLayer.Tests
 {
@@ -41,7 +42,20 @@ namespace CoCowork.BusinessLayer.Tests
         }
 
         [Test]
-        public void AddMiniOfficeWithPlaces()
+        public void GetAllMiniOffices_ShouldThrowAnIOException()
+        {
+            //arrange
+            var miniOffices = _miniOfficeTestData.GetMiniOfficesListForTests();
+            _miniOfficeRepositoryMock.Setup(m => m.GetAll()).Throws(new IOException());
+            _placeRepositoryMock.Setup(m => m.Add(It.IsAny<Place>())).Returns(42);
+            var sut = new MiniOfficeService(_miniOfficeRepositoryMock.Object, _placeRepositoryMock.Object);
+
+            //act, assert
+            Assert.Throws<IOException> (() => sut.GetAll());
+        }
+
+        [Test]
+        public void InsertMiniOfficeWithPlaces()
         {
             //arrange
             var miniOfficeWithPlaces = _miniOfficeTestData.GetMiniOfficeModelForTests();
@@ -58,11 +72,43 @@ namespace CoCowork.BusinessLayer.Tests
         }
 
         [Test]
+        public void InsertMiniOfficeWithPlaces_MiniOfficeRepositoryThrowsAnIOException_ShouldReturnNegativeOne()
+        {
+            //arrange
+            var miniOfficeWithPlaces = _miniOfficeTestData.GetMiniOfficeModelForTests();
+            _miniOfficeRepositoryMock.Setup(m => m.Add(It.IsAny<MiniOffice>())).Throws(new IOException());
+            _placeRepositoryMock.Setup(m => m.Add(It.IsAny<Place>())).Returns(42);
+            var sut = new MiniOfficeService(_miniOfficeRepositoryMock.Object, _placeRepositoryMock.Object);
+
+            //act
+            var actual = sut.InsertMiniOfficeWithPlaces(miniOfficeWithPlaces);
+
+            //assert
+            Assert.AreEqual(actual, -1);
+        }
+
+        [Test]
+        public void InsertMiniOfficeWithPlaces_PlaceRepositoryThrowsAnIOException_ShouldReturnNegativeOne()
+        {
+            //arrange
+            var miniOfficeWithPlaces = _miniOfficeTestData.GetMiniOfficeModelForTests();
+            _miniOfficeRepositoryMock.Setup(m => m.Add(It.IsAny<MiniOffice>())).Returns(23);
+            _placeRepositoryMock.Setup(m => m.Add(It.IsAny<Place>())).Throws(new IOException());
+            var sut = new MiniOfficeService(_miniOfficeRepositoryMock.Object, _placeRepositoryMock.Object);
+
+            //act
+            var actual = sut.InsertMiniOfficeWithPlaces(miniOfficeWithPlaces);
+
+            //assert
+            Assert.AreEqual(actual, -1);
+        }
+
+        [Test]
         public void DeleteMiniOffice_ShouldReturnTrue()
         {
             //arrange
             var miniOfficeWithPlaces = _miniOfficeTestData.GetMiniOfficeModelForTests();
-            _miniOfficeRepositoryMock.Setup(m => m.DeleteMiniOfficeById(It.IsAny<int>())).Returns(true);
+            _miniOfficeRepositoryMock.Setup(m => m.DeleteMiniOffice(It.IsAny<int>()));
             _placeRepositoryMock.Setup(m => m.Add(It.IsAny<Place>())).Returns(42);
             var sut = new MiniOfficeService(_miniOfficeRepositoryMock.Object, _placeRepositoryMock.Object);
 
@@ -71,18 +117,18 @@ namespace CoCowork.BusinessLayer.Tests
 
             //assert
             Assert.IsTrue(actual);
-            _miniOfficeRepositoryMock.Verify(m => m.DeleteMiniOfficeById(It.IsAny<int>()), Times.Once());
         }
 
         [Test]
-        public void DeleteMiniOffice_ShouldReturnFalse()
+        public void DeleteMiniOffice_MiniOfficeRepositoryThrowsAnException_ShouldReturnFalse()
         {
             //arrange
             var miniOfficeWithPlaces = _miniOfficeTestData.GetMiniOfficeModelForTests();
-            var sut = new MiniOfficeService();
+            _miniOfficeRepositoryMock.Setup(m => m.DeleteMiniOffice(It.IsAny<int>())).Throws(new IOException());
+            _placeRepositoryMock.Setup(m => m.Add(It.IsAny<Place>())).Returns(42);
+            var sut = new MiniOfficeService(_miniOfficeRepositoryMock.Object, _placeRepositoryMock.Object);
 
             //act
-            //Нельзя удалить миниофис с Id = 1 из БД из-за внешнего ключа
             var actual = sut.DeleteMiniOffice(miniOfficeWithPlaces);
 
             //assert
@@ -103,6 +149,19 @@ namespace CoCowork.BusinessLayer.Tests
 
             //assert
             _miniOfficeRepositoryMock.Verify(m => m.UpdateMiniOffice(It.IsAny<MiniOffice>()), Times.Once());
+        }
+
+        [Test]
+        public void UpdateMiniOffice_ShouldThrowAnIOException()
+        {
+            //arrange
+            var miniOfficeWithPlaces = _miniOfficeTestData.GetMiniOfficeModelForTests();
+            _miniOfficeRepositoryMock.Setup(m => m.UpdateMiniOffice(It.IsAny<MiniOffice>())).Throws(new IOException());
+            _placeRepositoryMock.Setup(m => m.Add(It.IsAny<Place>())).Returns(42);
+            var sut = new MiniOfficeService(_miniOfficeRepositoryMock.Object, _placeRepositoryMock.Object);
+
+            //act, assert
+            Assert.Throws<IOException>(() => sut.UpdateMiniOffice(miniOfficeWithPlaces));
         }
     }
 }

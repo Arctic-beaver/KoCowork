@@ -6,6 +6,7 @@ namespace CoCowork.BusinessLayer.Models
 {
     public class PlaceModel : BookingItemModel
     {
+        public int? Number { get; set; }
 
         public bool IsFixed { get; set; }
         public int AmountDays { get; set; }

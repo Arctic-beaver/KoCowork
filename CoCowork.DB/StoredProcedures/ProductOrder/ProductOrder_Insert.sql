@@ -15,4 +15,5 @@ BEGIN
 		@OrderId,
 		@Amount,
 		@SubtotalPrice)
+SELECT SCOPE_IDENTITY()
 END

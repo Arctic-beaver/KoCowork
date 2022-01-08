@@ -13,17 +13,6 @@ namespace CoCowork.UI.ViewModels
         private PlaceService _placeService;
         private LaptopService _laptopService;
         private RoomService _roomService;
-        private ItemModel _bookingSelectedItem;
-
-        public ItemModel BookingSelectedItem
-        {
-            get => _bookingSelectedItem;
-            set
-            {
-                _bookingSelectedItem = value;
-                OnPropertyChanged(nameof(BookingSelectedItem));
-            }
-        }
 
         public ObservableCollection<PlaceModel> Places { get; set; }
         public ObservableCollection<MiniOfficeModel> MiniOffices { get; set; }
@@ -37,12 +26,14 @@ namespace CoCowork.UI.ViewModels
         public ICommand GetConferenceRooms { get; set; }
         public ICommand AddToCurrentOrders { get; set; }
         public MiniOfficeViewModel MiniOfficeVM { get; set; }
+        public PlaceViewModel PlaceVM { get; set; }
 
-        public BookingViewModel(CurrentOrderViewModel currentOrderModel)
+        public BookingViewModel()
         {
             GridVisibility = Visibility.Hidden;
 
-            MiniOfficeVM = new MiniOfficeViewModel();
+            MiniOfficeVM = new MiniOfficeViewModel(this);
+            PlaceVM = new PlaceViewModel(this);
 
             _placeService = new PlaceService();
             _miniOfficeService = new MiniOfficeService();

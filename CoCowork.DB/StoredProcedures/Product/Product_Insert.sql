@@ -15,4 +15,5 @@ BEGIN
 		@Amount,
 		@PriceForOne,
 		@Description)
+SELECT SCOPE_IDENTITY()
 END
