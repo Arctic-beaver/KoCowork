@@ -22,4 +22,5 @@ BEGIN
 			@PriceFixedPerDay,
 			@Description
 		)
+SELECT SCOPE_IDENTITY()
 END

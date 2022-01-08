@@ -1,5 +1,5 @@
-﻿CREATE PROC dbo.Order_SelectById	
-	@Id int
+﻿CREATE PROC dbo.Order_SelectById  
+  @Id int
 AS
 BEGIN
 	select 

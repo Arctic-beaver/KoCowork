@@ -13,6 +13,7 @@ namespace CoCowork.BusinessLayer.Services
     public class PlaceService
     {
         private readonly IPlaceRepository _placeRepository;
+        
 
         public PlaceService()
         {
@@ -36,9 +37,17 @@ namespace CoCowork.BusinessLayer.Services
             return CustomMapper.GetInstance().Map<List<PlaceModel>>(places);
         }
 
-        public void DeletePlace(int id)
+        public bool DeletePlace(int id)
         {
-            _placeRepository.DeletePlaceById(id);
+            try
+            {
+                _placeRepository.DeletePlaceById(id);
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+            return true;
         }
 
         public void UpdatePlace(PlaceModel place)
@@ -50,7 +59,17 @@ namespace CoCowork.BusinessLayer.Services
         public int InsertPlace(PlaceModel place)
         {
             var placeModel = CustomMapper.GetInstance().Map<Place>(place);
-            return _placeRepository.Add(placeModel);
+            int insertedPlaceId = 0;
+
+            try
+            {
+                insertedPlaceId = _placeRepository.Add(placeModel);
+            }
+            catch (Exception)
+            {
+                return -1;
+            }
+            return insertedPlaceId;
         }
     }
 }
