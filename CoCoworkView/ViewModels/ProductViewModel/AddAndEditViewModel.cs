@@ -13,9 +13,6 @@ namespace CoCowork.UI.ViewModels
         private string _description;
         private int _amount;
         private decimal _priceForOne;
-        private bool _isEditButtonAvailable;
-        private bool _isAddButtonAvailable;
-        private ProductModel _selectedProduct;
 
         public string Name
         {
@@ -56,50 +53,10 @@ namespace CoCowork.UI.ViewModels
                 OnPropertyChanged(nameof(Description));
             }
         }
+        
+        
 
-        public ProductModel SelectedProduct
-        {
-            get => _selectedProduct;
-            set
-            {
-                if (value != _selectedProduct)
-                {
-                    _selectedProduct = value;
-                    OnPropertyChanged(nameof(SelectedProduct));
-
-                    IsEditButtonAvailable = (value != null);
-
-                }
-            }
-        }
-
-        public bool IsAddButtonAvailable
-        {
-            get => _isAddButtonAvailable;
-            set
-            {
-                if (value != _isAddButtonAvailable)
-                {
-                    _isAddButtonAvailable = value;
-                    OnPropertyChanged(nameof(IsAddButtonAvailable));
-
-                }
-            }
-        }
-
-        public bool IsEditButtonAvailable
-        {
-            get => _isEditButtonAvailable;
-            set
-            {
-                if (value != _isEditButtonAvailable)
-                {
-                    _isEditButtonAvailable = value;
-                    OnPropertyChanged(nameof(IsEditButtonAvailable));
-
-                }
-            }
-        }
+       
 
 
 

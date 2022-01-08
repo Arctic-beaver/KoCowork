@@ -11,18 +11,20 @@ namespace CoCowork.UI.Commands
     {
         
         private readonly EditProductViewModel _editProductVM;
+        private readonly ProductViewModel _productVM;
 
-        public FillProductFieldsCommand(EditProductViewModel editProductVM)
+        public FillProductFieldsCommand(EditProductViewModel editProductVM, ProductViewModel productVM)
         {
             _editProductVM = editProductVM;
+            _productVM = productVM;
         }
 
         public override void Execute(object parameter)
         {
-            _editProductVM.Name = _editProductVM.SelectedProduct.Name;
-            _editProductVM.Description = _editProductVM.SelectedProduct.Description;
-            _editProductVM.Amount = _editProductVM.SelectedProduct.Amount;
-            _editProductVM.PriceForOne = _editProductVM.SelectedProduct.PriceForOne; 
+            _editProductVM.Name = _productVM.SelectedProduct.Name;
+            _editProductVM.Description = _productVM.SelectedProduct.Description;
+            _editProductVM.Amount = _productVM.SelectedProduct.Amount;
+            _editProductVM.PriceForOne = _productVM.SelectedProduct.PriceForOne; 
         }
     }
 }

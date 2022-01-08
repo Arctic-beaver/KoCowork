@@ -13,16 +13,16 @@ namespace CoCowork.UI.ViewModels
     {
         
 
-        public EditProductViewModel()
+        public EditProductViewModel(ProductViewModel productVM)
         {
             GridVisibility = Visibility.Collapsed;
             ChangeProductVisibility = new VisibilityOfInnerGridCommand(this);
-            FillProductFields = new FillProductFieldsCommand(this);
+            
 
         }
 
         public ICommand ChangeProductVisibility { get; set; }
 
-        public ICommand FillProductFields { get; set; }
+        
     }
 }

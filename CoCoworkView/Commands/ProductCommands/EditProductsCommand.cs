@@ -36,7 +36,7 @@ namespace CoCowork.UI.Commands
                     Description = _editProductVM.Description
                 };
                 _service.UpdateProduct(product);
-                _productVM.Products.Remove(product);
+                _productVM.Products.Remove(_productVM.SelectedProduct);
                 _productVM.Products.Add(product);
                 _editProductVM.GridVisibility = Visibility.Collapsed;
             

@@ -25,14 +25,15 @@ namespace CoCowork.UI.ViewModels
 
             _productService = new ProductService();
             AddNewProductViewModel = new AddNewProductViewModel();
-            EditProductViewModel = new EditProductViewModel();
+            EditProductViewModel = new EditProductViewModel(this);
 
             Products = new ObservableCollection<ProductModel>();
 
             GetProductsCommand = new GetProductsCommand(this, _productService);
             AddNewProduct = new AddNewProductCommand (AddNewProductViewModel, this, _productService);
             EditProduct = new EditProductsCommand(EditProductViewModel, this, _productService);
-            
+            FillProductFields = new FillProductFieldsCommand(EditProductViewModel,this);
+
         }
 
         public ProductModel SelectedProduct
@@ -46,6 +47,10 @@ namespace CoCowork.UI.ViewModels
                     OnPropertyChanged(nameof(SelectedProduct));
 
                     IsEditButtonAvailable = (value != null);
+                    if (IsEditButtonAvailable)
+                    {
+                        FillProductFields.Execute(this);
+                    }
 
                 }
             }
@@ -95,6 +100,8 @@ namespace CoCowork.UI.ViewModels
         public ICommand FillProductFields { get; set; }
 
         
+
+
 
 
 
