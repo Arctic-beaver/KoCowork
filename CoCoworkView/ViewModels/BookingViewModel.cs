@@ -25,12 +25,14 @@ namespace CoCowork.UI.ViewModels
         public ICommand GetMeetingRooms { get; set; }
         public ICommand GetConferenceRooms { get; set; }
         public MiniOfficeViewModel MiniOfficeVM { get; set; }
-         
+        public PlaceViewModel PlaceVM { get; set; }
+
         public BookingViewModel()
         {
             GridVisibility = Visibility.Visible;
 
             MiniOfficeVM = new MiniOfficeViewModel(this);
+            PlaceVM = new PlaceViewModel(this);
 
             _placeService = new PlaceService();
             _miniOfficeService = new MiniOfficeService();
