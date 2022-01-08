@@ -12,4 +12,5 @@ BEGIN
 		(@Amount,
 		@PaymentDate,
 		@OrderId)
+SELECT SCOPE_IDENTITY()
 END

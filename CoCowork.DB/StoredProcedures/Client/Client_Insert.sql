@@ -24,4 +24,5 @@ BEGIN
 		@Phone,
 		@PaperAmount,
 		@PaperEndDay)
+SELECT SCOPE_IDENTITY()
 END

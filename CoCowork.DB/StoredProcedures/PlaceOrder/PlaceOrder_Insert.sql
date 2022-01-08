@@ -22,4 +22,5 @@ BEGIN
 			@EndDate,
 			@SubtotalPrice
 		)
+SELECT SCOPE_IDENTITY()
 END
