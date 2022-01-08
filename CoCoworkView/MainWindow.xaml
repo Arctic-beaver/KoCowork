@@ -271,9 +271,8 @@
                 <Button x:Name="AddNewProductButton" Command="{Binding AddNewProductViewModel.ChangeProductVisibility}" Content="Инсертнуть" Grid.Column="1" Grid.Row="1" Margin="0, 0, 0, 50"/>
                 <StackPanel x:Name="ProductPanelChekBox" Grid.Column="1" Grid.Row="2"  Margin="0,0,0,20">
                     <CheckBox Content="Товары в наличии" Margin="0, 5, 0, 0" />
-
                 </StackPanel>
-                <Button x:Name="EditProductButton" Content="Редактировать" Grid.Column="1" Grid.Row="3" Margin="0, 0, 0, 50"/>
+                <Button x:Name="EditProductButton" IsEnabled ="{Binding EditProductViewModel.IsEditButtonAvailable}" Command="{Binding EditProductViewModel.ChangeProductVisibility}" Content="Редактировать" Grid.Column="1" Grid.Row="3" Margin="0, 0, 0, 50"/>
                 <Button x:Name="AddToProductOrderButton" Content="Добавить к заказу" Grid.Column="1" Grid.Row="4" Margin="0, 45, 0, 0"/>
             </Grid>
             <Grid x:Name ="MainProductGrid" Grid.Column ="0" Background="#FFE0DFDF" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
@@ -281,7 +280,7 @@
                     <ColumnDefinition Width="70*"/>
                     <ColumnDefinition Width="auto"/>
                 </Grid.ColumnDefinitions>
-                <DataGrid x:Name="ProductDataGrid" ItemsSource="{Binding Products}" SelectedItem="{Binding SelectedItem}" CanUserAddRows="False" CanUserDeleteRows="False" CanUserReorderColumns="False" CanUserSortColumns="True"  Grid.Column="0" ColumnWidth="*"/>
+                <DataGrid x:Name="ProductDataGrid" ItemsSource="{Binding Products}" SelectedItem="{Binding SelectedProduct}" CanUserAddRows="False" CanUserDeleteRows="False" CanUserReorderColumns="False" CanUserSortColumns="True"  Grid.Column="0" ColumnWidth="*"/>
                 <Grid x:Name ="AddProductGrid" Visibility ="{Binding AddNewProductViewModel.GridVisibility}" Grid.Column ="1" Background="#FFE0DFDF" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="200">
                     <Grid.RowDefinitions>
                         <RowDefinition/>
@@ -304,6 +303,29 @@
                     <Label Name="ProductDescriptionLabel" Grid.Row="5" Grid.Column ="1" Content="Введите описание:" Margin="15,0,0,0" />
                     <TextBox x:Name ="ProductDescription" Grid.Row ="5" Grid.Column ="1" Margin="15,25,15,0" Style="{StaticResource placeHolder}" Tag="Введите описание" Text="{Binding AddNewProductViewModel.Description}"/>
                     <Button x:Name ="AddFinallyProduct" Content="Добавить новый товар" Grid.Row="7" Margin="15" Command="{Binding AddNewProduct}" />
+                </Grid>
+                <Grid x:Name ="EditProductGrid" Visibility ="{Binding EditProductViewModel.GridVisibility}" Grid.Column ="1" Background="#FFE0DFDF" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="200">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Label Name="ProductEditNameLabel" Grid.Row="2" Grid.Column ="1" Content="Введите товар:" Margin="15,0,0,0" />
+                    <TextBox x:Name ="ProductEditName" Grid.Row ="2" Grid.Column ="1" Margin="15,25,15,0" Style="{StaticResource placeHolder}" Tag="Введите товар" Text="{Binding EditProductViewModel.Name}"/>
+                    <Label Name="ProductEditPriceLabel" Grid.Row="3" Grid.Column ="1" Content="Введите цену:" Margin="15,0,0,0" />
+                    <TextBox x:Name ="ProductEditPrice" Grid.Row ="3" Grid.Column ="1" Margin="15,25,15,0" Style="{StaticResource placeHolder}" Tag="Введите цену" Text="{Binding EditProductViewModel.PriceForOne}"/>
+                    <Label Name="ProductEditAmountLabel" Grid.Row="4" Grid.Column ="1" Content="Введите количество:" Margin="15,0,0,0" />
+                    <TextBox x:Name ="ProductEditAmount" Grid.Row ="4" Grid.Column ="1" Margin="15,25,15,0" Style="{StaticResource placeHolder}" Tag="Введите количество" Text="{Binding EditProductViewModel.Amount}"/>
+                    <Label Name="ProductEditDescriptionLabel" Grid.Row="5" Grid.Column ="1" Content="Введите описание:" Margin="15,0,0,0" />
+                    <TextBox x:Name ="ProductEditDescription" Grid.Row ="5" Grid.Column ="1" Margin="15,25,15,0" Style="{StaticResource placeHolder}" Tag="Введите описание" Text="{Binding EditProductViewModel.Description}"/>
+                    <Button x:Name ="EditFinallyProduct" Content="Сохранить" Grid.Row="7" Margin="15" Command="{Binding EditProduct}" />
                 </Grid>
             </Grid>
         </Grid>

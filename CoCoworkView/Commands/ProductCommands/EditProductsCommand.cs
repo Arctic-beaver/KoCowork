@@ -12,13 +12,13 @@ namespace CoCowork.UI.Commands
 {
     public class EditProductsCommand : CommandBase
     {
-        private readonly AddNewProductViewModel _addNewProductVM;
+        private readonly EditProductViewModel _editProductVM;
         private readonly ProductViewModel _productVM;
         private readonly ProductService _service;
 
-        public EditProductsCommand(AddNewProductViewModel addNewProductVM, ProductViewModel productVM, ProductService productService)
+        public EditProductsCommand(EditProductViewModel editProductVM, ProductViewModel productVM, ProductService productService)
         {
-            _addNewProductVM = addNewProductVM;
+            _editProductVM = editProductVM;
             _productVM = productVM;
             _service = productService;
         }
@@ -27,20 +27,19 @@ namespace CoCowork.UI.Commands
 
         public override void Execute(object parameter)
         {
-            var userAnswer = MessageBox.Show("Вы действительно хотите редактировать выбранный миниофис?", "Редактирование", MessageBoxButton.YesNo, MessageBoxImage.Question);
-
-            if (userAnswer == MessageBoxResult.Yes)
-            {
                 var product = new ProductModel()
                 {
-                    Id = _productVM.SelectedItem.Id,
-                    Name = _addNewProductVM.Name,
-                    PriceForOne = _addNewProductVM.PriceForOne,
-                    Amount = _addNewProductVM.Amount,
-                    Description = _addNewProductVM.Description
+                    Id = _productVM.SelectedProduct.Id,
+                    Name = _editProductVM.Name,
+                    PriceForOne = _editProductVM.PriceForOne,
+                    Amount = _editProductVM.Amount,
+                    Description = _editProductVM.Description
                 };
-                
-            }
+                _service.UpdateProduct(product);
+                _productVM.Products.Remove(product);
+                _productVM.Products.Add(product);
+                _editProductVM.GridVisibility = Visibility.Collapsed;
+            
         }
     }
 }
