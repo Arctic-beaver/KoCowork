@@ -52,7 +52,7 @@ namespace CoCowork.UI.ViewModels
             GetMeetingRooms = new GetMeetingRoomsCommand(this, _roomService);
             GetConferenceRooms = new GetConferenceRoomsCommand(this, _roomService);
             GetLaptops = new GetLaptopsCommand(this, _laptopService);
-            AddToCurrentOrders = new AddToCurrentOrders(currentOrderModel, this);
+            //AddToCurrentOrders = new AddToCurrentOrders(currentOrderModel, this);
         }
     }
 }

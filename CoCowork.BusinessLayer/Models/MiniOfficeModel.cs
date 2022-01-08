@@ -8,10 +8,10 @@ namespace CoCowork.BusinessLayer.Models
 
         public int AmountDays { get; set; }
         public string TypeForDisplayInUI = "Мини-офис";
-        public int AmountOfPlaces { get; set; }
+        public int? AmountOfPlaces { get; set; }
         public List<PlaceModel> Places { get; set; }
         private double _amountDays;
-        public decimal PricePerDay { get; set; }
+        public decimal? PricePerDay { get; set; }
         public override void CalculateSubtotalPrice(decimal price)
         {
             _amountDays = GetAmountDays();

@@ -30,7 +30,6 @@ namespace CoCoworkView
             vm.CurrentOrder.CurrentOrder.Add(newItem2);
             vm.CurrentOrder.CurrentOrder.Add(newItem3);
             vm.CurrentOrder.CurrentOrder.Add(newItem4);
-            vm.CurrentOrder.RecalculateSum();
 
         }
     }

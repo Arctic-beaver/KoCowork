@@ -25,16 +25,6 @@ namespace CoCowork.BusinessLayer.Services
             _productRepository = new ProductRepository();
 
         }
-
-        //public int AddItemOrder(int id, Order order, DateTime startDate, DateTime endDate, decimal price)
-        //{
-        //    var _entity = _productRepository.GetById(id);
-
-        //    _itemOrder = new ProductOrder { Product = _entity, Order = order, SubtotalPrice = price };
-
-        //    _orderRepository.Add(_itemOrder);
-        //}
-
         public int AddItemOrder(ItemModel bookingItem)
         {
 

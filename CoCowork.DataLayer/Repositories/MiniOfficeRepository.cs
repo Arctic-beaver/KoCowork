@@ -22,7 +22,7 @@ namespace CoCowork.DataLayer.Repositories
             return connection.Query<MiniOffice>(_selectAllProcedure).ToList();
         }
 
-        public MiniOffice GetMiniOffice(int id)
+        public MiniOffice GetMiniOfficeById(int id)
         {
             using IDbConnection connection = ProvideConnection();
             var miniOfficeDictionary = new Dictionary<int, MiniOffice>();

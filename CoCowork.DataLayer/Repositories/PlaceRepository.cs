@@ -92,7 +92,7 @@ namespace CoCowork.DataLayer.Repositories
                 commandType: CommandType.StoredProcedure);
         }
 
-        public void DeletePlace(int id)
+        public void DeletePlaceById(int id)
         {
             using IDbConnection connection = ProvideConnection();
 

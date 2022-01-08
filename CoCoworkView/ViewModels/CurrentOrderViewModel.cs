@@ -96,35 +96,7 @@ namespace CoCowork.UI.ViewModels
 
         public ICommand AddOrder { get; set; }
 
-        public decimal GetItemModelSum(ItemModel itemModel)
-        {
-            decimal sum = 0;
-
-            switch (itemModel)
-            {
-                case LaptopModel laptop:
-                    return sum = laptop.Price * laptop.AmountMonth;
-                case MiniOfficeModel miniOffice:
-                    return sum = miniOffice.Price * miniOffice.AmountDays;
-                case PlaceModel place:
-                    return sum = place.Price * place.AmountDays;
-                case ProductModel product:
-                    return sum = product.Price;
-                case RoomModel room:
-                    return sum = room.Price * room.AmountHours;
-                default:
-                    break;
-            }
-            return sum;
-        }
-
-        public void RecalculateSum()
-        {
-            foreach (var item in _currentOrder)
-            {
-                _totalPrice += GetItemModelSum(item);
-            }
-        }
+       
 
 
     }

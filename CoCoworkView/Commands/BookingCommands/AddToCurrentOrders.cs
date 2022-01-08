@@ -16,10 +16,10 @@ namespace CoCowork.UI.ViewModels
 
         public override void Execute(object parameter)
         {
-            _vm.BookingSelectedItem.CalculateSubtotalPrice(_vm.BookingSelectedItem.Price);
-            _vmCurrentOrder.CurrentOrder.Add(_vm.BookingSelectedItem);
+            //_vm.BookingSelectedItem.CalculateSubtotalPrice(_vm.BookingSelectedItem.Price);
+            //_vmCurrentOrder.CurrentOrder.Add(_vm.BookingSelectedItem);
 
-            _vmCurrentOrder.RecalculateSum();
+            //_vmCurrentOrder.RecalculateSum();
         }
     }
 }

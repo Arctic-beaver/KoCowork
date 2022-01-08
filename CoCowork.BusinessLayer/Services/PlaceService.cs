@@ -72,15 +72,7 @@ namespace CoCowork.BusinessLayer.Services
             return insertedPlaceId;
         }
 
-        //public void AddItemOrder(int id, Order order, DateTime startDate, DateTime endDate, decimal price)
-        //{
-        //    var _entity = _placeRepository.GetPlaceById(id);
-
-        //    _itemOrder = new PlaceOrder { Place = _entity, Order = order, StartDate = startDate, EndDate = endDate };
-
-        //    _orderRepository.Add(_itemOrder);
-        //}
-
+        
         void IPlaceService.InsertPlace(PlaceModel place)
         {
             throw new NotImplementedException();
@@ -98,6 +90,11 @@ namespace CoCowork.BusinessLayer.Services
             _itemOrder = new PlaceOrder { Place = _entity, Order = bookingItem.Order, StartDate = bookingItem.StartDate, EndDate = bookingItem.EndDate};
 
             return _orderRepository.Add(_itemOrder);
+        }
+
+        void IPlaceService.DeletePlace(int id)
+        {
+            throw new NotImplementedException();
         }
     }
 }
