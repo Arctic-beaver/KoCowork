@@ -9,14 +9,9 @@ namespace CoCowork.UI.ViewModels
 {
     public class ProductViewModel : InnerGridViewModel
     {
-        
-        
         private bool _productsInStock;
         private ProductModel _selectedItem;
         
-
-
-
         private readonly ProductService _productService; 
        
 
@@ -32,8 +27,6 @@ namespace CoCowork.UI.ViewModels
         }
 
         public ObservableCollection<ProductModel> Products { get; set; }
-
-       
 
         public bool ProductsInStock
         {

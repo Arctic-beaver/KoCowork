@@ -17,6 +17,7 @@
             <i:InvokeCommandAction Command="{Binding Booking.GetPlaces}"/>
             <i:InvokeCommandAction Command="{Binding Booking.GetComputers}"/>
             <i:InvokeCommandAction Command="{Binding Product.GetProductsCommand}"/>
+            <i:InvokeCommandAction Command="{Binding Client.GetClientsCommand}"/>
         </i:EventTrigger>
     </i:Interaction.Triggers>
     <Window.Resources>
@@ -81,7 +82,7 @@
             <Button x:Name="CurrentOrderButton" Command="{Binding MakeGridVisible}" CommandParameter="{Binding CurrentOrder}" Content="Текущий заказ" Grid.Column="1" Grid.Row="5" Margin="0, 18, 0, 18"/>
         </Grid>
 
-        <Grid x:Name="BookingGrid" Grid.Column ="1" Visibility="{Binding GridVisibility}" DataContext="{Binding Booking}">
+        <Grid x:Name="BookingGrid" Grid.Column ="1" Visibility="Hidden" DataContext="{Binding Booking}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="70*"/>
                 <ColumnDefinition Width="25*"/>
@@ -246,7 +247,7 @@
             </Grid>
         </Grid>
 
-        <Grid x:Name="ProductsGrid" Grid.Column ="1" DataContext="{Binding Product}" Visibility="{Binding GridVisibility}">
+        <Grid x:Name="ProductsGrid" Grid.Column ="1" DataContext="{Binding Product}" Visibility="Hidden">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="75*"/>
                 <ColumnDefinition Width="25*"/>
@@ -310,8 +311,37 @@
 
 
 
-        <Grid x:Name="ClientsGrid" Grid.Column ="1" Visibility="{Binding Client.GridVisibility}">
-            <Label>Text in client grid</Label>
+        <Grid x:Name="ClientsGrid" Grid.Column ="1" DataContext="{Binding Client}" Visibility="{Binding GridVisibility}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="75*"/>
+                <ColumnDefinition Width="25*"/>
+            </Grid.ColumnDefinitions>
+            <Grid x:Name="RightClientsGrid" Grid.Column ="2" Background="#FFE0DFDF" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="15*"/>
+                    <ColumnDefinition Width="70*"/>
+                    <ColumnDefinition Width="15*"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <Button x:Name="AddNewClientButton"  Content="Инсертнуть" Grid.Column="1" Grid.Row="1" Margin="0, 0, 0, 50"/>
+                <Button x:Name="EditClientButton" Content="Редактировать" Grid.Column="1" Grid.Row="3" Margin="0, 0, 0, 50"/>
+            </Grid>
+            <Grid x:Name ="MainClientGrid" Grid.Column ="0" Background="#FFE0DFDF" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="70*"/>
+                    <ColumnDefinition Width="auto"/>
+                </Grid.ColumnDefinitions>
+                <DataGrid x:Name="ClientDataGrid" ItemsSource="{Binding Clients}" SelectedItem="{Binding SelectedItem}" CanUserAddRows="False" CanUserDeleteRows="False" CanUserReorderColumns="False" CanUserSortColumns="True"  Grid.Column="0" ColumnWidth="*"/>
+            </Grid>
         </Grid>
 
         <Grid x:Name="OrderGrid" Grid.Column ="1" Visibility="Hidden" DataContext="{Binding Order}">
