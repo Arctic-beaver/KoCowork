@@ -11,16 +11,18 @@ namespace CoCowork.BusinessLayer.Services
     {
         private readonly IPlaceRepository _placeRepository;
         private PlaceOrder _itemOrder;
-        private PlaceOrderRepository _orderRepository;
+        private IPlaceOrderRepository _orderRepository;
 
         public PlaceService()
         {
             _placeRepository = new PlaceRepository();
         }
 
-        public PlaceService(IPlaceRepository fakePlaceRepository)
+        public PlaceService(IPlaceOrderRepository fakePlaceOrderRepository)
         {
-            _placeRepository = fakePlaceRepository;
+            _orderRepository = fakePlaceOrderRepository;
+            _placeRepository = new PlaceRepository();
+
         }
 
         public List<PlaceModel> GetAll()
@@ -52,18 +54,32 @@ namespace CoCowork.BusinessLayer.Services
             return _placeRepository.Add(placeModel);
         }
 
-        public void AddItemOrder(int id, Order order, DateTime startDate, DateTime endDate, decimal price)
-        {
-            var _entity = _placeRepository.GetPlaceById(id);
+        //public void AddItemOrder(int id, Order order, DateTime startDate, DateTime endDate, decimal price)
+        //{
+        //    var _entity = _placeRepository.GetPlaceById(id);
 
-            _itemOrder = new PlaceOrder { Place = _entity, Order = order, StartDate = startDate, EndDate = endDate };
+        //    _itemOrder = new PlaceOrder { Place = _entity, Order = order, StartDate = startDate, EndDate = endDate };
 
-            _orderRepository.Add(_itemOrder);
-        }
+        //    _orderRepository.Add(_itemOrder);
+        //}
 
         void IPlaceService.InsertPlace(PlaceModel place)
         {
             throw new NotImplementedException();
+        }
+
+        public int AddItemOrder(ItemModel bookingItem)
+        {
+            throw new NotImplementedException();
+        }
+
+        public int AddItemOrder(BookingItemModel bookingItem)
+        {
+            var _entity = _placeRepository.GetPlaceById(bookingItem.Id);
+
+            _itemOrder = new PlaceOrder { Place = _entity, Order = bookingItem.Order, StartDate = bookingItem.StartDate, EndDate = bookingItem.EndDate};
+
+            return _orderRepository.Add(_itemOrder);
         }
     }
 }

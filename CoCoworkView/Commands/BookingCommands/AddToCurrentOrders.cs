@@ -1,6 +1,4 @@
-﻿using CoCowork.BusinessLayer.Models;
-using CoCowork.UI.Commands;
-using System.Collections.ObjectModel;
+﻿using CoCowork.UI.Commands;
 
 namespace CoCowork.UI.ViewModels
 {
@@ -20,7 +18,7 @@ namespace CoCowork.UI.ViewModels
         {
             _vm.BookingSelectedItem.CalculateSubtotalPrice(_vm.BookingSelectedItem.Price);
             _vmCurrentOrder.CurrentOrder.Add(_vm.BookingSelectedItem);
-            
+
             _vmCurrentOrder.RecalculateSum();
         }
     }

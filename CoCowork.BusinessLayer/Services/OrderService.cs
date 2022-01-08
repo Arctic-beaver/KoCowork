@@ -15,7 +15,9 @@ namespace CoCowork.BusinessLayer.Services
 
         public OrderService(IOrderRepository fakeOrderRepository)
         {
-            _orderRepository = new OrderRepository();
+            _orderRepository = fakeOrderRepository;
+            _clientService = new ClientService();
+
         }
         public OrderService()
         {
@@ -95,13 +97,7 @@ namespace CoCowork.BusinessLayer.Services
             return _order;
         }
 
-        //public Order InsertOrder(Client client, bool isCanceled, bool isPaid, decimal totalPrice)
-        //{
-        //    _order = new Order { Client = client, TotalPrice = totalPrice, IsCanceled = isCanceled, IsPaid = isPaid };
-        //    var idOrder = _orderRepository.Add(_order);
-        //    _order.Id = idOrder;
-        //    return _order;
-        //}
+
 
 
 

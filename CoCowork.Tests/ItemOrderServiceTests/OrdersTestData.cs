@@ -1,9 +1,5 @@
 ﻿using CoCowork.BusinessLayer.Models;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CoCowork.BusinessLayer.Tests.ItemOrderServiceTests
 {
@@ -19,7 +15,7 @@ namespace CoCowork.BusinessLayer.Tests.ItemOrderServiceTests
                 IsPaid = true,
                 Client = new ClientModel
                 {
-                    Id = 666,
+                    Id = 3,
                     PaperAmount = 3,
                     BirthDate = DateTime.Now,
                     FirstName = "Vasya",
@@ -46,6 +42,49 @@ namespace CoCowork.BusinessLayer.Tests.ItemOrderServiceTests
 
             };
             return room;
+        }
+
+        public LaptopModel GetLaptopModelForTests()
+        {
+            var laptop = new LaptopModel
+            {
+                Id = 1,
+                IsActive = true,
+                Description = "kokoko",
+                StartDate = DateTime.Now,
+                EndDate = DateTime.Now,
+            };
+            return laptop;
+        }
+
+        public ProductModel GetProductModelForTests()
+        {
+            var product = new ProductModel
+            {
+                Id = 1,
+                SubtotalPrice = 1000,
+            };
+            return product;
+        }
+
+        public PlaceModel GetPlaceModelForTests()
+        {
+            var place = new PlaceModel
+            {
+                Id = 1,
+                SubtotalPrice = 1000,
+            };
+            return place;
+        }
+
+        public MiniOfficeModel GetMiniOfficeModelForTests()
+        {
+            var miniOffice = new MiniOfficeModel
+            {
+                Id = 1,
+                SubtotalPrice = 1000,
+            };
+            return miniOffice;
         }
 
     }

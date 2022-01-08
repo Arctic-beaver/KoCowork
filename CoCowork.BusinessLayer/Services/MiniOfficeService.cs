@@ -11,11 +11,20 @@ namespace CoCowork.BusinessLayer.Services
     {
         private readonly IMiniOfficeRepository _miniOfficeRepository;
         private readonly IPlaceRepository _placeRepository;
-        private MiniOfficeOrderRepository _orderRepository;
+        private IMiniOfficeOrderRepository _orderRepository;
+        private MiniOfficeOrder _itemOrder;
+
         public MiniOfficeService()
         {
             _miniOfficeRepository = new MiniOfficeRepository();
             _placeRepository = new PlaceRepository();
+            _orderRepository = new MiniOfficeOrderRepository();
+        }
+
+        public MiniOfficeService(IMiniOfficeOrderRepository fakeMiniOfficeOrderRepository)
+        {
+            _orderRepository = fakeMiniOfficeOrderRepository;
+            _miniOfficeRepository = new MiniOfficeRepository();
         }
 
         public MiniOfficeService(IMiniOfficeRepository fakeMiniOfficeRepository, IPlaceRepository fakePlaceRepository)
@@ -58,7 +67,7 @@ namespace CoCowork.BusinessLayer.Services
         {
             var _entity = _miniOfficeRepository.GetMiniOfficeById(id);
 
-            var itemOrder = new MiniOfficeOrder { MiniOffice = _entity, Order = order, StartDate = startDate, EndDate = endDate };
+            var itemOrder = new MiniOfficeOrder { MiniOffice = _entity, Order = order, StartDate = startDate, EndDate = endDate, };
 
             _orderRepository.Add(itemOrder);
         }
@@ -71,6 +80,20 @@ namespace CoCowork.BusinessLayer.Services
         public void InsertMiniOffice(MiniOfficeModel miniOffice)
         {
             throw new NotImplementedException();
+        }
+
+        public int AddItemOrder(ItemModel bookingItem)
+        {
+            throw new NotImplementedException();
+        }
+
+        public int AddItemOrder(BookingItemModel bookingItem)
+        {
+            var _entity = _miniOfficeRepository.GetMiniOfficeById(bookingItem.Id);
+
+            _itemOrder = new MiniOfficeOrder { MiniOffice = _entity, Order = bookingItem.Order, StartDate = bookingItem.StartDate, EndDate = bookingItem.EndDate, SubtotalPrice = bookingItem.SubtotalPrice };
+
+           return _orderRepository.Add(_itemOrder);
         }
     }
 }

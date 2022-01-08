@@ -14,13 +14,18 @@ namespace CoCowork.BusinessLayer.Services
         private const string _conferenceRoom = "Конференц-зал";
         private RoomRepository _repository;
         private RoomOrder _itemOrder;
-        private RoomOrderRepository _orderRepository;
+        private IRoomOrderRepository _orderRepository;
 
         public RoomService()
         {
             _roomRepository = new RoomRepository();
             _orderRepository = new RoomOrderRepository();
+        }
 
+        public RoomService(IRoomOrderRepository fakeRoomRepository)
+        {
+            _roomRepository = new RoomRepository();
+            _orderRepository = fakeRoomRepository;
         }
 
         public List<RoomModel> GetAll()
@@ -78,14 +83,28 @@ namespace CoCowork.BusinessLayer.Services
             _roomRepository.Add(roomModel);
         }
 
-        public void AddItemOrder(int id, Order order, DateTime startDate, DateTime endDate, decimal price)
+        //public void AddItemOrder(int id, Order order, DateTime startDate, DateTime endDate, decimal price)
+        //{
+
+        //    var _entity = _repository.GetById(id);
+
+        //    _itemOrder = new RoomOrder { Room = _entity, Order = order, StartDate = startDate, EndDate = endDate };
+
+        //    _orderRepository.Add(_itemOrder);
+        //}
+
+        public int AddItemOrder(ItemModel bookingItem)
         {
+            throw new NotImplementedException();
+        }
 
-            var _entity = _repository.GetById(id);
+        public int AddItemOrder(BookingItemModel bookingItem)
+        {
+            var _entity = _roomRepository.GetById(bookingItem.Id);
 
-            _itemOrder = new RoomOrder { Room = _entity, Order = order, StartDate = startDate, EndDate = endDate };
+            _itemOrder = new RoomOrder { Room = _entity, Order = bookingItem.Order, StartDate = bookingItem.StartDate, EndDate = bookingItem.EndDate};
 
-            _orderRepository.Add(_itemOrder);
+            return _orderRepository.Add(_itemOrder);
         }
     }
 }

@@ -1,5 +1,5 @@
 ﻿using CoCowork.BusinessLayer.Services;
-using System;
+using CoCowork.DataLayer.Entities;
 
 namespace CoCowork.BusinessLayer.Models
 {
@@ -9,6 +9,7 @@ namespace CoCowork.BusinessLayer.Models
         public bool IsActive { get; set; }
         public BookingChecker BookingChecker { get; set; }
         public IItemService ItemService { get; set; }
+        public Order Order { get; set; }
         public decimal Price { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }

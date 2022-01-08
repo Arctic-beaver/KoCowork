@@ -45,7 +45,8 @@ namespace CoCowork.DataLayer.Repositories
                     {
                         Id = id
                     },
-                    splitOn: "Id")
+                    splitOn: "Id",
+                    commandType: CommandType.StoredProcedure)
                 .FirstOrDefault();
         }
 

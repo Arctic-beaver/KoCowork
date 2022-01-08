@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using CoCowork.BusinessLayer.Models;
 using CoCowork.DataLayer.Entities;
-using System;
 
 namespace CoCowork.BusinessLayer.Configuration
 {
@@ -24,6 +23,8 @@ namespace CoCowork.BusinessLayer.Configuration
             {
                 cfg.CreateMap<Client, ClientModel>();
                 cfg.CreateMap<Client, ClientShortModel>();
+                cfg.CreateMap<ClientModel, Client>();
+
 
                 cfg.CreateMap<MiniOffice, MiniOfficeModel>();
 
@@ -34,7 +35,7 @@ namespace CoCowork.BusinessLayer.Configuration
                 //cfg.CreateMap<MiniOfficeOrder, MiniOfficeOrderModel>();
 
                 cfg.CreateMap<Order, OrderModel>();
-
+                cfg.CreateMap<OrderModel, Order>(); ;
                 //cfg.CreateMap<Payment, PaymentModel>();
 
                 cfg.CreateMap<Place, PlaceModel>();

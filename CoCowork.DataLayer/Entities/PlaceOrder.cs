@@ -10,7 +10,7 @@ namespace CoCowork.DataLayer.Entities
         public int ClientId { get; set; }
         private double _amountDays;
 
-     
+
 
     }
 }

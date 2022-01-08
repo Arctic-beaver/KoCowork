@@ -83,11 +83,11 @@ namespace CoCowork.DataLayer.Repositories
                  .ToList();
         }
 
-        public void Add(PlaceOrder placeOrder)
+        public int Add(PlaceOrder placeOrder)
         {
             using IDbConnection connection = ProvideConnection();
 
-            connection.Execute(
+            return connection.Execute(
                 _insertProcedure,
                 new
                 {

@@ -62,11 +62,11 @@ namespace CoCowork.DataLayer.Repositories
                 splitOn: "Id")
                 .ToList();
         }
-        public void Add(LaptopOrder laptopOrder)
+        public int Add(LaptopOrder laptopOrder)
         {
             using IDbConnection connection = ProvideConnection();
 
-            connection.Execute(
+            return connection.Execute(
                 _insertProc,
                 new
                 {

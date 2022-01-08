@@ -11,11 +11,17 @@ namespace CoCowork.BusinessLayer.Services
     {
         private readonly ILaptopRepository _laptopRepository;
         private LaptopOrder _itemOrder;
-        private LaptopOrderRepository _orderRepository;
+        private ILaptopOrderRepository _orderRepository;
         public LaptopService()
         {
             _laptopRepository = new LaptopRepository();
             _orderRepository = new LaptopOrderRepository();
+        }
+        public LaptopService(ILaptopOrderRepository fakeLaptopOrderRepository)
+        {
+            _orderRepository = fakeLaptopOrderRepository;
+            _laptopRepository = new LaptopRepository();
+
         }
 
         public List<LaptopModel> GetAll()
@@ -40,13 +46,21 @@ namespace CoCowork.BusinessLayer.Services
             var computers = CustomMapper.GetInstance().Map<Laptop>(laptop);
             _laptopRepository.Add(computers);
         }
-        public void AddItemOrder(int id, Order order, DateTime startDate, DateTime endDate, decimal price)
+    
+
+        public int AddItemOrder(BookingItemModel bookingItem)
         {
-            var _entity = _laptopRepository.GetById(id);
+            var _entity = _laptopRepository.GetById(bookingItem.Id);
 
-            _itemOrder = new LaptopOrder { Laptop = _entity, Order = order, StartDate = startDate, EndDate = endDate };
+            _itemOrder = new LaptopOrder { Laptop = _entity, Order = bookingItem.Order, StartDate = bookingItem.StartDate, EndDate = bookingItem.EndDate, SubtotalPrice = bookingItem.SubtotalPrice };
 
-            _orderRepository.Add(_itemOrder);
+            return _orderRepository.Add(_itemOrder);
+
+        }
+
+        public int AddItemOrder(ItemModel bookingItem)
+        {
+            throw new NotImplementedException();
         }
     }
 }

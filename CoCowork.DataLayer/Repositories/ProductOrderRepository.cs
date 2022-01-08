@@ -41,11 +41,11 @@ namespace CoCowork.DataLayer.Repositories
                 .FirstOrDefault();
         }
 
-        public void Add(ProductOrder productorder)
+        public int Add(ProductOrder productorder)
         {
             using IDbConnection connection = ProvideConnection();
 
-            connection.Execute(
+            return connection.Execute(
                 _insertProcedure,
                 new
                 {

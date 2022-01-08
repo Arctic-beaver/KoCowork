@@ -83,11 +83,11 @@ namespace CoCowork.DataLayer.Repositories
                  .ToList();
         }
 
-        public void Add(MiniOfficeOrder miniOfficeOrder)
+        public int Add(MiniOfficeOrder miniOfficeOrder)
         {
             using IDbConnection connection = ProvideConnection();
 
-            connection.Execute(
+            return connection.Execute(
                 _insertProcedure,
                 new
                 {

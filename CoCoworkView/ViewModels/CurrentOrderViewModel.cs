@@ -87,7 +87,7 @@ namespace CoCowork.UI.ViewModels
 
             _clientService = new ClientService();
             GetClients = new GetClientsCommand(this, _clientService);
-            
+
             GridVisibility = Visibility.Hidden;
             AddOrder = new AddOrdersToDB(this);
         }

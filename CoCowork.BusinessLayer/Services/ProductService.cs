@@ -7,11 +7,11 @@ using System.Collections.Generic;
 
 namespace CoCowork.BusinessLayer.Services
 {
-    internal class ProductService : IProductService, IItemService
+    public class ProductService : IProductService, IItemService
     {
-        private readonly ProductRepository _productRepository;
+        private readonly IProductRepository _productRepository;
         private ProductOrder _itemOrder;
-        private ProductOrderRepository _orderRepository;
+        private IProductOrderRepository _orderRepository;
 
         public ProductService()
         {
@@ -19,14 +19,35 @@ namespace CoCowork.BusinessLayer.Services
             _orderRepository = new ProductOrderRepository();
 
         }
-
-        public void AddItemOrder(int id, Order order, DateTime startDate, DateTime endDate, decimal price)
+        public ProductService(IProductOrderRepository fakeProductOrderRepository)
         {
-            var _entity = _productRepository.GetById(id);
+            _orderRepository = fakeProductOrderRepository;
+            _productRepository = new ProductRepository();
 
-            _itemOrder = new ProductOrder { Product = _entity, Order = order, SubtotalPrice = price };
+        }
 
-            _orderRepository.Add(_itemOrder);
+        //public int AddItemOrder(int id, Order order, DateTime startDate, DateTime endDate, decimal price)
+        //{
+        //    var _entity = _productRepository.GetById(id);
+
+        //    _itemOrder = new ProductOrder { Product = _entity, Order = order, SubtotalPrice = price };
+
+        //    _orderRepository.Add(_itemOrder);
+        //}
+
+        public int AddItemOrder(ItemModel bookingItem)
+        {
+
+            var _entity = _productRepository.GetById(bookingItem.Id);
+
+            _itemOrder = new ProductOrder { Product = _entity, Order = bookingItem.Order, SubtotalPrice = bookingItem.SubtotalPrice};
+
+            return _orderRepository.Add(_itemOrder);
+        }
+
+        public int AddItemOrder(BookingItemModel bookingItem)
+        {
+            throw new NotImplementedException();
         }
 
         public List<ProductModel> GetAll()
