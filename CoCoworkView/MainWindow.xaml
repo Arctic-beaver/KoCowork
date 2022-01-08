@@ -272,7 +272,7 @@
                 <StackPanel x:Name="ProductPanelChekBox" Grid.Column="1" Grid.Row="2"  Margin="0,0,0,20">
                     <CheckBox Content="Товары в наличии" Margin="0, 5, 0, 0" />
                 </StackPanel>
-                <Button x:Name="EditProductButton" IsEnabled ="{Binding IsEditButtonAvailable}" Command="{Binding EditProductViewModel.ChangeProductVisibility}" CommandParameter="{Binding EditProductViewModel.FillProductFields}" Content="Редактировать" Grid.Column="1" Grid.Row="3" Margin="0, 0, 0, 50"/>
+                <Button x:Name="EditProductButton" IsEnabled ="{Binding IsEditButtonAvailable}" Command="{Binding EditProductViewModel.ChangeProductVisibility}" CommandParameter="{Binding FillProductFields}" Content="Редактировать" Grid.Column="1" Grid.Row="3" Margin="0, 0, 0, 50"/>
                 <Button x:Name="AddToProductOrderButton" Content="Добавить к заказу" Grid.Column="1" Grid.Row="4" Margin="0, 45, 0, 0"/>
             </Grid>
             <Grid x:Name ="MainProductGrid" Grid.Column ="0" Background="#FFE0DFDF" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
@@ -333,7 +333,7 @@
 
 
 
-        <Grid x:Name="ClientsGrid" Grid.Column ="1" DataContext="{Binding Client}" Visibility="Hidden">
+        <Grid x:Name="ClientsGrid" Grid.Column ="1" DataContext="{Binding Client}" Visibility="{Binding GridVisibility}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="75*"/>
                 <ColumnDefinition Width="25*"/>
