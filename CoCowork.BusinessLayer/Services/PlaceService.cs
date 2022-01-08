@@ -36,9 +36,17 @@ namespace CoCowork.BusinessLayer.Services
             return CustomMapper.GetInstance().Map<List<PlaceModel>>(places);
         }
 
-        public void DeletePlace(int id)
+        public bool DeletePlace(int id)
         {
-            _placeRepository.DeletePlaceById(id);
+            try
+            {
+                _placeRepository.DeletePlaceById(id);
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+            return true;
         }
 
         public void UpdatePlace(PlaceModel place)

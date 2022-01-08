@@ -1,6 +1,7 @@
 ﻿using CoCowork.BusinessLayer.Models;
 using CoCowork.BusinessLayer.Services;
 using CoCowork.UI.Commands;
+using CoCowork.UI.Commands.BookingCommands;
 using CoCowork.UI.Commands.MiniOfficeCommands;
 using System.Windows;
 using System.Windows.Input;
@@ -139,6 +140,7 @@ namespace CoCowork.UI.ViewModels
             _service = new PlaceService();
 
             FillPlaceFields = new FillPlaceFieldsCommand(this);
+            DeletePlace = new DeletePlaceCommand(this, bookingVM, _service);
             ChangePlaceEditVisibility = new VisibilityOfInnerGridCommand(this);
         }
 
