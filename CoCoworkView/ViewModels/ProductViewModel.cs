@@ -22,7 +22,6 @@ namespace CoCowork.UI.ViewModels
             AddNewProductViewModel = new AddNewProductViewModel();
             Products = new ObservableCollection<ProductModel>();
             GetProductsCommand = new GetProductsCommand(this, _productService);
-            GetProductsCommand.Execute(Products);
             AddNewProduct = new AddNewProductCommand (AddNewProductViewModel, this, _productService);
         }
 

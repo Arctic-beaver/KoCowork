@@ -26,20 +26,26 @@ namespace CoCowork.UI.Commands
         {
             if(_viewModel.ProductsInStock is true)
             {
-                _viewModel.Products = new ObservableCollection<ProductModel>(_productService.GetProductsInStock());
-                
+                //_viewModel.Products = new ObservableCollection<ProductModel>(_productService.GetProductsInStock());
+                var products = _productService.GetProductsInStock();
+
+                foreach (var item in products)
+                {
+                    _viewModel.Products.Add(item);
+                }
+
 
             }
             else
             {
-                _viewModel.Products = new ObservableCollection<ProductModel>(_productService.GetAll());
-                //var products = _productService.GetAll();
+                //_viewModel.Products = new ObservableCollection<ProductModel>(_productService.GetAll());
+                var products = _productService.GetAll();
 
-                //foreach (var item in products)
-                //{
-                //    _viewModel.Products.Add(item);
-                //}
- 
+                foreach (var item in products)
+                {
+                    _viewModel.Products.Add(item);
+                }
+
             }
 
 
