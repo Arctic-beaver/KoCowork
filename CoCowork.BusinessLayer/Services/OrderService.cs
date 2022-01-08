@@ -23,9 +23,12 @@ namespace CoCowork.BusinessLayer.Services
         {
             var order = _orderRepository.GetById(id);
             decimal realPaidSumm = 0;
-            foreach (Payment payment in order.Payments)
+            if (order.Payments.Any())
             {
-                realPaidSumm += payment.Amount;
+                foreach (Payment payment in order.Payments)
+                {
+                    realPaidSumm += payment.Amount;
+                }
             }
             return realPaidSumm >= order.TotalPrice;
         }
