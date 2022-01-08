@@ -32,8 +32,9 @@ namespace CoCowork.UI.ViewModels
             IsToolTipOn = Visibility.Visible;
 
             GetOrdersCommand = new GetOrdersCommand();
-            AddPaymentCommand = new AddPaymentCommand(Payment);
             CheckIfOrderIsPaidCommand = new CheckIfOrderIsPaidCommand(this);
+
+            AddPaymentCommand = new AddPaymentCommand(Payment, this);
 
 
             ShowPaid = true;
@@ -185,7 +186,6 @@ namespace CoCowork.UI.ViewModels
         public ICommand AddPaymentCommand { get; set; }
 
         public ICommand CheckIfOrderIsPaidCommand { get; set; }
-
 
         public OrderService Service;
     }

@@ -11,7 +11,8 @@ namespace CoCowork.UI.Commands.OrderHistoryCommands
 {
     class CheckIfOrderIsPaidCommand : CommandBase
     {
-        private readonly OrderViewModel _orderViewModel;
+        OrderViewModel _orderViewModel;
+
         public CheckIfOrderIsPaidCommand(OrderViewModel vm)
         {
             _orderViewModel = vm;
