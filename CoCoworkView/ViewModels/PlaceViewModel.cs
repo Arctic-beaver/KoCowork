@@ -1,6 +1,7 @@
 ﻿using CoCowork.BusinessLayer.Models;
 using CoCowork.BusinessLayer.Services;
 using CoCowork.UI.Commands;
+using CoCowork.UI.Commands.MiniOfficeCommands;
 using System.Windows;
 using System.Windows.Input;
 
@@ -47,6 +48,17 @@ namespace CoCowork.UI.ViewModels
             {
                 _number = value;
                 OnPropertyChanged(nameof(Number));
+                CheckIfAllFieldsFilledCorrectly();
+            }
+        }
+
+        public string Description
+        {
+            get => _description;
+            set
+            {
+                _description = value;
+                OnPropertyChanged(nameof(Description));
                 CheckIfAllFieldsFilledCorrectly();
             }
         }
@@ -126,15 +138,15 @@ namespace CoCowork.UI.ViewModels
             GridVisibility = Visibility.Collapsed;
             _service = new PlaceService();
 
+            FillPlaceFields = new FillPlaceFieldsCommand(this);
             ChangePlaceEditVisibility = new VisibilityOfInnerGridCommand(this);
         }
 
         public void CheckIfAllFieldsFilledCorrectly()
         {
-            //IsEditButtonAvailable = Name != null && PricePerDay != null && AmountOfPlaces != null;
-
-            //IsAddButtonAvailable = Name != null && PricePerDay != null && AmountOfPlaces != null
-            //    && PlaceNumber != null && PlacePricePerDay != null && PlacePriceFixedPerDay != null;
+            bool isAvailable = Number != null && PricePerDay != null && PriceFixedPerDay != null && Description != null;
+            IsEditButtonAvailable = isAvailable;
+            IsAddButtonAvailable = isAvailable;
         }
     }
 }
