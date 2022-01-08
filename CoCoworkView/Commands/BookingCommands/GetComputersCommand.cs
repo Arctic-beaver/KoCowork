@@ -19,8 +19,6 @@ namespace CoCowork.UI.Commands.BookingCommands
 
         public override void Execute(object parameter)
         {
-            //_vm.Computers = new ObservableCollection<ComputerModel>(_computerService.GetAll());
-
             var computers = _computerService.GetAll();
 
             foreach (var item in computers)
