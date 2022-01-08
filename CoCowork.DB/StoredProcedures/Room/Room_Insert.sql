@@ -15,4 +15,5 @@ BEGIN
 		@AmountOfPeople,
 		@PricePerHour,
 		@Description)
+SELECT SCOPE_IDENTITY()
 END

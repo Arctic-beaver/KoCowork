@@ -1,12 +1,9 @@
-﻿using CoCowork.BusinessLayer.Models;
+﻿using CoCowork.BusinessLayer.Configuration;
+using CoCowork.BusinessLayer.Models;
 using CoCowork.DataLayer.Entities;
 using CoCowork.DataLayer.Repositories;
-using CoCowork.BusinessLayer.Configuration;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CoCowork.BusinessLayer.Services
 {
@@ -35,7 +32,15 @@ namespace CoCowork.BusinessLayer.Services
 
         public bool DeleteMiniOffice(MiniOfficeModel miniOffice)
         {
-            return _miniOfficeRepository.DeleteMiniOfficeById(miniOffice.Id);
+            try
+            {
+                _miniOfficeRepository.DeleteMiniOffice(miniOffice.Id);
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+            return true;
         }
 
         public void UpdateMiniOffice(MiniOfficeModel miniOffice)
@@ -47,14 +52,32 @@ namespace CoCowork.BusinessLayer.Services
         public int InsertMiniOfficeWithPlaces(MiniOfficeModel miniOffice)
         {
             var mOffice = CustomMapper.GetInstance().Map<MiniOffice>(miniOffice);
+            int insertedMiniOfficeId = 0;
+
+            try
+            {
+                insertedMiniOfficeId = _miniOfficeRepository.Add(mOffice);
+            }
+            catch (Exception)
+            {
+                return -1;
+            }
 
             foreach (var placeEntity in miniOffice.Places)
             {
                 var place = CustomMapper.GetInstance().Map<Place>(placeEntity);
-                _placeRepository.Add(place);
-            }
+                place.MiniOfficeId = insertedMiniOfficeId;
 
-            return _miniOfficeRepository.Add(mOffice);
+                try
+                {
+                    _placeRepository.Add(place);
+                }
+                catch (Exception)
+                {
+                    return -1;
+                }
+            }
+            return insertedMiniOfficeId;
         }
     }
 }

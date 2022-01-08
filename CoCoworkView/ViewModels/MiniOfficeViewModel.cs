@@ -1,6 +1,8 @@
 ﻿using CoCowork.BusinessLayer.Models;
 using CoCowork.BusinessLayer.Services;
 using CoCowork.UI.Commands;
+using CoCowork.UI.Commands.BookingCommands;
+using CoCowork.UI.Commands.MiniOfficeCommands;
 using System.Windows;
 using System.Windows.Input;
 
@@ -161,6 +163,10 @@ namespace CoCowork.UI.ViewModels
             GridVisibility = Visibility.Collapsed;
             _service = new MiniOfficeService();
 
+            DeleteMiniOffice = new DeleteMiniOfficeCommand(this, bookingVM, _service);
+            AddMiniOffice = new AddMiniOfficeCommand(this, bookingVM, _service);
+            EditMiniOffice = new EditMiniOfficeCommand(this, bookingVM, _service);
+            FillMiniOfficeFields = new FillMiniOfficeFieldsCommand(this);
             ChangeMiniOfficeEditVisibility = new VisibilityOfInnerGridCommand(this);
         }
 
