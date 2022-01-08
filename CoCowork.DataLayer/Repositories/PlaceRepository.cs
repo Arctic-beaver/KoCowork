@@ -13,7 +13,6 @@ namespace CoCowork.DataLayer.Repositories
         private const string _insertProcedure = "dbo.Place_Insert";
         private const string _updateProcedure = "dbo.Place_Update";
         private const string _deleteProcedure = "dbo.Place_Delete";
-        private const string _selectByMiniOfficeIdProcedure = "dbo.Place_SelectByMiniOfficeId";
         private const string _selectThatNotInMiniOfficeProcedure = "dbo.Place_SelectThatNotInMiniOffice";
 
         public List<Place> GetAll()
@@ -26,6 +25,7 @@ namespace CoCowork.DataLayer.Repositories
                     commandType: CommandType.StoredProcedure)
                 .ToList();
         }
+
 
         public Place GetPlaceById(int id)
         {
@@ -92,7 +92,7 @@ namespace CoCowork.DataLayer.Repositories
                 commandType: CommandType.StoredProcedure);
         }
 
-        public void DeletePlace(int id)
+        public void DeletePlaceById(int id)
         {
             using IDbConnection connection = ProvideConnection();
 

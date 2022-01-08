@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using CoCowork.BusinessLayer.Models;
 using CoCowork.DataLayer.Entities;
-using System;
 
 namespace CoCowork.BusinessLayer.Configuration
 {
@@ -16,35 +15,40 @@ namespace CoCowork.BusinessLayer.Configuration
             return _instance;
         }
 
+        public static Mapper Custom { get; set; }
+
         private static void InitCustomMapper()
         {
             _instance = new Mapper(new MapperConfiguration(cfg =>
             {
                 cfg.CreateMap<Client, ClientModel>();
+                cfg.CreateMap<Client, ClientShortModel>();
+                cfg.CreateMap<ClientModel, Client>();
+
 
                 cfg.CreateMap<MiniOffice, MiniOfficeModel>();
 
+                cfg.CreateMap<Laptop, LaptopModel>();
                 cfg.CreateMap<MiniOfficeModel, MiniOffice>();
 
-                cfg.CreateMap<MiniOfficeOrder, MiniOfficeOrderModel>();
+
+                //cfg.CreateMap<MiniOfficeOrder, MiniOfficeOrderModel>();
 
                 cfg.CreateMap<Order, OrderModel>();
-
-                cfg.CreateMap<Payment, PaymentModel>();
+                cfg.CreateMap<OrderModel, Order>(); ;
+                //cfg.CreateMap<Payment, PaymentModel>();
 
                 cfg.CreateMap<Place, PlaceModel>();
 
+                cfg.CreateMap<Product, ProductModel>();
                 cfg.CreateMap<PlaceModel, Place>();
 
                 cfg.CreateMap<PlaceOrder, PlaceOrderModel>();
 
                 cfg.CreateMap<Room, RoomModel>();
 
-                cfg.CreateMap<Laptop, ComputerModel>();
+                cfg.CreateMap<PlaceOrder, PlaceOrderModel>();
 
-                cfg.CreateMap<Object, MiniOffice>();
-
-                cfg.CreateMap<Object, Place>();
             }));
         }
     }

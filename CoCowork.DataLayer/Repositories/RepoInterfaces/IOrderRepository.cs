@@ -5,7 +5,7 @@ namespace CoCowork.DataLayer.Repositories
 {
     public interface IOrderRepository
     {
-        void Add(Order order);
+        int Add(Order order);
         void Delete(int id);
         List<Order> GetAll();
         Order GetById(int id);

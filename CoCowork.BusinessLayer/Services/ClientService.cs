@@ -1,15 +1,12 @@
-﻿using CoCowork.BusinessLayer.Models;
+﻿using CoCowork.BusinessLayer.Configuration;
+using CoCowork.BusinessLayer.Models;
+using CoCowork.DataLayer.Entities;
 using CoCowork.DataLayer.Repositories;
-using CoCowork.BusinessLayer.Configuration;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CoCowork.BusinessLayer.Services
 {
-    public class ClientService
+    public class ClientService : IClientService
     {
         private readonly IClientRepository _clientRepository;
 
@@ -18,10 +15,16 @@ namespace CoCowork.BusinessLayer.Services
             _clientRepository = new ClientRepository();
         }
 
-        public List<ClientModel> GetClients()
+        public List<ClientModel> GetAll()
         {
-            var players = _clientRepository.GetAllClients();
+            var players = _clientRepository.GetAll();
             return CustomMapper.GetInstance().Map<List<ClientModel>>(players);
+        }
+
+        public Client FindClientInDB(ClientModel clientModel)
+        {
+            var client = _clientRepository.GetClientById(clientModel.Id);
+            return client;
         }
     }
 }
