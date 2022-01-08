@@ -12,7 +12,7 @@ namespace CoCowork.DataLayer.Entities
 
         public List<Payment> Payments { get; set; }
 
-        public Client Client { get; set; }
+        public int ClientId { get; set; }
 
         public int TotalPrice { get; set; }
 

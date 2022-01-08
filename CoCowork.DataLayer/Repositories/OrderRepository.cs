@@ -48,7 +48,6 @@ namespace CoCowork.DataLayer.Repositories
                 .FirstOrDefault();
         }
 
-
         public void Add(Order order)
         {
             using IDbConnection connection = ProvideConnection();
@@ -57,7 +56,7 @@ namespace CoCowork.DataLayer.Repositories
                 _insertProcedure,
                 new
                 {
-                    ClientId = order.Client,
+                    ClientId = order.ClientId,
                     TotalPrice = order.TotalPrice,
                     IsPaid = order.IsPaid,
                     IsCancelled = order.IsCancelled
@@ -74,7 +73,7 @@ namespace CoCowork.DataLayer.Repositories
                 new
                 {
                     Id = order.Id,
-                    ClientId = order.Client,
+                    ClientId = order.ClientId,
                     TotalPrice = order.TotalPrice,
                     IsPaid = order.IsPaid,
                     IsCancelled = order.IsCancelled
