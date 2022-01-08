@@ -140,6 +140,8 @@ namespace CoCowork.UI.ViewModels
             _service = new PlaceService();
 
             FillPlaceFields = new FillPlaceFieldsCommand(this);
+            EditPlace = new EditPlaceCommand(this, bookingVM, _service);
+            AddPlace = new AddPlaceCommand(this, bookingVM, _service);
             DeletePlace = new DeletePlaceCommand(this, bookingVM, _service);
             ChangePlaceEditVisibility = new VisibilityOfInnerGridCommand(this);
         }

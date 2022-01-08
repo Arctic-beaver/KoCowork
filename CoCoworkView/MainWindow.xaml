@@ -278,12 +278,12 @@
                     <Label Content="Номер места" Grid.Row="4" Margin="5 0 5 0" HorizontalAlignment="Center"/>
                     <TextBox x:Name="Number" Grid.Row="4" Margin="10, 30, 10, 0" Text ="{Binding PlaceVM.Number}"/>
 
-                    <Button x:Name="AddPlaceButton" IsEnabled="{Binding MiniOfficeVM.IsAddButtonAvailable}" Command="{Binding MiniOfficeVM.AddMiniOffice}"
+                    <Button x:Name="AddPlaceButton" IsEnabled="{Binding PlaceVM.IsAddButtonAvailable}" Command="{Binding PlaceVM.AddPlace}"
                             Content="Добавить" Grid.Column="0" Grid.Row="7" Margin="15, 10, 15, 20"/>
-                    <Button x:Name="EditPlaceButton" Command="{Binding MiniOfficeVM.EditMiniOffice}" CommandParameter="{Binding MiniOfficeVM}"
-                            Content="Редактировать" Grid.Column="0" Grid.Row="8" Margin="15, 10, 15, 20" IsEnabled="{Binding MiniOfficeVM.IsEditButtonAvailable}"/>
-                    <Button x:Name="DeletePlaceButton" Command="{Binding MiniOfficeVM.DeleteMiniOffice}" Content="Удалить" Grid.Column="0"
-                            Grid.Row="9" Margin="15, 10, 15, 20" IsEnabled="{Binding MiniOfficeVM.IsDeleteButtonAvailable}"/>
+                    <Button x:Name="EditPlaceButton" Command="{Binding PlaceVM.EditPlace}" Content="Редактировать" Grid.Column="0"
+                            Grid.Row="8" Margin="15, 10, 15, 20" IsEnabled="{Binding PlaceVM.IsEditButtonAvailable}"/>
+                    <Button x:Name="DeletePlaceButton" Command="{Binding PlaceVM.DeleteMiniOffice}" Content="Удалить" Grid.Column="0"
+                            Grid.Row="9" Margin="15, 10, 15, 20" IsEnabled="{Binding PlaceVM.IsDeleteButtonAvailable}"/>
                 </Grid>
             </Grid>
         </Grid>
