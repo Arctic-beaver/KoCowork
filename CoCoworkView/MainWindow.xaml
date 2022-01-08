@@ -311,7 +311,7 @@
 
 
 
-        <Grid x:Name="ClientsGrid" Grid.Column ="1" DataContext="{Binding Client}" Visibility="{Binding GridVisibility}">
+        <Grid x:Name="ClientsGrid" Grid.Column ="1" DataContext="{Binding Client}" Visibility="Hidden">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="75*"/>
                 <ColumnDefinition Width="25*"/>

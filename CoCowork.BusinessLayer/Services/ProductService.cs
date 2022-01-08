@@ -61,5 +61,10 @@ namespace CoCowork.BusinessLayer.Services
             return result;
             
         }
+
+        public void DeleteProduct(int id)
+        {
+            _productRepository.Delete(id);
+        }
     }
 }
