@@ -30,9 +30,17 @@ namespace CoCowork.BusinessLayer.Services
             return CustomMapper.GetInstance().Map<List<LaptopModel>>(computers);
         }
 
-        public void Delete(int id)
+        public bool Delete(int id)
         {
-            _laptopRepository.DeleteLaptopById(id);
+            try
+            {
+                _laptopRepository.DeleteLaptopById(id);
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+            return true;
         }
 
         public void Update(LaptopModel laptop)
@@ -46,7 +54,7 @@ namespace CoCowork.BusinessLayer.Services
             var computers = CustomMapper.GetInstance().Map<Laptop>(laptop);
             _laptopRepository.Add(computers);
         }
-    
+
 
         public int AddItemOrder(BookingItemModel bookingItem)
         {

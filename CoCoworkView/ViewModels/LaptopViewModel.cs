@@ -1,12 +1,13 @@
 ﻿using CoCowork.BusinessLayer.Models;
 using CoCowork.BusinessLayer.Services;
 using CoCowork.UI.Commands;
+using CoCowork.UI.Commands.ComputerCommands;
 using System.Windows;
 using System.Windows.Input;
 
 namespace CoCowork.UI.ViewModels
 {
-    public class ComputerViewModel : InnerGridViewModel
+    public class LaptopViewModel : InnerGridViewModel
     {
         private int? _number;
         private string _name;
@@ -17,7 +18,7 @@ namespace CoCowork.UI.ViewModels
         private bool _isDeleteButtonAvailable;
         private bool _isAddButtonAvailable;
         private readonly LaptopService _service;
-        private LaptopModel _selectedComputer;
+        private LaptopModel _selectedLaptop;
 
         public int? Number
         {
@@ -115,20 +116,20 @@ namespace CoCowork.UI.ViewModels
             }
         }
 
-        public LaptopModel SelectedComputer
+        public LaptopModel SelectedLaptop
         {
-            get => _selectedComputer;
+            get => _selectedLaptop;
             set
             {
-                if (value != _selectedComputer)
+                if (value != _selectedLaptop)
                 {
-                    _selectedComputer = value;
-                    OnPropertyChanged(nameof(SelectedComputer));
+                    _selectedLaptop = value;
+                    OnPropertyChanged(nameof(SelectedLaptop));
 
                     if (value != null)
                     {
                         IsDeleteButtonAvailable = true;
-                        FillPlaceFields.Execute(this);
+                        FillLaptopFields.Execute(this);
                     }
                     else
                     {
@@ -138,22 +139,22 @@ namespace CoCowork.UI.ViewModels
             }
         }
 
-        public ICommand ChangeComputerEditVisibility { get; set; }
-        public ICommand AddComputer { get; set; }
-        public ICommand EditComputer { get; set; }
-        public ICommand DeleteComputer { get; set; }
-        public ICommand FillComputerFields { get; set; }
+        public ICommand ChangeLaptopEditVisibility { get; set; }
+        public ICommand AddLaptop { get; set; }
+        public ICommand EditLaptop { get; set; }
+        public ICommand DeleteLaptop { get; set; }
+        public ICommand FillLaptopFields { get; set; }
 
-        public ComputerViewModel(BookingViewModel bookingVM)
+        public LaptopViewModel(BookingViewModel bookingVM)
         {
             GridVisibility = Visibility.Collapsed;
             _service = new LaptopService();
 
-            //FillComputerFields = new FillPlaceFieldsCommand(this);
-            //EditComputer = new EditPlaceCommand(this, bookingVM, _service);
-            //AddComputer = new AddPlaceCommand(this, bookingVM, _service);
-            //DeleteComputer = new DeleteComputerCommand(this, bookingVM, _service);
-            ChangeComputerEditVisibility = new VisibilityOfInnerGridCommand(this);
+            //FillLaptopFields = new FillPlaceFieldsCommand(this);
+            //EditLaptop = new EditPlaceCommand(this, bookingVM, _service);
+            //AddLaptop = new AddPlaceCommand(this, bookingVM, _service);
+            DeleteLaptop = new DeleteLaptopCommand(this, bookingVM, _service);
+            ChangeLaptopEditVisibility = new VisibilityOfInnerGridCommand(this);
         }
 
         public void CheckIfAllFieldsFilledCorrectly()
