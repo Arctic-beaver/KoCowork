@@ -19,7 +19,7 @@ namespace CoCowork.UI.Commands.BookingCommands
 
         public override void Execute(object parameter)
         {
-            bool result = _service.DeletePlace(_placeVM.SelectedPlace);
+            bool result = _service.DeletePlace(_placeVM.SelectedPlace.Id);
             var userAnswer = MessageBox.Show("Вы действительно хотите удалить выбранное место?", "Удаление", MessageBoxButton.YesNo, MessageBoxImage.Question);
 
             if (userAnswer == MessageBoxResult.Yes)

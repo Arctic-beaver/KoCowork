@@ -4,7 +4,6 @@ namespace CoCowork.BusinessLayer.Models
 {
     public class RoomModel : BookingItemModel
     {
-
         public string Type { get; set; }
         public int AmountOfPeople { get; set; }
         public decimal PricePerHour { get; set; }

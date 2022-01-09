@@ -5,7 +5,6 @@ namespace CoCowork.BusinessLayer.Models
 {
     public class MiniOfficeModel : BookingItemModel
     {
-
         public int AmountDays { get; set; }
         public string TypeForDisplayInUI = "Мини-офис";
         public int? AmountOfPlaces { get; set; }
