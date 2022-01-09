@@ -49,10 +49,20 @@ namespace CoCowork.BusinessLayer.Services
             _laptopRepository.UpdateLaptopById(computers);
         }
 
-        public void Insert(LaptopModel laptop)
+        public int Insert(LaptopModel laptop)
         {
             var computers = CustomMapper.GetInstance().Map<Laptop>(laptop);
-            _laptopRepository.Add(computers);
+            int insertedLaptopId = 0;
+
+            try
+            {
+                insertedLaptopId = _laptopRepository.Add(computers);
+            }
+            catch (Exception)
+            {
+                return -1;
+            }
+            return insertedLaptopId;
         }
 
 
