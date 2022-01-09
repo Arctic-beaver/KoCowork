@@ -31,20 +31,26 @@ namespace CoCowork.BusinessLayer.Services
         {
             var order = _orderRepository.GetById(id);
             decimal realPaidSumm = 0;
+        
+            bool orderIsPaid = order.IsPaid;
 
-            foreach (Payment payment in order.Payments)
+            if (!orderIsPaid)
             {
-                if (payment != null) realPaidSumm += payment.Amount;
+                foreach (Payment payment in order.Payments)
+                {
+                    if (payment != null) realPaidSumm += payment.Amount;
+                }
+
+                orderIsPaid = realPaidSumm >= order.TotalPrice;
+                
+                if (orderIsPaid)
+                {
+                    order.IsPaid = true;
+                    Update(order);
+                }
             }
-            return realPaidSumm >= order.TotalPrice;
-        }
 
-        public void MarkAsPaid(int id)
-        {
-            Order order = _orderRepository.GetById(id);
-            order.IsPaid = true;
-
-            Update(order);
+            return orderIsPaid;
         }
 
         public void Update(Order order)

@@ -17,18 +17,16 @@ namespace CoCowork.UI.Commands.OrderHistoryCommands
 
         public override void Execute(object parameter)
         {
-            if (_orderViewModel.Service.CheckPayment((int)_paymentViewModel.OrderId))
-            {
-                MessageBox.Show("Этот заказ полностью оплачен.");
-                return;
-            }
+            //Сначала проверим, надо ли добавлять оплату к данному заказу
+            if (CheckPayment()) return;
 
+            //Создаём новую оплату, если после добавления ее к заказу итоговая стоимость покрыта, отмечаем заказ как оплаченный.
             PaymentModel payment = new PaymentModel(_paymentViewModel.Amount, _paymentViewModel.PaymentDate, _paymentViewModel.OrderId);
             string message = _paymentViewModel.Service.Add(payment);
             if (message.Equals("Success"))
             {
                 MessageBox.Show("Оплата успешно добавлена!");
-                _orderViewModel.CheckIfOrderIsPaidCommand.Execute(null);
+                CheckPayment();
             }
             else
             {
@@ -36,6 +34,16 @@ namespace CoCowork.UI.Commands.OrderHistoryCommands
             }
 
             _paymentViewModel.ChangePaymentVisibility.Execute(null);
+        }
+
+        private bool CheckPayment()
+        {
+            if (_orderViewModel.Service.CheckPayment((int)_paymentViewModel.OrderId))
+            {
+                MessageBox.Show("Этот заказ полностью оплачен.");
+                return true;
+            }
+            return false;
         }
     }
 }
