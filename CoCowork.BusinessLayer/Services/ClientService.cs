@@ -12,7 +12,7 @@ namespace CoCowork.BusinessLayer.Services
 {
     public class ClientService
     {
-        private readonly IClientRepository _clientRepository;
+        private readonly ClientRepository _clientRepository;
 
         public ClientService()
         {
@@ -21,8 +21,8 @@ namespace CoCowork.BusinessLayer.Services
 
         public List<ClientModel> GetClients()
         {
-            var players = _clientRepository.GetAllClients();
-            return CustomMapper.GetInstance().Map<List<ClientModel>>(players);
+            var clients = _clientRepository.GetAllClients();
+            return CustomMapper.GetInstance().Map<List<ClientModel>>(clients);
         }
 
         public void UpdateClient(ClientModel clientModel)

@@ -14,9 +14,9 @@ namespace CoCowork.UI.ViewModels
         public AddNewClientViewModel()
         {
             GridVisibility = Visibility.Collapsed;
-            ChangeProductVisibility = new VisibilityOfInnerGridCommand(this);
+            ChangeClientVisibility = new VisibilityOfInnerGridCommand(this);
         }
 
-        public ICommand ChangeProductVisibility { get; set; }
+        public ICommand ChangeClientVisibility { get; set; }
     }
 }

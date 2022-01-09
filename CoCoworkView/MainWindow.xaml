@@ -354,7 +354,7 @@
                     <RowDefinition/>
                 </Grid.RowDefinitions>
 
-                <Button x:Name="AddNewClientButton"  Content="Инсертнуть" Grid.Column="1" Grid.Row="1" Margin="0, 0, 0, 50"/>
+                <Button x:Name="AddNewClientButton" Command="{Binding AddNewClientViewModel.ChangeClientVisibility}" Content="Инсертнуть" Grid.Column="1" Grid.Row="1" Margin="0, 0, 0, 50"/>
                 <Button x:Name="EditClientButton" Content="Редактировать" Grid.Column="1" Grid.Row="3" Margin="0, 0, 0, 50"/>
             </Grid>
             <Grid x:Name ="MainClientGrid" Grid.Column ="0" Background="#FFE0DFDF" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
@@ -363,6 +363,31 @@
                     <ColumnDefinition Width="auto"/>
                 </Grid.ColumnDefinitions>
                 <DataGrid x:Name="ClientDataGrid" ItemsSource="{Binding Clients}" SelectedItem="{Binding SelectedItem}" CanUserAddRows="False" CanUserDeleteRows="False" CanUserReorderColumns="False" CanUserSortColumns="True"  Grid.Column="0" ColumnWidth="*"/>
+                <Grid x:Name ="AddClientGrid" Visibility ="{Binding AddNewClientViewModel.GridVisibility}" Grid.Column ="1" Background="#FFE0DFDF" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="200">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Label Name="ClientPhoneLabel" Grid.Row="2" Grid.Column ="1" Content="Введите телефон:" Margin="15,0,0,0" />
+                    <TextBox x:Name ="ClientPhone" Grid.Row ="2" Grid.Column ="1" Margin="15,25,15,0" Style="{StaticResource placeHolder}" Tag="Введите телефон" Text="{Binding AddNewClientViewModel.Phone}"/>
+                    <Label Name="ClientEmailLabel" Grid.Row="3" Grid.Column ="1" Content="Введите email:" Margin="15,0,0,0" />
+                    <TextBox x:Name ="ClientEmail" Grid.Row ="3" Grid.Column ="1" Margin="15,25,15,0" Style="{StaticResource placeHolder}" Tag="Введите email" Text="{Binding AddNewClientViewModel.Email}"/>
+                    <Label Name="ClientBirthDateLabel" Grid.Row="4" Grid.Column ="1" Content="Введите дату рождения:" Margin="15,0,0,0" />
+                    <TextBox x:Name ="ClientBirthDate" Grid.Row ="4" Grid.Column ="1" Margin="15,25,15,0" Style="{StaticResource placeHolder}" Tag="Введите дату рождения" Text="{Binding AddNewClientViewModel.BirthDate}"/>
+                    <Label Name="ClientPaperAmountLabel" Grid.Row="5" Grid.Column ="1" Content="Введите количество листов:" Margin="15,0,0,0" />
+                    <TextBox x:Name ="ClientPaperAmount" Grid.Row ="5" Grid.Column ="1" Margin="15,25,15,0" Style="{StaticResource placeHolder}" Tag="Введите количество листов" Text="{Binding AddNewClientViewModel.PaperAmount}"/>
+                    <Label Name="ClientPaperEndDateLabel" Grid.Row="6" Grid.Column ="1" Content="Дата окончания печати:" Margin="15,0,0,0" />
+                    <TextBox x:Name ="ClientPaperEndDate" Grid.Row ="6" Grid.Column ="1" Margin="15,25,15,0" Style="{StaticResource placeHolder}" Tag="Дата окончания печати" Text="{Binding AddNewClientViewModel.PaperEndDate}"/>
+                    <Button x:Name ="AddFinallyClient" Content="Добавить нового клиента" Grid.Row="8" Margin="15" Command="{Binding AddNewClientCommand}" />
+                </Grid>
             </Grid>
         </Grid>
 

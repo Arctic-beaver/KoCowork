@@ -19,6 +19,8 @@ namespace CoCowork.BusinessLayer.Configuration
         {
             _instance = new Mapper(new MapperConfiguration(cfg =>
             {
+                cfg.CreateMap<ClientModel, Client>();
+
                 cfg.CreateMap<Client, ClientModel>();
 
                 cfg.CreateMap<MiniOffice, MiniOfficeModel>();

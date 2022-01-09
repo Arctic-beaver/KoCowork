@@ -19,10 +19,13 @@ namespace CoCowork.UI.ViewModels
             GridVisibility = Visibility.Hidden;
 
             _clientService = new ClientService();
+            AddNewClientViewModel = new AddNewClientViewModel();
+            EditClientViewModel = new EditClientViewModel(this);
 
             Clients = new ObservableCollection<ClientModel>();
 
             GetClientsCommand = new GetClientsCommand(this, _clientService);
+            AddNewClientCommand = new AddNewClientCommand(AddNewClientViewModel, this, _clientService);
         }
 
         public ObservableCollection<ClientModel> Clients { get; set; }
@@ -42,7 +45,13 @@ namespace CoCowork.UI.ViewModels
             }
         }
 
+        public AddNewClientViewModel AddNewClientViewModel { get; set; }
+
+        public EditClientViewModel EditClientViewModel { get; set; }
+
         public ICommand GetClientsCommand { get; set; }
+
+        public ICommand AddNewClientCommand { get; set; }
 
 
 
