@@ -21,6 +21,7 @@ namespace CoCowork.BusinessLayer.Services
         public PlaceService(IPlaceOrderRepository fakePlaceOrderRepository)
         {
             _orderRepository = fakePlaceOrderRepository;
+            _placeRepository = new PlaceRepository();
         }
 
         public PlaceService(IPlaceRepository fakePlaceRepository)
