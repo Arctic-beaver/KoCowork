@@ -386,7 +386,8 @@
                     <Label Name="ClientEmailLabel" Grid.Row="4" Grid.Column ="1" Content="Введите email:" Margin="15,0,0,0" />
                     <TextBox x:Name ="ClientEmail" Grid.Row ="4" Grid.Column ="1" Margin="15,25,15,0" Style="{StaticResource placeHolder}" Tag="Введите email" Text="{Binding AddNewClientViewModel.Email}"/>
                     <Label Name="ClientBirthDateLabel" Grid.Row="5" Grid.Column ="1" Content="Введите дату рождения:" Margin="15,0,0,0" />
-                    <TextBox x:Name ="ClientBirthDate" Grid.Row ="5" Grid.Column ="1" Margin="15,25,15,0" Style="{StaticResource placeHolder}" Tag="Введите дату рождения" Text="{Binding AddNewClientViewModel.DateBirth}"/>
+                    <DatePicker x:Name="ClientDatePicker" Grid.Row="5" Grid.Column="1" SelectedDate ="{Binding AddNewClientViewModel.DateBirth}" Margin="15, 25, 15, 0"/>
+                    <!--<TextBox x:Name ="ClientBirthDate" Grid.Row ="5" Grid.Column ="1" Margin="15,25,15,0" Style="{StaticResource placeHolder}" Tag="Введите дату рождения" Text="{Binding AddNewClientViewModel.DateBirth, StringFormat=dd:MMMM:yyyy}"/>-->
                     <Label Name="ClientPaperAmountLabel" Grid.Row="6" Grid.Column ="1" Content="Введите количество листов:" Margin="15,0,0,0" />
                     <TextBox x:Name ="ClientPaperAmount" Grid.Row ="6" Grid.Column ="1" Margin="15,25,15,0" Style="{StaticResource placeHolder}" Tag="Введите количество листов" Text="{Binding AddNewClientViewModel.PaperAmount}"/>
                     <Label Name="ClientPaperEndDateLabel" Grid.Row="7" Grid.Column ="1" Content="Дата окончания печати:" Margin="15,0,0,0" />
