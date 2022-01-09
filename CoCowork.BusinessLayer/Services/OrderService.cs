@@ -53,11 +53,6 @@ namespace CoCowork.BusinessLayer.Services
             return orderIsPaid;
         }
 
-        public Order GetById(int id)
-        {
-            return _orderRepository.GetById(id);
-        }
-
         public List<OrderModel> GetAllOrders()
         {
             var orders = _orderRepository.GetAll();

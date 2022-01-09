@@ -35,6 +35,37 @@ namespace CoCowork.BusinessLayer.Tests.ItemOrderServiceTests
             return order;           
         }
 
+        public Order GetOrderWithPaymentsForTests()
+        {
+            var order = new Order
+            {
+                Id = 1,
+                TotalPrice = 13000,
+                IsCanceled = true,
+                IsPaid = false,
+                ClientId = 3,
+                Payments = new List<Payment>
+                {
+                    new Payment
+                    {
+                        Id = 1,
+                        Amount = 2346
+                    },
+                    new Payment
+                    {
+                        Id = 1,
+                        Amount = 9346
+                    },
+                    new Payment
+                    {
+                        Id = 1,
+                        Amount = 2344
+                    }
+                }
+            };
+            return order;
+        }
+
         public OrderModel GetOrderModelForTests()
         {
             var order = new OrderModel

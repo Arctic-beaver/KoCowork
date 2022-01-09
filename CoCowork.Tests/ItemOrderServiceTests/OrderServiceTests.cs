@@ -39,23 +39,33 @@ namespace CoCowork.BusinessLayer.Tests
         }
 
         [Test]
-        public void UpdateOrder_ReceivesOrderShouldUpdateOrderInDB()
+        public void CheckPayment_ReceivesOrderIdShouldMarkAsPaidIfNecessary()
         {
             //arrange
-            var order = _ordersTestData.GetOrderForTests();
-            OrderModel orderModel = CustomMapper.GetInstance().Map<OrderModel>(order);
+            var order = _ordersTestData.GetOrderWithPaymentsForTests();
             _orderRepositoryMock.Setup(m => m.GetById(1)).Returns(order);
             var sut = new OrderService(_orderRepositoryMock.Object);
 
-
             //act
-            orderModel.IsPaid = true;
-
-            sut.UpdateOrder(orderModel);
-            var actual = sut.GetById(1);
+            var actual = sut.CheckPayment(1);
 
             //assert
-            Assert.AreEqual(orderModel.IsPaid, actual.IsPaid);
+            Assert.IsTrue(actual);
+        }
+
+        [Test]
+        public void UpdateOrder_ReceivesOrderShouldUpdateOrderInDB()
+        {
+            //arrange
+            var orderModel = _ordersTestData.GetOrderModelForTests();
+            _orderRepositoryMock.Setup(m => m.Update(It.IsAny<Order>()));
+            var sut = new OrderService(_orderRepositoryMock.Object);
+
+            //act
+            sut.UpdateOrder(orderModel);
+
+            //assert
+            _orderRepositoryMock.Verify(m => m.Update(It.IsAny<Order>()), Times.Once());
         }
 
         [Test]
