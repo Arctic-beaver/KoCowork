@@ -12,16 +12,22 @@ namespace CoCowork.BusinessLayer.Services
         private readonly ILaptopRepository _laptopRepository;
         private LaptopOrder _itemOrder;
         private ILaptopOrderRepository _orderRepository;
+
         public LaptopService()
         {
             _laptopRepository = new LaptopRepository();
             _orderRepository = new LaptopOrderRepository();
         }
+
         public LaptopService(ILaptopOrderRepository fakeLaptopOrderRepository)
         {
             _orderRepository = fakeLaptopOrderRepository;
             _laptopRepository = new LaptopRepository();
+        }
 
+        public LaptopService(ILaptopRepository fakeLaptopRepository)
+        {
+            _laptopRepository = fakeLaptopRepository;
         }
 
         public List<LaptopModel> GetAll()
