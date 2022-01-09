@@ -21,9 +21,6 @@ namespace CoCowork.UI.Commands
             var orders = new List<OrderModel>();
 
             orders.AddRange(vm.Service.GetSpecialOrders(vm.ShowPaid, vm.ShowUnpaid, vm.ShowCanceled));
-            if (vm.ShowActive) orders.AddRange(vm.Service.GetActiveOrders());
-
-            var result = orders.GroupBy(x => x.Id).Select(x => x.First());
 
             foreach (OrderModel order in orders)
             {

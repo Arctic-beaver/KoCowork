@@ -2,6 +2,7 @@
 using CoCowork.BusinessLayer.Models;
 using CoCowork.DataLayer.Entities;
 using CoCowork.DataLayer.Repositories;
+using System;
 using System.Collections.Generic;
 
 namespace CoCowork.BusinessLayer.Services
@@ -73,10 +74,7 @@ namespace CoCowork.BusinessLayer.Services
 
         public List<OrderModel> GetActiveOrders()
         {
-            var orders = CustomMapper.GetInstance().Map<List<OrderModel>>(_orderRepository.GetAll());
-            var result = new List<OrderModel>();
-
-            return result;
+            throw new NotImplementedException();
         }
 
         public void UpdateOrder(OrderModel orderModel)
