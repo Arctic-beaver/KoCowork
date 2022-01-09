@@ -22,7 +22,11 @@ namespace CoCowork.BusinessLayer.Services
         {
             _orderRepository = fakePlaceOrderRepository;
             _placeRepository = new PlaceRepository();
+        }
 
+        public PlaceService(IPlaceRepository fakePlaceRepository)
+        {
+            _placeRepository = fakePlaceRepository;
         }
 
         public List<PlaceModel> GetAll()

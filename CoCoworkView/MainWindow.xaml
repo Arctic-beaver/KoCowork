@@ -282,7 +282,7 @@
                             Content="Добавить" Grid.Column="0" Grid.Row="7" Margin="15, 10, 15, 20"/>
                     <Button x:Name="EditPlaceButton" Command="{Binding PlaceVM.EditPlace}" Content="Редактировать" Grid.Column="0"
                             Grid.Row="8" Margin="15, 10, 15, 20" IsEnabled="{Binding PlaceVM.IsEditButtonAvailable}"/>
-                    <Button x:Name="DeletePlaceButton" Command="{Binding PlaceVM.DeleteMiniOffice}" Content="Удалить" Grid.Column="0"
+                    <Button x:Name="DeletePlaceButton" Command="{Binding PlaceVM.DeletePlace}" Content="Удалить" Grid.Column="0"
                             Grid.Row="9" Margin="15, 10, 15, 20" IsEnabled="{Binding PlaceVM.IsDeleteButtonAvailable}"/>
                 </Grid>
             </Grid>
