@@ -91,7 +91,7 @@
                 <Button x:Name="ComputersEditButton" Content="Компьютеры" Grid.Column="1" Grid.Row="7"
                         Margin="0, 0, 0, 30"/>
                 <Button x:Name="AddToOrderButton" Content="Добавить к заказу" Grid.Column="1" Grid.Row="8"
-                        Grid.RowSpan="2" Margin="0, 35, 0, 30"/>
+                        Grid.RowSpan="2" Margin="0, 35, 0, 30" Command="{Binding AddBookingItemToCurrentOrderVM.ChangeInnerGridVisibility}"/>
 
             </Grid>
             <Grid x:Name="MainBookingGrid" Grid.Column ="0" Background="DarkGray" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
@@ -285,6 +285,29 @@
                     <Button x:Name="DeletePlaceButton" Command="{Binding PlaceVM.DeletePlace}" Content="Удалить" Grid.Column="0"
                             Grid.Row="9" Margin="15, 10, 15, 20" IsEnabled="{Binding PlaceVM.IsDeleteButtonAvailable}"/>
                 </Grid>
+
+                <Grid x:Name="AddBookingItemToCurrentOrderGrid" Visibility="{Binding AddBookingItemToCurrentOrderVM.GridVisibility}" Grid.Column ="3" Grid.RowSpan="6"
+                      Background="#FFE0DFDF" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                    <Grid.Effect>
+                        <DropShadowEffect Color="Black" ShadowDepth="0.01"/>
+                    </Grid.Effect>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+
+                    <Button x:Name="AddBookingItemButton" IsEnabled="{Binding AddBookingItemToCurrentOrderVM.IsAddButtonAvailable}" Command="{Binding AddBookingItemToCurrentOrderVM.AddToCurrentOrders}"
+                            Content="Добавить" Grid.Column="0" Grid.Row="7" Margin="15, 10, 15, 20"/>
+                </Grid>
+                
             </Grid>
         </Grid>
 

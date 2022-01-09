@@ -4,13 +4,14 @@ namespace CoCowork.UI.ViewModels
 {
     internal class AddToCurrentOrders : CommandBase
     {
+        private readonly CurrentOrderViewModel _vmCurrentOrder;
+        private readonly AddBookingItemToCurrentOrderViewModel _addBookingItemVM;
+        private readonly BookingViewModel _vm;
 
-        private CurrentOrderViewModel _vmCurrentOrder;
-        private BookingViewModel _vm;
-
-        public AddToCurrentOrders(CurrentOrderViewModel vmCurrentOrder, BookingViewModel vm)
+        public AddToCurrentOrders(CurrentOrderViewModel vmCurrentOrder, BookingViewModel vm, AddBookingItemToCurrentOrderViewModel addBookingItemVM)
         {
             _vmCurrentOrder = vmCurrentOrder;
+            _addBookingItemVM = addBookingItemVM;
             _vm = vm;
         }
 
