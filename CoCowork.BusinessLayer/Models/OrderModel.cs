@@ -6,7 +6,7 @@ namespace CoCowork.BusinessLayer.Models
     {
         public int Id { get; set; }
 
-        public ClientModel Client { get; set; }
+        public int ClientId { get; set; }
 
         public List<PaymentModel> Payments { get; set; }
 

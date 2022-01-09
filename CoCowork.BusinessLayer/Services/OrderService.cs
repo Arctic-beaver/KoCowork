@@ -46,16 +46,16 @@ namespace CoCowork.BusinessLayer.Services
                 if (orderIsPaid)
                 {
                     order.IsPaid = true;
-                    Update(order);
+                    UpdateOrder(order);
                 }
             }
 
             return orderIsPaid;
         }
 
-        public void Update(Order order)
+        public Order GetById(int id)
         {
-            _orderRepository.Update(order);
+            return _orderRepository.GetById(id);
         }
 
         public List<OrderModel> GetAllOrders()
@@ -66,7 +66,7 @@ namespace CoCowork.BusinessLayer.Services
 
         public List<OrderModel> GetSpecialOrders(bool isPaid, bool isUnpaid, bool isCancelled)
         {
-            var orders = CustomMapper.GetInstance().Map<List<OrderModel>>(_orderRepository.GetAll());
+            var orders = GetAllOrders();
             var result = new List<OrderModel>();
             foreach (var order in orders)
             {
@@ -81,22 +81,27 @@ namespace CoCowork.BusinessLayer.Services
         public List<OrderModel> GetActiveOrders()
         {
             throw new NotImplementedException();
-        }
+        } 
 
         public void UpdateOrder(OrderModel orderModel)
         {
             Order order = CustomMapper.GetInstance().Map<Order>(orderModel);
-            _orderRepository.Update(order);
+            UpdateOrder(order);
         }
 
         public Order InsertOrder(OrderModel orderModel)
         {
             _order = CustomMapper.GetInstance().Map<Order>(orderModel);
-            _order.ClientId = _clientService.FindClientInDB(orderModel.Client).Id;
+            //_order.ClientId = _clientService.FindClientInDB(orderModel.Client).Id;
             var idOrder = _orderRepository.Add(_order);
             _order.Id = idOrder;
 
             return _order;
+        }
+
+        private void UpdateOrder(Order order)
+        {
+            _orderRepository.Update(order);
         }
     }
 }
