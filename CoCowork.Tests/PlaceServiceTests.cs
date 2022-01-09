@@ -1,3 +1,6 @@
+using CoCowork.BusinessLayer.Services;
+using CoCowork.BusinessLayer.Models;
+using CoCowork.DataLayer.Entities;
 using CoCowork.DataLayer.Repositories;
 using Moq;
 using NUnit.Framework;
@@ -22,7 +25,7 @@ namespace CoCowork.BusinessLayer.Tests
             //arrange
             var places = _placeTestData.GetAllPlacesForTests();
             _placeRepositoryMock.Setup(m => m.GetAll()).Returns(places);
-            var sut = new PlaceService( _placeRepositoryMock.Object);
+            var sut = new PlaceService(_placeRepositoryMock.Object);
 
             //act
             var actual = sut.GetAll();
@@ -110,11 +113,11 @@ namespace CoCowork.BusinessLayer.Tests
         {
             //arrange
             var placeModel = _placeTestData.GetPlaceModelForTests();
-            _placeRepositoryMock.Setup(m => m.DeletePlace(It.IsAny<int>()));
+            _placeRepositoryMock.Setup(m => m.DeletePlaceById(It.IsAny<int>()));
             var sut = new PlaceService(_placeRepositoryMock.Object);
 
             //act
-            var actual = sut.DeletePlace(placeModel); 
+            var actual = sut.DeletePlace(placeModel.Id); 
 
             //assert
             Assert.IsTrue(actual);
@@ -125,11 +128,11 @@ namespace CoCowork.BusinessLayer.Tests
         {
             //arrange
             var placeModel = _placeTestData.GetPlaceModelForTests();
-            _placeRepositoryMock.Setup(m => m.DeletePlace(It.IsAny<int>())).Throws(new Exception());
+            _placeRepositoryMock.Setup(m => m.DeletePlaceById(It.IsAny<int>())).Throws(new Exception());
             var sut = new PlaceService(_placeRepositoryMock.Object);
 
             //act
-            var actual = sut.DeletePlace(placeModel);
+            var actual = sut.DeletePlace(placeModel.Id);
 
             //assert
             Assert.IsFalse(actual);

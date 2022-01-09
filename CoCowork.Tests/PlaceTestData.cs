@@ -22,11 +22,9 @@ namespace CoCowork.BusinessLayer.Tests
 
         public List<Place> GetPlacesThatNotInMiniOfficesForTests()
         {
-            List<Place> placesThatNotInMiniOffices = new List<Place>{
+            List<Place> placesthatNotInMiniOffices = new List<Place>{
                 new Place
                 {
-                    Id = 1,
-                    Number = 1,
                     PricePerDay = 500,
                     PriceFixedPerDay = 800,
                     Description = "Место в зале",
@@ -51,7 +49,7 @@ namespace CoCowork.BusinessLayer.Tests
                     MiniOfficeId = null
                 }
             };
-            return placesThatNotInMiniOffices;
+            return placesthatNotInMiniOffices;
         }
 
         public List<Place> GetAllPlacesForTests()
@@ -125,3 +123,4 @@ namespace CoCowork.BusinessLayer.Tests
         }
     }
 }
+

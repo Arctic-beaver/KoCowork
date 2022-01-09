@@ -14,10 +14,7 @@ namespace CoCowork.BusinessLayer.Models
         public string Name { get; set; }
         public string Description { get; set; }
         public decimal SubtotalPrice { get; set; }
+
         public abstract void CalculateSubtotalPrice(decimal price);
-
-
-
-
     }
 }
