@@ -13,16 +13,17 @@ namespace CoCowork.BusinessLayer.Services
         private Order _order;
         private ClientService _clientService;
 
+        public OrderService()
+        {
+            _orderRepository = new OrderRepository();
+            _clientService = new ClientService();
+        }
+
         public OrderService(IOrderRepository fakeOrderRepository)
         {
             _orderRepository = fakeOrderRepository;
             _clientService = new ClientService();
 
-        }
-        public OrderService()
-        {
-            _orderRepository = new OrderRepository();
-            _clientService = new ClientService();
         }
 
         public bool CheckPayment(int id)
@@ -122,11 +123,6 @@ namespace CoCowork.BusinessLayer.Services
 
             return _order;
         }
-
-
-
-
-
     }
 }
 

@@ -23,7 +23,7 @@ namespace CoCowork.UI.Commands.OrderHistoryCommands
             if (_orderViewModel.Service.CheckPayment((int)_orderViewModel.Payment.OrderId))
             {
                 _orderViewModel.Service.MarkAsPaid((int)_orderViewModel.Payment.OrderId);
-                MessageBox.Show("Теперь заказ полностью оплачен!");
+                MessageBox.Show("Заказ полностью оплачен!");
             }
         }
     }
