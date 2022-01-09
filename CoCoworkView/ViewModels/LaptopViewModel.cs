@@ -2,6 +2,8 @@
 using CoCowork.BusinessLayer.Services;
 using CoCowork.UI.Commands;
 using CoCowork.UI.Commands.ComputerCommands;
+using CoCowork.UI.Commands.LaptopCommands;
+using CoCowork.UI.Commands.MiniOfficeCommands;
 using System.Windows;
 using System.Windows.Input;
 
@@ -150,9 +152,9 @@ namespace CoCowork.UI.ViewModels
             GridVisibility = Visibility.Collapsed;
             _service = new LaptopService();
 
-            //FillLaptopFields = new FillPlaceFieldsCommand(this);
-            //EditLaptop = new EditPlaceCommand(this, bookingVM, _service);
-            //AddLaptop = new AddPlaceCommand(this, bookingVM, _service);
+            FillLaptopFields = new FillLaptopFieldsCommand(this);
+            EditLaptop = new EditLaptopCommand(this, bookingVM, _service);
+            AddLaptop = new AddLaptopCommand(this, bookingVM, _service);
             DeleteLaptop = new DeleteLaptopCommand(this, bookingVM, _service);
             ChangeLaptopEditVisibility = new VisibilityOfInnerGridCommand(this);
         }

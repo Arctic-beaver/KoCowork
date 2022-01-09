@@ -30,7 +30,7 @@ namespace CoCowork.UI.ViewModels
 
         public BookingViewModel()
         {
-            GridVisibility = Visibility.Hidden;
+            GridVisibility = Visibility.Visible;
 
             MiniOfficeVM = new MiniOfficeViewModel(this);
             PlaceVM = new PlaceViewModel(this);
