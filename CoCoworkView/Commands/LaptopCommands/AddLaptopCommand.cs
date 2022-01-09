@@ -31,7 +31,6 @@ namespace CoCowork.UI.Commands.LaptopCommands
             {
                 Number = _laptopVM.Number,
                 PricePerMonth = _laptopVM.PricePerMonth,
-                Amount = _laptopVM.Amount,
                 Description = _laptopVM.Description
             };
 
