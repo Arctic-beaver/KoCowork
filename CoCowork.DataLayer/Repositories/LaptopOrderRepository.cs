@@ -62,16 +62,16 @@ namespace CoCowork.DataLayer.Repositories
                 splitOn: "Id")
                 .ToList();
         }
-        public void Add(LaptopOrder laptopOrder)
+        public int Add(LaptopOrder laptopOrder)
         {
             using IDbConnection connection = ProvideConnection();
 
-            connection.Execute(
+            return connection.Execute(
                 _insertProc,
                 new
                 {
                     LaptopId = laptopOrder.Laptop.Id,
-                    OrderId = laptopOrder.OrderId,
+                    OrderId = laptopOrder.Order.Id,
                     StartDate = laptopOrder.StartDate,
                     EndDate = laptopOrder.EndDate,
                     SubtotalPrice = laptopOrder.SubtotalPrice
@@ -89,7 +89,7 @@ namespace CoCowork.DataLayer.Repositories
                 {
                     Id = laptopOrder.Id,
                     LaptopId = laptopOrder.Laptop.Id,
-                    OrderId = laptopOrder.OrderId,
+                    Order = laptopOrder.Order,
                     StartDate = laptopOrder.StartDate,
                     EndDate = laptopOrder.EndDate,
                     SubtotalPrice = laptopOrder.SubtotalPrice

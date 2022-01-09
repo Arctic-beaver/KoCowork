@@ -1,7 +1,4 @@
-﻿using CoCowork.DataLayer.Entities;
-using System.Collections.Generic;
-
-namespace CoCowork.BusinessLayer.Models
+﻿namespace CoCowork.BusinessLayer.Models
 {
     public class OrderModel
     {

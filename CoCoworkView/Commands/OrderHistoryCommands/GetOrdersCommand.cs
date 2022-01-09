@@ -6,7 +6,7 @@ using System.Linq;
 namespace CoCowork.UI.Commands
 {
     public class GetOrdersCommand : CommandBase
-    {        
+    {
         public GetOrdersCommand()
         {
 
@@ -17,7 +17,7 @@ namespace CoCowork.UI.Commands
             OrderViewModel vm = (OrderViewModel)viewModel;
 
             vm.Orders.Clear();
-           
+
             var orders = new List<OrderModel>();
 
             if (vm.ShowPaid) orders.AddRange(vm.Service.GetPaidOrders());

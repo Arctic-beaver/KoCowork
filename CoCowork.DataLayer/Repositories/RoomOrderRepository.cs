@@ -37,16 +37,16 @@ namespace CoCowork.DataLayer.Repositories
                 .FirstOrDefault();
         }
 
-        public void Add(RoomOrder roomorder)
+        public int Add(RoomOrder roomorder)
         {
             using IDbConnection connection = ProvideConnection();
 
-            connection.Execute(
+            return connection.Execute(
                 _insertProcedure,
                 new
                 {
-                    ClientId = roomorder.Room,
-                    OrderId = roomorder.Order,
+                    OrderId = roomorder.Order.Id,
+                    RoomId = roomorder.Room.Id,
                     StartDate = roomorder.StartDate,
                     EndDate = roomorder.EndDate,
                     SubtotalPrice = roomorder.SubtotalPrice
@@ -84,5 +84,7 @@ namespace CoCowork.DataLayer.Repositories
                 },
                 commandType: CommandType.StoredProcedure);
         }
+
+       
     }
 }

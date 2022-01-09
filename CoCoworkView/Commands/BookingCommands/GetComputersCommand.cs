@@ -9,9 +9,9 @@ namespace CoCowork.UI.Commands.BookingCommands
     public class GetComputersCommand : CommandBase
     {
         private readonly BookingViewModel _vm;
-        private readonly ComputerService _computerService;
+        private readonly LaptopService _computerService;
 
-        public GetComputersCommand(BookingViewModel vm, ComputerService computerService)
+        public GetComputersCommand(BookingViewModel vm, LaptopService computerService)
         {
             _vm = vm;
             _computerService = computerService;
@@ -23,7 +23,7 @@ namespace CoCowork.UI.Commands.BookingCommands
 
             foreach (var item in computers)
             {
-                _vm.Computers.Add(item);
+                _vm.Laptops.Add(item);
             }
         }
     }

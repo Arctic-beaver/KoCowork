@@ -41,16 +41,16 @@ namespace CoCowork.DataLayer.Repositories
                 .FirstOrDefault();
         }
 
-        public void Add(ProductOrder productorder)
+        public int Add(ProductOrder productorder)
         {
             using IDbConnection connection = ProvideConnection();
 
-            connection.Execute(
+            return connection.Execute(
                 _insertProcedure,
                 new
                 {
-                    ProductId = productorder.Product,
-                    OrderId = productorder.Order,
+                    ProductId = productorder.Product.Id,
+                    OrderId = productorder.Order.Id,
                     Amount = productorder.Amount,
                     SubtotalPrice = productorder.SubtotalPrice
 
@@ -68,7 +68,7 @@ namespace CoCowork.DataLayer.Repositories
                 {
                     Id = productorder.Id,
                     ProductId = productorder.Product,
-                    OrderId = productorder.Order,
+                    Order = productorder.Order,
                     Amount = productorder.Amount,
                     SubtotalPrice = productorder.SubtotalPrice
 

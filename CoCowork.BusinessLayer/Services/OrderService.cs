@@ -2,21 +2,27 @@
 using CoCowork.BusinessLayer.Models;
 using CoCowork.DataLayer.Entities;
 using CoCowork.DataLayer.Repositories;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CoCowork.BusinessLayer.Services
 {
-    public class OrderService
+    public class OrderService : IOrderService
     {
         private readonly IOrderRepository _orderRepository;
 
+        private Order _order;
+        private ClientService _clientService;
+
+        public OrderService(IOrderRepository fakeOrderRepository)
+        {
+            _orderRepository = fakeOrderRepository;
+            _clientService = new ClientService();
+
+        }
         public OrderService()
         {
             _orderRepository = new OrderRepository();
+            _clientService = new ClientService();
         }
 
         public bool CheckPayment(int id)
@@ -97,13 +103,7 @@ namespace CoCowork.BusinessLayer.Services
         {
             var orders = CustomMapper.GetInstance().Map<List<OrderModel>>(_orderRepository.GetAll());
             var result = new List<OrderModel>();
-            //foreach (var order in orders)
-            //{
-            //    if (order. == true)
-            //    {
-            //        result.Add(order);
-            //    }
-            //}
+
             return result;
         }
 
@@ -112,5 +112,21 @@ namespace CoCowork.BusinessLayer.Services
             Order order = CustomMapper.GetInstance().Map<Order>(orderModel);
             _orderRepository.Update(order);
         }
+
+        public Order InsertOrder(OrderModel orderModel)
+        {
+            _order = CustomMapper.GetInstance().Map<Order>(orderModel);
+            _order.Client = _clientService.FindClientInDB(orderModel.Client);
+            var idOrder = _orderRepository.Add(_order);
+            _order.Id = idOrder;
+
+            return _order;
+        }
+
+
+
+
+
     }
 }
+

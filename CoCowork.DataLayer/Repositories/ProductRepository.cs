@@ -2,7 +2,6 @@
 using Dapper;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.SqlClient;
 using System.Linq;
 
 namespace CoCowork.DataLayer.Repositories
@@ -38,7 +37,7 @@ namespace CoCowork.DataLayer.Repositories
                 {
                     Name = product.Name,
                     Amount = product.Amount,
-                    PriceForOne = product.PriceForOne,
+                    PriceForOne = product.Price,
                     Description = product.Description
                 },
                 commandType: CommandType.StoredProcedure);
@@ -55,7 +54,7 @@ namespace CoCowork.DataLayer.Repositories
                     Id = product.Id,
                     Name = product.Name,
                     Amount = product.Amount,
-                    PriceForOne = product.PriceForOne,
+                    PriceForOne = product.Price,
                     Description = product.Description
                 },
                 commandType: CommandType.StoredProcedure);

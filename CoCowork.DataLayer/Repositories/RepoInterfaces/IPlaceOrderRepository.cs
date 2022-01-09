@@ -5,7 +5,7 @@ namespace CoCowork.DataLayer.Repositories
 {
     public interface IPlaceOrderRepository
     {
-        void Add(PlaceOrder placeOrder);
+        int Add(PlaceOrder placeOrder);
         void DeletePlaceOrderById(int id);
         List<PlaceOrder> GetAllPlaceOrders();
         PlaceOrder GetPlaceOrderById(int id);

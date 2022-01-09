@@ -7,8 +7,8 @@ namespace CoCowork.DataLayer.Repositories
     {
         void Add(Laptop laptop);
         void DeleteLaptopById(int id);
-        List<Laptop> GetAllLaptops();
-        Laptop GetLaptopsById(int id);
+        List<Laptop> GetAll();
+        Laptop GetById(int id);
         void UpdateLaptopById(Laptop laptop);
     }
 }
