@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace CoCowork.BusinessLayer.Services
 {
-    public class PaymentService
+    public class PaymentService : IPaymentService
     {
         private readonly IPaymentRepository _paymentRepository;
 
@@ -19,10 +19,15 @@ namespace CoCowork.BusinessLayer.Services
             _paymentRepository = new PaymentRepository();
         }
 
+        public PaymentService(IPaymentRepository fakePaymentRepository)
+        {
+            _paymentRepository = fakePaymentRepository;
+        }
+
         public string Add(PaymentModel paymentModel)
         {
             Payment payment = CustomMapper.GetInstance().Map<Payment>(paymentModel);
-            string result = string.Empty;
+            string result;
             try
             {
                 _paymentRepository.Add(payment);
