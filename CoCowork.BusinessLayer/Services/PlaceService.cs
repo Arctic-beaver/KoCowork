@@ -41,7 +41,7 @@ namespace CoCowork.BusinessLayer.Services
         {
             try
             {
-                _placeRepository.DeletePlace(id);
+                _placeRepository.DeletePlaceById(id);
             }
             catch (Exception)
             {

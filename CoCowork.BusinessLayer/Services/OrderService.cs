@@ -116,7 +116,7 @@ namespace CoCowork.BusinessLayer.Services
         public Order InsertOrder(OrderModel orderModel)
         {
             _order = CustomMapper.GetInstance().Map<Order>(orderModel);
-            _order.Client = _clientService.FindClientInDB(orderModel.Client);
+            _order.ClientId = _clientService.FindClientInDB(orderModel.Client).Id;
             var idOrder = _orderRepository.Add(_order);
             _order.Id = idOrder;
 

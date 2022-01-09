@@ -1,4 +1,6 @@
-﻿namespace CoCowork.DataLayer.Entities
+﻿using System.Collections.Generic;
+
+namespace CoCowork.DataLayer.Entities
 {
     public class Order
     {
@@ -8,7 +10,7 @@
 
         public int ClientId { get; set; }
 
-        public int TotalPrice { get; set; }
+        public decimal TotalPrice { get; set; }
 
         public bool IsPaid { get; set; }
 
