@@ -57,6 +57,20 @@ namespace CoCowork.BusinessLayer.Services
             return CustomMapper.GetInstance().Map<List<OrderModel>>(orders);
         }
 
+        public List<OrderModel> GetSpecialOrders(bool isPaid, bool isUnpaid, bool isCancelled)
+        {
+            var orders = CustomMapper.GetInstance().Map<List<OrderModel>>(_orderRepository.GetAll());
+            var result = new List<OrderModel>();
+            foreach (var order in orders)
+            {
+                if ((order.IsPaid == isPaid || order.IsPaid == isPaid) && order.IsCanceled == isCancelled)
+                {
+                    result.Add(order);
+                }
+            }
+            return result;
+        }
+
         public List<OrderModel> GetCanceledOrders()
         {
             var orders = CustomMapper.GetInstance().Map<List<OrderModel>>(_orderRepository.GetAll());
