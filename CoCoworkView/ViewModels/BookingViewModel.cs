@@ -27,6 +27,7 @@ namespace CoCowork.UI.ViewModels
         public ICommand AddToCurrentOrders { get; set; }
         public MiniOfficeViewModel MiniOfficeVM { get; set; }
         public PlaceViewModel PlaceVM { get; set; }
+        public LaptopViewModel LaptopVM { get; set; }
 
         public BookingViewModel()
         {
@@ -34,6 +35,7 @@ namespace CoCowork.UI.ViewModels
 
             MiniOfficeVM = new MiniOfficeViewModel(this);
             PlaceVM = new PlaceViewModel(this);
+            LaptopVM = new LaptopViewModel(this);
 
             _placeService = new PlaceService();
             _miniOfficeService = new MiniOfficeService();
