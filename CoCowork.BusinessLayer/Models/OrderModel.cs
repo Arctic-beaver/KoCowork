@@ -14,6 +14,6 @@ namespace CoCowork.BusinessLayer.Models
 
         public bool IsPaid { get; set; }
 
-        public bool IsCancelled { get; set; }
+        public bool IsCanceled { get; set; }
     }
 }

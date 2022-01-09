@@ -32,7 +32,7 @@ namespace CoCowork.BusinessLayer.Services
 
             foreach (Payment payment in order.Payments)
             {
-                realPaidSumm += payment.Amount;
+                if (payment != null) realPaidSumm += payment.Amount;
             }
             return realPaidSumm >= order.TotalPrice;
         }
@@ -62,7 +62,7 @@ namespace CoCowork.BusinessLayer.Services
             var result = new List<OrderModel>();
             foreach (var order in orders)
             {
-                if (order.IsCancelled)
+                if (order.IsCanceled)
                 {
                     result.Add(order);
                 }
@@ -76,7 +76,7 @@ namespace CoCowork.BusinessLayer.Services
             var result = new List<OrderModel>();
             foreach (var order in orders)
             {
-                if (order.IsPaid)
+                if (order.IsPaid && !order.IsCanceled)
                 {
                     result.Add(order);
                 }
@@ -90,7 +90,7 @@ namespace CoCowork.BusinessLayer.Services
             var result = new List<OrderModel>();
             foreach (var order in orders)
             {
-                if (!order.IsPaid)
+                if (!order.IsPaid && !order.IsCanceled)
                 {
                     result.Add(order);
                 }

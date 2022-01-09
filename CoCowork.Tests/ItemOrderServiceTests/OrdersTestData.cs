@@ -11,7 +11,7 @@ namespace CoCowork.BusinessLayer.Tests.ItemOrderServiceTests
             {
                 Id = 1,
                 TotalPrice = 13000,
-                IsCancelled = true,
+                IsCanceled = true,
                 IsPaid = true,
                 Client = new ClientModel
                 {

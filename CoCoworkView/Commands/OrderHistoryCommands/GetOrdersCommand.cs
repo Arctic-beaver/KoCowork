@@ -25,7 +25,7 @@ namespace CoCowork.UI.Commands
             if (vm.ShowCanceled) orders.AddRange(vm.Service.GetCanceledOrders());
             if (vm.ShowActive) orders.AddRange(vm.Service.GetActiveOrders());
 
-            orders.Distinct();
+            var result = orders.GroupBy(x => x.Id).Select(x => x.First());
 
             foreach (OrderModel order in orders)
             {

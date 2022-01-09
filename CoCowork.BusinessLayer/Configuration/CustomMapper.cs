@@ -36,7 +36,8 @@ namespace CoCowork.BusinessLayer.Configuration
 
                 cfg.CreateMap<Order, OrderModel>();
                 cfg.CreateMap<OrderModel, Order>(); ;
-                //cfg.CreateMap<Payment, PaymentModel>();
+                cfg.CreateMap<Payment, PaymentModel>();
+                cfg.CreateMap<PaymentModel, Payment>();
 
                 cfg.CreateMap<Place, PlaceModel>();
 

@@ -14,6 +14,6 @@ namespace CoCowork.DataLayer.Entities
 
         public bool IsPaid { get; set; }
 
-        public bool IsCancelled { get; set; }
+        public bool IsCanceled { get; set; }
     }
 }

@@ -20,7 +20,7 @@ namespace CoCowork.UI.Commands.OrderHistoryCommands
             if (_orderViewModel.Service.CheckPayment((int)_paymentViewModel.OrderId))
             {
                 MessageBox.Show("Этот заказ полностью оплачен.");
-                return;
+                //return;
             }
 
             PaymentModel payment = new PaymentModel(_paymentViewModel.Amount, _paymentViewModel.PaymentDate, _paymentViewModel.OrderId);

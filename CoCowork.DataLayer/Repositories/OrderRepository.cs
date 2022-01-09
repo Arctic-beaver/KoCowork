@@ -59,7 +59,7 @@ namespace CoCowork.DataLayer.Repositories
                     ClientId = order.ClientId,
                     TotalPrice = order.TotalPrice,
                     IsPaid = order.IsPaid,
-                    IsCanceled = order.IsCancelled
+                    IsCanceled = order.IsCanceled
                 },
                 commandType: CommandType.StoredProcedure);
         }
@@ -76,8 +76,7 @@ namespace CoCowork.DataLayer.Repositories
                     ClientId = order.ClientId,
                     TotalPrice = order.TotalPrice,
                     IsPaid = order.IsPaid,
-                    IsCancelled = order.IsCancelled
-
+                    IsCanceled = order.IsCanceled
                 },
                 commandType: CommandType.StoredProcedure);
         }
