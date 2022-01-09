@@ -304,8 +304,23 @@
                         <RowDefinition/>
                     </Grid.RowDefinitions>
 
+                    <Label Content="Добавление к заказу" HorizontalAlignment="Center" Grid.Row="0" Margin="0 15 0 0" FontWeight="Bold"/>
+                    <TextBox Text="" Grid.Row="1" Margin="0 0 0 30" FontWeight="Bold"/>
+                    
+                    <Label Content="Дата начала брони" HorizontalAlignment="Center" Grid.Row="1" Margin="0 30 0 0"/>
+                    <DatePicker Grid.Column="0" Grid.Row="2" Margin="0 10 0 20" AllowDrop="True" SelectedDate="{Binding AddBookingItemToCurrentOrderVM.StartDatePicker}"/>
+                    
+                    <Label Content="Время начала брони" HorizontalAlignment="Center" Grid.Row="3" Margin="0 0 0 0"/>
+                    <TextBox Grid.Row="3" Margin="0 30 0 0" Text="{Binding AddBookingItemToCurrentOrderVM.StartTimePicker}"/>
+
+                    <Label Content="Дата окончания брони" HorizontalAlignment="Center" Grid.Row="4" Margin="0 30 0 0"/>
+                    <DatePicker Grid.Column="0" Grid.Row="5" Margin="0 10 0 20" AllowDrop="True" SelectedDate="{Binding AddBookingItemToCurrentOrderVM.EndDatePicker}"/>
+
+                    <Label Content="Время окончания брони" HorizontalAlignment="Center" Grid.Row="6" Margin="0 0 0 0"/>
+                    <TextBox Grid.Row="6" Margin="0 30 0 0" Text="{Binding AddBookingItemToCurrentOrderVM.EndTimePicker}"/>
+
                     <Button x:Name="AddBookingItemButton" IsEnabled="{Binding AddBookingItemToCurrentOrderVM.IsAddButtonAvailable}" Command="{Binding AddBookingItemToCurrentOrderVM.AddToCurrentOrders}"
-                            Content="Добавить" Grid.Column="0" Grid.Row="7" Margin="15, 10, 15, 20"/>
+                            Content="Добавить к заказу" Grid.Column="0" Grid.Row="8" Margin="15, 10, 15, 20"/>
                 </Grid>
                 
             </Grid>
@@ -390,7 +405,7 @@
             </Grid>
         </Grid>
 
-        <Grid x:Name="CurrentOrderGrid" Visibility="{Binding CurrentOrder.GridVisibility}" Grid.Column ="1">
+        <Grid x:Name="CurrentOrderGrid" Visibility="Hidden" Grid.Column ="1">
 
             <DataGrid x:Name="CurrentOrderDataGrid" CanUserDeleteRows="False" AutoGenerateColumns="False" Grid.Column="0" CanUserAddRows="False" ItemsSource="{Binding CurrentOrder.CurrentOrder}" Margin="0,0,200,0"  >
                 <DataGrid.Resources>
