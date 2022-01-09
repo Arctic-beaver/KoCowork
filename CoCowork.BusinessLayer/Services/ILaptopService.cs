@@ -7,7 +7,7 @@ namespace CoCowork.BusinessLayer.Services
     {
         bool Delete(int id);
         List<LaptopModel> GetAll();
-        void Insert(LaptopModel laptop);
+        int Insert(LaptopModel laptop);
         void Update(LaptopModel laptop);
     }
 }
