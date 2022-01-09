@@ -4,7 +4,7 @@ using CoCowork.DataLayer.Entities;
 using CoCowork.DataLayer.Repositories;
 using Moq;
 using NUnit.Framework;
-using System.IO;
+using System;
 
 namespace CoCowork.BusinessLayer.Tests
 {
@@ -42,16 +42,16 @@ namespace CoCowork.BusinessLayer.Tests
         }
 
         [Test]
-        public void GetAllMiniOffices_ShouldThrowAnIOException()
+        public void GetAllMiniOffices_ShouldThrowAnException()
         {
             //arrange
             var miniOffices = _miniOfficeTestData.GetMiniOfficesListForTests();
-            _miniOfficeRepositoryMock.Setup(m => m.GetAll()).Throws(new IOException());
+            _miniOfficeRepositoryMock.Setup(m => m.GetAll()).Throws(new Exception());
             _placeRepositoryMock.Setup(m => m.Add(It.IsAny<Place>())).Returns(42);
             var sut = new MiniOfficeService(_miniOfficeRepositoryMock.Object, _placeRepositoryMock.Object);
 
             //act, assert
-            Assert.Throws<IOException> (() => sut.GetAll());
+            Assert.Throws<Exception> (() => sut.GetAll());
         }
 
         [Test]
@@ -72,11 +72,11 @@ namespace CoCowork.BusinessLayer.Tests
         }
 
         [Test]
-        public void InsertMiniOfficeWithPlaces_MiniOfficeRepositoryThrowsAnIOException_ShouldReturnNegativeOne()
+        public void InsertMiniOfficeWithPlaces_MiniOfficeRepositoryThrowsAnException_ShouldReturnNegativeOne()
         {
             //arrange
             var miniOfficeWithPlaces = _miniOfficeTestData.GetMiniOfficeModelForTests();
-            _miniOfficeRepositoryMock.Setup(m => m.Add(It.IsAny<MiniOffice>())).Throws(new IOException());
+            _miniOfficeRepositoryMock.Setup(m => m.Add(It.IsAny<MiniOffice>())).Throws(new Exception());
             _placeRepositoryMock.Setup(m => m.Add(It.IsAny<Place>())).Returns(42);
             var sut = new MiniOfficeService(_miniOfficeRepositoryMock.Object, _placeRepositoryMock.Object);
 
@@ -88,12 +88,12 @@ namespace CoCowork.BusinessLayer.Tests
         }
 
         [Test]
-        public void InsertMiniOfficeWithPlaces_PlaceRepositoryThrowsAnIOException_ShouldReturnNegativeOne()
+        public void InsertMiniOfficeWithPlaces_PlaceRepositoryThrowsAnException_ShouldReturnNegativeOne()
         {
             //arrange
             var miniOfficeWithPlaces = _miniOfficeTestData.GetMiniOfficeModelForTests();
             _miniOfficeRepositoryMock.Setup(m => m.Add(It.IsAny<MiniOffice>())).Returns(23);
-            _placeRepositoryMock.Setup(m => m.Add(It.IsAny<Place>())).Throws(new IOException());
+            _placeRepositoryMock.Setup(m => m.Add(It.IsAny<Place>())).Throws(new Exception());
             var sut = new MiniOfficeService(_miniOfficeRepositoryMock.Object, _placeRepositoryMock.Object);
 
             //act
@@ -124,7 +124,7 @@ namespace CoCowork.BusinessLayer.Tests
         {
             //arrange
             var miniOfficeWithPlaces = _miniOfficeTestData.GetMiniOfficeModelForTests();
-            _miniOfficeRepositoryMock.Setup(m => m.DeleteMiniOffice(It.IsAny<int>())).Throws(new IOException());
+            _miniOfficeRepositoryMock.Setup(m => m.DeleteMiniOffice(It.IsAny<int>())).Throws(new Exception());
             _placeRepositoryMock.Setup(m => m.Add(It.IsAny<Place>())).Returns(42);
             var sut = new MiniOfficeService(_miniOfficeRepositoryMock.Object, _placeRepositoryMock.Object);
 
@@ -152,16 +152,16 @@ namespace CoCowork.BusinessLayer.Tests
         }
 
         [Test]
-        public void UpdateMiniOffice_ShouldThrowAnIOException()
+        public void UpdateMiniOffice_ShouldThrowAnException()
         {
             //arrange
             var miniOfficeWithPlaces = _miniOfficeTestData.GetMiniOfficeModelForTests();
-            _miniOfficeRepositoryMock.Setup(m => m.UpdateMiniOffice(It.IsAny<MiniOffice>())).Throws(new IOException());
+            _miniOfficeRepositoryMock.Setup(m => m.UpdateMiniOffice(It.IsAny<MiniOffice>())).Throws(new Exception());
             _placeRepositoryMock.Setup(m => m.Add(It.IsAny<Place>())).Returns(42);
             var sut = new MiniOfficeService(_miniOfficeRepositoryMock.Object, _placeRepositoryMock.Object);
 
             //act, assert
-            Assert.Throws<IOException>(() => sut.UpdateMiniOffice(miniOfficeWithPlaces));
+            Assert.Throws<Exception>(() => sut.UpdateMiniOffice(miniOfficeWithPlaces));
         }
     }
 }

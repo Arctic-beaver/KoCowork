@@ -80,6 +80,7 @@
                 <Label Content="по" Grid.Column="0" Grid.Row="1" Margin="5 35 0 0" Grid.RowSpan="2"/>
                 <DatePicker Grid.Column="1" Grid.Row="1" Margin="0 37 0 160" Grid.RowSpan="4"/>
 
+                <Label Content="Редактирование" Grid.Column="1" Grid.Row="2" Margin="0, 23, 0, 0" HorizontalContentAlignment="Center" FontWeight="Bold"/>
                 <Button x:Name="MiniOfficeEditButton" Content="Миниофисы" Grid.Column="1" Grid.Row="3"
                         Margin="0, 0, 0, 30" Command="{Binding MiniOfficeVM.ChangeMiniOfficeEditVisibility}"/>
                 <Button x:Name="PlaceEditButton" Content="Места" Grid.Column="1" Grid.Row="4"
