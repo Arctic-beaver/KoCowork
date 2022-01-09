@@ -63,56 +63,13 @@ namespace CoCowork.BusinessLayer.Services
             var result = new List<OrderModel>();
             foreach (var order in orders)
             {
-                if ((order.IsPaid == isPaid || order.IsPaid == isPaid) && order.IsCanceled == isCancelled)
+                if ((order.IsPaid == isPaid || !order.IsPaid == isUnpaid) && (order.IsCanceled == isCancelled || !order.IsCanceled))
                 {
                     result.Add(order);
                 }
             }
             return result;
         }
-
-        public List<OrderModel> GetCanceledOrders()
-        {
-            var orders = CustomMapper.GetInstance().Map<List<OrderModel>>(_orderRepository.GetAll());
-            var result = new List<OrderModel>();
-            foreach (var order in orders)
-            {
-                if (order.IsCanceled)
-                {
-                    result.Add(order);
-                }
-            }
-            return result;
-        }
-
-        public List<OrderModel> GetPaidOrders()
-        {
-            var orders = CustomMapper.GetInstance().Map<List<OrderModel>>(_orderRepository.GetAll());
-            var result = new List<OrderModel>();
-            foreach (var order in orders)
-            {
-                if (order.IsPaid && !order.IsCanceled)
-                {
-                    result.Add(order);
-                }
-            }
-            return result;
-        }
-
-        public List<OrderModel> GetUnpaidOrders()
-        {
-            var orders = CustomMapper.GetInstance().Map<List<OrderModel>>(_orderRepository.GetAll());
-            var result = new List<OrderModel>();
-            foreach (var order in orders)
-            {
-                if (!order.IsPaid && !order.IsCanceled)
-                {
-                    result.Add(order);
-                }
-            }
-            return result;
-        }
-
 
         public List<OrderModel> GetActiveOrders()
         {
