@@ -15,10 +15,10 @@
             <i:InvokeCommandAction Command="{Binding Booking.GetConferenceRooms}"/>
             <i:InvokeCommandAction Command="{Binding Booking.GetMeetingRooms}"/>
             <i:InvokeCommandAction Command="{Binding Booking.GetPlaces}"/>
-            <i:InvokeCommandAction Command="{Binding Booking.GetComputers}"/>
+            <i:InvokeCommandAction Command="{Binding CurrentOrder.GetClients}"/>
+            <i:InvokeCommandAction Command="{Binding Booking.GetLaptops}"/>
         </i:EventTrigger>
     </i:Interaction.Triggers>
-
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="20*"/>
@@ -198,7 +198,7 @@
                 </DataGrid>
 
                 <DataGrid x:Name="Computers" AutoGenerateColumns="False" Margin="0 0 0 0" Width="auto" Grid.Column="2" Grid.Row="1" CanUserAddRows="False" Grid.RowSpan="5"
-                      ItemsSource="{Binding Computers}" SelectedItem="{Binding Path=BookingSelectedItem, Mode=TwoWay}" ColumnWidth="*" CanUserDeleteRows="False">
+                      ItemsSource="{Binding Laptops}" SelectedItem="{Binding Path=BookingSelectedItem, Mode=TwoWay}" ColumnWidth="*" CanUserDeleteRows="False">
                     <DataGrid.Resources>
                         <Style TargetType="{x:Type DataGridColumnHeader}">
                             <Setter Property="HorizontalContentAlignment" Value="Center"/>
@@ -368,30 +368,85 @@
             </Grid>
         </Grid>
 
-        <Grid x:Name="CurrentOrderGrid" Grid.Column ="1" Visibility="{Binding CurrentOrder.GridVisibility}">
-            <Label>Text in current order grid</Label>
+        <Grid x:Name="CurrentOrderGrid" Visibility="{Binding CurrentOrder.GridVisibility}" Grid.Column ="1">
+
+            <DataGrid x:Name="CurrentOrderDataGrid" CanUserDeleteRows="False" AutoGenerateColumns="False" Grid.Column="0" CanUserAddRows="False" ItemsSource="{Binding CurrentOrder.CurrentOrder}" Margin="0,0,200,0"  >
+                <DataGrid.Resources>
+                    <Style TargetType="{x:Type DataGridColumnHeader}">
+                        <Setter Property="Background" Value="PaleTurquoise"/>
+                        <Setter Property="BorderThickness" Value="0.1, 0.1, 1, 2"/>
+                        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                        <Setter Property="BorderBrush" Value="Black"/>
+                    </Style>
+                </DataGrid.Resources>
+                <DataGrid.Columns>
+                    <DataGridTextColumn Binding="{Binding Name}" Header=" Имя" Width="150"/>
+                    <DataGridTextColumn Binding="{Binding Type}" Header=" Тип" Width="150"/>
+                    <DataGridTextColumn Binding="{Binding Price}" Header=" Цена" Width="150"/>
+                </DataGrid.Columns>
+            </DataGrid>
+            <Grid x:Name="RightCurrentOrderGrid" Grid.Column ="2" Background="#FFE0DFDF" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="200" Margin="0,0,-600,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="15*"/>
+                    <ColumnDefinition Width="70*"/>
+                    <ColumnDefinition Width="15*"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+
+
+                <Button x:Name="AcceptOrder" Content="Оформить заказ" Command="{Binding CurrentOrder.AddOrder}" Grid.Column="1" Grid.Row="5" Margin="0, 15, 0, 15" Height="47"/>
+                <Button x:Name="DeleteOrder" Content="Удалить из заказа" Grid.Column="1" Grid.Row="5" Margin="0,80,0,-60" Height="47"/>
+                <ComboBox  x:Name="ClientsComboBox" ItemsSource="{Binding CurrentOrder.Clients}" SelectedItem="{Binding CurrentOrder.SelectedClient}" DisplayMemberPath="FullName" HorizontalAlignment="Center" Margin="0,57,0,0" Grid.Row="3" VerticalAlignment="Top" Width="140" Grid.RowSpan="2" Grid.Column="1"/>
+                <Label Grid.Column="1" Content="Выберите клиента:" HorizontalAlignment="Left" Margin="0,8,0,0" Grid.Row="3" VerticalAlignment="Top" FontSize="14"/>
+                <CheckBox x:Name="CheckBoxNotFullPaid" Grid.Column="1" Content="Частичная оплата" IsChecked="{Binding CurrentOrder.IsPaid}" HorizontalAlignment="Left" Margin="0,47,0,0" Grid.Row="4" VerticalAlignment="Top" Height="36" Grid.RowSpan="2"/>
+                <TextBlock Grid.Column="1" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Общая цена:" VerticalAlignment="Top" FontSize="16" Margin="46,16,0,0"/>
+                <TextBlock Margin="0,44,0,0" TextWrapping="Wrap" Text="{Binding CurrentOrder.TotalPrice}" VerticalAlignment="Bottom" FontSize="14" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Right" Width="82" Grid.Column="1" TextAlignment="Right">
+                    <TextBlock.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform ScaleX="1"/>
+                            <SkewTransform/>
+                            <RotateTransform/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </TextBlock.RenderTransform>
+                </TextBlock>
+
+            </Grid>
+
         </Grid>
 
         <Grid x:Name="MiniOfficeInsertGrid" Grid.Column ="1">
 
         </Grid>
 
-        <Grid x:Name="ConferenceRoomInsertGrid" Grid.Column ="1">
+        <Grid x:Name="ConferenceRoomInsertGrid" Visibility="Hidden" Grid.Column ="1">
 
         </Grid>
 
-        <Grid x:Name="MeetingRoomInsertGrid" Grid.Column ="1">
+        <Grid x:Name="MeetingRoomInsertGrid" Visibility="Hidden" Grid.Column ="1">
 
         </Grid>
 
-        <Grid x:Name="PlaceInsertGrid" Grid.Column ="1">
+        <Grid x:Name="PlaceInsertGrid" Visibility="Hidden" Grid.Column ="1">
 
         </Grid>
 
-        <Grid x:Name="ComputersInsertGrid" Grid.Column ="1">
+        <Grid x:Name="ComputersInsertGrid" Visibility="Hidden" Grid.Column ="1">
 
         </Grid>
 
-        <Grid x:Name="ProductsInsertGrid" Grid.Column ="1"/>
+        <Grid x:Name="ProductsInsertGrid" Visibility="Hidden" Grid.Column ="1">
+        </Grid>
     </Grid>
 </Window>

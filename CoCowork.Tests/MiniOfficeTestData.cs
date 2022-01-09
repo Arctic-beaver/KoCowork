@@ -1,6 +1,5 @@
 ﻿using CoCowork.BusinessLayer.Models;
 using CoCowork.DataLayer.Entities;
-using System;
 using System.Collections.Generic;
 
 namespace CoCowork.BusinessLayer.Tests
@@ -38,7 +37,7 @@ namespace CoCowork.BusinessLayer.Tests
 
         public List<MiniOffice> GetMiniOfficesListForTests()
         {
-            List<MiniOffice> miniOffices = new List<MiniOffice>{ 
+            List<MiniOffice> miniOffices = new List<MiniOffice>{
                 new MiniOffice
                 {
                     Id = 1,

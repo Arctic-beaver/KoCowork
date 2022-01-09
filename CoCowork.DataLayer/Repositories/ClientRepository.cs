@@ -14,10 +14,14 @@ namespace CoCowork.DataLayer.Repositories
         private const string _updateProc = "dbo.Client_Update";
         private const string _deleteProc = "dbo.Client_Delete";
 
-        public List<Client> GetAllClients()
+        public List<Client> GetAll()
         {
             using IDbConnection connection = ProvideConnection();
-            return connection.Query<Client>(_selectAllProc).ToList();
+            return connection
+                .Query<Client>
+                    (_selectAllProc,
+                    commandType: CommandType.StoredProcedure)
+                .ToList();
         }
 
         public Client GetClientById(int id)

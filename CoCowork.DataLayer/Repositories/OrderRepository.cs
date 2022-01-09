@@ -28,18 +28,18 @@ namespace CoCowork.DataLayer.Repositories
                 commandType: CommandType.StoredProcedure);
         }
 
-        public void Add(Order order)
+        public int Add(Order order)
         {
             using IDbConnection connection = ProvideConnection();
 
-            connection.Execute(
+            return connection.QueryFirstOrDefault<int>(
                 _insertProcedure,
                 new
                 {
-                    ClientId = order.Client,
+                    ClientId = order.Client.Id,
                     TotalPrice = order.TotalPrice,
                     IsPaid = order.IsPaid,
-                    IsCancelled = order.IsCancelled
+                    IsCanceled = order.IsCanceled
                 },
                 commandType: CommandType.StoredProcedure);
         }
@@ -56,7 +56,7 @@ namespace CoCowork.DataLayer.Repositories
                     ClientId = order.Client,
                     TotalPrice = order.TotalPrice,
                     IsPaid = order.IsPaid,
-                    IsCancelled = order.IsCancelled
+                    IsCancelled = order.IsCanceled
 
                 },
                 commandType: CommandType.StoredProcedure);
@@ -73,5 +73,7 @@ namespace CoCowork.DataLayer.Repositories
                 },
                 commandType: CommandType.StoredProcedure);
         }
+
+
     }
 }

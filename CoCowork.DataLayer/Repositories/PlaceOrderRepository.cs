@@ -83,16 +83,16 @@ namespace CoCowork.DataLayer.Repositories
                  .ToList();
         }
 
-        public void Add(PlaceOrder placeOrder)
+        public int Add(PlaceOrder placeOrder)
         {
             using IDbConnection connection = ProvideConnection();
 
-            connection.Execute(
+            return connection.Execute(
                 _insertProcedure,
                 new
                 {
                     PlaceId = placeOrder.Place.Id,
-                    OrderId = placeOrder.OrderId,
+                    OrderId = placeOrder.Order.Id,
                     StartDate = placeOrder.StartDate,
                     EndDate = placeOrder.EndDate,
                     SubtotalPrice = placeOrder.SubtotalPrice
@@ -110,7 +110,7 @@ namespace CoCowork.DataLayer.Repositories
                 {
                     Id = placeOrder.Id,
                     PlaceId = placeOrder.Place.Id,
-                    OrderId = placeOrder.OrderId,
+                    Order = placeOrder.Order,
                     StartDate = placeOrder.StartDate,
                     EndDate = placeOrder.EndDate,
                     SubtotalPrice = placeOrder.SubtotalPrice

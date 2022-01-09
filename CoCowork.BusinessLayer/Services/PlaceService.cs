@@ -1,28 +1,28 @@
-﻿using CoCowork.BusinessLayer.Models;
+﻿using CoCowork.BusinessLayer.Configuration;
+using CoCowork.BusinessLayer.Models;
 using CoCowork.DataLayer.Entities;
 using CoCowork.DataLayer.Repositories;
-using CoCowork.BusinessLayer.Configuration;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CoCowork.BusinessLayer.Services
 {
-    public class PlaceService
+    public class PlaceService : IPlaceService, IItemService
     {
         private readonly IPlaceRepository _placeRepository;
-        
+        private PlaceOrder _itemOrder;
+        private IPlaceOrderRepository _orderRepository;
 
         public PlaceService()
         {
             _placeRepository = new PlaceRepository();
         }
 
-        public PlaceService(IPlaceRepository fakePlaceRepository)
+        public PlaceService(IPlaceOrderRepository fakePlaceOrderRepository)
         {
-            _placeRepository = fakePlaceRepository;
+            _orderRepository = fakePlaceOrderRepository;
+            _placeRepository = new PlaceRepository();
+
         }
 
         public List<PlaceModel> GetAll()
@@ -71,5 +71,31 @@ namespace CoCowork.BusinessLayer.Services
             }
             return insertedPlaceId;
         }
+
+        
+        void IPlaceService.InsertPlace(PlaceModel place)
+        {
+            throw new NotImplementedException();
+        }
+
+        public int AddItemOrder(ItemModel bookingItem)
+        {
+            throw new NotImplementedException();
+        }
+
+        public int AddItemOrder(BookingItemModel bookingItem)
+        {
+            var _entity = _placeRepository.GetPlaceById(bookingItem.Id);
+
+            _itemOrder = new PlaceOrder { Place = _entity, Order = bookingItem.Order, StartDate = bookingItem.StartDate, EndDate = bookingItem.EndDate};
+
+            return _orderRepository.Add(_itemOrder);
+        }
+
+        void IPlaceService.DeletePlace(int id)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
+
