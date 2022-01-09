@@ -75,12 +75,6 @@ namespace CoCowork.BusinessLayer.Services
             return insertedPlaceId;
         }
 
-        
-        void IPlaceService.InsertPlace(PlaceModel place)
-        {
-            throw new NotImplementedException();
-        }
-
         public int AddItemOrder(ItemModel bookingItem)
         {
             throw new NotImplementedException();
