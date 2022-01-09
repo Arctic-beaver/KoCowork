@@ -8,8 +8,8 @@ namespace CoCowork.UI.ViewModels
     public class AddBookingItemToCurrentOrderViewModel : InnerGridViewModel
     {
         private bool _isAddButtonAvailable;
-        private DateTime? _startDatePicker;
-        private DateTime? _endDatePicker;
+        private DateTime _startDatePicker;
+        private DateTime _endDatePicker;
         private string _startTimePicker;
         private string _endTimePicker;
 
@@ -22,12 +22,12 @@ namespace CoCowork.UI.ViewModels
                 {
                     _isAddButtonAvailable = value;
                     OnPropertyChanged(nameof(IsAddButtonAvailable));
-                    //IsAddButtonAvailable = 
+                    IsAddButtonAvailable = StartTimePicker != null && EndTimePicker != null;
                 }
             }
         }
 
-        public DateTime? StartDatePicker
+        public DateTime StartDatePicker
         {
             get => _startDatePicker;
             set
@@ -41,7 +41,7 @@ namespace CoCowork.UI.ViewModels
             }
         }
 
-        public DateTime? EndDatePicker
+        public DateTime EndDatePicker
         {
             get => _endDatePicker;
             set
@@ -91,12 +91,6 @@ namespace CoCowork.UI.ViewModels
 
             AddToCurrentOrders = new AddToCurrentOrders(currentOrderVM, bookingVM, this);
             ChangeInnerGridVisibility = new VisibilityOfInnerGridCommand(this);
-        }
-
-        public void CheckIfAllFieldsFilled()
-        {
-            IsAddButtonAvailable = StartDatePicker != null && EndDatePicker != null 
-                && StartTimePicker != null && EndTimePicker != null;
         }
     }
 }
