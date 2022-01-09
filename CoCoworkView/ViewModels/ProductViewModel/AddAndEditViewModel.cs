@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CoCowork.UI.ViewModels
 {
-    public abstract class AddAndEditViewModel:InnerGridViewModel
+    public abstract class AddAndEditViewModel : InnerGridViewModel
     {
         private string _name;
         private string _description;

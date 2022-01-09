@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CoCowork.UI.ViewModels.ClientViewModel
+namespace CoCowork.UI.ViewModels
 {
-    public abstract class AddAndEditClientViewModel:InnerGridViewModel
+    public abstract class AddAndEditClientViewModel : InnerGridViewModel
     {
         private string _phone;
         private string _email;

@@ -13,9 +13,6 @@ namespace CoCowork.UI.ViewModels
 {
     public class AddNewProductViewModel : AddAndEditViewModel
     {
-        
-        
-
         public AddNewProductViewModel()
         {
             GridVisibility = Visibility.Collapsed;

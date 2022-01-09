@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace CoCowork.UI.Commands
 {
-    internal class AddNewProductCommand : CommandBase
+    public class AddNewProductCommand : CommandBase
     {
         private readonly AddNewProductViewModel _addProductVM;
         private readonly ProductViewModel _productVM;

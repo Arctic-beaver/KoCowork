@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CoCowork.DataLayer.Entities;
 
 namespace CoCowork.BusinessLayer.Services
 {
@@ -22,6 +23,29 @@ namespace CoCowork.BusinessLayer.Services
         {
             var players = _clientRepository.GetAllClients();
             return CustomMapper.GetInstance().Map<List<ClientModel>>(players);
+        }
+
+        public void UpdateClient(ClientModel clientModel)
+        {
+            Client client = CustomMapper.GetInstance().Map<Client>(clientModel);
+            _clientRepository.UpdateClientById(client);
+        }
+
+        public string AddClient (ClientModel clientModel)
+        {
+            Client client = CustomMapper.GetInstance().Map<Client>(clientModel);
+            string result = string.Empty;
+            try
+            {
+                _clientRepository.Add(client);
+                result = "Успех";
+            }
+            catch (Exception ex)
+            {
+                result = ex.Message;
+            }
+            return result;
+
         }
     }
 }
