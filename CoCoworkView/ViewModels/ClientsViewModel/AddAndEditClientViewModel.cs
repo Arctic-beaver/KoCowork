@@ -8,12 +8,34 @@ namespace CoCowork.UI.ViewModels
 {
     public abstract class AddAndEditClientViewModel : InnerGridViewModel
     {
+        private string _firstName;
+        private string _lastName;
         private string _phone;
         private string _email;
-        private DateTime _birthDate;
+        private DateTime _dateBirth;
         private int _paperAmount;
         private DateTime _paperEndDate;
 
+
+        public string FirstName
+        {
+            get => _firstName;
+            set
+            {
+                _firstName = value;
+                OnPropertyChanged(nameof(FirstName));
+            }
+        }
+
+        public string LastName
+        {
+            get => _lastName;
+            set
+            {
+                _lastName = value;
+                OnPropertyChanged(nameof(LastName));
+            }
+        }
 
         public string Phone
         {
@@ -35,13 +57,13 @@ namespace CoCowork.UI.ViewModels
             }
         }
 
-        public DateTime BirthDate
+        public DateTime DateBirth
         {
-            get => _birthDate;
+            get => _dateBirth;
             set
             {
-                _birthDate = value;
-                OnPropertyChanged(nameof(BirthDate));
+                _dateBirth = value;
+                OnPropertyChanged(nameof(DateBirth));
             }
         }
 

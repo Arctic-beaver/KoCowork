@@ -25,9 +25,11 @@ namespace CoCowork.UI.Commands
         {
             ClientModel client = new ClientModel
             {
+                FirstName = _addClientVM.FirstName,
+                LastName = _addClientVM.LastName,
                 Phone = _addClientVM.Phone,
                 Email = _addClientVM.Email,
-                BirthDate = _addClientVM.BirthDate,
+                DateBirth = _addClientVM.DateBirth,
                 PaperAmount = _addClientVM.PaperAmount,
                 PaperEndDate = _addClientVM.PaperEndDate
 
@@ -36,7 +38,7 @@ namespace CoCowork.UI.Commands
             _clientVM.Clients.Add(client);
             _addClientVM.Phone = null;
             _addClientVM.Email = null;
-            //_addClientVM.BirthDate = null;
+           // _addClientVM.DateBirth = null;
             _addClientVM.PaperAmount = 0;
             //_addClientVM.PaperEndDate = null;
         }
