@@ -23,7 +23,7 @@ namespace CoCowork.BusinessLayer.Tests
         public void GetAllPlaces_ShouldReturnPlaces()
         {
             //arrange
-            var places = _placeTestData.GetPlacesListForTests();
+            var places = _placeTestData.GetAllPlacesForTests();
             _placeRepositoryMock.Setup(m => m.GetAll()).Returns(places);
             var sut = new PlaceService( _placeRepositoryMock.Object);
 
@@ -40,13 +40,42 @@ namespace CoCowork.BusinessLayer.Tests
         public void GetAllPlaces_ShouldThrowAnException()
         {
             //arrange
-            var miniOffices = _placeTestData.GetPlacesListForTests();
+            var miniOffices = _placeTestData.GetAllPlacesForTests();
             _placeRepositoryMock.Setup(m => m.GetAll()).Throws(new Exception());
             _placeRepositoryMock.Setup(m => m.Add(It.IsAny<Place>())).Returns(42);
             var sut = new PlaceService(_placeRepositoryMock.Object);
 
             //act, assert
             Assert.Throws<Exception>(() => sut.GetAll());
+        }
+
+        [Test]
+        public void GetPlacesThatNotInMiniOffices_ShouldReturnPlacesThatNotInMiniOffices()
+        {
+            //arrange
+            var placesThatNotInMiniOffices = _placeTestData.GetPlacesThatNotInMiniOfficesForTests();
+            _placeRepositoryMock.Setup(m => m.GetPlacesThatNotInMiniOffice()).Returns(placesThatNotInMiniOffices);
+            var sut = new PlaceService(_placeRepositoryMock.Object);
+
+            //act
+            var actual = sut.GetAllThatNotInMiniOffices();
+
+            //assert
+            Assert.IsNotNull(actual);
+            Assert.IsTrue(actual.Count > 0);
+            Assert.IsNull(actual[0].MiniOfficeId);
+            Assert.IsInstanceOf(typeof(PlaceModel), actual[0]);
+        }
+
+        [Test]
+        public void GetPlacesThatNotInMiniOffices_ShouldThrowAnException()
+        {
+            //arrange
+            _placeRepositoryMock.Setup(m => m.GetPlacesThatNotInMiniOffice()).Throws(new Exception());
+            var sut = new PlaceService(_placeRepositoryMock.Object);
+
+            //act, assert
+            Assert.Throws<Exception>(() => sut.GetAllThatNotInMiniOffices());
         }
 
         [Test]

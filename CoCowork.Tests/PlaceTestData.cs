@@ -14,21 +14,23 @@ namespace CoCowork.BusinessLayer.Tests
                 Number = 1,
                 PricePerDay = 500,
                 PriceFixedPerDay = 800,
-                Description = "Место у окна"
+                Description = "Место у окна",
+                MiniOfficeId = null
             };
             return placeModel;
         }
 
-        public List<Place> GetPlacesListForTests()
+        public List<Place> GetPlacesThatNotInMiniOfficesForTests()
         {
-            List<Place> places = new List<Place>{
+            List<Place> placesThatNotInMiniOffices = new List<Place>{
                 new Place
                 {
                     Id = 1,
                     Number = 1,
                     PricePerDay = 500,
                     PriceFixedPerDay = 800,
-                    Description = "Место в зале"
+                    Description = "Место в зале",
+                    MiniOfficeId = null
                 },
                 new Place
                 {
@@ -36,7 +38,8 @@ namespace CoCowork.BusinessLayer.Tests
                     Number = 2,
                     PricePerDay = 500,
                     PriceFixedPerDay = 800,
-                    Description = "Место в зале"
+                    Description = "Место в зале",
+                    MiniOfficeId = null
                 },
                 new Place
                 {
@@ -44,10 +47,81 @@ namespace CoCowork.BusinessLayer.Tests
                     Number = 3,
                     PricePerDay = 500,
                     PriceFixedPerDay = 800,
-                    Description = "Место в зале"
+                    Description = "Место в зале",
+                    MiniOfficeId = null
                 }
             };
-            return places;
+            return placesThatNotInMiniOffices;
+        }
+
+        public List<Place> GetAllPlacesForTests()
+        {
+            List<Place> allPlaces = new List<Place>{
+                new Place
+                {
+                    Id = 1,
+                    Number = 1,
+                    PricePerDay = 500,
+                    PriceFixedPerDay = 800,
+                    Description = "Место в зале",
+                    MiniOfficeId = null
+                },
+                new Place
+                {
+                    Id = 2,
+                    Number = 2,
+                    PricePerDay = 500,
+                    PriceFixedPerDay = 800,
+                    Description = "Место в зале",
+                    MiniOfficeId = null
+                },
+                new Place
+                {
+                    Id = 3,
+                    Number = 3,
+                    PricePerDay = 500,
+                    PriceFixedPerDay = 800,
+                    Description = "Место в зале",
+                    MiniOfficeId = null
+                },
+                new Place
+                {
+                    Id = 4,
+                    Number = 4,
+                    PricePerDay = 500,
+                    PriceFixedPerDay = 800,
+                    Description = "Офис с диваном",
+                    MiniOfficeId = 1
+                },
+                new Place
+                {
+                    Id = 5,
+                    Number = 5,
+                    PricePerDay = 500,
+                    PriceFixedPerDay = 800,
+                    Description = "Офис с диваном",
+                    MiniOfficeId = 1
+                },
+                new Place
+                {
+                    Id = 6,
+                    Number = 6,
+                    PricePerDay = 500,
+                    PriceFixedPerDay = 800,
+                    Description = "Офис с диваном",
+                    MiniOfficeId = 1
+                },
+                new Place
+                {
+                    Id = 7,
+                    Number = 7,
+                    PricePerDay = 500,
+                    PriceFixedPerDay = 800,
+                    Description = "Офис с диваном",
+                    MiniOfficeId = 1
+                }
+            };
+            return allPlaces;
         }
     }
 }
