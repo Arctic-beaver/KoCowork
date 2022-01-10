@@ -24,7 +24,7 @@ namespace CoCowork.UI.Commands
         public override void Execute(object parameter)
         {
             //_viewModel.Clients = new ObservableCollection<ClientModel>(_clientService.GetClients());
-            var clients = _clientService.GetClients();
+            var clients = _clientService.GetAll();
 
             foreach (var item in clients)
             {

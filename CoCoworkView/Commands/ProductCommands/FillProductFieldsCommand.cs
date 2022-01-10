@@ -24,7 +24,7 @@ namespace CoCowork.UI.Commands
             _editProductVM.Name = _productVM.SelectedProduct.Name;
             _editProductVM.Description = _productVM.SelectedProduct.Description;
             _editProductVM.Amount = _productVM.SelectedProduct.Amount;
-            _editProductVM.PriceForOne = _productVM.SelectedProduct.PriceForOne; 
+            _editProductVM.PriceForOne = _productVM.SelectedProduct.Price; 
         }
     }
 }

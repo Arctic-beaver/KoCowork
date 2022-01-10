@@ -31,7 +31,7 @@ namespace CoCowork.UI.Commands
                 {
                     Id = _productVM.SelectedProduct.Id,
                     Name = _editProductVM.Name,
-                    PriceForOne = _editProductVM.PriceForOne,
+                    Price = _editProductVM.PriceForOne,
                     Amount = _editProductVM.Amount,
                     Description = _editProductVM.Description
                 };
