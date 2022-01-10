@@ -32,14 +32,14 @@ namespace CoCowork.BusinessLayer.Tests
             var sut = new OrderService(_orderRepositoryMock.Object);
 
             //act
-            var actual = sut.CheckPaymentAndMarkAsPaid(1);
+            var actual = sut.CheckPayment(1);
 
             //assert
             Assert.AreEqual(actual, order.IsPaid);
         }
 
         [Test]
-        public void CheckPayment_ReceivesOrderIdShouldMarkAsPaidIfNecessary()
+        public void MarkAsPaidIfNeeded_ShouldMarkOrderAsPaidIfNecessary()
         {
             //arrange
             var order = _ordersTestData.GetOrderWithPaymentsForTests();
@@ -47,7 +47,8 @@ namespace CoCowork.BusinessLayer.Tests
             var sut = new OrderService(_orderRepositoryMock.Object);
 
             //act
-            var actual = sut.CheckPaymentAndMarkAsPaid(1);
+            sut.MarkAsPaidIfNeeded(1);
+            var actual = sut.CheckPayment(1);
 
             //assert
             Assert.IsTrue(actual);

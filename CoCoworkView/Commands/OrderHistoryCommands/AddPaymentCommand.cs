@@ -20,18 +20,20 @@ namespace CoCowork.UI.Commands.OrderHistoryCommands
             //Сначала проверим, надо ли добавлять оплату к данному заказу
             if (!CheckPayment())
             {
-                //Создаём новую оплату, если после добавления ее к заказу итоговая стоимость покрыта, отмечаем заказ как оплаченный.
+                //Создаём новую оплату.
                 PaymentModel payment = new PaymentModel(_paymentViewModel.Amount, _paymentViewModel.PaymentDate, _paymentViewModel.OrderId);
+
+                //Метод добавления оплаты сразу проверяет, покрыта ли итоговая стоимость после добавления.
+                //Если да, отмечает заказ как оплаченный.
                 _paymentViewModel.Service.Add(payment);
                 MessageBox.Show("Оплата успешно добавлена!");
-                CheckPayment();
             }
             _paymentViewModel.ChangePaymentVisibility.Execute(null);
         }
 
         private bool CheckPayment()
         {
-            if (_orderViewModel.Service.CheckPaymentAndMarkAsPaid((int)_paymentViewModel.OrderId))
+            if (_orderViewModel.Service.CheckPayment((int)_paymentViewModel.OrderId))
             {
                 MessageBox.Show("Этот заказ полностью оплачен.");
                 return true;

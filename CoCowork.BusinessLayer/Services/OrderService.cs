@@ -27,28 +27,27 @@ namespace CoCowork.BusinessLayer.Services
 
         }
 
-        public bool CheckPaymentAndMarkAsPaid(int id)
+        public bool CheckPayment(int orderId)
         {
-            var order = _orderRepository.GetById(id);
+            var order = _orderRepository.GetById(orderId);
+            return order.IsPaid;
+        }
+
+        public void MarkAsPaidIfNeeded(int orderId)
+        {
+            var order = _orderRepository.GetById(orderId);
             decimal realPaidSumm = 0;
-            bool orderIsPaid = order.IsPaid;
 
-            if (!orderIsPaid)
+            foreach (Payment payment in order.Payments)
             {
-                foreach (Payment payment in order.Payments)
-                {
-                    if (payment != null) realPaidSumm += payment.Amount;
-                }
-
-                orderIsPaid = realPaidSumm >= order.TotalPrice;
-                
-                if (orderIsPaid)
-                {
-                    order.IsPaid = true;
-                    UpdateOrder(order);
-                }
+                if (payment != null) realPaidSumm += payment.Amount;
             }
-            return orderIsPaid;
+
+            if (realPaidSumm >= order.TotalPrice)
+            {
+                order.IsPaid = true;
+                UpdateOrder(order);
+            }
         }
 
         public List<OrderModel> GetAllOrders()
