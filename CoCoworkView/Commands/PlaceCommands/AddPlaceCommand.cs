@@ -12,9 +12,9 @@ namespace CoCowork.UI.Commands.BookingCommands
         private readonly BookingViewModel _bookingVM;
         private readonly PlaceService _service;
 
-        public AddPlaceCommand(PlaceViewModel miniOfficeVM, BookingViewModel bookingVM, PlaceService service)
+        public AddPlaceCommand(PlaceViewModel placeVM, BookingViewModel bookingVM, PlaceService service)
         {
-            _placeVM = miniOfficeVM;
+            _placeVM = placeVM;
             _bookingVM = bookingVM;
             _service = service;
         }

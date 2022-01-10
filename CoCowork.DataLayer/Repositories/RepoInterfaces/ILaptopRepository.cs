@@ -5,7 +5,7 @@ namespace CoCowork.DataLayer.Repositories
 {
     public interface ILaptopRepository
     {
-        void Add(Laptop laptop);
+        int Add(Laptop laptop);
         void DeleteLaptopById(int id);
         List<Laptop> GetAll();
         Laptop GetById(int id);
