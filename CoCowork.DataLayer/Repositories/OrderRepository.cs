@@ -17,8 +17,26 @@ namespace CoCowork.DataLayer.Repositories
         public List<Order> GetAll()
         {
             using IDbConnection connection = ProvideConnection();
+            var OrderDictionary = new Dictionary<int, Order>();
+
             var result = connection.Query<Order>(_selectAllProcedure).ToList();
-            return result;
+            return connection
+                .Query<Order, Payment, Order>(
+                     _selectAllProcedure,
+                    (order, payment) =>
+                    {
+                        if (!OrderDictionary.TryGetValue(order.Id, out Order orderEntry))
+                        {
+                            orderEntry = order;
+                            orderEntry.Payments = new List<Payment>();
+                            OrderDictionary.Add(orderEntry.Id, orderEntry);
+                        }
+                        orderEntry.Payments.Add(payment);
+                        return orderEntry;
+                    },
+                    splitOn: "Id",
+                    commandType: CommandType.StoredProcedure)        
+                .ToList();
         }
 
         public Order GetById(int id)
@@ -44,6 +62,7 @@ namespace CoCowork.DataLayer.Repositories
                     {
                         Id = id
                     },
+                    splitOn: "Id",
                     commandType: CommandType.StoredProcedure)
                 .FirstOrDefault();
         }

@@ -457,6 +457,10 @@
                 <DataGrid x:Name="OrdersDataGrid" ItemsSource="{Binding Orders}" SelectedItem="{Binding SelectedItem}" CanUserAddRows="False" CanUserDeleteRows="False" CanUserReorderColumns="False" CanUserSortColumns="True"  Grid.Column="0" ColumnWidth="*" AutoGenerateColumns="False">
                     <DataGrid.Columns>
                         <DataGridTextColumn Binding="{Binding Id}" Header="№" IsReadOnly="True"/>
+                        <DataGridTextColumn Binding="{Binding ClientFirstName}" Header="Клиент: имя" IsReadOnly="True"/>
+                        <DataGridTextColumn Binding="{Binding ClientLastName}" Header="фамилия" IsReadOnly="True"/>
+                        <DataGridTextColumn Binding="{Binding PaidSumm}" Header="Оплаченная сумма" IsReadOnly="True"/>
+                        <DataGridTextColumn Binding="{Binding TotalPrice}" Header="Стоимость заказа" IsReadOnly="True"/>
                         <DataGridCheckBoxColumn Binding="{Binding IsPaid}" Header="Оплачен" IsReadOnly="True"/>
                         <DataGridCheckBoxColumn Binding="{Binding IsCanceled}" Header="Отменён" IsReadOnly="True"/>
                     </DataGrid.Columns>
