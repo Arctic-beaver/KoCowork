@@ -439,10 +439,10 @@
                 </Grid.ColumnDefinitions>
                 <DataGrid x:Name="ProductDataGrid" ItemsSource="{Binding Products}" SelectedItem="{Binding Path= SelectedProduct, Mode=TwoWay}" CanUserAddRows="False" CanUserDeleteRows="False" CanUserReorderColumns="False" CanUserSortColumns="True"  Grid.Column="0" ColumnWidth="*" AutoGenerateColumns="False">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="Наименование" Width ="auto" Binding="{Binding Name}"/>
-                        <DataGridTextColumn Header="Цена за шт" Width ="auto" Binding="{Binding PriceForOne}"/>
-                        <DataGridTextColumn Header="Количество" Width ="auto" Binding="{Binding Amount}"/>
-                        <DataGridTextColumn Header="Описание" Width ="auto" Binding="{Binding Description}"/>
+                        <DataGridTextColumn Header="Наименование" Width ="auto" Binding="{Binding Name}" IsReadOnly="True"/>
+                        <DataGridTextColumn Header="Цена за шт" Width ="auto" Binding="{Binding PriceForOne}" IsReadOnly="True"/>
+                        <DataGridTextColumn Header="Количество" Width ="auto" Binding="{Binding Amount}" IsReadOnly="True"/>
+                        <DataGridTextColumn Header="Описание" Width ="auto" Binding="{Binding Description}" IsReadOnly="True"/>
                     </DataGrid.Columns>
                 </DataGrid>
 
