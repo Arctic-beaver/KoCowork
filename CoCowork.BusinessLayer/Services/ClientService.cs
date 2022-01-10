@@ -2,13 +2,14 @@
 using CoCowork.BusinessLayer.Models;
 using CoCowork.DataLayer.Entities;
 using CoCowork.DataLayer.Repositories;
+using System;
 using System.Collections.Generic;
 
 namespace CoCowork.BusinessLayer.Services
 {
     public class ClientService : IClientService
     {
-        private readonly ClientRepository _clientRepository;
+        private readonly IClientRepository _clientRepository;
 
         public ClientService()
         {
@@ -17,7 +18,7 @@ namespace CoCowork.BusinessLayer.Services
 
         public List<ClientModel> GetAll()
         {
-            var clients = _clientRepository.GetAllClients();
+            var clients = _clientRepository.GetAll();
             return CustomMapper.GetInstance().Map<List<ClientModel>>(clients);
         }
 
@@ -33,7 +34,7 @@ namespace CoCowork.BusinessLayer.Services
             _clientRepository.UpdateClientById(client);
         }
 
-        public string AddClient (ClientModel clientModel)
+        public string AddClient (ClientModel clientModel) //Change!!!!!
         {
             Client client = CustomMapper.GetInstance().Map<Client>(clientModel);
             string result = string.Empty;

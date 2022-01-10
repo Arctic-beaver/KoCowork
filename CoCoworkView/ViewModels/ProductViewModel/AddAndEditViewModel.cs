@@ -54,11 +54,6 @@ namespace CoCowork.UI.ViewModels
             }
         }
         
-        
-
-       
-
-
 
     }
 }

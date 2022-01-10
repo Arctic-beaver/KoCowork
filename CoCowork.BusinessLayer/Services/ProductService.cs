@@ -46,12 +46,6 @@ namespace CoCowork.BusinessLayer.Services
             return CustomMapper.GetInstance().Map<List<ProductModel>>(Products);
         }
 
-        public List<ProductModel> GetAll()
-        {
-            var products = _productRepository.GetAll();
-            return CustomMapper.GetInstance().Map<List<ProductModel>>(products);
-        }
-
         public List<ProductModel> GetProductsInStock()
         {
             var products = CustomMapper.GetInstance().Map<List<ProductModel>>(_productRepository.GetAll());

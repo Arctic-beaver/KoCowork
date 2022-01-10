@@ -60,8 +60,6 @@ namespace CoCowork.BusinessLayer.Configuration
 
                 cfg.CreateMap<Room, RoomModel>();
 
-                cfg.CreateMap<Laptop, ComputerModel>();
-
                 cfg.CreateMap<ProductModel, Product>();
 
                 cfg.CreateMap<PlaceOrder, PlaceOrderModel>();
