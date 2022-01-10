@@ -25,6 +25,7 @@ namespace CoCowork.BusinessLayer.Tests
             //arrange
             var places = _placeTestData.GetAllPlacesForTests();
             _placeRepositoryMock.Setup(m => m.GetAll()).Returns(places);
+
             var sut = new PlaceService(_placeRepositoryMock.Object);
 
             //act
