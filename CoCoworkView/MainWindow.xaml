@@ -554,15 +554,16 @@
                     <ColumnDefinition Width="auto"/>
                 </Grid.ColumnDefinitions>
                 
-                <DataGrid x:Name="ClientDataGrid" ItemsSource="{Binding Clients}" SelectedItem="{Binding Path= SelectedItem, Mode=TwoWay}" CanUserAddRows="False" CanUserDeleteRows="False" CanUserReorderColumns="False" CanUserSortColumns="True"  Grid.Column="0" AutoGenerateColumns="False" Width="auto">
+                <DataGrid x:Name="ClientDataGrid" ItemsSource="{Binding Clients}" SelectedItem="{Binding Path= SelectedItem, Mode=TwoWay}" CanUserAddRows="False" CanUserDeleteRows="False" CanUserReorderColumns="False" CanUserSortColumns="True"  Grid.Column="0" AutoGenerateColumns="False" ColumnWidth="*" Width="auto">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="Имя" Width ="auto" Binding="{Binding FirstName}"/>
-                        <DataGridTextColumn Header="Фамилия" Width ="auto" Binding="{Binding LastName}"/>
-                        <DataGridTextColumn Header="Телефон" Width ="auto" Binding="{Binding Phone}"/>
-                        <DataGridTextColumn Header="Email" Width ="auto" Binding="{Binding Email}"/>
-                        <DataGridTextColumn Header="Дата рождения" Width ="auto" Binding="{Binding DateBirth}"/>
+                        <DataGridTextColumn Header="Имя" Binding="{Binding FirstName}" IsReadOnly="True"/>
+                        <DataGridTextColumn Header="Фамилия" Binding="{Binding LastName}" IsReadOnly="True"/>
+                        <DataGridTextColumn Header="Телефон" Binding="{Binding Phone}" IsReadOnly="True"/>
+                        <DataGridTextColumn Header="Email" Binding="{Binding Email}" IsReadOnly="True"/>
+                        <DataGridTextColumn Header="Дата рождения" Binding="{Binding DateBirth}" IsReadOnly="True"/>
                     </DataGrid.Columns>
                 </DataGrid>
+                
                 <Grid x:Name ="AddClientGrid" Visibility ="{Binding AddNewClientViewModel.GridVisibility}" Grid.Column ="1" Background="#FFE0DFDF" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="200">
                     <Grid.RowDefinitions>
                         <RowDefinition/>
