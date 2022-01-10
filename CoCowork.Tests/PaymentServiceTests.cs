@@ -1,15 +1,8 @@
-﻿using CoCowork.DataLayer.Repositories;
+﻿using CoCowork.BusinessLayer.Services;
+using CoCowork.DataLayer.Entities;
+using CoCowork.DataLayer.Repositories;
 using Moq;
 using NUnit.Framework;
-using CoCowork.BusinessLayer.Models;
-using CoCowork.DataLayer.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using CoCowork.BusinessLayer.Services;
-using CoCowork.BusinessLayer.Configuration;
 namespace CoCowork.BusinessLayer.Tests
 {
     public class PaymentServiceTests
@@ -24,7 +17,7 @@ namespace CoCowork.BusinessLayer.Tests
         }
 
         [Test]
-        public void AddOrder_ShouldAddOrderToDB()
+        public void AddPayment_ShouldAddPaymentToDB()
         {
             //arrange
             var paymentModel = _paymentTestData.GetPaymentModelForTests();

@@ -7,6 +7,7 @@ namespace CoCowork.BusinessLayer.Models
     {
         public int Id { get; set; }
         public bool IsActive { get; set; }
+        public string TypeForDisplayInUI { get; set; }
         public BookingChecker BookingChecker { get; set; }
         public IItemService ItemService { get; set; }
         public Order Order { get; set; }

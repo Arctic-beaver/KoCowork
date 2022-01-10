@@ -92,7 +92,7 @@
                 <Button x:Name="ComputersEditButton" Command="{Binding LaptopVM.ChangeLaptopEditVisibility}"
                         Content="Компьютеры" Grid.Column="1" Grid.Row="7" Margin="0, 0, 0, 30"/>
                 <Button x:Name="AddToOrderButton" Content="Добавить к заказу" Grid.Column="1" Grid.Row="8"
-                        Grid.RowSpan="2" Margin="0, 35, 0, 30"/>
+                        Grid.RowSpan="2" Margin="0, 35, 0, 30" Command="{Binding AddBookingItemToCurrentOrderVM.ChangeInnerGridVisibility}"/>
 
             </Grid>
             <Grid x:Name="MainBookingGrid" Grid.Column ="0" Background="DarkGray" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
@@ -118,7 +118,7 @@
                 <Label Content="Компьютеры" HorizontalAlignment="Center" Grid.Column="2" Grid.Row="0" FontFamily="Arial Black"/>
 
                 <DataGrid x:Name="MiniOffices" AutoGenerateColumns="False" Margin="2 0 2 0" Grid.Column="0" Grid.Row="1" CanUserAddRows="False" 
-                      ItemsSource="{Binding MiniOffices}" SelectedItem="{Binding Path=MiniOfficeVM.SelectedMiniOffice, Mode=TwoWay}" ColumnWidth="*" CanUserDeleteRows="False">
+                      ItemsSource="{Binding MiniOffices}" SelectedItem="{Binding Path=BookingSelectedItem, Mode=TwoWay}" ColumnWidth="*" CanUserDeleteRows="False">
                     <DataGrid.Resources>
                         <Style TargetType="{x:Type DataGridColumnHeader}">
                             <Setter Property="HorizontalContentAlignment" Value="Center"/>
@@ -143,10 +143,16 @@
                         </DataGridTemplateColumn>
                     </DataGrid.Columns>
 
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="SelectionChanged">
+                            <i:InvokeCommandAction Command="{Binding MiniOfficeVM.FillMiniOfficeFields}" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+
                 </DataGrid>
 
                 <DataGrid x:Name="Places" AutoGenerateColumns="False" Grid.Column="1" Margin="2 0 2 0" Grid.Row="1" CanUserAddRows="False" Grid.RowSpan="5"
-                      ItemsSource="{Binding Places}" SelectedItem="{Binding Path=PlaceVM.SelectedPlace, Mode=TwoWay}" ColumnWidth="*" CanUserDeleteRows="False">
+                      ItemsSource="{Binding Places}" SelectedItem="{Binding Path=BookingSelectedItem, Mode=TwoWay}" ColumnWidth="*" CanUserDeleteRows="False">
                     <DataGrid.Resources>
                         <Style TargetType="{x:Type DataGridColumnHeader}">
                             <Setter Property="HorizontalContentAlignment" Value="Center"/>
@@ -161,6 +167,13 @@
                         <DataGridTextColumn Header="Цена/день"  Width="auto" Binding="{Binding PricePerDay}"/>
                         <DataGridTextColumn Header="Фикс цена/день"  Width="auto" Binding="{Binding PriceFixedPerDay}"/>
                     </DataGrid.Columns>
+
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="SelectionChanged">
+                            <i:InvokeCommandAction Command="{Binding PlaceVM.FillPlaceFields}" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+
                 </DataGrid>
 
                 <DataGrid x:Name="MeetingRooms" AutoGenerateColumns="False" Grid.Column="0" Grid.Row="5" CanUserAddRows="False" CanUserDeleteRows="False" 
@@ -178,6 +191,13 @@
                         <DataGridTextColumn Header="Кол-во мест"  Width="auto" Binding="{Binding AmountOfPeople}"/>
                         <DataGridTextColumn Header="Описание"  Width="auto" Binding="{Binding Description}"/>
                     </DataGrid.Columns>
+
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="SelectionChanged">
+                            <i:InvokeCommandAction Command="" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+
                 </DataGrid>
 
                 <DataGrid x:Name="ConferenceRooms" AutoGenerateColumns="False" Margin="2 0 2 0" Grid.Column="0" Grid.Row="3" CanUserAddRows="False"
@@ -195,10 +215,17 @@
                         <DataGridTextColumn Header="Кол-во мест"  Width="auto" Binding="{Binding AmountOfPeople}"/>
                         <DataGridTextColumn Header="Описание"  Width="auto" Binding="{Binding Description}"/>
                     </DataGrid.Columns>
+
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="SelectionChanged">
+                            <i:InvokeCommandAction Command="" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+
                 </DataGrid>
 
                 <DataGrid x:Name="Computers" AutoGenerateColumns="False" Margin="0 0 0 0" Width="auto" Grid.Column="2" Grid.Row="1" CanUserAddRows="False" Grid.RowSpan="5"
-                      ItemsSource="{Binding Laptops}" SelectedItem="{Binding Path=LaptopVM.SelectedLaptop, Mode=TwoWay}" ColumnWidth="*" CanUserDeleteRows="False">
+                      ItemsSource="{Binding Laptops}" SelectedItem="{Binding Path=BookingSelectedItem, Mode=TwoWay}" ColumnWidth="*" CanUserDeleteRows="False">
                     <DataGrid.Resources>
                         <Style TargetType="{x:Type DataGridColumnHeader}">
                             <Setter Property="HorizontalContentAlignment" Value="Center"/>
@@ -213,6 +240,13 @@
                         <DataGridTextColumn Header="Описание"  Width="auto" Binding="{Binding Description}"/>
                         <DataGridTextColumn Header="Цена/месяц"  Width="auto" Binding="{Binding PricePerMonth}"/>
                     </DataGrid.Columns>
+
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="SelectionChanged">
+                            <i:InvokeCommandAction Command="{Binding LaptopVM.FillLaptopFields}" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+
                 </DataGrid>
                 <Grid x:Name="EditMiniOfficeGrid" Visibility="{Binding MiniOfficeVM.GridVisibility}" Grid.Column ="3" Grid.RowSpan="6"
                       Background="#FFE0DFDF" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
@@ -322,7 +356,44 @@
                     <Button x:Name="DeleteLaptopButton" Command="{Binding LaptopVM.DeleteLaptop}" Content="Удалить" Grid.Column="0"
                             Grid.Row="9" Margin="15, 10, 15, 20" IsEnabled="{Binding LaptopVM.IsDeleteButtonAvailable}"/>
                 </Grid>
-            </Grid>
+                
+                <Grid x:Name="AddBookingItemToCurrentOrderGrid" Visibility="{Binding AddBookingItemToCurrentOrderVM.GridVisibility}" Grid.Column ="3" Grid.RowSpan="6"
+                      Background="#FFE0DFDF" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                    <Grid.Effect>
+                        <DropShadowEffect Color="Black" ShadowDepth="0.01"/>
+                    </Grid.Effect>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <Label Content="Добавление к заказу" HorizontalAlignment="Center" Grid.Row="0" Margin="0 15 0 0" FontWeight="Bold"/>
+                <TextBox Text="" Grid.Row="1" Margin="0 0 0 30" FontWeight="Bold"/>
+
+                <Label Content="Дата начала брони" HorizontalAlignment="Center" Grid.Row="1" Margin="0 30 0 0"/>
+                <DatePicker Grid.Column="0" Grid.Row="2" Margin="0 10 0 20" AllowDrop="True" SelectedDate="{Binding AddBookingItemToCurrentOrderVM.StartDatePicker}"/>
+
+                <Label Content="Время начала брони" HorizontalAlignment="Center" Grid.Row="3" Margin="0 0 0 0"/>
+                <TextBox Grid.Row="3" Margin="0 30 0 0" Text="{Binding AddBookingItemToCurrentOrderVM.StartTimePicker}"/>
+
+                <Label Content="Дата окончания брони" HorizontalAlignment="Center" Grid.Row="4" Margin="0 30 0 0"/>
+                <DatePicker Grid.Column="0" Grid.Row="5" Margin="0 10 0 20" AllowDrop="True" SelectedDate="{Binding AddBookingItemToCurrentOrderVM.EndDatePicker}"/>
+
+                <Label Content="Время окончания брони" HorizontalAlignment="Center" Grid.Row="6" Margin="0 0 0 0"/>
+                <TextBox Grid.Row="6" Margin="0 30 0 0" Text="{Binding AddBookingItemToCurrentOrderVM.EndTimePicker}"/>
+
+                <Button x:Name="AddBookingItemButton" Command="{Binding AddBookingItemToCurrentOrderVM.AddToCurrentOrders}"
+                            Content="Добавить" Grid.Column="0" Grid.Row="7" Margin="15, 10, 15, 20"/>
+                </Grid>
+        </Grid>
         </Grid>
 
         <Grid x:Name="ProductsGrid" Grid.Column ="1" Visibility="{Binding Product.GridVisibility}">
@@ -406,7 +477,8 @@
 
         <Grid x:Name="CurrentOrderGrid" Visibility="{Binding CurrentOrder.GridVisibility}" Grid.Column ="1">
 
-            <DataGrid x:Name="CurrentOrderDataGrid" CanUserDeleteRows="False" AutoGenerateColumns="False" Grid.Column="0" CanUserAddRows="False" ItemsSource="{Binding CurrentOrder.CurrentOrder}" Margin="0,0,200,0"  >
+            <DataGrid x:Name="CurrentOrderDataGrid" CanUserDeleteRows="False" AutoGenerateColumns="False" Grid.Column="0"
+                      CanUserAddRows="False" ItemsSource="{Binding CurrentOrder.CurrentOrder}" Margin="0,0,200,0"  >
                 <DataGrid.Resources>
                     <Style TargetType="{x:Type DataGridColumnHeader}">
                         <Setter Property="Background" Value="PaleTurquoise"/>
@@ -417,7 +489,7 @@
                 </DataGrid.Resources>
                 <DataGrid.Columns>
                     <DataGridTextColumn Binding="{Binding Name}" Header=" Имя" Width="150"/>
-                    <DataGridTextColumn Binding="{Binding Type}" Header=" Тип" Width="150"/>
+                    <DataGridTextColumn Binding="{Binding TypeForDisplayInUI}" Header=" Тип" Width="150"/>
                     <DataGridTextColumn Binding="{Binding Price}" Header=" Цена" Width="150"/>
                 </DataGrid.Columns>
             </DataGrid>

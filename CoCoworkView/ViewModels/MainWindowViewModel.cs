@@ -11,7 +11,7 @@ namespace CoCowork.UI.ViewModels
             Client = new ClientViewModel();
             Order = new OrderViewModel();
             CurrentOrder = new CurrentOrderViewModel();
-            Booking = new BookingViewModel();
+            Booking = new BookingViewModel(CurrentOrder);
             MakeGridVisible = new ChangeVisibleGridCommand(this);
 
             VisibleVM = Booking;

@@ -152,7 +152,7 @@ namespace CoCowork.UI.ViewModels
             GridVisibility = Visibility.Collapsed;
             _service = new LaptopService();
 
-            FillLaptopFields = new FillLaptopFieldsCommand(this);
+            FillLaptopFields = new FillLaptopFieldsCommand(this, bookingVM);
             EditLaptop = new EditLaptopCommand(this, bookingVM, _service);
             AddLaptop = new AddLaptopCommand(this, bookingVM, _service);
             DeleteLaptop = new DeleteLaptopCommand(this, bookingVM, _service);

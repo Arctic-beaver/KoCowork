@@ -6,11 +6,14 @@ namespace CoCowork.BusinessLayer.Models
     {
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
+        public double AmountOfBookingTime { get; set; }
 
         public double GetAmountDays()
         {
             return (EndDate - StartDate).TotalDays;
         }
+
+        public abstract void CalculateAmountOfBookingTime();
 
         public double GetAmountMonth()
         {

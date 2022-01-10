@@ -139,7 +139,7 @@ namespace CoCowork.UI.ViewModels
             GridVisibility = Visibility.Collapsed;
             _service = new PlaceService();
 
-            FillPlaceFields = new FillPlaceFieldsCommand(this);
+            FillPlaceFields = new FillPlaceFieldsCommand(this, bookingVM);
             EditPlace = new EditPlaceCommand(this, bookingVM, _service);
             AddPlace = new AddPlaceCommand(this, bookingVM, _service);
             DeletePlace = new DeletePlaceCommand(this, bookingVM, _service);
