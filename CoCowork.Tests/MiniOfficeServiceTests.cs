@@ -51,7 +51,7 @@ namespace CoCowork.BusinessLayer.Tests
             var sut = new MiniOfficeService(_miniOfficeRepositoryMock.Object, _placeRepositoryMock.Object);
 
             //act, assert
-            Assert.Throws<Exception> (() => sut.GetAll());
+            Assert.Throws<Exception>(() => sut.GetAll());
         }
 
         [Test]

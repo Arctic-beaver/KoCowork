@@ -32,8 +32,8 @@ namespace CoCowork.UI.ViewModels
             Orders = new ObservableCollection<OrderModel>();
             IsToolTipOn = Visibility.Visible;
 
-            GetOrdersCommand = new GetOrdersCommand();
-            AddPaymentCommand = new AddPaymentCommand(Payment);
+            GetOrdersCommand = new GetOrdersCommand(this);
+            AddPaymentCommand = new AddPaymentCommand(Payment, this);
             CheckIfShouldOpenAddingPaymentGrid = new CheckIfShouldOpenAddingPaymentGrid(Payment, this);
             CancelOrderCommand = new CancelOrderCommand(this);
 
@@ -52,7 +52,7 @@ namespace CoCowork.UI.ViewModels
                 {
                     _showPaid = value;
                     OnPropertyChanged(nameof(ShowPaid));
-                    GetOrdersCommand.Execute(this);
+                    GetOrdersCommand.Execute(null);
                 }
             }
         }
@@ -66,7 +66,7 @@ namespace CoCowork.UI.ViewModels
                 {
                     _showUnpaid = value;
                     OnPropertyChanged(nameof(ShowUnpaid));
-                    GetOrdersCommand.Execute(this);
+                    GetOrdersCommand.Execute(null);
                 }
             }
         }
@@ -82,7 +82,7 @@ namespace CoCowork.UI.ViewModels
                     if (value == true) ShowActiveAvailability = false;
                     else ShowActiveAvailability = true;
                     OnPropertyChanged(nameof(GridVisibility));
-                    GetOrdersCommand.Execute(this);
+                    GetOrdersCommand.Execute(null);
                 }
             }
         }
@@ -98,7 +98,6 @@ namespace CoCowork.UI.ViewModels
                     if (value == true) ShowCanceledAvailability = false;
                     else ShowCanceledAvailability = true;
                     OnPropertyChanged(nameof(ShowActive));
-                    GetOrdersCommand.Execute(this);
                 }
             }
         }

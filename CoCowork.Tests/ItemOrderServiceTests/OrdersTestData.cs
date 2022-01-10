@@ -32,7 +32,7 @@ namespace CoCowork.BusinessLayer.Tests.ItemOrderServiceTests
                 Payments = new List<Payment>()
 
             };
-            return order;           
+            return order;
         }
 
         public Order GetOrderWithPaymentsForTests()

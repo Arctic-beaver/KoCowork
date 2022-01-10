@@ -1,4 +1,3 @@
-using CoCowork.BusinessLayer.Services;
 using CoCowork.BusinessLayer.Models;
 using CoCowork.BusinessLayer.Services;
 using CoCowork.DataLayer.Entities;
@@ -126,7 +125,7 @@ namespace CoCowork.BusinessLayer.Tests
             var sut = new PlaceService(_orderRepositoryMock.Object, _placeRepositoryMock.Object);
 
             //act
-            var actual = sut.DeletePlace(placeModel.Id); 
+            var actual = sut.DeletePlace(placeModel.Id);
 
             //assert
             Assert.IsTrue(actual);
