@@ -321,7 +321,7 @@
                 </Grid.RowDefinitions>
 
 
-                <Button x:Name="AddPaymentButton" IsEnabled="{Binding AreButtonsAvailable}" Command="{Binding Payment.ChangePaymentVisibility}" Content="Добавить оплату" Grid.Column="1" Grid.Row="1" Margin="0, 30, 0, 0"/>
+                <Button x:Name="AddPaymentButton" IsEnabled="{Binding AreButtonsAvailable}" Command="{Binding CheckIfShouldOpenAddingPaymentGrid}" Content="Добавить оплату" Grid.Column="1" Grid.Row="1" Margin="0, 30, 0, 0"/>
                 <Label Visibility="{Binding IsToolTipOn}" Grid.Column="1" Grid.Row="1" Margin="0, 30, 0, 0">
                     <Label.ToolTip>
                         <TextBlock>Для начала выберите заказ, к которому хотите добавить оплату, в списке.</TextBlock>
