@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace CoCowork.UI.Commands
 {
@@ -24,6 +25,12 @@ namespace CoCowork.UI.Commands
 
         public override void Execute(object parameter)
         {
+            if (_productVM.Products.Any(product => product.Name == _addProductVM.Name.Trim()))
+            {
+                MessageBox.Show("Продукт с таким именем уже существует");
+                return;
+            }
+
             ProductModel product = new ProductModel
             {
                 Name = _addProductVM.Name,

@@ -9,7 +9,7 @@ namespace CoCowork.BusinessLayer.Services
         Client FindClientInDB(ClientModel clientModel);
         List<ClientModel> GetAll();
         void UpdateClient(ClientModel clientModel);
-        string AddClient(ClientModel clientModel);
+        int AddClient(ClientModel clientModel);
 
 
     }

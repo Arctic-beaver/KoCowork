@@ -36,6 +36,8 @@ namespace CoCowork.UI.Commands
             };
             _clientService.AddClient(client);
             _clientVM.Clients.Add(client);
+            _addClientVM.LastName = null;
+            _addClientVM.FirstName = null;
             _addClientVM.Phone = null;
             _addClientVM.Email = null;
            // _addClientVM.DateBirth = null;

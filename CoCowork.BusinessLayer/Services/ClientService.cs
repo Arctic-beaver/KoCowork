@@ -34,20 +34,20 @@ namespace CoCowork.BusinessLayer.Services
             _clientRepository.UpdateClientById(client);
         }
 
-        public string AddClient (ClientModel clientModel) //Change!!!!!
+        public int AddClient (ClientModel clientModel) //Change!!!!!
         {
             Client client = CustomMapper.GetInstance().Map<Client>(clientModel);
-            string result = string.Empty;
-            try
-            {
-                _clientRepository.Add(client);
-                result = "Успех";
-            }
-            catch (Exception ex)
-            {
-                result = ex.Message;
-            }
-            return result;
+            return _clientRepository.Add(client);
+            //try
+            //{
+            //    _clientRepository.Add(client);
+            //    result = "Успех";
+            //}
+            //catch (Exception ex)
+            //{
+            //    result = ex.Message;
+            //}
+            //return result;
 
         }
     }
