@@ -8,7 +8,11 @@ namespace CoCowork.BusinessLayer.Models
         public int AmountOfPeople { get; set; }
         public decimal PricePerHour { get; set; }
         public int AmountHours { get; set; }
-        public string TypeForDisplayInUI = "Комната";
+
+        public RoomModel()
+        {
+            TypeForDisplayInUI = "Комната";
+        }
 
         public override void CalculateSubtotalPrice()
         {

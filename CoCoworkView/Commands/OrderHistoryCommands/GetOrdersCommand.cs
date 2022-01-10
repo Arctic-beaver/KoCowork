@@ -20,12 +20,7 @@ namespace CoCowork.UI.Commands
 
             var orders = new List<OrderModel>();
 
-            if (vm.ShowPaid) orders.AddRange(vm.Service.GetPaidOrders());
-            if (vm.ShowUnpaid) orders.AddRange(vm.Service.GetUnpaidOrders());
-            if (vm.ShowCanceled) orders.AddRange(vm.Service.GetCanceledOrders());
-            if (vm.ShowActive) orders.AddRange(vm.Service.GetActiveOrders());
-
-            orders.Distinct();
+            orders.AddRange(vm.Service.GetSpecialOrders(vm.ShowPaid, vm.ShowUnpaid, vm.ShowCanceled));
 
             foreach (OrderModel order in orders)
             {

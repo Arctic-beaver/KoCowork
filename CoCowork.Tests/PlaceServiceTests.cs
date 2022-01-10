@@ -1,3 +1,4 @@
+using CoCowork.BusinessLayer.Services;
 using CoCowork.BusinessLayer.Models;
 using CoCowork.BusinessLayer.Services;
 using CoCowork.DataLayer.Entities;
@@ -27,7 +28,7 @@ namespace CoCowork.BusinessLayer.Tests
             //arrange
             var places = _placeTestData.GetAllPlacesForTests();
             _placeRepositoryMock.Setup(m => m.GetAll()).Returns(places);
-            //var sut = new PlaceService(_placeRepositoryMock.Object);
+            _orderRepositoryMock.Setup(m => m.GetAllPlaceOrders());
 
             var sut = new PlaceService(_orderRepositoryMock.Object, _placeRepositoryMock.Object);
 
@@ -68,7 +69,6 @@ namespace CoCowork.BusinessLayer.Tests
             //assert
             Assert.IsNotNull(actual);
             Assert.IsTrue(actual.Count > 0);
-            Assert.IsNull(actual[0].MiniOfficeId);
             Assert.IsInstanceOf(typeof(PlaceModel), actual[0]);
         }
 

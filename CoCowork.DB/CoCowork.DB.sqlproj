@@ -168,7 +168,6 @@
     <Build Include="StoredProcedures\MiniOfficeOrder\MiniOfficeOrder_SelectByOrderId.sql" />
     <Build Include="StoredProcedures\PlaceOrder\PlaceOrder_SelectByOrderId.sql" />
     <Build Include="StoredProcedures\Place\Place_SelectThatNotInMiniOffice.sql" />
-    <Build Include="StoredProcedures\Order\Order_SelectAllFull.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="CoCowork.DB.refactorlog" />

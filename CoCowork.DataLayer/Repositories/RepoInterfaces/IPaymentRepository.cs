@@ -5,7 +5,7 @@ namespace CoCowork.DataLayer.Repositories
 {
     public interface IPaymentRepository
     {
-        void Add(Payment payment);
+        int Add(Payment payment);
         void DeletePaymentById(int id);
         List<Payment> GetAllPayments();
         Payment GetPaymentById(int id);

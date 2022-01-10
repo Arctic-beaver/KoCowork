@@ -31,11 +31,11 @@ namespace CoCowork.DataLayer.Repositories
                     commandType: CommandType.StoredProcedure);
         }
 
-        public void Add(Payment payment)
+        public int Add(Payment payment)
         {
             using IDbConnection connection = ProvideConnection();
 
-            connection.Execute(_insertProc,
+            return connection.Execute(_insertProc,
                 new
                 {
                     Amount = payment.Amount,

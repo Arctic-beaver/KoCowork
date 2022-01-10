@@ -18,14 +18,14 @@ namespace CoCowork.BusinessLayer.Services
             _placeRepository = new PlaceRepository();
         }
 
+        public PlaceService(IPlaceRepository fakePlaceRepository)
+        {
+            _placeRepository = fakePlaceRepository;
+        }
+
         public PlaceService(IPlaceOrderRepository fakePlaceOrderRepository, IPlaceRepository fakePlaceRepository)
         {
             _orderRepository = fakePlaceOrderRepository;
-            _placeRepository = new PlaceRepository();
-        }
-
-        public PlaceService(IPlaceRepository fakePlaceRepository)
-        {
             _placeRepository = fakePlaceRepository;
         }
 
