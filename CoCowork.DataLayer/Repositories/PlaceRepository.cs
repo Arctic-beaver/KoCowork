@@ -60,7 +60,6 @@ namespace CoCowork.DataLayer.Repositories
         public int Add(Place place)
         {
             using IDbConnection connection = ProvideConnection();
-            int insertedId = 0;
 
             int insertedPlaceId = connection.ExecuteScalar<int>(
                 _insertProcedure,
