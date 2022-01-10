@@ -21,13 +21,18 @@ namespace CoCowork.UI.ViewModels
         {
             DateTime startDate = new DateTime();
             startDate = _addBookingItemVM.StartDatePicker;
-
             TimeSpan startTime = new TimeSpan();
             startTime = TimeSpan.Parse(_addBookingItemVM.StartTimePicker);
-
             DateTime startOrderTimeAndDate = startDate.Add(startTime);
 
+            DateTime endDate = new DateTime();
+            startDate = _addBookingItemVM.EndDatePicker;
+            TimeSpan endTime = new TimeSpan();
+            startTime = TimeSpan.Parse(_addBookingItemVM.EndTimePicker);
+            DateTime endOrderTimeAndDate = endDate.Add(endTime);
+
             _bookingVM.BookingSelectedItem.StartDate = startOrderTimeAndDate;
+            _bookingVM.BookingSelectedItem.EndDate = endOrderTimeAndDate;
 
             _bookingVM.BookingSelectedItem.CalculateSubtotalPrice(_bookingVM.BookingSelectedItem.Price);
             _vmCurrentOrder.CurrentOrder.Add(_bookingVM.BookingSelectedItem);

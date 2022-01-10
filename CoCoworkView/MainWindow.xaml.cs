@@ -24,12 +24,12 @@ namespace CoCoworkView
             var newItem4 = new RoomModel { Id = 1, AmountHours = 5, Name = "комната", Price = 1000 };
 
             //vm.CurrentOrder.CurrentOrder = new ObservableCollection<ItemModel>();
-            vm.CurrentOrder.CurrentOrder.Add(newItem);
-            vm.CurrentOrder.TotalPrice = newItem.Price * newItem.AmountMonth;
-            vm.CurrentOrder.CurrentOrder.Add(newItem1);
-            vm.CurrentOrder.CurrentOrder.Add(newItem2);
-            vm.CurrentOrder.CurrentOrder.Add(newItem3);
-            vm.CurrentOrder.CurrentOrder.Add(newItem4);
+            //vm.CurrentOrder.CurrentOrder.Add(newItem);
+            //vm.CurrentOrder.TotalPrice = newItem.Price * newItem.AmountMonth;
+            //vm.CurrentOrder.CurrentOrder.Add(newItem1);
+            //vm.CurrentOrder.CurrentOrder.Add(newItem2);
+            //vm.CurrentOrder.CurrentOrder.Add(newItem3);
+            //vm.CurrentOrder.CurrentOrder.Add(newItem4);
 
         }
     }
