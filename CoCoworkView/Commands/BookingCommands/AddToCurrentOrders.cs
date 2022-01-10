@@ -55,21 +55,13 @@ namespace CoCowork.UI.ViewModels
                 return false;
             }
 
-            try
-            {
-                startTime = TimeSpan.Parse(_addBookingItemVM.StartTimePicker);
-            }
-            catch (Exception)
+            if (!TimeSpan.TryParse(_addBookingItemVM.StartTimePicker, out _))
             {
                 MessageBox.Show("Укажите правильное время начало брони", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
             }
 
-            try
-            {
-                endTime = TimeSpan.Parse(_addBookingItemVM.EndTimePicker);
-            }
-            catch (Exception)
+            if (!TimeSpan.TryParse(_addBookingItemVM.EndTimePicker, out _))
             {
                 MessageBox.Show("Укажите правильное время окончания брони", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
