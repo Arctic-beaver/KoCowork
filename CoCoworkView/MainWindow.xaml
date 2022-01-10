@@ -496,14 +496,7 @@
                 <ColumnDefinition Width="25*"/>
             </Grid.ColumnDefinitions>
 
-            <DataGrid x:Name="CurrentOrderDataGrid" CanUserDeleteRows="False" AutoGenerateColumns="False" ColumnWidth="*" Grid.Column="0" CanUserAddRows="False" ItemsSource="{Binding CurrentOrder.CurrentOrder}">
-                <DataGrid.Resources>
-                    <Style TargetType="{x:Type DataGridColumnHeader}">
-                        <Setter Property="BorderThickness" Value="0.1, 0.1, 1, 2"/>
-                        <Setter Property="HorizontalContentAlignment" Value="Center"/>
-                        <Setter Property="BorderBrush" Value="Black"/>
-                    </Style>
-                </DataGrid.Resources>
+            <DataGrid x:Name="CurrentOrderDataGrid" CanUserDeleteRows="False" AutoGenerateColumns="False" ColumnWidth="*" Grid.Column="0" CanUserAddRows="False" ItemsSource="{Binding CurrentOrder.CurrentOrder}" Width="auto">
                 <DataGrid.Columns>
                     <DataGridTextColumn Binding="{Binding Id}" Header=" Номер в базе данных" IsReadOnly="True" />
                     <DataGridTextColumn Binding="{Binding Name}" Header=" Имя" IsReadOnly="True"  />
