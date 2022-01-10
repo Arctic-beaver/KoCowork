@@ -13,10 +13,12 @@ namespace CoCowork.BusinessLayer.Services
     public class PaymentService : IPaymentService
     {
         private readonly IPaymentRepository _paymentRepository;
+        private readonly IOrderRepository _orderRepository;
 
         public PaymentService()
         {
             _paymentRepository = new PaymentRepository();
+            _orderRepository = new OrderRepository();
         }
 
         public PaymentService(IPaymentRepository fakePaymentRepository)
@@ -24,20 +26,13 @@ namespace CoCowork.BusinessLayer.Services
             _paymentRepository = fakePaymentRepository;
         }
 
-        public string Add(PaymentModel paymentModel)
+        public int Add(PaymentModel paymentModel)
         {
             Payment payment = CustomMapper.GetInstance().Map<Payment>(paymentModel);
-            string result;
-            try
-            {
-                _paymentRepository.Add(payment);
-                result = "Success";
-            } 
-            catch (Exception ex)
-            {
-                result = ex.Message;
-            }
-            return result;
+            int id = _paymentRepository.Add(payment);
+
+
+            return id;
         }
     }
 }

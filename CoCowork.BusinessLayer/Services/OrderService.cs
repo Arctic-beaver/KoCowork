@@ -27,11 +27,10 @@ namespace CoCowork.BusinessLayer.Services
 
         }
 
-        public bool CheckPayment(int id)
+        public bool CheckPaymentAndMarkAsPaid(int id)
         {
             var order = _orderRepository.GetById(id);
             decimal realPaidSumm = 0;
-        
             bool orderIsPaid = order.IsPaid;
 
             if (!orderIsPaid)
@@ -49,7 +48,6 @@ namespace CoCowork.BusinessLayer.Services
                     UpdateOrder(order);
                 }
             }
-
             return orderIsPaid;
         }
 

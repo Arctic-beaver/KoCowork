@@ -29,14 +29,13 @@ namespace CoCowork.BusinessLayer.Tests
             //arrange
             var paymentModel = _paymentTestData.GetPaymentModelForTests();
 
-            _paymentRepositoryMock.Setup(m => m.Add(It.IsAny<Payment>()));
+            _paymentRepositoryMock.Setup(m => m.Add(It.IsAny<Payment>())).Returns(1);
             var sut = new PaymentService(_paymentRepositoryMock.Object);
 
             //act
             var actual = sut.Add(paymentModel);
 
             //assert
-            Assert.AreEqual(actual, "Success");
             _paymentRepositoryMock.Verify(m => m.Add(It.IsAny<Payment>()), Times.Once());
         }
     }

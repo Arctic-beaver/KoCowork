@@ -32,7 +32,7 @@ namespace CoCowork.BusinessLayer.Tests
             var sut = new OrderService(_orderRepositoryMock.Object);
 
             //act
-            var actual = sut.CheckPayment(1);
+            var actual = sut.CheckPaymentAndMarkAsPaid(1);
 
             //assert
             Assert.AreEqual(actual, order.IsPaid);
@@ -47,7 +47,7 @@ namespace CoCowork.BusinessLayer.Tests
             var sut = new OrderService(_orderRepositoryMock.Object);
 
             //act
-            var actual = sut.CheckPayment(1);
+            var actual = sut.CheckPaymentAndMarkAsPaid(1);
 
             //assert
             Assert.IsTrue(actual);

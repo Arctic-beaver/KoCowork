@@ -9,6 +9,6 @@ namespace CoCowork.BusinessLayer.Services
 {
     public interface IPaymentService
     {
-        string Add(PaymentModel paymentModel);
+        int Add(PaymentModel paymentModel);
     }
 }
