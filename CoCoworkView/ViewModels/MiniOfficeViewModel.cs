@@ -143,7 +143,6 @@ namespace CoCowork.UI.ViewModels
                     if (value != null)
                     {
                         IsDeleteButtonAvailable = true;
-                        FillMiniOfficeFields.Execute(this);
                     }
                     else
                     {

@@ -131,7 +131,6 @@ namespace CoCowork.UI.ViewModels
                     if (value != null)
                     {
                         IsDeleteButtonAvailable = true;
-                        FillLaptopFields.Execute(this);
                     }
                     else
                     {
