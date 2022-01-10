@@ -19,7 +19,7 @@ namespace CoCowork.BusinessLayer.Tests
         private readonly Mock<ILaptopOrderRepository> _laptopOrderRepositoryMock;
         private readonly Mock<IRoomOrderRepository> _roomOrderRepository;
         private readonly Mock<ILaptopRepository> _laptopRepositoryMock;
-
+        private readonly Mock<IPlaceRepository> _placeRepositoryMock;
 
         private readonly OrdersTestData _ordersTestData;
         private readonly ClientTestData _clientTestData;
