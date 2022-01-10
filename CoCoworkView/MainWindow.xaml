@@ -5,7 +5,6 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
         xmlns:viewmodels="clr-namespace:CoCowork.UI.ViewModels" 
         xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
-        d:DataContext="{d:DesignInstance Type=viewmodels:MainWindowViewModel}"
         mc:Ignorable="d"
         Title="Коворк под контролем" Height="600"  Width="1000" Background="#FFB7BBC2">
 
@@ -426,9 +425,11 @@
                     </Style>
                 </DataGrid.Resources>
                 <DataGrid.Columns>
+                    <DataGridTextColumn Binding="{Binding Id}" Header=" Номер в базе данных" Width="150"/>
                     <DataGridTextColumn Binding="{Binding Name}" Header=" Имя" Width="150"/>
                     <DataGridTextColumn Binding="{Binding TypeForDisplayInUI}" Header=" Тип" Width="150"/>
-                    <DataGridTextColumn Binding="{Binding Price}" Header=" Цена" Width="150"/>
+                    <DataGridTextColumn Binding="{Binding SubtotalPrice, StringFormat={}{0:#0.0}}" Header=" Цена" Width="150"/>
+                    
                 </DataGrid.Columns>
             </DataGrid>
             <Grid x:Name="RightCurrentOrderGrid" Grid.Column ="2" Background="#FFE0DFDF" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="200" Margin="0,0,-600,0">

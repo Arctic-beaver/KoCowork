@@ -15,10 +15,20 @@ namespace CoCowork.BusinessLayer.Models
         public decimal? PriceFixedPerDay { get; set; }
         public int? MiniOfficeId { get; set; }
 
-        public override void CalculateSubtotalPrice(decimal price)
+        public override void CalculateSubtotalPrice()
         {
             _amountDays = GetAmountDays();
-            SubtotalPrice = Convert.ToDecimal(_amountDays) * price;
+            if (IsFixed)
+            {
+                SubtotalPrice = Convert.ToDecimal(_amountDays) * PriceFixedPerDay;
+            }
+            else
+            {
+                SubtotalPrice = Convert.ToDecimal(_amountDays) * PricePerDay;
+
+            }
         }
+
+       
     }
 }

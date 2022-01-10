@@ -10,9 +10,11 @@ namespace CoCowork.BusinessLayer.Models
         public int AmountHours { get; set; }
         public string TypeForDisplayInUI = "Комната";
 
-        public override void CalculateSubtotalPrice(decimal price)
+        public override void CalculateSubtotalPrice()
         {
-            SubtotalPrice = Convert.ToDecimal(GetAmountHours()) * price;
+            SubtotalPrice = Convert.ToDecimal(GetAmountHours()) * PricePerHour;
         }
+
+      
     }
 }
