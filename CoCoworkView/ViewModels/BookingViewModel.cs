@@ -22,8 +22,15 @@ namespace CoCowork.UI.ViewModels
             {
                 if (value != _bookingSelectedItem)
                 {
-                    _bookingSelectedItem = value;
-                    OnPropertyChanged(nameof(BookingSelectedItem));
+                    if (value is null)
+                    {
+                        value = _bookingSelectedItem;
+                    }
+                    else
+                    {
+                        _bookingSelectedItem = value;
+                        OnPropertyChanged(nameof(BookingSelectedItem));
+                    }
                 }
             }
         }
