@@ -454,7 +454,13 @@
                     <ColumnDefinition Width="70*"/>
                     <ColumnDefinition Width="auto"/>
                 </Grid.ColumnDefinitions>
-                <DataGrid x:Name="OrdersDataGrid" ItemsSource="{Binding Orders}" SelectedItem="{Binding SelectedItem}" CanUserAddRows="False" CanUserDeleteRows="False" CanUserReorderColumns="False" CanUserSortColumns="True"  Grid.Column="0" ColumnWidth="*"/>
+                <DataGrid x:Name="OrdersDataGrid" ItemsSource="{Binding Orders}" SelectedItem="{Binding SelectedItem}" CanUserAddRows="False" CanUserDeleteRows="False" CanUserReorderColumns="False" CanUserSortColumns="True"  Grid.Column="0" ColumnWidth="*" AutoGenerateColumns="False">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Binding="{Binding Id}" Header="№" IsReadOnly="True"/>
+                        <DataGridCheckBoxColumn Binding="{Binding IsPaid}" Header="Оплачен" IsReadOnly="True"/>
+                        <DataGridCheckBoxColumn Binding="{Binding IsCanceled}" Header="Отменён" IsReadOnly="True"/>
+                    </DataGrid.Columns>
+                </DataGrid>
                 <Grid x:Name="AddPaymentGrid" Visibility="{Binding Payment.GridVisibility}" Grid.Column ="1" Background="#FFE0DFDF" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                     <Grid.RowDefinitions>
                         <RowDefinition/>
