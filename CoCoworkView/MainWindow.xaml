@@ -442,7 +442,7 @@
                     <CheckBox Content="Текущие" Margin="0, 5, 0, 0" IsChecked="{Binding ShowActive}" IsEnabled="{Binding ShowActiveAvailability}" />
                     <CheckBox Content="Отменённые" Margin="0, 5, 0, 0" IsChecked="{Binding ShowCanceled}" IsEnabled="{Binding ShowCanceledAvailability}"/>
                 </StackPanel>
-                <Button x:Name="CancelOrderButton" Content="Отменить заказ" Grid.Column="1" Grid.Row="6" Margin="0, 0, 0, 30" IsEnabled="{Binding AreButtonsAvailable}"/>
+                <Button x:Name="CancelOrderButton" Command="{Binding CancelOrderCommand}" Content="Отменить заказ" Grid.Column="1" Grid.Row="6" Margin="0, 0, 0, 30" IsEnabled="{Binding AreButtonsAvailable}"/>
                 <Label Visibility="{Binding IsToolTipOn}" Grid.Column="1" Grid.Row="6" Margin="0, 0, 0, 30">
                     <Label.ToolTip>
                         <TextBlock>Для начала выберите заказ, который хотите удалить, в списке.</TextBlock>
