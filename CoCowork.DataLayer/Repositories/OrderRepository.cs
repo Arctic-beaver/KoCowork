@@ -35,8 +35,9 @@ namespace CoCowork.DataLayer.Repositories
                         return orderEntry;
                     },
                     splitOn: "Id",
-                    commandType: CommandType.StoredProcedure)        
-                .ToList();
+                    commandType: CommandType.StoredProcedure)
+                .Distinct()
+                .ToList();              
         }
 
         public Order GetById(int id)

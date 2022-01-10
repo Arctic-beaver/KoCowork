@@ -7,14 +7,13 @@ BEGIN
 		o.TotalPrice,
 		o.IsPaid,
 		o.IsCanceled,
+		c.FirstName as ClientFirstName,
+		c.LastName as ClientLastName,
 		
 		p.Id,
 		p.OrderId,
 		p.Amount,
-		p.PaymentDate,
-
-		c.FirstName as  ClientFirstName,
-		c.LastName as ClientLastName
+		p.PaymentDate
 
 	from dbo.[Order] o 
 	inner join dbo.Client c on o.ClientId = c.Id
