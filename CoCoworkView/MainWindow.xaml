@@ -436,7 +436,6 @@
                       CanUserAddRows="False" ItemsSource="{Binding CurrentOrder.CurrentOrder}">
                 <DataGrid.Resources>
                     <Style TargetType="{x:Type DataGridColumnHeader}">
-                        <Setter Property="Background" Value="PaleTurquoise"/>
                         <Setter Property="BorderThickness" Value="0.1, 0.1, 1, 2"/>
                         <Setter Property="HorizontalContentAlignment" Value="Center"/>
                         <Setter Property="BorderBrush" Value="Black"/>
