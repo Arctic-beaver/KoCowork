@@ -17,6 +17,7 @@ namespace CoCowork.BusinessLayer.Tests
         public LaptopOrderServiceTests()
         {
             _laptopOrderRepositoryMock = new Mock<ILaptopOrderRepository>();
+            _laptopRepositoryMock = new Mock<ILaptopRepository>();
             _ordersTestData = new OrdersTestData();
         }
 

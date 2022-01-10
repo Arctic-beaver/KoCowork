@@ -11,7 +11,7 @@ namespace CoCowork.BusinessLayer.Tests
     {
         public PaymentModel GetPaymentModelForTests()
         {
-            var payment = new PaymentModel(456, DateTime.Now, 2);
+            var payment = new PaymentModel(456, DateTime.Now, 1);
             return payment;
         }
     }

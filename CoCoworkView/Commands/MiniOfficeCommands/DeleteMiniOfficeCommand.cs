@@ -1,4 +1,5 @@
-﻿using CoCowork.BusinessLayer.Services;
+﻿using CoCowork.BusinessLayer.Models;
+using CoCowork.BusinessLayer.Services;
 using CoCowork.UI.ViewModels;
 using System.Windows;
 
@@ -19,19 +20,23 @@ namespace CoCowork.UI.Commands.BookingCommands
 
         public override void Execute(object parameter)
         {
-            bool result = _service.DeleteMiniOffice(_miniOfficeVM.SelectedMiniOffice);
-            var userAnswer = MessageBox.Show("Вы действительно хотите удалить выбранный миниофис?", "Удаление", MessageBoxButton.YesNo, MessageBoxImage.Question);
-            
-            if (userAnswer == MessageBoxResult.Yes)
+            if (_bookingVM.BookingSelectedItem is MiniOfficeModel)
             {
-                if (result)
+                MiniOfficeModel selectedMiniOffice = (MiniOfficeModel)_bookingVM.BookingSelectedItem;
+                bool result = _service.DeleteMiniOffice(selectedMiniOffice);
+                var userAnswer = MessageBox.Show("Вы действительно хотите удалить выбранный миниофис?", "Удаление", MessageBoxButton.YesNo, MessageBoxImage.Question);
+
+                if (userAnswer == MessageBoxResult.Yes)
                 {
-                    _bookingVM.MiniOffices.Remove(_miniOfficeVM.SelectedMiniOffice);
-                    _miniOfficeVM.GridVisibility = Visibility.Collapsed;
-                }  
-                else
-                {
-                    MessageBox.Show("Ошибка при удалении из базы данных", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                    if (result)
+                    {
+                        _bookingVM.MiniOffices.Remove(selectedMiniOffice);
+                        _miniOfficeVM.GridVisibility = Visibility.Collapsed;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Ошибка при удалении из базы данных", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
                 }
             }
         }

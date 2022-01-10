@@ -22,6 +22,7 @@ namespace CoCowork.BusinessLayer.Tests.ItemOrderServiceTests
         public PlaceOrderServiceTests()
         {
             _placeOrderRepository = new Mock<IPlaceOrderRepository>();
+            _placeRepositoryMock = new Mock<IPlaceRepository>();
             _ordersTestData = new OrdersTestData();
         }
 
