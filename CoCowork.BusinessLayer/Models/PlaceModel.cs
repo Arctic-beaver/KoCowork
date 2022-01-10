@@ -6,18 +6,27 @@ namespace CoCowork.BusinessLayer.Models
 {
     public class PlaceModel : BookingItemModel
     {
+        private double _amountDays;
         public int? Number { get; set; }
-
         public bool IsFixed { get; set; }
         public int AmountDays { get; set; }
-        public string TypeForDisplayInUI = "Место";
         public decimal? PricePerDay { get; set; }
         public decimal? PriceFixedPerDay { get; set; }
-        private double _amountDays;
+
+        public PlaceModel()
+        {
+            TypeForDisplayInUI = "Место";
+        }
+
         public override void CalculateSubtotalPrice(decimal price)
         {
             _amountDays = GetAmountDays();
             SubtotalPrice = Convert.ToDecimal(_amountDays) * price;
+        }
+
+        public override void CalculateAmountOfBookingTime()
+        {
+            throw new NotImplementedException();
         }
     }
 }

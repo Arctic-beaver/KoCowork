@@ -13,7 +13,7 @@ namespace CoCowork.BusinessLayer.Models
 
         public MiniOfficeModel()
         {
-            TypeForDisplayInUI = "Мини-офис";
+            TypeForDisplayInUI = "Миниофис";
         }
 
         public override void CalculateSubtotalPrice(decimal price)
@@ -24,7 +24,7 @@ namespace CoCowork.BusinessLayer.Models
 
         public override void CalculateAmountOfBookingTime()
         {
-            
+            throw new NotImplementedException();
         }
     }
 }

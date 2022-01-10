@@ -2,7 +2,10 @@
 {
     public class ProductModel : ItemModel
     {
-        public string TypeForDisplayInUI = "Продукты";
+        public ProductModel()
+        {
+            TypeForDisplayInUI = "Продукты";
+        }
 
         public override void CalculateSubtotalPrice(decimal price)
         {

@@ -19,43 +19,62 @@ namespace CoCowork.UI.ViewModels
 
         public override void Execute(object parameter)
         {
-            DateTime startDate = new DateTime();
-            startDate = _addBookingItemVM.StartDatePicker;
             TimeSpan startTime = new TimeSpan();
-            
-            DateTime startOrderTimeAndDate = startDate.Add(startTime);
-
-            DateTime endDate = new DateTime();
-            endDate = _addBookingItemVM.EndDatePicker;
             TimeSpan endTime = new TimeSpan();
+            bool result = CheckIfInputIsCorrect(startTime, endTime);
 
-            if (DateTime.TryParse(_addBookingItemVM.EndTimePicker, out _))
+            if (result)
+            {
+                DateTime startDate = new DateTime();
+                startDate = _addBookingItemVM.StartDatePicker;
+                startTime = TimeSpan.Parse(_addBookingItemVM.StartTimePicker);
+
+                DateTime endDate = new DateTime();
+                endDate = _addBookingItemVM.EndDatePicker;
+                endTime = TimeSpan.Parse(_addBookingItemVM.EndTimePicker);
+
+                DateTime startOrderTimeAndDate = startDate.Add(startTime);
+                DateTime endOrderTimeAndDate = endDate.Add(endTime);
+
+                _bookingVM.BookingSelectedItem.StartDate = startOrderTimeAndDate;
+                _bookingVM.BookingSelectedItem.EndDate = endOrderTimeAndDate;
+
+                _bookingVM.BookingSelectedItem.CalculateSubtotalPrice(_bookingVM.BookingSelectedItem.Price);
+                _vmCurrentOrder.CurrentOrder.Add(_bookingVM.BookingSelectedItem);
+
+                _addBookingItemVM.GridVisibility = Visibility.Collapsed;
+            }
+        }
+
+        private bool CheckIfInputIsCorrect(TimeSpan startTime, TimeSpan endTime)
+        {
+            if (_bookingVM.BookingSelectedItem is null)
+            {
+                MessageBox.Show("Выберите миниофис, компьютер, место или комнату для добавления в заказ",
+                    "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+
+            try
             {
                 startTime = TimeSpan.Parse(_addBookingItemVM.StartTimePicker);
             }
-            else
+            catch (Exception)
             {
                 MessageBox.Show("Укажите правильное время начало брони", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
             }
 
-            if (DateTime.TryParse(_addBookingItemVM.EndTimePicker, out _))
+            try
             {
                 endTime = TimeSpan.Parse(_addBookingItemVM.EndTimePicker);
             }
-            else
+            catch (Exception)
             {
                 MessageBox.Show("Укажите правильное время окончания брони", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
             }
-
-            DateTime endOrderTimeAndDate = endDate.Add(endTime);
-
-            _bookingVM.BookingSelectedItem.StartDate = startOrderTimeAndDate;
-            _bookingVM.BookingSelectedItem.EndDate = endOrderTimeAndDate;
-
-            _bookingVM.BookingSelectedItem.CalculateSubtotalPrice(_bookingVM.BookingSelectedItem.Price);
-            _vmCurrentOrder.CurrentOrder.Add(_bookingVM.BookingSelectedItem);
-
-            _addBookingItemVM.GridVisibility = Visibility.Collapsed;
+            return true;
         }
     }
 }
