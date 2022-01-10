@@ -158,7 +158,6 @@ namespace CoCowork.UI.ViewModels
         public ICommand EditMiniOffice { get; set; }
         public ICommand DeleteMiniOffice { get; set; }
         public ICommand FillMiniOfficeFields { get; set; }
-        //public ICommand CheckBookingSelectedItem { get; set; }
 
         public MiniOfficeViewModel(BookingViewModel bookingVM)
         {
@@ -166,7 +165,6 @@ namespace CoCowork.UI.ViewModels
             _service = new MiniOfficeService();
             _bookingVM = bookingVM;
 
-            //CheckBookingSelectedItem = new CheckBookingSelectedItemCommand(this, bookingVM);
             DeleteMiniOffice = new DeleteMiniOfficeCommand(this, bookingVM, _service);
             AddMiniOffice = new AddMiniOfficeCommand(this, bookingVM, _service);
             EditMiniOffice = new EditMiniOfficeCommand(this, bookingVM, _service);
