@@ -102,7 +102,7 @@ namespace CoCowork.BusinessLayer.Services
         {
             var _entity = _roomRepository.GetById(bookingItem.Id);
 
-            _itemOrder = new RoomOrder { Room = _entity, Order = bookingItem.Order, StartDate = bookingItem.StartDate, EndDate = bookingItem.EndDate};
+            _itemOrder = new RoomOrder { Room = _entity, Order = bookingItem.Order, StartDate = bookingItem.StartDate, EndDate = bookingItem.EndDate };
 
             return _orderRepository.Add(_itemOrder);
         }

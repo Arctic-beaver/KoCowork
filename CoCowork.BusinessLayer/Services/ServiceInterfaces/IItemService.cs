@@ -1,6 +1,4 @@
 ﻿using CoCowork.BusinessLayer.Models;
-using CoCowork.DataLayer.Entities;
-using System;
 
 namespace CoCowork.BusinessLayer.Services
 {

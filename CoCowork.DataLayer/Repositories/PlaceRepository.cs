@@ -99,7 +99,7 @@ namespace CoCowork.DataLayer.Repositories
                 _deleteProcedure,
                 new
                 {
-                 Id = id
+                    Id = id
                 },
                 commandType: CommandType.StoredProcedure);
         }

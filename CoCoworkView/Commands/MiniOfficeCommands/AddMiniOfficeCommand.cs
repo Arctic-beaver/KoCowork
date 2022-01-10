@@ -1,5 +1,4 @@
-﻿using CoCowork.BusinessLayer.Configuration;
-using CoCowork.BusinessLayer.Models;
+﻿using CoCowork.BusinessLayer.Models;
 using CoCowork.BusinessLayer.Services;
 using CoCowork.UI.ViewModels;
 using System.Collections.Generic;

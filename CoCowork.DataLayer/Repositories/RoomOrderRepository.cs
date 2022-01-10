@@ -85,6 +85,6 @@ namespace CoCowork.DataLayer.Repositories
                 commandType: CommandType.StoredProcedure);
         }
 
-       
+
     }
 }

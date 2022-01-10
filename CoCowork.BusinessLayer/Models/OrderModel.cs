@@ -14,7 +14,7 @@ namespace CoCowork.BusinessLayer.Models
 
         public List<PaymentModel> Payments { get; set; }
 
-        public decimal PaidSumm  { get; set; }
+        public decimal PaidSumm { get; set; }
 
         public decimal TotalPrice { get; set; }
 
