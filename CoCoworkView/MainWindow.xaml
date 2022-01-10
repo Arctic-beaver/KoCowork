@@ -371,6 +371,22 @@
                 </Grid>
                 
                 <Grid x:Name="AddBookingItemToCurrentOrderGrid" Visibility="{Binding AddBookingItemToCurrentOrderVM.GridVisibility}" Grid.Column ="3" Grid.RowSpan="6"
+                      Background="#FFE0DFDF" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                    <Grid.Effect>
+                        <DropShadowEffect Color="Black" ShadowDepth="0.01"/>
+                    </Grid.Effect>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
                     <Label Content="Добавление к заказу" HorizontalAlignment="Center" Grid.Row="0" Margin="0 15 0 0" FontWeight="Bold"/>
 
                     <Label Content="Дата начала брони" HorizontalAlignment="Center" Grid.Row="1" Margin="0 30 0 0"/>
@@ -392,7 +408,7 @@
                 
             </Grid>
         </Grid>
-        </Grid>
+        
 
         <Grid x:Name="ProductsGrid" Grid.Column ="1" Visibility="{Binding Product.GridVisibility}">
             <Label>Text in products grid</Label>
