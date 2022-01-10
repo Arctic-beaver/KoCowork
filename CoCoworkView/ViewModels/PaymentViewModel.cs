@@ -1,4 +1,5 @@
-﻿using CoCowork.UI.Commands;
+﻿using CoCowork.BusinessLayer.Services;
+using CoCowork.UI.Commands;
 using System;
 using System.Windows;
 using System.Windows.Input;
@@ -16,6 +17,7 @@ namespace CoCowork.UI.ViewModels
         {
             GridVisibility = Visibility.Collapsed;
             Amount = 34;
+            Service = new PaymentService();
 
             ChangePaymentVisibility = new VisibilityOfInnerGridCommand(this);
         }
@@ -80,5 +82,7 @@ namespace CoCowork.UI.ViewModels
         }
 
         public ICommand ChangePaymentVisibility { get; set; }
+
+        public PaymentService Service;
     }
 }

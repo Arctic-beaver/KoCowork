@@ -11,7 +11,7 @@ namespace CoCowork.BusinessLayer.Services
     {
         private readonly ILaptopRepository _laptopRepository;
         private LaptopOrder _itemOrder;
-        private ILaptopOrderRepository _orderRepository;
+        private readonly ILaptopOrderRepository _orderRepository;
 
         public LaptopService()
         {

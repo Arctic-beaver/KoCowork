@@ -1,5 +1,7 @@
 ﻿using CoCowork.BusinessLayer.Models;
+using CoCowork.DataLayer.Entities;
 using System;
+using System.Collections.Generic;
 
 namespace CoCowork.BusinessLayer.Tests.ItemOrderServiceTests
 {
@@ -11,20 +13,114 @@ namespace CoCowork.BusinessLayer.Tests.ItemOrderServiceTests
             {
                 Id = 1,
                 TotalPrice = 13000,
-                IsCancelled = true,
+                IsCanceled = true,
                 IsPaid = true,
-                Client = new ClientModel
+                ClientId = 3
+            };
+            return order;
+        }
+
+        public Order GetOrderForTests()
+        {
+            var order = new Order
+            {
+                Id = 1,
+                TotalPrice = 13000,
+                IsCanceled = true,
+                IsPaid = false,
+                ClientId = 3,
+                Payments = new List<Payment>()
+
+            };
+            return order;           
+        }
+
+        public Order GetOrderWithPaymentsForTests()
+        {
+            var order = new Order
+            {
+                Id = 1,
+                TotalPrice = 13000,
+                IsCanceled = true,
+                IsPaid = false,
+                ClientId = 3,
+                Payments = new List<Payment>
                 {
-                    Id = 3,
-                    PaperAmount = 3,
-                    BirthDate = DateTime.Now,
-                    FirstName = "Vasya",
-                    LastName = "Vasiliev",
-                    Email = "kkk",
-                    Phone = "8999",
+                    new Payment
+                    {
+                        Id = 1,
+                        Amount = 2346
+                    },
+                    new Payment
+                    {
+                        Id = 1,
+                        Amount = 9346
+                    },
+                    new Payment
+                    {
+                        Id = 1,
+                        Amount = 2344
+                    }
                 }
             };
             return order;
+        }
+
+        public OrderModel GetOrderModelForTests()
+        {
+            var order = new OrderModel
+            {
+                Id = 1,
+                TotalPrice = 13000,
+                IsCanceled = true,
+                IsPaid = false,
+                ClientId = 3,
+                Payments = new List<PaymentModel>()
+
+            };
+            return order;
+        }
+
+        public List<Order> GetOrdersListForTests()
+        {
+            var orders = new List<Order>
+            { new Order
+            {
+                Id = 1,
+                TotalPrice = 13000,
+                IsCanceled = true,
+                IsPaid = false,
+                ClientId = 3
+            },
+
+            new Order
+            {
+                Id = 2,
+                TotalPrice = 13000,
+                IsCanceled = true,
+                IsPaid = false,
+                ClientId = 3
+            },
+
+            new Order
+            {
+                Id = 3,
+                TotalPrice = 13000,
+                IsCanceled = false,
+                IsPaid = true,
+                ClientId = 3
+            },
+
+            new Order
+            {
+                Id = 4,
+                TotalPrice = 13000,
+                IsCanceled = false,
+                IsPaid = false,
+                ClientId = 3
+            }
+            };
+            return orders;
         }
 
         public RoomModel GetRoomModelForTests()
