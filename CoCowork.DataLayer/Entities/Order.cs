@@ -10,6 +10,10 @@ namespace CoCowork.DataLayer.Entities
 
         public int ClientId { get; set; }
 
+        public string ClientFirstName { get; set; }
+
+        public string ClientLastName { get; set; }
+
         public decimal TotalPrice { get; set; }
 
         public bool IsPaid { get; set; }

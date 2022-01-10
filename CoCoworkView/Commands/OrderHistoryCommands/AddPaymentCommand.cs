@@ -7,10 +7,12 @@ namespace CoCowork.UI.Commands.OrderHistoryCommands
     class AddPaymentCommand : CommandBase
     {
         private readonly PaymentViewModel _paymentViewModel;
+        private readonly OrderViewModel _orderViewModel;
 
-        public AddPaymentCommand(PaymentViewModel vm)
+        public AddPaymentCommand(PaymentViewModel vm, OrderViewModel ovm)
         {
             _paymentViewModel = vm;
+            _orderViewModel = ovm;
         }
 
         public override void Execute(object parameter)
@@ -23,6 +25,8 @@ namespace CoCowork.UI.Commands.OrderHistoryCommands
             //Если да, отмечает заказ как оплаченный.
             _paymentViewModel.Service.Add(payment);
             MessageBox.Show("Оплата успешно добавлена!");
+
+            _orderViewModel.GetOrdersCommand.Execute(null);
             _paymentViewModel.ChangePaymentVisibility.Execute(null);
         }
     }
