@@ -30,7 +30,7 @@ namespace CoCowork.BusinessLayer.Services
 
             var _entity = _productRepository.GetById(bookingItem.Id);
 
-            _itemOrder = new ProductOrder { Product = _entity, Order = bookingItem.Order, SubtotalPrice = bookingItem.SubtotalPrice};
+            _itemOrder = new ProductOrder { Product = _entity, Order = bookingItem.Order, SubtotalPrice = bookingItem.SubtotalPrice };
 
             return _orderRepository.Add(_itemOrder);
         }
@@ -52,7 +52,7 @@ namespace CoCowork.BusinessLayer.Services
             var result = new List<ProductModel>();
             foreach (var product in products)
             {
-                if (product.Amount!=0)
+                if (product.Amount != 0)
                 {
                     result.Add(product);
                 }

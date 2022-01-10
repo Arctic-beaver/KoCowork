@@ -1,9 +1,4 @@
 ﻿using CoCowork.UI.ViewModels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 
 namespace CoCowork.UI.Commands.OrderHistoryCommands
@@ -21,10 +16,10 @@ namespace CoCowork.UI.Commands.OrderHistoryCommands
 
         public override void Execute(object parameter)
         {
-            if (_paymentViewModel.GridVisibility != Visibility.Visible && !CheckPayment() || 
+            if (_paymentViewModel.GridVisibility != Visibility.Visible && !CheckPayment() ||
                 _paymentViewModel.GridVisibility == Visibility.Visible)
 
-            _paymentViewModel.ChangePaymentVisibility.Execute(null);
+                _paymentViewModel.ChangePaymentVisibility.Execute(null);
         }
 
         private bool CheckPayment()

@@ -73,7 +73,7 @@ namespace CoCowork.BusinessLayer.Services
         public List<OrderModel> GetActiveOrders()
         {
             throw new NotImplementedException();
-        } 
+        }
 
         public void UpdateOrder(OrderModel orderModel)
         {

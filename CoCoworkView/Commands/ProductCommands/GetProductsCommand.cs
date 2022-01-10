@@ -1,12 +1,5 @@
-﻿using CoCowork.BusinessLayer.Models;
-using CoCowork.BusinessLayer.Services;
+﻿using CoCowork.BusinessLayer.Services;
 using CoCowork.UI.ViewModels;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CoCowork.UI.Commands
 {
@@ -14,17 +7,17 @@ namespace CoCowork.UI.Commands
     {
         private readonly ProductViewModel _viewModel;
         private readonly ProductService _productService;
-        
+
         public GetProductsCommand(ProductViewModel vm, ProductService productService)
         {
             _viewModel = vm;
             _productService = productService;
-            
+
         }
 
         public override void Execute(object obj)
         {
-            if(_viewModel.ProductsInStock is true)
+            if (_viewModel.ProductsInStock is true)
             {
                 //_viewModel.Products = new ObservableCollection<ProductModel>(_productService.GetProductsInStock());
                 var products = _productService.GetProductsInStock();

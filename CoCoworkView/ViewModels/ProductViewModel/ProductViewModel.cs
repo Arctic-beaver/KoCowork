@@ -16,8 +16,8 @@ namespace CoCowork.UI.ViewModels
 
 
 
-        private readonly ProductService _productService; 
-       
+        private readonly ProductService _productService;
+
 
         public ProductViewModel()
         {
@@ -30,9 +30,9 @@ namespace CoCowork.UI.ViewModels
             Products = new ObservableCollection<ProductModel>();
 
             GetProductsCommand = new GetProductsCommand(this, _productService);
-            AddNewProduct = new AddNewProductCommand (AddNewProductViewModel, this, _productService);
+            AddNewProduct = new AddNewProductCommand(AddNewProductViewModel, this, _productService);
             EditProduct = new EditProductsCommand(EditProductViewModel, this, _productService);
-            FillProductFields = new FillProductFieldsCommand(EditProductViewModel,this);
+            FillProductFields = new FillProductFieldsCommand(EditProductViewModel, this);
 
         }
 
@@ -99,7 +99,7 @@ namespace CoCowork.UI.ViewModels
 
         public ICommand FillProductFields { get; set; }
 
-        
+
 
 
 

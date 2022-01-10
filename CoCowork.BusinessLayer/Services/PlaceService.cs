@@ -85,7 +85,7 @@ namespace CoCowork.BusinessLayer.Services
         {
             var _entity = _placeRepository.GetPlaceById(bookingItem.Id);
 
-            _itemOrder = new PlaceOrder { Place = _entity, Order = bookingItem.Order, StartDate = bookingItem.StartDate, EndDate = bookingItem.EndDate};
+            _itemOrder = new PlaceOrder { Place = _entity, Order = bookingItem.Order, StartDate = bookingItem.StartDate, EndDate = bookingItem.EndDate };
 
             return _orderRepository.Add(_itemOrder);
         }

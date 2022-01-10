@@ -1,11 +1,4 @@
-﻿using CoCowork.BusinessLayer.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace CoCowork.UI.ViewModels
+﻿namespace CoCowork.UI.ViewModels
 {
     public abstract class AddAndEditViewModel : InnerGridViewModel
     {
@@ -53,7 +46,7 @@ namespace CoCowork.UI.ViewModels
                 OnPropertyChanged(nameof(Description));
             }
         }
-        
+
 
     }
 }

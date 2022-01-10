@@ -96,7 +96,7 @@ namespace CoCowork.UI.ViewModels
 
         public ICommand AddOrder { get; set; }
 
-       
+
 
 
     }

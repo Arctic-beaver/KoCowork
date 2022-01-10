@@ -1,6 +1,5 @@
 ﻿using CoCowork.BusinessLayer.Models;
 using CoCowork.UI.ViewModels;
-using System.Collections.ObjectModel;
 using System.Windows;
 
 namespace CoCoworkView

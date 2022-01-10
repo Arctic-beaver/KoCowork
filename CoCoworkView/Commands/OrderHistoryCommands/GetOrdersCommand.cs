@@ -1,7 +1,6 @@
 ﻿using CoCowork.BusinessLayer.Models;
 using CoCowork.UI.ViewModels;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace CoCowork.UI.Commands
 {

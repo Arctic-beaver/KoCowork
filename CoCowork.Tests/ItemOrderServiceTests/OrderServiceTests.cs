@@ -1,6 +1,4 @@
-﻿using CoCowork.BusinessLayer.Configuration;
-using CoCowork.BusinessLayer.Models;
-using CoCowork.BusinessLayer.Services;
+﻿using CoCowork.BusinessLayer.Services;
 using CoCowork.BusinessLayer.Tests.ItemOrderServiceTests;
 using CoCowork.DataLayer.Entities;
 using CoCowork.DataLayer.Repositories;

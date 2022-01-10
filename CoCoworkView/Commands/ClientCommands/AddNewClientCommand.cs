@@ -1,11 +1,6 @@
 ﻿using CoCowork.BusinessLayer.Models;
 using CoCowork.BusinessLayer.Services;
 using CoCowork.UI.ViewModels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CoCowork.UI.Commands
 {
@@ -23,6 +18,7 @@ namespace CoCowork.UI.Commands
         }
         public override void Execute(object parameter)
         {
+
             ClientModel client = new ClientModel
             {
                 FirstName = _addClientVM.FirstName,
@@ -40,7 +36,7 @@ namespace CoCowork.UI.Commands
             _addClientVM.FirstName = null;
             _addClientVM.Phone = null;
             _addClientVM.Email = null;
-           // _addClientVM.DateBirth = null;
+            // _addClientVM.DateBirth = null;
             _addClientVM.PaperAmount = 0;
             //_addClientVM.PaperEndDate = null;
         }

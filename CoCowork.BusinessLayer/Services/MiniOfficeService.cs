@@ -119,7 +119,7 @@ namespace CoCowork.BusinessLayer.Services
 
             _itemOrder = new MiniOfficeOrder { MiniOffice = _entity, Order = bookingItem.Order, StartDate = bookingItem.StartDate, EndDate = bookingItem.EndDate, SubtotalPrice = bookingItem.SubtotalPrice };
 
-           return _orderRepository.Add(_itemOrder);
+            return _orderRepository.Add(_itemOrder);
         }
     }
 }

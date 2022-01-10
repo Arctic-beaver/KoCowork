@@ -2,7 +2,6 @@
 using CoCowork.BusinessLayer.Models;
 using CoCowork.DataLayer.Entities;
 using CoCowork.DataLayer.Repositories;
-using System;
 using System.Collections.Generic;
 
 namespace CoCowork.BusinessLayer.Services
@@ -34,7 +33,7 @@ namespace CoCowork.BusinessLayer.Services
             _clientRepository.UpdateClientById(client);
         }
 
-        public int AddClient (ClientModel clientModel) //Change!!!!!
+        public int AddClient(ClientModel clientModel) //Change!!!!!
         {
             Client client = CustomMapper.GetInstance().Map<Client>(clientModel);
             return _clientRepository.Add(client);

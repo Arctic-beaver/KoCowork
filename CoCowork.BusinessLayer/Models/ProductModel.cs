@@ -15,6 +15,6 @@
 
         public decimal PriceForOne { get; set; }
 
-        
+
     }
 }
