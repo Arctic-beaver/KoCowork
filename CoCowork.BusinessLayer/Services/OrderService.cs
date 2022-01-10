@@ -53,7 +53,18 @@ namespace CoCowork.BusinessLayer.Services
         public List<OrderModel> GetAllOrders()
         {
             var orders = _orderRepository.GetAll();
-            return CustomMapper.GetInstance().Map<List<OrderModel>>(orders);
+            List<OrderModel> list = CustomMapper.GetInstance().Map<List<OrderModel>>(orders);
+
+            foreach (OrderModel order in list)
+            {
+                decimal paid = 0;
+                foreach (PaymentModel payment in order.Payments)
+                {
+                    if (payment != null) paid += payment.Amount;
+                }
+                order.PaidSumm = paid;
+            }
+            return list;
         }
 
         public List<OrderModel> GetSpecialOrders(bool isPaid, bool isUnpaid, bool isCancelled)

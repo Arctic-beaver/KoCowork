@@ -7,24 +7,23 @@ namespace CoCowork.UI.Commands
 {
     public class GetOrdersCommand : CommandBase
     {
-        public GetOrdersCommand()
+        private readonly OrderViewModel _orderViewModel;
+        public GetOrdersCommand(OrderViewModel ovm)
         {
-
+            _orderViewModel = ovm;
         }
 
         public override void Execute(object viewModel)
         {
-            OrderViewModel vm = (OrderViewModel)viewModel;
-
-            vm.Orders.Clear();
+            _orderViewModel.Orders.Clear();
 
             var orders = new List<OrderModel>();
 
-            orders.AddRange(vm.Service.GetSpecialOrders(vm.ShowPaid, vm.ShowUnpaid, vm.ShowCanceled));
+            orders.AddRange(_orderViewModel.Service.GetSpecialOrders(_orderViewModel.ShowPaid, _orderViewModel.ShowUnpaid, _orderViewModel.ShowCanceled));
 
             foreach (OrderModel order in orders)
             {
-                vm.Orders.Add(order);
+                _orderViewModel.Orders.Add(order);
             }
         }
     }
