@@ -16,15 +16,12 @@ namespace CoCowork.BusinessLayer.Models
             TypeForDisplayInUI = "Миниофис";
         }
 
-        public override void CalculateSubtotalPrice(decimal price)
+        public override void CalculateSubtotalPrice()
         {
             _amountDays = GetAmountDays();
-            SubtotalPrice = Convert.ToDecimal(_amountDays) * price;
+            SubtotalPrice = Convert.ToDecimal(_amountDays) * PricePerDay;
         }
 
-        public override void CalculateAmountOfBookingTime()
-        {
-            throw new NotImplementedException();
-        }
+       
     }
 }

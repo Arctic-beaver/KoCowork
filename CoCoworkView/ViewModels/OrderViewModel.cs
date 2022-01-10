@@ -35,6 +35,7 @@ namespace CoCowork.UI.ViewModels
             GetOrdersCommand = new GetOrdersCommand();
             AddPaymentCommand = new AddPaymentCommand(Payment);
             CheckIfShouldOpenAddingPaymentGrid = new CheckIfShouldOpenAddingPaymentGrid(Payment, this);
+            CancelOrderCommand = new CancelOrderCommand(this);
 
             ShowPaid = true;
             ShowUnpaid = true;
@@ -185,6 +186,8 @@ namespace CoCowork.UI.ViewModels
         public ICommand AddPaymentCommand { get; set; }
 
         public ICommand CheckIfShouldOpenAddingPaymentGrid { get; set; }
+
+        public ICommand CancelOrderCommand { get; set; }
 
         public OrderService Service;
     }

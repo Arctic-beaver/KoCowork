@@ -20,6 +20,12 @@ namespace CoCowork.UI.Commands.MiniOfficeCommands
 
         public override void Execute(object parameter)
         {
+            if (_miniOfficeVM.SelectedMiniOffice is null)
+            {
+                MessageBox.Show("Выберите миниофис для редактирования");
+                return;
+            }
+
             var userAnswer = MessageBox.Show("Вы действительно хотите редактировать выбранный миниофис?", "Редактирование", MessageBoxButton.YesNo, MessageBoxImage.Question);
 
             if (userAnswer == MessageBoxResult.Yes)

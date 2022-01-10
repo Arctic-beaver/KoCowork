@@ -7,9 +7,9 @@
             TypeForDisplayInUI = "Продукты";
         }
 
-        public override void CalculateSubtotalPrice(decimal price)
+        public override void CalculateSubtotalPrice()
         {
-            SubtotalPrice = price;
+            SubtotalPrice = Price;
         }
         public int Amount { get; set; }
 

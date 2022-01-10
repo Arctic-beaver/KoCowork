@@ -19,18 +19,23 @@ namespace CoCowork.UI.ViewModels
 
         public override void Execute(object parameter)
         {
+
             TimeSpan startTime = new TimeSpan();
             TimeSpan endTime = new TimeSpan();
-            bool result = CheckIfInputIsCorrect(startTime, endTime);
+            DateTime startDate = new DateTime();
+            DateTime endDate = new DateTime();
 
-            if (result)
+
+
+            bool result = CheckIfInputIsCorrect(startTime, endTime);
+            startDate = _addBookingItemVM.StartDatePicker;
+            endDate = _addBookingItemVM.EndDatePicker;
+
+
+            if (result && endDate > startDate)
             {
-                DateTime startDate = new DateTime();
-                startDate = _addBookingItemVM.StartDatePicker;
                 startTime = TimeSpan.Parse(_addBookingItemVM.StartTimePicker);
 
-                DateTime endDate = new DateTime();
-                endDate = _addBookingItemVM.EndDatePicker;
                 endTime = TimeSpan.Parse(_addBookingItemVM.EndTimePicker);
 
                 DateTime startOrderTimeAndDate = startDate.Add(startTime);
@@ -39,11 +44,17 @@ namespace CoCowork.UI.ViewModels
                 _bookingVM.BookingSelectedItem.StartDate = startOrderTimeAndDate;
                 _bookingVM.BookingSelectedItem.EndDate = endOrderTimeAndDate;
 
-                _bookingVM.BookingSelectedItem.CalculateSubtotalPrice(_bookingVM.BookingSelectedItem.Price);
+                _bookingVM.BookingSelectedItem.CalculateSubtotalPrice();
                 _vmCurrentOrder.CurrentOrder.Add(_bookingVM.BookingSelectedItem);
 
                 _addBookingItemVM.GridVisibility = Visibility.Collapsed;
+                _vmCurrentOrder.CalculateTotalPriceInUI();
             }
+            else
+            {
+                MessageBox.Show("Дата окончания брони не может быть раньше. Перепроверьте значения!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+
         }
 
         private bool CheckIfInputIsCorrect(TimeSpan startTime, TimeSpan endTime)

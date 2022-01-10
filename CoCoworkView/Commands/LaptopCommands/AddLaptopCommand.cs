@@ -30,6 +30,7 @@ namespace CoCowork.UI.Commands.LaptopCommands
             var laptop = new LaptopModel()
             {
                 Number = _laptopVM.Number,
+                Name = _laptopVM.Name,
                 PricePerMonth = _laptopVM.PricePerMonth,
                 Description = _laptopVM.Description
             };

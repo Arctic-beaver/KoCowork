@@ -46,7 +46,7 @@ namespace CoCowork.DataLayer.Repositories
                 {
                     Name = laptop.Name,
                     Number = laptop.Number,
-                    Price = laptop.PricePerMonth,
+                    PricePerMonth = laptop.PricePerMonth,
                     Description = laptop.Description
                 },
                 commandType: CommandType.StoredProcedure);
@@ -64,7 +64,7 @@ namespace CoCowork.DataLayer.Repositories
                     Id = laptop.Id,
                     Number = laptop.Number,
                     Name = laptop.Name,
-                    Price = laptop.PricePerMonth,
+                    PricePerMonth = laptop.PricePerMonth,
                     Description = laptop.Description
                 },
 
