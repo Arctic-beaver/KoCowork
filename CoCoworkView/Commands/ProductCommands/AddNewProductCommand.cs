@@ -27,7 +27,7 @@ namespace CoCowork.UI.Commands
             ProductModel product = new ProductModel
             {
                 Name = _addProductVM.Name,
-                Price = _addProductVM.PriceForOne,
+                PriceForOne = _addProductVM.PriceForOne,
                 Amount = _addProductVM.Amount,
                 Description = _addProductVM.Description
             };

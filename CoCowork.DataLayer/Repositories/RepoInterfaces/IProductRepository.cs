@@ -5,7 +5,7 @@ namespace CoCowork.DataLayer.Repositories
 {
     public interface IProductRepository
     {
-        void Add(Product product);
+        int Add(Product product);
         void Delete(int id);
         List<Product> GetAll();
         Product GetById(int id);
