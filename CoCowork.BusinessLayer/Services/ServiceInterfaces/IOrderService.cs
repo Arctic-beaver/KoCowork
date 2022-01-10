@@ -13,5 +13,9 @@ namespace CoCowork.BusinessLayer.Services
         List<OrderModel> GetPaidOrders();
         List<OrderModel> GetUnpaidOrders();
         void UpdateOrder(OrderModel orderModel);
+
+        List<OrderModel> GetSpecialOrders(bool isPaid, bool isUnpaid, bool isCancelled);
+        bool CheckPayment(int orderId);
+        void MarkAsPaidIfNeeded(int orderId);
     }
 }
