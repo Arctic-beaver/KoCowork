@@ -11,21 +11,16 @@ namespace CoCowork.BusinessLayer.Services
     {
         private readonly IPlaceRepository _placeRepository;
         private PlaceOrder _itemOrder;
-        private IPlaceOrderRepository _orderRepository;
+        private readonly IPlaceOrderRepository _orderRepository;
 
         public PlaceService()
         {
             _placeRepository = new PlaceRepository();
         }
 
-        public PlaceService(IPlaceOrderRepository fakePlaceOrderRepository)
+        public PlaceService(IPlaceOrderRepository fakePlaceOrderRepository, IPlaceRepository fakePlaceRepository)
         {
             _orderRepository = fakePlaceOrderRepository;
-            _placeRepository = new PlaceRepository();
-        }
-
-        public PlaceService(IPlaceRepository fakePlaceRepository)
-        {
             _placeRepository = fakePlaceRepository;
         }
 
@@ -74,12 +69,6 @@ namespace CoCowork.BusinessLayer.Services
                 return -1;
             }
             return insertedPlaceId;
-        }
-
-        
-        void IPlaceService.InsertPlace(PlaceModel place)
-        {
-            throw new NotImplementedException();
         }
 
         public int AddItemOrder(ItemModel bookingItem)

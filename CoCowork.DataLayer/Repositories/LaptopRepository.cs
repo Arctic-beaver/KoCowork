@@ -37,20 +37,21 @@ namespace CoCowork.DataLayer.Repositories
                 commandType: CommandType.StoredProcedure);
         }
 
-        public void Add(Laptop laptop)
+        public int Add(Laptop laptop)
         {
             using IDbConnection connection = ProvideConnection();
 
-            connection.Execute(_insertProc,
+            int insertedId = connection.ExecuteScalar<int>(_insertProc,
                 new
                 {
                     Name = laptop.Name,
                     Number = laptop.Number,
-                    Amount = laptop.Amount,
                     Price = laptop.PricePerMonth,
                     Description = laptop.Description
                 },
                 commandType: CommandType.StoredProcedure);
+
+            return insertedId;
         }
 
         public void UpdateLaptopById(Laptop laptop)
@@ -63,7 +64,6 @@ namespace CoCowork.DataLayer.Repositories
                     Id = laptop.Id,
                     Number = laptop.Number,
                     Name = laptop.Name,
-                    Amount = laptop.Amount,
                     Price = laptop.PricePerMonth,
                     Description = laptop.Description
                 },

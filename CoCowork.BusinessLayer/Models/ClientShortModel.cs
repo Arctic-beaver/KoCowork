@@ -9,7 +9,5 @@
         {
             get => $"{FirstName} {LastName}";
         }
-
-
     }
 }
