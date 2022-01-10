@@ -496,8 +496,7 @@
                 <ColumnDefinition Width="25*"/>
             </Grid.ColumnDefinitions>
 
-            <DataGrid x:Name="CurrentOrderDataGrid" CanUserDeleteRows="False" AutoGenerateColumns="False" Grid.Column="0"
-                      CanUserAddRows="False" ItemsSource="{Binding CurrentOrder.CurrentOrder}">
+            <DataGrid x:Name="CurrentOrderDataGrid" CanUserDeleteRows="False" AutoGenerateColumns="False" ColumnWidth="*" Grid.Column="0" CanUserAddRows="False" ItemsSource="{Binding CurrentOrder.CurrentOrder}">
                 <DataGrid.Resources>
                     <Style TargetType="{x:Type DataGridColumnHeader}">
                         <Setter Property="BorderThickness" Value="0.1, 0.1, 1, 2"/>
@@ -506,11 +505,11 @@
                     </Style>
                 </DataGrid.Resources>
                 <DataGrid.Columns>
-                    <DataGridTextColumn Binding="{Binding Id}" Header=" Номер в базе данных" Width="150"/>
-                    <DataGridTextColumn Binding="{Binding Name}" Header=" Имя" Width="150"/>
-                    <DataGridTextColumn Binding="{Binding TypeForDisplayInUI}" Header=" Тип" Width="150"/>
-                    <DataGridTextColumn Binding="{Binding SubtotalPrice, StringFormat={}{0:#0.00}}" Header=" Цена" Width="150"/>
-                    <DataGridTextColumn Binding="{Binding Description}" Header=" Описание" Width="150"/>
+                    <DataGridTextColumn Binding="{Binding Id}" Header=" Номер в базе данных" IsReadOnly="True" />
+                    <DataGridTextColumn Binding="{Binding Name}" Header=" Имя" IsReadOnly="True"  />
+                    <DataGridTextColumn Binding="{Binding TypeForDisplayInUI}" Header=" Тип" IsReadOnly="True"  />
+                    <DataGridTextColumn Binding="{Binding SubtotalPrice, StringFormat={}{0:#0.00}}" Header=" Цена" IsReadOnly="True" />
+                    <DataGridTextColumn Binding="{Binding Description}" IsReadOnly="True" Header=" Описание" />
                     
                 </DataGrid.Columns>
             </DataGrid>
