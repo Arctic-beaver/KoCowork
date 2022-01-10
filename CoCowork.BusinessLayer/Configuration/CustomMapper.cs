@@ -22,26 +22,31 @@ namespace CoCowork.BusinessLayer.Configuration
             _instance = new Mapper(new MapperConfiguration(cfg =>
             {
                 cfg.CreateMap<Client, ClientModel>();
-                cfg.CreateMap<Client, ClientShortModel>();
-                cfg.CreateMap<ClientModel, Client>();
 
+                cfg.CreateMap<Client, ClientShortModel>();
+
+                cfg.CreateMap<ClientModel, Client>();
 
                 cfg.CreateMap<MiniOffice, MiniOfficeModel>();
 
                 cfg.CreateMap<Laptop, LaptopModel>();
-                cfg.CreateMap<MiniOfficeModel, MiniOffice>();
 
+                cfg.CreateMap<MiniOfficeModel, MiniOffice>();
 
                 //cfg.CreateMap<MiniOfficeOrder, MiniOfficeOrderModel>();
 
                 cfg.CreateMap<Order, OrderModel>();
-                cfg.CreateMap<OrderModel, Order>(); ;
+
+                cfg.CreateMap<OrderModel, Order>();
+
                 cfg.CreateMap<Payment, PaymentModel>();
+
                 cfg.CreateMap<PaymentModel, Payment>();
 
                 cfg.CreateMap<Place, PlaceModel>();
 
                 cfg.CreateMap<Product, ProductModel>();
+
                 cfg.CreateMap<PlaceModel, Place>();
 
                 cfg.CreateMap<PlaceOrder, PlaceOrderModel>();
