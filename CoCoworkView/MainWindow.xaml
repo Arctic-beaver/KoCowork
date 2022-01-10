@@ -463,15 +463,7 @@
                     <ColumnDefinition Width="70*"/>
                     <ColumnDefinition Width="auto"/>
                 </Grid.ColumnDefinitions>
-                <DataGrid x:Name="ProductDataGrid" ItemsSource="{Binding Products}" SelectedItem="{Binding Path= SelectedProduct, Mode=TwoWay}" CanUserAddRows="False" CanUserDeleteRows="False" CanUserReorderColumns="False" CanUserSortColumns="True"  Grid.Column="0" ColumnWidth="*">
-                    <DataGrid.Resources>
-                        <Style TargetType="{x:Type DataGridColumnHeader}">
-                            <Setter Property="HorizontalContentAlignment" Value="Center"/>
-                            <Setter Property="Background" Value="Lavender"/>
-                            <Setter Property="BorderThickness" Value="0, 0, 1, 2"/>
-                            <Setter Property="BorderBrush" Value="Black"/>
-                        </Style>
-                    </DataGrid.Resources>
+                <DataGrid x:Name="ProductDataGrid" ItemsSource="{Binding Products}" SelectedItem="{Binding Path= SelectedProduct, Mode=TwoWay}" CanUserAddRows="False" CanUserDeleteRows="False" CanUserReorderColumns="False" CanUserSortColumns="True"  Grid.Column="0" ColumnWidth="*" AutoGenerateColumns="False">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Наименование" Width ="auto" Binding="{Binding Name}"/>
                         <DataGridTextColumn Header="Цена за шт" Width ="auto" Binding="{Binding PriceForOne}"/>
@@ -561,7 +553,16 @@
                     <ColumnDefinition Width="70*"/>
                     <ColumnDefinition Width="auto"/>
                 </Grid.ColumnDefinitions>
-                <DataGrid x:Name="ClientDataGrid" ItemsSource="{Binding Clients}" SelectedItem="{Binding SelectedItem}" CanUserAddRows="False" CanUserDeleteRows="False" CanUserReorderColumns="False" CanUserSortColumns="True"  Grid.Column="0" ColumnWidth="*"/>
+                
+                <DataGrid x:Name="ClientDataGrid" ItemsSource="{Binding Clients}" SelectedItem="{Binding Path= SelectedItem, Mode=TwoWay}" CanUserAddRows="False" CanUserDeleteRows="False" CanUserReorderColumns="False" CanUserSortColumns="True"  Grid.Column="0" AutoGenerateColumns="False" Width="auto">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Имя" Width ="auto" Binding="{Binding FirstName}"/>
+                        <DataGridTextColumn Header="Фамилия" Width ="auto" Binding="{Binding LastName}"/>
+                        <DataGridTextColumn Header="Телефон" Width ="auto" Binding="{Binding Phone}"/>
+                        <DataGridTextColumn Header="Email" Width ="auto" Binding="{Binding Email}"/>
+                        <DataGridTextColumn Header="Дата рождения" Width ="auto" Binding="{Binding DateBirth}"/>
+                    </DataGrid.Columns>
+                </DataGrid>
                 <Grid x:Name ="AddClientGrid" Visibility ="{Binding AddNewClientViewModel.GridVisibility}" Grid.Column ="1" Background="#FFE0DFDF" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="200">
                     <Grid.RowDefinitions>
                         <RowDefinition/>
@@ -586,7 +587,6 @@
                     <TextBox x:Name ="ClientEmail" Grid.Row ="4" Grid.Column ="1" Margin="15,25,15,0" Style="{StaticResource placeHolder}" Tag="Введите email" Text="{Binding AddNewClientViewModel.Email}"/>
                     <Label Name="ClientBirthDateLabel" Grid.Row="5" Grid.Column ="1" Content="Введите дату рождения:" Margin="15,0,0,0" />
                     <DatePicker x:Name="ClientDatePicker" Grid.Row="5" Grid.Column="1" SelectedDate ="{Binding AddNewClientViewModel.DateBirth}" Margin="15, 25, 15, 0"/>
-                    <!--<TextBox x:Name ="ClientBirthDate" Grid.Row ="5" Grid.Column ="1" Margin="15,25,15,0" Style="{StaticResource placeHolder}" Tag="Введите дату рождения" Text="{Binding AddNewClientViewModel.DateBirth, StringFormat=dd:MMMM:yyyy}"/>-->
                     <Label Name="ClientPaperAmountLabel" Grid.Row="6" Grid.Column ="1" Content="Введите количество листов:" Margin="15,0,0,0" />
                     <TextBox x:Name ="ClientPaperAmount" Grid.Row ="6" Grid.Column ="1" Margin="15,25,15,0" Style="{StaticResource placeHolder}" Tag="Введите количество листов" Text="{Binding AddNewClientViewModel.PaperAmount}"/>
                     <Label Name="ClientPaperEndDateLabel" Grid.Row="7" Grid.Column ="1" Content="Дата окончания печати:" Margin="15,0,0,0" />
