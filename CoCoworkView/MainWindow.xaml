@@ -61,7 +61,7 @@
             <Button x:Name="CurrentOrderButton" Command="{Binding MakeGridVisible}" CommandParameter="{Binding CurrentOrder}" Content="Текущий заказ" Grid.Column="1" Grid.Row="5" Margin="0, 18, 0, 18"/>
         </Grid>
 
-        <Grid x:Name="BookingGrid" Grid.Column ="1" Visibility="{Binding Booking.GridVisibility}" DataContext="{Binding Booking}">
+        <Grid x:Name="BookingGrid" Grid.Column ="1" Visibility="{Binding GridVisibility}" DataContext="{Binding Booking}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="70*"/>
                 <ColumnDefinition Width="25*"/>
@@ -427,8 +427,13 @@
 
         <Grid x:Name="CurrentOrderGrid" Visibility="{Binding CurrentOrder.GridVisibility}" Grid.Column ="1">
 
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="75*"/>
+                <ColumnDefinition Width="25*"/>
+            </Grid.ColumnDefinitions>
+
             <DataGrid x:Name="CurrentOrderDataGrid" CanUserDeleteRows="False" AutoGenerateColumns="False" Grid.Column="0"
-                      CanUserAddRows="False" ItemsSource="{Binding CurrentOrder.CurrentOrder}" Margin="0,0,200,0"  >
+                      CanUserAddRows="False" ItemsSource="{Binding CurrentOrder.CurrentOrder}">
                 <DataGrid.Resources>
                     <Style TargetType="{x:Type DataGridColumnHeader}">
                         <Setter Property="Background" Value="PaleTurquoise"/>
@@ -445,11 +450,11 @@
                     
                 </DataGrid.Columns>
             </DataGrid>
-            <Grid x:Name="RightCurrentOrderGrid" Grid.Column ="2" Background="#FFE0DFDF" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="200" >
+            <Grid x:Name="RightCurrentOrderGrid" Grid.Column ="1" Background="#FFE0DFDF" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="auto" >
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="15*"/>
-                    <ColumnDefinition Width="70*"/>
-                    <ColumnDefinition Width="15*"/>
+                    <ColumnDefinition Width="10*"/>
+                    <ColumnDefinition Width="80*"/>
+                    <ColumnDefinition Width="10*"/>
                 </Grid.ColumnDefinitions>
 
                 <Grid.RowDefinitions>
@@ -462,8 +467,6 @@
                     <RowDefinition/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
-
-
 
                 <Button x:Name="AcceptOrder" Content="Оформить заказ" Command="{Binding CurrentOrder.AddOrder}" Grid.Column="1" Grid.Row="5" Margin="0, 15, 0, 15" Height="47"/>
                 <Button x:Name="DeleteOrder" Content="Удалить из заказа" Grid.Column="1" Grid.Row="5" Margin="0,80,0,-60" Height="47"/>
