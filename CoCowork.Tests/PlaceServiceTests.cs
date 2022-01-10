@@ -11,11 +11,13 @@ namespace CoCowork.BusinessLayer.Tests
     public class PlaceServiceTests
     {
         private readonly Mock<IPlaceRepository> _placeRepositoryMock;
+        private readonly Mock<IPlaceOrderRepository> _orderRepositoryMock;
         private readonly PlaceTestData _placeTestData;
 
         public PlaceServiceTests()
         {
             _placeRepositoryMock = new Mock<IPlaceRepository>();
+            _orderRepositoryMock = new Mock<IPlaceOrderRepository>();
             _placeTestData = new PlaceTestData();
         }
 
@@ -25,8 +27,9 @@ namespace CoCowork.BusinessLayer.Tests
             //arrange
             var places = _placeTestData.GetAllPlacesForTests();
             _placeRepositoryMock.Setup(m => m.GetAll()).Returns(places);
+            _orderRepositoryMock.Setup(m => m.GetAllPlaceOrders());
 
-            var sut = new PlaceService(_placeRepositoryMock.Object);
+            var sut = new PlaceService(_orderRepositoryMock.Object, _placeRepositoryMock.Object);
 
             //act
             var actual = sut.GetAll();
@@ -43,8 +46,8 @@ namespace CoCowork.BusinessLayer.Tests
             //arrange
             var miniOffices = _placeTestData.GetAllPlacesForTests();
             _placeRepositoryMock.Setup(m => m.GetAll()).Throws(new Exception());
-            _placeRepositoryMock.Setup(m => m.Add(It.IsAny<Place>())).Returns(42);
-            var sut = new PlaceService(_placeRepositoryMock.Object);
+            _orderRepositoryMock.Setup(m => m.GetAllPlaceOrders());
+            var sut = new PlaceService(_orderRepositoryMock.Object, _placeRepositoryMock.Object);
 
             //act, assert
             Assert.Throws<Exception>(() => sut.GetAll());
@@ -56,7 +59,8 @@ namespace CoCowork.BusinessLayer.Tests
             //arrange
             var placesThatNotInMiniOffices = _placeTestData.GetPlacesThatNotInMiniOfficesForTests();
             _placeRepositoryMock.Setup(m => m.GetPlacesThatNotInMiniOffice()).Returns(placesThatNotInMiniOffices);
-            var sut = new PlaceService(_placeRepositoryMock.Object);
+            _orderRepositoryMock.Setup(m => m.GetAllPlaceOrders());
+            var sut = new PlaceService(_orderRepositoryMock.Object, _placeRepositoryMock.Object);
 
             //act
             var actual = sut.GetAllThatNotInMiniOffices();
@@ -73,7 +77,8 @@ namespace CoCowork.BusinessLayer.Tests
         {
             //arrange
             _placeRepositoryMock.Setup(m => m.GetPlacesThatNotInMiniOffice()).Throws(new Exception());
-            var sut = new PlaceService(_placeRepositoryMock.Object);
+            _orderRepositoryMock.Setup(m => m.GetAllPlaceOrders());
+            var sut = new PlaceService(_orderRepositoryMock.Object, _placeRepositoryMock.Object);
 
             //act, assert
             Assert.Throws<Exception>(() => sut.GetAllThatNotInMiniOffices());
@@ -85,7 +90,8 @@ namespace CoCowork.BusinessLayer.Tests
             //arrange
             var placeModel = _placeTestData.GetPlaceModelForTests();
             _placeRepositoryMock.Setup(m => m.Add(It.IsAny<Place>())).Returns(42);
-            var sut = new PlaceService(_placeRepositoryMock.Object);
+            _orderRepositoryMock.Setup(m => m.GetAllPlaceOrders());
+            var sut = new PlaceService(_orderRepositoryMock.Object, _placeRepositoryMock.Object);
 
             //act
             var actual = sut.InsertPlace(placeModel);
@@ -100,7 +106,8 @@ namespace CoCowork.BusinessLayer.Tests
             //arrange
             var placeModel = _placeTestData.GetPlaceModelForTests();
             _placeRepositoryMock.Setup(m => m.Add(It.IsAny<Place>())).Throws(new Exception());
-            var sut = new PlaceService(_placeRepositoryMock.Object);
+            _orderRepositoryMock.Setup(m => m.GetAllPlaceOrders());
+            var sut = new PlaceService(_orderRepositoryMock.Object, _placeRepositoryMock.Object);
 
             //act
             var actual = sut.InsertPlace(placeModel);
@@ -115,7 +122,8 @@ namespace CoCowork.BusinessLayer.Tests
             //arrange
             var placeModel = _placeTestData.GetPlaceModelForTests();
             _placeRepositoryMock.Setup(m => m.DeletePlaceById(It.IsAny<int>()));
-            var sut = new PlaceService(_placeRepositoryMock.Object);
+            _orderRepositoryMock.Setup(m => m.GetAllPlaceOrders());
+            var sut = new PlaceService(_orderRepositoryMock.Object, _placeRepositoryMock.Object);
 
             //act
             var actual = sut.DeletePlace(placeModel.Id); 
@@ -130,7 +138,8 @@ namespace CoCowork.BusinessLayer.Tests
             //arrange
             var placeModel = _placeTestData.GetPlaceModelForTests();
             _placeRepositoryMock.Setup(m => m.DeletePlaceById(It.IsAny<int>())).Throws(new Exception());
-            var sut = new PlaceService(_placeRepositoryMock.Object);
+            _orderRepositoryMock.Setup(m => m.GetAllPlaceOrders());
+            var sut = new PlaceService(_orderRepositoryMock.Object, _placeRepositoryMock.Object);
 
             //act
             var actual = sut.DeletePlace(placeModel.Id);
@@ -145,7 +154,8 @@ namespace CoCowork.BusinessLayer.Tests
             //arrange
             var placeModel = _placeTestData.GetPlaceModelForTests();
             _placeRepositoryMock.Setup(m => m.UpdatePlaceById(It.IsAny<Place>()));
-            var sut = new PlaceService(_placeRepositoryMock.Object);
+            _orderRepositoryMock.Setup(m => m.GetAllPlaceOrders());
+            var sut = new PlaceService(_orderRepositoryMock.Object, _placeRepositoryMock.Object);
 
             //act
             sut.UpdatePlace(placeModel);
@@ -160,7 +170,8 @@ namespace CoCowork.BusinessLayer.Tests
             //arrange
             var placeModel = _placeTestData.GetPlaceModelForTests();
             _placeRepositoryMock.Setup(m => m.UpdatePlaceById(It.IsAny<Place>())).Throws(new Exception());
-            var sut = new PlaceService(_placeRepositoryMock.Object);
+            _orderRepositoryMock.Setup(m => m.GetAllPlaceOrders());
+            var sut = new PlaceService(_orderRepositoryMock.Object, _placeRepositoryMock.Object);
 
             //act, assert
             Assert.Throws<Exception>(() => sut.UpdatePlace(placeModel));
