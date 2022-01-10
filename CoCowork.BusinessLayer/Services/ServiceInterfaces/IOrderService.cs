@@ -9,9 +9,6 @@ namespace CoCowork.BusinessLayer.Services
         Order InsertOrder(OrderModel orderModel);
         List<OrderModel> GetActiveOrders();
         List<OrderModel> GetAllOrders();
-        List<OrderModel> GetCanceledOrders();
-        List<OrderModel> GetPaidOrders();
-        List<OrderModel> GetUnpaidOrders();
         void UpdateOrder(OrderModel orderModel);
 
         List<OrderModel> GetSpecialOrders(bool isPaid, bool isUnpaid, bool isCancelled);

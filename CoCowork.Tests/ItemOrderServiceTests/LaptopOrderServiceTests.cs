@@ -11,6 +11,7 @@ namespace CoCowork.BusinessLayer.Tests
     internal class LaptopOrderServiceTests
     {
         private readonly Mock<ILaptopOrderRepository> _laptopOrderRepositoryMock;
+        private readonly Mock<ILaptopRepository> _laptopRepositoryMock;
         private readonly OrdersTestData _ordersTestData;
 
         public LaptopOrderServiceTests()
@@ -24,7 +25,7 @@ namespace CoCowork.BusinessLayer.Tests
         {
             //arrange
             var laptop = _ordersTestData.GetLaptopModelForTests();
-            var sut = new LaptopService(_laptopOrderRepositoryMock.Object);
+            var sut = new LaptopService(_laptopOrderRepositoryMock.Object, _laptopRepositoryMock.Object);
 
             _laptopOrderRepositoryMock.Setup(m => m.Add(It.IsAny<LaptopOrder>()));
             ////act
