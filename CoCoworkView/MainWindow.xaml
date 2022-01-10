@@ -117,7 +117,7 @@
                 <Label Content="Компьютеры" HorizontalAlignment="Center" Grid.Column="2" Grid.Row="0" FontFamily="Arial Black"/>
 
                 <DataGrid x:Name="MiniOffices" AutoGenerateColumns="False" Margin="2 0 2 0" Grid.Column="0" Grid.Row="1" CanUserAddRows="False" 
-                      ItemsSource="{Binding MiniOffices}" SelectedItem="{Binding Path=MiniOfficeVM.SelectedMiniOffice, Mode=TwoWay}" ColumnWidth="*" CanUserDeleteRows="False">
+                      ItemsSource="{Binding MiniOffices}" SelectedItem="{Binding Path=BookingSelectedItem, Mode=TwoWay}" ColumnWidth="*" CanUserDeleteRows="False">
                     <DataGrid.Resources>
                         <Style TargetType="{x:Type DataGridColumnHeader}">
                             <Setter Property="HorizontalContentAlignment" Value="Center"/>
@@ -142,10 +142,16 @@
                         </DataGridTemplateColumn>
                     </DataGrid.Columns>
 
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="SelectionChanged">
+                            <i:InvokeCommandAction Command="{Binding MiniOfficeVM.FillMiniOfficeFields}" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+
                 </DataGrid>
 
                 <DataGrid x:Name="Places" AutoGenerateColumns="False" Grid.Column="1" Margin="2 0 2 0" Grid.Row="1" CanUserAddRows="False" Grid.RowSpan="5"
-                      ItemsSource="{Binding Places}" SelectedItem="{Binding Path=PlaceVM.SelectedPlace, Mode=TwoWay}" ColumnWidth="*" CanUserDeleteRows="False">
+                      ItemsSource="{Binding Places}" SelectedItem="{Binding Path=BookingSelectedItem, Mode=TwoWay}" ColumnWidth="*" CanUserDeleteRows="False">
                     <DataGrid.Resources>
                         <Style TargetType="{x:Type DataGridColumnHeader}">
                             <Setter Property="HorizontalContentAlignment" Value="Center"/>
@@ -334,7 +340,7 @@
             <Label>Text in client grid</Label>
         </Grid>
 
-        <Grid x:Name="OrderGrid" Grid.Column ="1" Visibility="Hidden" DataContext="{Binding Order}">
+        <Grid x:Name="OrderGrid" Grid.Column ="1" Visibility="{Binding GridVisibility}" DataContext="{Binding Order}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="75*"/>
                 <ColumnDefinition Width="25*"/>
@@ -405,7 +411,7 @@
             </Grid>
         </Grid>
 
-        <Grid x:Name="CurrentOrderGrid" Visibility="Hidden" Grid.Column ="1">
+        <Grid x:Name="CurrentOrderGrid" Visibility="{Binding CurrentOrder.GridVisibility}" Grid.Column ="1">
 
             <DataGrid x:Name="CurrentOrderDataGrid" CanUserDeleteRows="False" AutoGenerateColumns="False" Grid.Column="0" CanUserAddRows="False" ItemsSource="{Binding CurrentOrder.CurrentOrder}" Margin="0,0,200,0"  >
                 <DataGrid.Resources>

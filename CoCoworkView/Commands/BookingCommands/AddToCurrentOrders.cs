@@ -1,5 +1,6 @@
 ﻿using CoCowork.UI.Commands;
 using System;
+using System.Windows;
 
 namespace CoCowork.UI.ViewModels
 {
@@ -26,11 +27,12 @@ namespace CoCowork.UI.ViewModels
 
             DateTime startOrderTimeAndDate = startDate.Add(startTime);
 
+            _bookingVM.BookingSelectedItem.StartDate = startOrderTimeAndDate;
 
-            //_vm.BookingSelectedItem.CalculateSubtotalPrice(_vm.BookingSelectedItem.Price);
-            //_vmCurrentOrder.CurrentOrder.Add(_vm.BookingSelectedItem);
+            _bookingVM.BookingSelectedItem.CalculateSubtotalPrice(_bookingVM.BookingSelectedItem.Price);
+            _vmCurrentOrder.CurrentOrder.Add(_bookingVM.BookingSelectedItem);
 
-            //_vmCurrentOrder.RecalculateSum();
+            _addBookingItemVM.GridVisibility = Visibility.Collapsed;
         }
     }
 }
