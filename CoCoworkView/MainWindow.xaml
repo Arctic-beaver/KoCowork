@@ -80,6 +80,7 @@
                 <Label Content="по" Grid.Column="0" Grid.Row="1" Margin="5 35 0 0" Grid.RowSpan="2"/>
                 <DatePicker Grid.Column="1" Grid.Row="1" Margin="0 37 0 160" Grid.RowSpan="4"/>
 
+                <Label Content="Редактирование" Grid.Column="1" Grid.Row="2" Margin="0, 23, 0, 0" HorizontalContentAlignment="Center" FontWeight="Bold"/>
                 <Button x:Name="MiniOfficeEditButton" Content="Миниофисы" Grid.Column="1" Grid.Row="3"
                         Margin="0, 0, 0, 30" Command="{Binding MiniOfficeVM.ChangeMiniOfficeEditVisibility}"/>
                 <Button x:Name="PlaceEditButton" Content="Места" Grid.Column="1" Grid.Row="4"
@@ -88,8 +89,8 @@
                         Margin="0, 0, 0, 30"/>
                 <Button x:Name="MeetingRoomEditButton" Content="Переговорные" Grid.Column="1" Grid.Row="6"
                         Margin="0, 0, 0, 30"/>
-                <Button x:Name="ComputersEditButton" Content="Компьютеры" Grid.Column="1" Grid.Row="7"
-                        Margin="0, 0, 0, 30"/>
+                <Button x:Name="ComputersEditButton" Command="{Binding LaptopVM.ChangeLaptopEditVisibility}"
+                        Content="Компьютеры" Grid.Column="1" Grid.Row="7" Margin="0, 0, 0, 30"/>
                 <Button x:Name="AddToOrderButton" Content="Добавить к заказу" Grid.Column="1" Grid.Row="8"
                         Grid.RowSpan="2" Margin="0, 35, 0, 30" Command="{Binding AddBookingItemToCurrentOrderVM.ChangeInnerGridVisibility}"/>
 
@@ -203,7 +204,7 @@
                 </DataGrid>
 
                 <DataGrid x:Name="Computers" AutoGenerateColumns="False" Margin="0 0 0 0" Width="auto" Grid.Column="2" Grid.Row="1" CanUserAddRows="False" Grid.RowSpan="5"
-                      ItemsSource="{Binding Laptops}" SelectedItem="{Binding Path=BookingSelectedItem, Mode=TwoWay}" ColumnWidth="*" CanUserDeleteRows="False">
+                      ItemsSource="{Binding Laptops}" SelectedItem="{Binding Path=LaptopVM.SelectedLaptop, Mode=TwoWay}" ColumnWidth="*" CanUserDeleteRows="False">
                     <DataGrid.Resources>
                         <Style TargetType="{x:Type DataGridColumnHeader}">
                             <Setter Property="HorizontalContentAlignment" Value="Center"/>
@@ -257,6 +258,7 @@
                     <Button x:Name="DeleteMiniOfficeButton" Command="{Binding MiniOfficeVM.DeleteMiniOffice}" Content="Удалить" Grid.Column="0"
                             Grid.Row="9" Margin="15, 10, 15, 20" IsEnabled="{Binding MiniOfficeVM.IsDeleteButtonAvailable}"/>
                 </Grid>
+                
                 <Grid x:Name="EditPlaceGrid" Visibility="{Binding PlaceVM.GridVisibility}" Grid.Column ="3" Grid.RowSpan="6"
                       Background="#FFE0DFDF" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                     <Grid.Effect>
@@ -292,7 +294,7 @@
                             Grid.Row="9" Margin="15, 10, 15, 20" IsEnabled="{Binding PlaceVM.IsDeleteButtonAvailable}"/>
                 </Grid>
 
-                <Grid x:Name="AddBookingItemToCurrentOrderGrid" Visibility="{Binding AddBookingItemToCurrentOrderVM.GridVisibility}" Grid.Column ="3" Grid.RowSpan="6"
+                <Grid x:Name="EditLaptopGrid" Visibility="{Binding LaptopVM.GridVisibility}" Grid.Column ="3" Grid.RowSpan="6"
                       Background="#FFE0DFDF" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                     <Grid.Effect>
                         <DropShadowEffect Color="Black" ShadowDepth="0.01"/>
@@ -309,26 +311,23 @@
                         <RowDefinition/>
                         <RowDefinition/>
                     </Grid.RowDefinitions>
+                    <Label Content="Компьютеры" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" Margin="0 20 0 0" FontWeight="Bold" FontFamily="Academy Engraved LET Plain"/>
+                    <Label Content="Описание" Grid.Row="2" Margin="5 0 5 0" HorizontalAlignment="Center"/>
+                    <TextBox x:Name="descriptionLaptop"  Grid.Row="2" Margin="10, 30, 10, 0" Text ="{Binding LaptopVM.Description}"/>
+                    <Label Content="Цена в месяц" Grid.Row="3" Margin="5 0 5 0" HorizontalAlignment="Center"/>
+                    <TextBox x:Name="pricePerMonth"  Grid.Row="3" Margin="10, 30, 10, 0" Text ="{Binding LaptopVM.PricePerMonth}"/>
+                    <Label Content="Номер компьютера" Grid.Row="4" Margin="5 0 5 0" HorizontalAlignment="Center"/>
+                    <TextBox x:Name="NumberOfLaptop" Grid.Row="4" Margin="10, 30, 10, 0" Text ="{Binding LaptopVM.Number}"/>
+                    <Label Content="Наименование" Grid.Row="1" Margin="5 0 5 0" HorizontalAlignment="Center"/>
+                    <TextBox x:Name="NameOfPC"  Grid.Row="1" Margin="10, 30, 10, 0" Text ="{Binding LaptopVM.Name}"/>
 
-                    <Label Content="Добавление к заказу" HorizontalAlignment="Center" Grid.Row="0" Margin="0 15 0 0" FontWeight="Bold"/>
-                    <TextBox Text="" Grid.Row="1" Margin="0 0 0 30" FontWeight="Bold"/>
-
-                    <Label Content="Дата начала брони" HorizontalAlignment="Center" Grid.Row="1" Margin="0 30 0 0"/>
-                    <DatePicker Grid.Column="0" Grid.Row="2" Margin="0 10 0 20" AllowDrop="True" SelectedDate="{Binding AddBookingItemToCurrentOrderVM.StartDatePicker}"/>
-                    
-                    <Label Content="Время начала брони" HorizontalAlignment="Center" Grid.Row="3" Margin="0 0 0 0"/>
-                    <TextBox Grid.Row="3" Margin="0 30 0 0" Text="{Binding AddBookingItemToCurrentOrderVM.StartTimePicker}"/>
-
-                    <Label Content="Дата окончания брони" HorizontalAlignment="Center" Grid.Row="4" Margin="0 30 0 0"/>
-                    <DatePicker Grid.Column="0" Grid.Row="5" Margin="0 10 0 20" Text = "02.02.2022" AllowDrop="True" SelectedDate="{Binding AddBookingItemToCurrentOrderVM.EndDatePicker}"/>
-
-                    <Label Content="Время окончания брони" HorizontalAlignment="Center" Grid.Row="6" Margin="0 0 0 0"/>
-                    <TextBox Grid.Row="6" Margin="0 30 0 0" Text="{Binding AddBookingItemToCurrentOrderVM.EndTimePicker}"/>
-
-                    <Button x:Name="AddBookingItemButton" Command="{Binding AddBookingItemToCurrentOrderVM.AddToCurrentOrders}"
-                            Content="Добавить к заказу" Grid.Column="0" Grid.Row="8" Margin="15, 10, 15, 20"/>
+                    <Button x:Name="AddLaptopButton" IsEnabled="{Binding LaptopVM.IsAddButtonAvailable}" Command="{Binding LaptopVM.AddLaptop}"
+                            Content="Добавить" Grid.Column="0" Grid.Row="7" Margin="15, 10, 15, 20"/>
+                    <Button x:Name="EditLaptopButton" Command="{Binding LaptopVM.EditLaptop}" Content="Редактировать" Grid.Column="0"
+                            Grid.Row="8" Margin="15, 10, 15, 20" IsEnabled="{Binding LaptopVM.IsEditButtonAvailable}"/>
+                    <Button x:Name="DeleteLaptopButton" Command="{Binding LaptopVM.DeleteLaptop}" Content="Удалить" Grid.Column="0"
+                            Grid.Row="9" Margin="15, 10, 15, 20" IsEnabled="{Binding LaptopVM.IsDeleteButtonAvailable}"/>
                 </Grid>
-                
             </Grid>
         </Grid>
 

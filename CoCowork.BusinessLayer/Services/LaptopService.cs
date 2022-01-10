@@ -12,16 +12,17 @@ namespace CoCowork.BusinessLayer.Services
         private readonly ILaptopRepository _laptopRepository;
         private LaptopOrder _itemOrder;
         private ILaptopOrderRepository _orderRepository;
+
         public LaptopService()
         {
             _laptopRepository = new LaptopRepository();
             _orderRepository = new LaptopOrderRepository();
         }
-        public LaptopService(ILaptopOrderRepository fakeLaptopOrderRepository)
+
+        public LaptopService(ILaptopOrderRepository fakeLaptopOrderRepository, ILaptopRepository fakeLaptopRepository)
         {
             _orderRepository = fakeLaptopOrderRepository;
-            _laptopRepository = new LaptopRepository();
-
+            _laptopRepository = fakeLaptopRepository;
         }
 
         public List<LaptopModel> GetAll()
@@ -30,9 +31,17 @@ namespace CoCowork.BusinessLayer.Services
             return CustomMapper.GetInstance().Map<List<LaptopModel>>(computers);
         }
 
-        public void Delete(int id)
+        public bool Delete(int id)
         {
-            _laptopRepository.DeleteLaptopById(id);
+            try
+            {
+                _laptopRepository.DeleteLaptopById(id);
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+            return true;
         }
 
         public void Update(LaptopModel laptop)
@@ -41,12 +50,22 @@ namespace CoCowork.BusinessLayer.Services
             _laptopRepository.UpdateLaptopById(computers);
         }
 
-        public void Insert(LaptopModel laptop)
+        public int Insert(LaptopModel laptop)
         {
             var computers = CustomMapper.GetInstance().Map<Laptop>(laptop);
-            _laptopRepository.Add(computers);
+            int insertedLaptopId = 0;
+
+            try
+            {
+                insertedLaptopId = _laptopRepository.Add(computers);
+            }
+            catch (Exception)
+            {
+                return -1;
+            }
+            return insertedLaptopId;
         }
-    
+
 
         public int AddItemOrder(BookingItemModel bookingItem)
         {

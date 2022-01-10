@@ -49,6 +49,5 @@ namespace CoCowork.BusinessLayer.Models
         {
             return (EndDate - StartDate).TotalHours;
         }
-
     }
 }
