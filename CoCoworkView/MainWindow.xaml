@@ -88,8 +88,8 @@
                         Margin="0, 0, 0, 30"/>
                 <Button x:Name="MeetingRoomEditButton" Content="Переговорные" Grid.Column="1" Grid.Row="6"
                         Margin="0, 0, 0, 30"/>
-                <Button x:Name="ComputersEditButton" Content="Компьютеры" Grid.Column="1" Grid.Row="7"
-                        Margin="0, 0, 0, 30"/>
+                <Button x:Name="ComputersEditButton" Command="{Binding LaptopVM.ChangeLaptopEditVisibility}"
+                        Content="Компьютеры" Grid.Column="1" Grid.Row="7" Margin="0, 0, 0, 30"/>
                 <Button x:Name="AddToOrderButton" Content="Добавить к заказу" Grid.Column="1" Grid.Row="8"
                         Grid.RowSpan="2" Margin="0, 35, 0, 30"/>
 
@@ -197,7 +197,7 @@
                 </DataGrid>
 
                 <DataGrid x:Name="Computers" AutoGenerateColumns="False" Margin="0 0 0 0" Width="auto" Grid.Column="2" Grid.Row="1" CanUserAddRows="False" Grid.RowSpan="5"
-                      ItemsSource="{Binding Laptops}" SelectedItem="{Binding Path=BookingSelectedItem, Mode=TwoWay}" ColumnWidth="*" CanUserDeleteRows="False">
+                      ItemsSource="{Binding Laptops}" SelectedItem="{Binding Path=LaptopVM.SelectedLaptop, Mode=TwoWay}" ColumnWidth="*" CanUserDeleteRows="False">
                     <DataGrid.Resources>
                         <Style TargetType="{x:Type DataGridColumnHeader}">
                             <Setter Property="HorizontalContentAlignment" Value="Center"/>
@@ -251,6 +251,7 @@
                     <Button x:Name="DeleteMiniOfficeButton" Command="{Binding MiniOfficeVM.DeleteMiniOffice}" Content="Удалить" Grid.Column="0"
                             Grid.Row="9" Margin="15, 10, 15, 20" IsEnabled="{Binding MiniOfficeVM.IsDeleteButtonAvailable}"/>
                 </Grid>
+                
                 <Grid x:Name="EditPlaceGrid" Visibility="{Binding PlaceVM.GridVisibility}" Grid.Column ="3" Grid.RowSpan="6"
                       Background="#FFE0DFDF" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                     <Grid.Effect>
@@ -282,8 +283,43 @@
                             Content="Добавить" Grid.Column="0" Grid.Row="7" Margin="15, 10, 15, 20"/>
                     <Button x:Name="EditPlaceButton" Command="{Binding PlaceVM.EditPlace}" Content="Редактировать" Grid.Column="0"
                             Grid.Row="8" Margin="15, 10, 15, 20" IsEnabled="{Binding PlaceVM.IsEditButtonAvailable}"/>
-                    <Button x:Name="DeletePlaceButton" Command="{Binding PlaceVM.DeleteMiniOffice}" Content="Удалить" Grid.Column="0"
+                    <Button x:Name="DeletePlaceButton" Command="{Binding PlaceVM.DeletePlace}" Content="Удалить" Grid.Column="0"
                             Grid.Row="9" Margin="15, 10, 15, 20" IsEnabled="{Binding PlaceVM.IsDeleteButtonAvailable}"/>
+                </Grid>
+
+                <Grid x:Name="EditLaptopGrid" Visibility="{Binding LaptopVM.GridVisibility}" Grid.Column ="3" Grid.RowSpan="6"
+                      Background="#FFE0DFDF" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                    <Grid.Effect>
+                        <DropShadowEffect Color="Black" ShadowDepth="0.01"/>
+                    </Grid.Effect>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Label Content="Компьютеры" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" Margin="0 20 0 0" FontWeight="Bold" FontFamily="Academy Engraved LET Plain"/>
+                    <Label Content="Описание" Grid.Row="2" Margin="5 0 5 0" HorizontalAlignment="Center"/>
+                    <TextBox x:Name="descriptionLaptop"  Grid.Row="2" Margin="10, 30, 10, 0" Text ="{Binding LaptopVM.Description}"/>
+                    <Label Content="Цена в месяц" Grid.Row="3" Margin="5 0 5 0" HorizontalAlignment="Center"/>
+                    <TextBox x:Name="pricePerMonth"  Grid.Row="3" Margin="10, 30, 10, 0" Text ="{Binding LaptopVM.PricePerMonth}"/>
+                    <Label Content="Номер компьютера" Grid.Row="4" Margin="5 0 5 0" HorizontalAlignment="Center"/>
+                    <TextBox x:Name="NumberOfLaptop" Grid.Row="4" Margin="10, 30, 10, 0" Text ="{Binding LaptopVM.Number}"/>
+                    <Label Content="Наименование" Grid.Row="1" Margin="5 0 5 0" HorizontalAlignment="Center"/>
+                    <TextBox x:Name="NameOfPC"  Grid.Row="1" Margin="10, 30, 10, 0" Text ="{Binding LaptopVM.Name}"/>
+
+                    <Button x:Name="AddLaptopButton" IsEnabled="{Binding LaptopVM.IsAddButtonAvailable}" Command="{Binding LaptopVM.AddLaptop}"
+                            Content="Добавить" Grid.Column="0" Grid.Row="7" Margin="15, 10, 15, 20"/>
+                    <Button x:Name="EditLaptopButton" Command="{Binding LaptopVM.EditLaptop}" Content="Редактировать" Grid.Column="0"
+                            Grid.Row="8" Margin="15, 10, 15, 20" IsEnabled="{Binding LaptopVM.IsEditButtonAvailable}"/>
+                    <Button x:Name="DeleteLaptopButton" Command="{Binding LaptopVM.DeleteLaptop}" Content="Удалить" Grid.Column="0"
+                            Grid.Row="9" Margin="15, 10, 15, 20" IsEnabled="{Binding LaptopVM.IsDeleteButtonAvailable}"/>
                 </Grid>
             </Grid>
         </Grid>
@@ -296,7 +332,7 @@
             <Label>Text in client grid</Label>
         </Grid>
 
-        <Grid x:Name="OrderGrid" Grid.Column ="1" Visibility="Hidden" DataContext="{Binding Order}">
+        <Grid x:Name="OrderGrid" Grid.Column ="1" Visibility="{Binding GridVisibility}" DataContext="{Binding Order}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="75*"/>
                 <ColumnDefinition Width="25*"/>

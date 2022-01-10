@@ -8,7 +8,7 @@ namespace CoCowork.BusinessLayer.Services
         void DeletePlace(int id);
         List<PlaceModel> GetAll();
         List<PlaceModel> GetAllThatNotInMiniOffices();
-        void InsertPlace(PlaceModel place);
+        int InsertPlace(PlaceModel place);
         void UpdatePlace(PlaceModel place);
     }
 }

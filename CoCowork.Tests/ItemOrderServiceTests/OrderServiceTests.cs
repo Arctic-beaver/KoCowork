@@ -18,7 +18,8 @@ namespace CoCowork.BusinessLayer.Tests
         private readonly Mock<IProductOrderRepository> _productOrderRepository;
         private readonly Mock<ILaptopOrderRepository> _laptopOrderRepositoryMock;
         private readonly Mock<IRoomOrderRepository> _roomOrderRepository;
-        
+        private readonly Mock<ILaptopRepository> _laptopRepositoryMock;
+
 
         private readonly OrdersTestData _ordersTestData;
         private readonly ClientTestData _clientTestData;
@@ -32,6 +33,7 @@ namespace CoCowork.BusinessLayer.Tests
             _productOrderRepository = new Mock<IProductOrderRepository>();
             _roomOrderRepository = new Mock<IRoomOrderRepository>();
             _clientTestData = new ClientTestData();
+            _laptopRepositoryMock = new Mock<ILaptopRepository>();
             _ordersTestData = new OrdersTestData();
         }
 
@@ -57,9 +59,10 @@ namespace CoCowork.BusinessLayer.Tests
         {
             //arrange
             var laptop = _ordersTestData.GetLaptopModelForTests();
-            var sut = new LaptopService(_laptopOrderRepositoryMock.Object);
-
+            _laptopRepositoryMock.Setup(m => m.Add(It.IsAny<Laptop>()));
             _laptopOrderRepositoryMock.Setup(m => m.Add(It.IsAny<LaptopOrder>()));
+            var sut = new LaptopService(_laptopOrderRepositoryMock.Object, _laptopRepositoryMock.Object);
+
             ////act
             var actual = sut.AddItemOrder(laptop);
 
@@ -90,7 +93,7 @@ namespace CoCowork.BusinessLayer.Tests
             _placeOrderRepository.Setup(m => m.Add(It.IsAny<PlaceOrder>()));
             var sut = new PlaceService(_placeOrderRepository.Object);
 
-            ////act
+            //act
             var actual = sut.AddItemOrder(place);
 
             //assert
