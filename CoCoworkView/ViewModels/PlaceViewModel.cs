@@ -118,7 +118,6 @@ namespace CoCowork.UI.ViewModels
                     if (value != null)
                     {
                         IsDeleteButtonAvailable = true;
-                        FillPlaceFields.Execute(this);
                     }
                     else
                     {

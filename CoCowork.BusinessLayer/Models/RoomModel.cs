@@ -14,14 +14,11 @@ namespace CoCowork.BusinessLayer.Models
             TypeForDisplayInUI = "Комната";
         }
 
-        public override void CalculateSubtotalPrice(decimal price)
+        public override void CalculateSubtotalPrice()
         {
-            SubtotalPrice = Convert.ToDecimal(GetAmountHours()) * price;
+            SubtotalPrice = Convert.ToDecimal(GetAmountHours()) * PricePerHour;
         }
 
-        public override void CalculateAmountOfBookingTime()
-        {
-            throw new NotImplementedException();
-        }
+      
     }
 }

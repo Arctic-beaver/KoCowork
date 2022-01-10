@@ -85,8 +85,11 @@ namespace CoCowork.DataLayer.Repositories
                 new
                 {
                     Id = place.Id,
+                    Number = place.Number,
+                    MiniOfficeId = place.MiniOfficeId,
                     PricePerDay = place.PricePerDay,
-                    PriceFixedPerDay = place.PriceFixedPerDay
+                    PriceFixedPerDay = place.PriceFixedPerDay,
+                    Description = place.Description
                 },
                 commandType: CommandType.StoredProcedure);
         }

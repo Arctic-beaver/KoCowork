@@ -9,6 +9,7 @@ AS
 BEGIN
 	update dbo.Place
 	set 
+		Number = @Number,
 	    Description = @Description,
 	    PricePerDay = @PricePerDay,
 		PriceFixedPerDay = @PriceFixedPerDay

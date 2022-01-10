@@ -13,6 +13,7 @@ namespace CoCowork.UI.Commands.MiniOfficeCommands
             _vm = vm;
             _bookingVM = bookingVM;
         }
+
         public override void Execute(object parameter)
         {
             _vm.SelectedMiniOffice = (MiniOfficeModel)_bookingVM.BookingSelectedItem;

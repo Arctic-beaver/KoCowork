@@ -70,8 +70,8 @@ namespace CoCowork.UI.ViewModels
             }
         }
 
-        public decimal _totalPrice;
-        public decimal TotalPrice
+        public decimal? _totalPrice;
+        public decimal? TotalPrice
         {
             get { return _totalPrice; }
             set
@@ -90,14 +90,22 @@ namespace CoCowork.UI.ViewModels
 
             GridVisibility = Visibility.Hidden;
             AddOrder = new AddOrdersToDB(this);
+
+            TotalPrice = 0;
         }
 
         public ICommand GetClients { get; set; }
 
         public ICommand AddOrder { get; set; }
 
-
-
+       
+        public void CalculateTotalPriceInUI()
+        {
+            foreach (var item in CurrentOrder)
+            {
+                TotalPrice += item.SubtotalPrice;
+            }
+        }
 
     }
 }

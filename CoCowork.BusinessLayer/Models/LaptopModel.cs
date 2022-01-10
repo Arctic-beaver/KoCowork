@@ -14,15 +14,12 @@ namespace CoCowork.BusinessLayer.Models
             TypeForDisplayInUI = "Ноутбук";
         }
 
-        public override void CalculateSubtotalPrice(decimal price)
+        public override void CalculateSubtotalPrice()
         {
             _amountMonths = GetAmountMonth();
-            SubtotalPrice = Convert.ToDecimal(_amountMonths) * price;
+            SubtotalPrice = Convert.ToDecimal(_amountMonths) * PricePerMonth;
         }
 
-        public override void CalculateAmountOfBookingTime()
-        {
-            throw new NotImplementedException();
-        }
+       
     }
 }

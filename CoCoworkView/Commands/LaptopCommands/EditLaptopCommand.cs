@@ -27,6 +27,7 @@ namespace CoCowork.UI.Commands.MiniOfficeCommands
                 var laptop = new LaptopModel()
                 {
                     Id = _laptopVM.SelectedLaptop.Id,
+                    Name = _laptopVM.Name,
                     Number = _laptopVM.Number,
                     PricePerMonth = _laptopVM.PricePerMonth,
                     Description = _laptopVM.Description

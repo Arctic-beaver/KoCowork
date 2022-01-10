@@ -59,7 +59,7 @@ namespace CoCowork.BusinessLayer.Services
             {
                 insertedLaptopId = _laptopRepository.Add(computers);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 return -1;
             }
