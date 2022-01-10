@@ -12,5 +12,9 @@
             SubtotalPrice = price;
         }
         public int Amount { get; set; }
+
+        public decimal PriceForOne { get; set; }
+
+        
     }
 }
