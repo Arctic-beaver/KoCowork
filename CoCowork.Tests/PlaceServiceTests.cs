@@ -1,6 +1,4 @@
 using CoCowork.BusinessLayer.Services;
-using CoCowork.BusinessLayer.Models;
-using CoCowork.DataLayer.Entities;
 using CoCowork.DataLayer.Repositories;
 using Moq;
 using NUnit.Framework;
@@ -27,7 +25,7 @@ namespace CoCowork.BusinessLayer.Tests
             //arrange
             var places = _placeTestData.GetAllPlacesForTests();
             _placeRepositoryMock.Setup(m => m.GetAll()).Returns(places);
-            _orderRepositoryMock.Setup(m => m.GetAllPlaceOrders());
+            var sut = new PlaceService(_placeRepositoryMock.Object);
 
             var sut = new PlaceService(_orderRepositoryMock.Object, _placeRepositoryMock.Object);
 

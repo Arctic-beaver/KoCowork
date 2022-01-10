@@ -21,6 +21,7 @@ namespace CoCowork.UI.ViewModels
         private MiniOfficeModel _selectedMiniOffice;
         private bool _isDeleteButtonAvailable;
         private bool _isAddButtonAvailable;
+        private readonly BookingViewModel _bookingVM;
 
         public string Name
         {
@@ -157,16 +158,19 @@ namespace CoCowork.UI.ViewModels
         public ICommand EditMiniOffice { get; set; }
         public ICommand DeleteMiniOffice { get; set; }
         public ICommand FillMiniOfficeFields { get; set; }
+        //public ICommand CheckBookingSelectedItem { get; set; }
 
         public MiniOfficeViewModel(BookingViewModel bookingVM)
         {
             GridVisibility = Visibility.Collapsed;
             _service = new MiniOfficeService();
+            _bookingVM = bookingVM;
 
+            //CheckBookingSelectedItem = new CheckBookingSelectedItemCommand(this, bookingVM);
             DeleteMiniOffice = new DeleteMiniOfficeCommand(this, bookingVM, _service);
             AddMiniOffice = new AddMiniOfficeCommand(this, bookingVM, _service);
             EditMiniOffice = new EditMiniOfficeCommand(this, bookingVM, _service);
-            FillMiniOfficeFields = new FillMiniOfficeFieldsCommand(this);
+            FillMiniOfficeFields = new FillMiniOfficeFieldsCommand(this, bookingVM);
             ChangeMiniOfficeEditVisibility = new VisibilityOfInnerGridCommand(this);
         }
 
