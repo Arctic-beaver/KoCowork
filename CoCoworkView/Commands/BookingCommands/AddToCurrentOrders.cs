@@ -22,13 +22,31 @@ namespace CoCowork.UI.ViewModels
             DateTime startDate = new DateTime();
             startDate = _addBookingItemVM.StartDatePicker;
             TimeSpan startTime = new TimeSpan();
-            startTime = TimeSpan.Parse(_addBookingItemVM.StartTimePicker);
+            
             DateTime startOrderTimeAndDate = startDate.Add(startTime);
 
             DateTime endDate = new DateTime();
-            startDate = _addBookingItemVM.EndDatePicker;
+            endDate = _addBookingItemVM.EndDatePicker;
             TimeSpan endTime = new TimeSpan();
-            startTime = TimeSpan.Parse(_addBookingItemVM.EndTimePicker);
+
+            if (DateTime.TryParse(_addBookingItemVM.EndTimePicker, out _))
+            {
+                startTime = TimeSpan.Parse(_addBookingItemVM.StartTimePicker);
+            }
+            else
+            {
+                MessageBox.Show("Укажите правильное время начало брони", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+
+            if (DateTime.TryParse(_addBookingItemVM.EndTimePicker, out _))
+            {
+                endTime = TimeSpan.Parse(_addBookingItemVM.EndTimePicker);
+            }
+            else
+            {
+                MessageBox.Show("Укажите правильное время окончания брони", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+
             DateTime endOrderTimeAndDate = endDate.Add(endTime);
 
             _bookingVM.BookingSelectedItem.StartDate = startOrderTimeAndDate;
