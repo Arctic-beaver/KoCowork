@@ -4,19 +4,46 @@ using CoCowork.DataLayer.Entities;
 using CoCowork.DataLayer.Repositories;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CoCowork.BusinessLayer.Services
 {
-    public class ProductService
+    public class ProductService : IProductService, IItemService
     {
-        private readonly ProductRepository _productRepository;
+        private readonly IProductRepository _productRepository;
+        private ProductOrder _itemOrder;
+        private IProductOrderRepository _orderRepository;
 
         public ProductService()
         {
             _productRepository = new ProductRepository();
+            _orderRepository = new ProductOrderRepository();
+
+        }
+        public ProductService(IProductOrderRepository fakeProductOrderRepository)
+        {
+            _orderRepository = fakeProductOrderRepository;
+            _productRepository = new ProductRepository();
+
+        }
+        public int AddItemOrder(ItemModel bookingItem)
+        {
+
+            var _entity = _productRepository.GetById(bookingItem.Id);
+
+            _itemOrder = new ProductOrder { Product = _entity, Order = bookingItem.Order, SubtotalPrice = bookingItem.SubtotalPrice};
+
+            return _orderRepository.Add(_itemOrder);
+        }
+
+        public int AddItemOrder(BookingItemModel bookingItem)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<ProductModel> GetAll()
+        {
+            var Products = _productRepository.GetAll();
+            return CustomMapper.GetInstance().Map<List<ProductModel>>(Products);
         }
 
         public List<ProductModel> GetAll()

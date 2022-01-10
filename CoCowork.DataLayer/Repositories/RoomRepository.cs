@@ -23,7 +23,7 @@ namespace CoCowork.DataLayer.Repositories
         public Room GetById(int id)
         {
             using IDbConnection connection = ProvideConnection();
-            return connection.QueryFirstOrDefault(_selectByIdProcedure, new { Id = id },
+            return connection.QueryFirstOrDefault<Room>(_selectByIdProcedure, new { Id = id },
                 commandType: CommandType.StoredProcedure);
         }
 

@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CoCowork.BusinessLayer.Models
 {
-    public class ClientModel
+    public class ClientModel : ClientShortModel
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }

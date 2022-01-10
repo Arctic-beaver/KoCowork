@@ -1,16 +1,12 @@
-﻿using CoCowork.BusinessLayer.Models;
-using CoCowork.DataLayer.Repositories;
-using CoCowork.BusinessLayer.Configuration;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using CoCowork.BusinessLayer.Configuration;
+using CoCowork.BusinessLayer.Models;
 using CoCowork.DataLayer.Entities;
+using CoCowork.DataLayer.Repositories;
+using System.Collections.Generic;
 
 namespace CoCowork.BusinessLayer.Services
 {
-    public class ClientService
+    public class ClientService : IClientService
     {
         private readonly ClientRepository _clientRepository;
 
@@ -19,10 +15,16 @@ namespace CoCowork.BusinessLayer.Services
             _clientRepository = new ClientRepository();
         }
 
-        public List<ClientModel> GetClients()
+        public List<ClientModel> GetAll()
         {
             var clients = _clientRepository.GetAllClients();
             return CustomMapper.GetInstance().Map<List<ClientModel>>(clients);
+        }
+
+        public Client FindClientInDB(ClientModel clientModel)
+        {
+            var client = _clientRepository.GetClientById(clientModel.Id);
+            return client;
         }
 
         public void UpdateClient(ClientModel clientModel)

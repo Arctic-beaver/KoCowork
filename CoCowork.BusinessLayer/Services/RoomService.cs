@@ -1,24 +1,31 @@
-﻿using CoCowork.BusinessLayer.Models;
+﻿using CoCowork.BusinessLayer.Configuration;
+using CoCowork.BusinessLayer.Models;
+using CoCowork.DataLayer.Entities;
 using CoCowork.DataLayer.Repositories;
-using CoCowork.BusinessLayer.Configuration;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using CoCowork.DataLayer.Entities;
 
 namespace CoCowork.BusinessLayer.Services
 {
-    public class RoomService
+    public class RoomService : IRoomService, IItemService
     {
         private readonly IRoomRepository _roomRepository;
         private const string _meetingRoom = "Переговорная";
         private const string _conferenceRoom = "Конференц-зал";
+        private RoomRepository _repository;
+        private RoomOrder _itemOrder;
+        private IRoomOrderRepository _orderRepository;
 
         public RoomService()
         {
             _roomRepository = new RoomRepository();
+            _orderRepository = new RoomOrderRepository();
+        }
+
+        public RoomService(IRoomOrderRepository fakeRoomRepository)
+        {
+            _roomRepository = new RoomRepository();
+            _orderRepository = fakeRoomRepository;
         }
 
         public List<RoomModel> GetAll()
@@ -74,6 +81,30 @@ namespace CoCowork.BusinessLayer.Services
         {
             var roomModel = CustomMapper.GetInstance().Map<Room>(room);
             _roomRepository.Add(roomModel);
+        }
+
+        //public void AddItemOrder(int id, Order order, DateTime startDate, DateTime endDate, decimal price)
+        //{
+
+        //    var _entity = _repository.GetById(id);
+
+        //    _itemOrder = new RoomOrder { Room = _entity, Order = order, StartDate = startDate, EndDate = endDate };
+
+        //    _orderRepository.Add(_itemOrder);
+        //}
+
+        public int AddItemOrder(ItemModel bookingItem)
+        {
+            throw new NotImplementedException();
+        }
+
+        public int AddItemOrder(BookingItemModel bookingItem)
+        {
+            var _entity = _roomRepository.GetById(bookingItem.Id);
+
+            _itemOrder = new RoomOrder { Room = _entity, Order = bookingItem.Order, StartDate = bookingItem.StartDate, EndDate = bookingItem.EndDate};
+
+            return _orderRepository.Add(_itemOrder);
         }
     }
 }

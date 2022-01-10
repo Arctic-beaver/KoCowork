@@ -15,13 +15,17 @@ namespace CoCowork.DataLayer.Repositories
         private const string _updateProc = "dbo.Laptop_Update";
         private const string _deleteProc = "dbo.Laptop_Delete";
 
-        public List<Laptop> GetAllLaptops()
+        public List<Laptop> GetAll()
         {
             using IDbConnection connection = ProvideConnection();
-            return connection.Query<Laptop>(_selectAllProc).ToList();
+            return connection
+                .Query<Laptop>
+                    (_selectAllProc,
+                    commandType: CommandType.StoredProcedure)
+                .ToList();
         }
 
-        public Laptop GetLaptopsById(int id)
+        public Laptop GetById(int id)
         {
             using IDbConnection connection = ProvideConnection();
 
@@ -33,20 +37,21 @@ namespace CoCowork.DataLayer.Repositories
                 commandType: CommandType.StoredProcedure);
         }
 
-        public void Add(Laptop laptop)
+        public int Add(Laptop laptop)
         {
             using IDbConnection connection = ProvideConnection();
 
-            connection.Execute(_insertProc,
+            int insertedId = connection.ExecuteScalar<int>(_insertProc,
                 new
                 {
                     Name = laptop.Name,
                     Number = laptop.Number,
-                    Amount = laptop.Amount,
                     Price = laptop.PricePerMonth,
                     Description = laptop.Description
                 },
                 commandType: CommandType.StoredProcedure);
+
+            return insertedId;
         }
 
         public void UpdateLaptopById(Laptop laptop)
@@ -59,7 +64,6 @@ namespace CoCowork.DataLayer.Repositories
                     Id = laptop.Id,
                     Number = laptop.Number,
                     Name = laptop.Name,
-                    Amount = laptop.Amount,
                     Price = laptop.PricePerMonth,
                     Description = laptop.Description
                 },
@@ -75,5 +79,7 @@ namespace CoCowork.DataLayer.Repositories
                         new { Id = id },
                         commandType: CommandType.StoredProcedure);
         }
+
+
     }
 }

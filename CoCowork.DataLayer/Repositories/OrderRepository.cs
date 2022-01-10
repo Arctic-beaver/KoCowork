@@ -24,22 +24,42 @@ namespace CoCowork.DataLayer.Repositories
         public Order GetById(int id)
         {
             using IDbConnection connection = ProvideConnection();
-            return connection.QueryFirstOrDefault(_selectByIdProcedure, new { Id = id },
-                commandType: CommandType.StoredProcedure);
+            var OrderDictionary = new Dictionary<int, Order>();
+
+            return connection
+                .Query<Order, Payment, Order>(
+                     _selectByIdProcedure,
+                    (order, payment) =>
+                    {
+                        if (!OrderDictionary.TryGetValue(order.Id, out Order orderEntry))
+                        {
+                            orderEntry = order;
+                            orderEntry.Payments = new List<Payment>();
+                            OrderDictionary.Add(orderEntry.Id, orderEntry);
+                        }
+                        orderEntry.Payments.Add(payment);
+                        return orderEntry;
+                    },
+                    new
+                    {
+                        Id = id
+                    },
+                    commandType: CommandType.StoredProcedure)
+                .FirstOrDefault();
         }
 
-        public void Add(Order order)
+        public int Add(Order order)
         {
             using IDbConnection connection = ProvideConnection();
 
-            connection.Execute(
+            return connection.QueryFirstOrDefault<int>(
                 _insertProcedure,
                 new
                 {
-                    ClientId = order.Client,
+                    ClientId = order.ClientId,
                     TotalPrice = order.TotalPrice,
                     IsPaid = order.IsPaid,
-                    IsCancelled = order.IsCancelled
+                    IsCanceled = order.IsCanceled
                 },
                 commandType: CommandType.StoredProcedure);
         }
@@ -53,11 +73,10 @@ namespace CoCowork.DataLayer.Repositories
                 new
                 {
                     Id = order.Id,
-                    ClientId = order.Client,
+                    ClientId = order.ClientId,
                     TotalPrice = order.TotalPrice,
                     IsPaid = order.IsPaid,
-                    IsCancelled = order.IsCancelled
-
+                    IsCanceled = order.IsCanceled
                 },
                 commandType: CommandType.StoredProcedure);
         }
@@ -73,5 +92,7 @@ namespace CoCowork.DataLayer.Repositories
                 },
                 commandType: CommandType.StoredProcedure);
         }
+
+
     }
 }

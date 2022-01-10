@@ -15,7 +15,8 @@
             <i:InvokeCommandAction Command="{Binding Booking.GetConferenceRooms}"/>
             <i:InvokeCommandAction Command="{Binding Booking.GetMeetingRooms}"/>
             <i:InvokeCommandAction Command="{Binding Booking.GetPlaces}"/>
-            <i:InvokeCommandAction Command="{Binding Booking.GetComputers}"/>
+            <i:InvokeCommandAction Command="{Binding CurrentOrder.GetClients}"/>
+            <i:InvokeCommandAction Command="{Binding Booking.GetLaptops}"/>
             <i:InvokeCommandAction Command="{Binding Product.GetProductsCommand}"/>
             <i:InvokeCommandAction Command="{Binding Client.GetClientsCommand}"/>
         </i:EventTrigger>
@@ -104,19 +105,29 @@
                     <RowDefinition/>
                     <RowDefinition/>
                     <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
                 </Grid.RowDefinitions>
                 <Button Content="показать свободные"  Grid.Column="1" Grid.Row="0" Margin="0, 15, 0, 15"/>
                 <Label Content="с" Grid.Column="0" Grid.Row="1" Margin="12 0 0 0"/>
-                <DatePicker Grid.Column="1" Grid.Row="1" Margin="0 0 0 40"/>
+                <DatePicker Grid.Column="1" Grid.Row="1" Margin="0 0 0 30"/>
                 <Label Content="по" Grid.Column="0" Grid.Row="1" Margin="5 35 0 0" Grid.RowSpan="2"/>
-                <DatePicker Grid.Column="1" Grid.Row="1" Margin="0 37 0 75" Grid.RowSpan="2"/>
+                <DatePicker Grid.Column="1" Grid.Row="1" Margin="0 37 0 160" Grid.RowSpan="4"/>
 
-                <Button x:Name="AddNewButton" Content="Инсертнуть" Grid.Column="1" Grid.Row="2" Margin="0, 30, 0, 0"/>
-                <Button x:Name="EditButton" Content="Редактировать" Grid.Column="1" Grid.Row="4"
-                        Margin="0, 15, 0, 15" Command="{Binding MiniOfficeVM.ChangeMiniOfficeEditVisibility}"/>
-                <Button x:Name="AddToOrderButton" Content="Добавить к заказу" Grid.Column="1" Grid.Row="5" Margin="0, 15, 0, 15"/>
-                <Button x:Name="DeleteButton" Content="Удалить" Grid.Column="1" Grid.Row="6"
-                        Margin="0, 15, 0, 15"/>
+                <Label Content="Редактирование" Grid.Column="1" Grid.Row="2" Margin="0, 23, 0, 0" HorizontalContentAlignment="Center" FontWeight="Bold"/>
+                <Button x:Name="MiniOfficeEditButton" Content="Миниофисы" Grid.Column="1" Grid.Row="3"
+                        Margin="0, 0, 0, 30" Command="{Binding MiniOfficeVM.ChangeMiniOfficeEditVisibility}"/>
+                <Button x:Name="PlaceEditButton" Content="Места" Grid.Column="1" Grid.Row="4"
+                        Margin="0, 0, 0, 30" Command="{Binding PlaceVM.ChangePlaceEditVisibility}"/>
+                <Button x:Name="ConferenceRoomEditButton" Content="Конференц-залы" Grid.Column="1" Grid.Row="5"
+                        Margin="0, 0, 0, 30"/>
+                <Button x:Name="MeetingRoomEditButton" Content="Переговорные" Grid.Column="1" Grid.Row="6"
+                        Margin="0, 0, 0, 30"/>
+                <Button x:Name="ComputersEditButton" Command="{Binding LaptopVM.ChangeLaptopEditVisibility}"
+                        Content="Компьютеры" Grid.Column="1" Grid.Row="7" Margin="0, 0, 0, 30"/>
+                <Button x:Name="AddToOrderButton" Content="Добавить к заказу" Grid.Column="1" Grid.Row="8"
+                        Grid.RowSpan="2" Margin="0, 35, 0, 30"/>
+
             </Grid>
             <Grid x:Name="MainBookingGrid" Grid.Column ="0" Background="DarkGray" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                 <Grid.ColumnDefinitions>
@@ -141,7 +152,7 @@
                 <Label Content="Компьютеры" HorizontalAlignment="Center" Grid.Column="2" Grid.Row="0" FontFamily="Arial Black"/>
 
                 <DataGrid x:Name="MiniOffices" AutoGenerateColumns="False" Margin="2 0 2 0" Grid.Column="0" Grid.Row="1" CanUserAddRows="False" 
-                      ItemsSource="{Binding MiniOffices}" SelectedItem="{Binding Path=BookingSelectedItem, Mode=TwoWay}" ColumnWidth="*" CanUserDeleteRows="False">
+                      ItemsSource="{Binding MiniOffices}" SelectedItem="{Binding Path=MiniOfficeVM.SelectedMiniOffice, Mode=TwoWay}" ColumnWidth="*" CanUserDeleteRows="False">
                     <DataGrid.Resources>
                         <Style TargetType="{x:Type DataGridColumnHeader}">
                             <Setter Property="HorizontalContentAlignment" Value="Center"/>
@@ -154,11 +165,22 @@
                         <DataGridTextColumn Header="Описание"  Width="auto" Binding="{Binding Name}"/>
                         <DataGridTextColumn Header="Цена за день"  Width="auto" Binding="{Binding PricePerDay}"/>
                         <DataGridTextColumn Header="Кол-во мест"  Width="auto" Binding="{Binding AmountOfPlaces}"/>
+                        <DataGridTemplateColumn Header="Изменить" Width="auto">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Button Content="Преобразовать в места" />
+                                        <Button Content="Сделать переговорной" />
+                                    </StackPanel>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
                     </DataGrid.Columns>
+
                 </DataGrid>
 
                 <DataGrid x:Name="Places" AutoGenerateColumns="False" Grid.Column="1" Margin="2 0 2 0" Grid.Row="1" CanUserAddRows="False" Grid.RowSpan="5"
-                      ItemsSource="{Binding Places}" SelectedItem="{Binding Path=BookingSelectedItem, Mode=TwoWay}" ColumnWidth="*" CanUserDeleteRows="False">
+                      ItemsSource="{Binding Places}" SelectedItem="{Binding Path=PlaceVM.SelectedPlace, Mode=TwoWay}" ColumnWidth="*" CanUserDeleteRows="False">
                     <DataGrid.Resources>
                         <Style TargetType="{x:Type DataGridColumnHeader}">
                             <Setter Property="HorizontalContentAlignment" Value="Center"/>
@@ -210,7 +232,7 @@
                 </DataGrid>
 
                 <DataGrid x:Name="Computers" AutoGenerateColumns="False" Margin="0 0 0 0" Width="auto" Grid.Column="2" Grid.Row="1" CanUserAddRows="False" Grid.RowSpan="5"
-                      ItemsSource="{Binding Computers}" SelectedItem="{Binding Path=BookingSelectedItem, Mode=TwoWay}" ColumnWidth="*" CanUserDeleteRows="False">
+                      ItemsSource="{Binding Laptops}" SelectedItem="{Binding Path=LaptopVM.SelectedLaptop, Mode=TwoWay}" ColumnWidth="*" CanUserDeleteRows="False">
                     <DataGrid.Resources>
                         <Style TargetType="{x:Type DataGridColumnHeader}">
                             <Setter Property="HorizontalContentAlignment" Value="Center"/>
@@ -226,7 +248,7 @@
                         <DataGridTextColumn Header="Цена/месяц"  Width="auto" Binding="{Binding PricePerMonth}"/>
                     </DataGrid.Columns>
                 </DataGrid>
-                <Grid x:Name="AddMiniOfficeGrid" Visibility="{Binding MiniOfficeVM.GridVisibility}" Grid.Column ="3" Grid.RowSpan="6"
+                <Grid x:Name="EditMiniOfficeGrid" Visibility="{Binding MiniOfficeVM.GridVisibility}" Grid.Column ="3" Grid.RowSpan="6"
                       Background="#FFE0DFDF" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                     <Grid.Effect>
                         <DropShadowEffect Color="Black" ShadowDepth="0.01"/>
@@ -240,9 +262,99 @@
                         <RowDefinition/>
                         <RowDefinition/>
                         <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
                     </Grid.RowDefinitions>
-                    <Button x:Name="AddFinallyMiniOfficeButton" Command="{Binding ChangeMiniOfficeEditVisibility}" CommandParameter="{Binding MiniOfficeVM}"
-                            Content="Добавить оплату" Grid.Column="0" Grid.Row="6" Margin="15, 0, 15, 30"/>
+                    <Label Content="Миниофисы" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" Margin="0 20 0 0" FontWeight="Bold" FontFamily="Academy Engraved LET Plain"/>
+                    <Label Content="Описание" Grid.Row="1" Margin="5 0 5 0" HorizontalAlignment="Center"/>
+                    <TextBox x:Name="Name"  Grid.Row="1" Margin="10, 30, 10, 0" Text ="{Binding MiniOfficeVM.Name}"/>
+                    <Label Content="Цена в день" Grid.Row="2" Margin="5 0 5 0" HorizontalAlignment="Center"/>
+                    <TextBox x:Name="PricePerDay"  Grid.Row="2" Margin="10, 30, 10, 0" Text ="{Binding MiniOfficeVM.PricePerDay}"/>
+                    <Label Content="Вместимость/чел" Grid.Row="3" Margin="5 0 5 0" HorizontalAlignment="Center"/>
+                    <TextBox x:Name="AmountOfPlaces" Grid.Row="3" Margin="10, 30, 10, 0" Text ="{Binding MiniOfficeVM.AmountOfPlaces}"/>
+                    <Label Content="Цена в день за место" Grid.Row="4" Margin="5 0 5 0" HorizontalAlignment="Center"/>
+                    <TextBox x:Name="PlacePricePerDay" Grid.Row="4" Margin="10, 30, 10, 0" Text ="{Binding MiniOfficeVM.PlacePricePerDay}"/>
+                    <Label Content="Фикс цена/день за место" Grid.Row="5" Margin="5 0 5 0" HorizontalAlignment="Center"/>
+                    <TextBox x:Name="PlacePriceFixedPerDay" Grid.Row="5" Margin="10, 30, 10, 0" Text ="{Binding MiniOfficeVM.PlacePriceFixedPerDay}"/>
+                    <Label Content="Номер 1-го из мест" Grid.Row="6" Margin="5 0 5 0" HorizontalAlignment="Center"/>
+                    <TextBox x:Name="PlaceNumber" Grid.Row="6" Margin="10, 30, 10, 0" Text ="{Binding MiniOfficeVM.PlaceNumber}"/>
+
+                    <Button x:Name="AddMiniOfficeButton" IsEnabled="{Binding MiniOfficeVM.IsAddButtonAvailable}" Command="{Binding MiniOfficeVM.AddMiniOffice}"
+                            Content="Добавить" Grid.Column="0" Grid.Row="7" Margin="15, 10, 15, 20"/>
+                    <Button x:Name="EditFinallyMiniOfficeButton" Command="{Binding MiniOfficeVM.EditMiniOffice}" CommandParameter="{Binding MiniOfficeVM}"
+                            Content="Редактировать" Grid.Column="0" Grid.Row="8" Margin="15, 10, 15, 20" IsEnabled="{Binding MiniOfficeVM.IsEditButtonAvailable}"/>
+                    <Button x:Name="DeleteMiniOfficeButton" Command="{Binding MiniOfficeVM.DeleteMiniOffice}" Content="Удалить" Grid.Column="0"
+                            Grid.Row="9" Margin="15, 10, 15, 20" IsEnabled="{Binding MiniOfficeVM.IsDeleteButtonAvailable}"/>
+                </Grid>
+                
+                <Grid x:Name="EditPlaceGrid" Visibility="{Binding PlaceVM.GridVisibility}" Grid.Column ="3" Grid.RowSpan="6"
+                      Background="#FFE0DFDF" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                    <Grid.Effect>
+                        <DropShadowEffect Color="Black" ShadowDepth="0.01"/>
+                    </Grid.Effect>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Label Content="Места" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" Margin="0 20 0 0" FontWeight="Bold" FontFamily="Academy Engraved LET Plain"/>
+                    <Label Content="Описание" Grid.Row="1" Margin="5 0 5 0" HorizontalAlignment="Center"/>
+                    <TextBox x:Name="description"  Grid.Row="1" Margin="10, 30, 10, 0" Text ="{Binding PlaceVM.Description}"/>
+                    <Label Content="Цена в день" Grid.Row="2" Margin="5 0 5 0" HorizontalAlignment="Center"/>
+                    <TextBox x:Name="pricePerDay"  Grid.Row="2" Margin="10, 30, 10, 0" Text ="{Binding PlaceVM.PricePerDay}"/>
+                    <Label Content="Фикс цена в день" Grid.Row="3" Margin="5 0 5 0" HorizontalAlignment="Center"/>
+                    <TextBox x:Name="PriceFixedPerDay" Grid.Row="3" Margin="10, 30, 10, 0" Text ="{Binding PlaceVM.PriceFixedPerDay}"/>
+                    <Label Content="Номер места" Grid.Row="4" Margin="5 0 5 0" HorizontalAlignment="Center"/>
+                    <TextBox x:Name="Number" Grid.Row="4" Margin="10, 30, 10, 0" Text ="{Binding PlaceVM.Number}"/>
+
+                    <Button x:Name="AddPlaceButton" IsEnabled="{Binding PlaceVM.IsAddButtonAvailable}" Command="{Binding PlaceVM.AddPlace}"
+                            Content="Добавить" Grid.Column="0" Grid.Row="7" Margin="15, 10, 15, 20"/>
+                    <Button x:Name="EditPlaceButton" Command="{Binding PlaceVM.EditPlace}" Content="Редактировать" Grid.Column="0"
+                            Grid.Row="8" Margin="15, 10, 15, 20" IsEnabled="{Binding PlaceVM.IsEditButtonAvailable}"/>
+                    <Button x:Name="DeletePlaceButton" Command="{Binding PlaceVM.DeletePlace}" Content="Удалить" Grid.Column="0"
+                            Grid.Row="9" Margin="15, 10, 15, 20" IsEnabled="{Binding PlaceVM.IsDeleteButtonAvailable}"/>
+                </Grid>
+
+                <Grid x:Name="EditLaptopGrid" Visibility="{Binding LaptopVM.GridVisibility}" Grid.Column ="3" Grid.RowSpan="6"
+                      Background="#FFE0DFDF" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                    <Grid.Effect>
+                        <DropShadowEffect Color="Black" ShadowDepth="0.01"/>
+                    </Grid.Effect>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Label Content="Компьютеры" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" Margin="0 20 0 0" FontWeight="Bold" FontFamily="Academy Engraved LET Plain"/>
+                    <Label Content="Описание" Grid.Row="2" Margin="5 0 5 0" HorizontalAlignment="Center"/>
+                    <TextBox x:Name="descriptionLaptop"  Grid.Row="2" Margin="10, 30, 10, 0" Text ="{Binding LaptopVM.Description}"/>
+                    <Label Content="Цена в месяц" Grid.Row="3" Margin="5 0 5 0" HorizontalAlignment="Center"/>
+                    <TextBox x:Name="pricePerMonth"  Grid.Row="3" Margin="10, 30, 10, 0" Text ="{Binding LaptopVM.PricePerMonth}"/>
+                    <Label Content="Номер компьютера" Grid.Row="4" Margin="5 0 5 0" HorizontalAlignment="Center"/>
+                    <TextBox x:Name="NumberOfLaptop" Grid.Row="4" Margin="10, 30, 10, 0" Text ="{Binding LaptopVM.Number}"/>
+                    <Label Content="Наименование" Grid.Row="1" Margin="5 0 5 0" HorizontalAlignment="Center"/>
+                    <TextBox x:Name="NameOfPC"  Grid.Row="1" Margin="10, 30, 10, 0" Text ="{Binding LaptopVM.Name}"/>
+
+                    <Button x:Name="AddLaptopButton" IsEnabled="{Binding LaptopVM.IsAddButtonAvailable}" Command="{Binding LaptopVM.AddLaptop}"
+                            Content="Добавить" Grid.Column="0" Grid.Row="7" Margin="15, 10, 15, 20"/>
+                    <Button x:Name="EditLaptopButton" Command="{Binding LaptopVM.EditLaptop}" Content="Редактировать" Grid.Column="0"
+                            Grid.Row="8" Margin="15, 10, 15, 20" IsEnabled="{Binding LaptopVM.IsEditButtonAvailable}"/>
+                    <Button x:Name="DeleteLaptopButton" Command="{Binding LaptopVM.DeleteLaptop}" Content="Удалить" Grid.Column="0"
+                            Grid.Row="9" Margin="15, 10, 15, 20" IsEnabled="{Binding LaptopVM.IsDeleteButtonAvailable}"/>
                 </Grid>
             </Grid>
         </Grid>
@@ -421,8 +533,8 @@
                     <RowDefinition/>
                 </Grid.RowDefinitions>
 
-              
-                <Button x:Name="AddPaymentButton" IsEnabled="{Binding AreButtonsAvailable}" Command="{Binding Payment.ChangePaymentVisibility}" Content="Добавить оплату" Grid.Column="1" Grid.Row="1" Margin="0, 30, 0, 0"/>
+
+                <Button x:Name="AddPaymentButton" IsEnabled="{Binding AreButtonsAvailable}" Command="{Binding CheckIfShouldOpenAddingPaymentGrid}" Content="Добавить оплату" Grid.Column="1" Grid.Row="1" Margin="0, 30, 0, 0"/>
                 <Label Visibility="{Binding IsToolTipOn}" Grid.Column="1" Grid.Row="1" Margin="0, 30, 0, 0">
                     <Label.ToolTip>
                         <TextBlock>Для начала выберите заказ, к которому хотите добавить оплату, в списке.</TextBlock>
@@ -463,35 +575,90 @@
                     <TextBox x:Name="AmountTextBox" Grid.Row="2" Grid.Column="1" Text ="{Binding Payment.Amount}" Margin="15, 15, 15, 15"/>
                     <Label Name="DateLabel" Grid.Row="3" Grid.Column="1" Content="Выберите дату:" Margin="2, 35, 2, 0"/>
                     <DatePicker x:Name="PaymentDatePicker" Grid.Row="4" Grid.Column="1" SelectedDate ="{Binding Payment.PaymentDate}" Margin="15, 15, 15, 15"/> 
-                    <Button x:Name="AddFinallyPaymentButton" IsEnabled="{Binding Payment.IsAddPaymentButtonAvailable}"  Command="{Binding Payment.ChangePaymentVisibility}" Content="Добавить оплату" Grid.Column="1" Grid.Row="6" Margin="15, 0, 15, 30"/>
+                    <Button x:Name="AddFinallyPaymentButton" IsEnabled="{Binding Payment.IsAddPaymentButtonAvailable}"  Command="{Binding AddPaymentCommand}" Content="Добавить оплату" Grid.Column="1" Grid.Row="6" Margin="15, 0, 15, 30"/>
                 </Grid>
             </Grid>
         </Grid>
 
-        <Grid x:Name="CurrentOrderGrid" Grid.Column ="1" Visibility="{Binding CurrentOrder.GridVisibility}">
-            <Label>Text in current order grid</Label>
+        <Grid x:Name="CurrentOrderGrid" Visibility="{Binding CurrentOrder.GridVisibility}" Grid.Column ="1">
+
+            <DataGrid x:Name="CurrentOrderDataGrid" CanUserDeleteRows="False" AutoGenerateColumns="False" Grid.Column="0" CanUserAddRows="False" ItemsSource="{Binding CurrentOrder.CurrentOrder}" Margin="0,0,200,0"  >
+                <DataGrid.Resources>
+                    <Style TargetType="{x:Type DataGridColumnHeader}">
+                        <Setter Property="Background" Value="PaleTurquoise"/>
+                        <Setter Property="BorderThickness" Value="0.1, 0.1, 1, 2"/>
+                        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                        <Setter Property="BorderBrush" Value="Black"/>
+                    </Style>
+                </DataGrid.Resources>
+                <DataGrid.Columns>
+                    <DataGridTextColumn Binding="{Binding Name}" Header=" Имя" Width="150"/>
+                    <DataGridTextColumn Binding="{Binding Type}" Header=" Тип" Width="150"/>
+                    <DataGridTextColumn Binding="{Binding Price}" Header=" Цена" Width="150"/>
+                </DataGrid.Columns>
+            </DataGrid>
+            <Grid x:Name="RightCurrentOrderGrid" Grid.Column ="2" Background="#FFE0DFDF" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="200" Margin="0,0,-600,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="15*"/>
+                    <ColumnDefinition Width="70*"/>
+                    <ColumnDefinition Width="15*"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+
+
+                <Button x:Name="AcceptOrder" Content="Оформить заказ" Command="{Binding CurrentOrder.AddOrder}" Grid.Column="1" Grid.Row="5" Margin="0, 15, 0, 15" Height="47"/>
+                <Button x:Name="DeleteOrder" Content="Удалить из заказа" Grid.Column="1" Grid.Row="5" Margin="0,80,0,-60" Height="47"/>
+                <ComboBox  x:Name="ClientsComboBox" ItemsSource="{Binding CurrentOrder.Clients}" SelectedItem="{Binding CurrentOrder.SelectedClient}" DisplayMemberPath="FullName" HorizontalAlignment="Center" Margin="0,57,0,0" Grid.Row="3" VerticalAlignment="Top" Width="140" Grid.RowSpan="2" Grid.Column="1"/>
+                <Label Grid.Column="1" Content="Выберите клиента:" HorizontalAlignment="Left" Margin="0,8,0,0" Grid.Row="3" VerticalAlignment="Top" FontSize="14"/>
+                <CheckBox x:Name="CheckBoxNotFullPaid" Grid.Column="1" Content="Частичная оплата" IsChecked="{Binding CurrentOrder.IsPaid}" HorizontalAlignment="Left" Margin="0,47,0,0" Grid.Row="4" VerticalAlignment="Top" Height="36" Grid.RowSpan="2"/>
+                <TextBlock Grid.Column="1" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Общая цена:" VerticalAlignment="Top" FontSize="16" Margin="46,16,0,0"/>
+                <TextBlock Margin="0,44,0,0" TextWrapping="Wrap" Text="{Binding CurrentOrder.TotalPrice}" VerticalAlignment="Bottom" FontSize="14" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Right" Width="82" Grid.Column="1" TextAlignment="Right">
+                    <TextBlock.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform ScaleX="1"/>
+                            <SkewTransform/>
+                            <RotateTransform/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </TextBlock.RenderTransform>
+                </TextBlock>
+
+            </Grid>
+
         </Grid>
 
         <Grid x:Name="MiniOfficeInsertGrid" Grid.Column ="1">
 
         </Grid>
 
-        <Grid x:Name="ConferenceRoomInsertGrid" Grid.Column ="1">
+        <Grid x:Name="ConferenceRoomInsertGrid" Visibility="Hidden" Grid.Column ="1">
 
         </Grid>
 
-        <Grid x:Name="MeetingRoomInsertGrid" Grid.Column ="1">
+        <Grid x:Name="MeetingRoomInsertGrid" Visibility="Hidden" Grid.Column ="1">
 
         </Grid>
 
-        <Grid x:Name="PlaceInsertGrid" Grid.Column ="1">
+        <Grid x:Name="PlaceInsertGrid" Visibility="Hidden" Grid.Column ="1">
 
         </Grid>
 
-        <Grid x:Name="ComputersInsertGrid" Grid.Column ="1">
+        <Grid x:Name="ComputersInsertGrid" Visibility="Hidden" Grid.Column ="1">
 
         </Grid>
 
-        <Grid x:Name="ProductsInsertGrid" Grid.Column ="1"/>
+        <Grid x:Name="ProductsInsertGrid" Visibility="Hidden" Grid.Column ="1">
+        </Grid>
     </Grid>
 </Window>

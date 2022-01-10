@@ -1,6 +1,7 @@
 ﻿using CoCowork.BusinessLayer.Models;
 using CoCowork.BusinessLayer.Services;
 using CoCowork.UI.Commands;
+using CoCowork.UI.Commands.OrderHistoryCommands;
 using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Input;
@@ -17,6 +18,7 @@ namespace CoCowork.UI.ViewModels
         private bool _showCanceledAvailability;
         private bool _showActiveAvailability;
         private bool _areButtonsAvailable;
+
         private Visibility _isToolTipOn;
 
         private OrderModel _selectedItem;
@@ -31,6 +33,9 @@ namespace CoCowork.UI.ViewModels
             IsToolTipOn = Visibility.Visible;
 
             GetOrdersCommand = new GetOrdersCommand();
+            AddPaymentCommand = new AddPaymentCommand(Payment);
+            CheckIfShouldOpenAddingPaymentGrid = new CheckIfShouldOpenAddingPaymentGrid(Payment, this);
+
             ShowPaid = true;
             ShowUnpaid = true;
         }
@@ -175,10 +180,14 @@ namespace CoCowork.UI.ViewModels
             }
         }
 
-        public ICommand GetOrdersCommand;
+        public ICommand GetOrdersCommand { get; set; }
+
+        public ICommand AddPaymentCommand { get; set; }
+
+        public ICommand CheckIfShouldOpenAddingPaymentGrid { get; set; }
 
         public OrderService Service;
     }
 }
-    
+
 

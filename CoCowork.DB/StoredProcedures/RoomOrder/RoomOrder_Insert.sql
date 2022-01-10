@@ -18,4 +18,5 @@ BEGIN
 		@StartDate,
 		@SubtotalPrice,
 		@EndDate)
+SELECT SCOPE_IDENTITY()
 END

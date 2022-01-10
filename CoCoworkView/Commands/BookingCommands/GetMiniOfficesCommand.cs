@@ -1,8 +1,5 @@
-﻿using CoCowork.BusinessLayer.Models;
-using CoCowork.BusinessLayer.Services;
+﻿using CoCowork.BusinessLayer.Services;
 using CoCowork.UI.ViewModels;
-using System;
-using System.Collections.ObjectModel;
 
 namespace CoCowork.UI.Commands.BookingCommands
 {
@@ -19,8 +16,6 @@ namespace CoCowork.UI.Commands.BookingCommands
 
         public override void Execute(object parameter)
         {
-            //_vm.MiniOffices = new ObservableCollection<MiniOfficeModel>(_miniOfficeService.GetAll());
-
             var miniOffices = _miniOfficeService.GetAll();
 
             foreach (var item in miniOffices)

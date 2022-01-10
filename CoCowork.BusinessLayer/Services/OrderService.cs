@@ -4,19 +4,50 @@ using CoCowork.DataLayer.Entities;
 using CoCowork.DataLayer.Repositories;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CoCowork.BusinessLayer.Services
 {
-    public class OrderService
+    public class OrderService : IOrderService
     {
         private readonly IOrderRepository _orderRepository;
+
+        private Order _order;
+        private ClientService _clientService;
 
         public OrderService()
         {
             _orderRepository = new OrderRepository();
+            _clientService = new ClientService();
+        }
+
+        public OrderService(IOrderRepository fakeOrderRepository)
+        {
+            _orderRepository = fakeOrderRepository;
+            _clientService = new ClientService();
+
+        }
+
+        public bool CheckPayment(int orderId)
+        {
+            var order = _orderRepository.GetById(orderId);
+            return order.IsPaid;
+        }
+
+        public void MarkAsPaidIfNeeded(int orderId)
+        {
+            var order = _orderRepository.GetById(orderId);
+            decimal realPaidSumm = 0;
+
+            foreach (Payment payment in order.Payments)
+            {
+                if (payment != null) realPaidSumm += payment.Amount;
+            }
+
+            if (realPaidSumm >= order.TotalPrice)
+            {
+                order.IsPaid = true;
+                UpdateOrder(order);
+            }
         }
 
         public List<OrderModel> GetAllOrders()
@@ -25,67 +56,45 @@ namespace CoCowork.BusinessLayer.Services
             return CustomMapper.GetInstance().Map<List<OrderModel>>(orders);
         }
 
-        public List<OrderModel> GetCanceledOrders()
+        public List<OrderModel> GetSpecialOrders(bool isPaid, bool isUnpaid, bool isCancelled)
         {
-            var orders = CustomMapper.GetInstance().Map<List<OrderModel>>(_orderRepository.GetAll());
+            var orders = GetAllOrders();
             var result = new List<OrderModel>();
             foreach (var order in orders)
             {
-                if (order.IsCancelled)
+                if ((order.IsPaid == isPaid || !order.IsPaid == isUnpaid) && (order.IsCanceled == isCancelled || !order.IsCanceled))
                 {
                     result.Add(order);
                 }
             }
             return result;
         }
-
-        public List<OrderModel> GetPaidOrders()
-        {
-            var orders = CustomMapper.GetInstance().Map<List<OrderModel>>(_orderRepository.GetAll());
-            var result = new List<OrderModel>();
-            foreach (var order in orders)
-            {
-                if (order.IsPaid)
-                {
-                    result.Add(order);
-                }
-            }
-            return result;
-        }
-
-        public List<OrderModel> GetUnpaidOrders()
-        {
-            var orders = CustomMapper.GetInstance().Map<List<OrderModel>>(_orderRepository.GetAll());
-            var result = new List<OrderModel>();
-            foreach (var order in orders)
-            {
-                if (!order.IsPaid)
-                {
-                    result.Add(order);
-                }
-            }
-            return result;
-        }
-
 
         public List<OrderModel> GetActiveOrders()
         {
-            var orders = CustomMapper.GetInstance().Map<List<OrderModel>>(_orderRepository.GetAll());
-            var result = new List<OrderModel>();
-            //foreach (var order in orders)
-            //{
-            //    if (order. == true)
-            //    {
-            //        result.Add(order);
-            //    }
-            //}
-            return result;
-        }
+            throw new NotImplementedException();
+        } 
 
         public void UpdateOrder(OrderModel orderModel)
         {
             Order order = CustomMapper.GetInstance().Map<Order>(orderModel);
+            UpdateOrder(order);
+        }
+
+        public Order InsertOrder(OrderModel orderModel)
+        {
+            _order = CustomMapper.GetInstance().Map<Order>(orderModel);
+            //_order.ClientId = _clientService.FindClientInDB(orderModel.Client).Id;
+            var idOrder = _orderRepository.Add(_order);
+            _order.Id = idOrder;
+
+            return _order;
+        }
+
+        private void UpdateOrder(Order order)
+        {
             _orderRepository.Update(order);
         }
     }
 }
+

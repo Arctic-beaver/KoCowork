@@ -1,17 +1,18 @@
-﻿using CoCowork.BusinessLayer.Services;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System;
 
 namespace CoCowork.BusinessLayer.Models
 {
-    public class RoomModel : ItemModel
+    public class RoomModel : BookingItemModel
     {
         public string Type { get; set; }
         public int AmountOfPeople { get; set; }
         public decimal PricePerHour { get; set; }
-        public string Description { get; set; }
+        public int AmountHours { get; set; }
+        public string TypeForDisplayInUI = "Комната";
+
+        public override void CalculateSubtotalPrice(decimal price)
+        {
+            SubtotalPrice = Convert.ToDecimal(GetAmountHours()) * price;
+        }
     }
 }

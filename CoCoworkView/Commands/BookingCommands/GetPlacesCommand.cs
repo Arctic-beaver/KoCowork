@@ -1,8 +1,5 @@
-﻿using CoCowork.BusinessLayer.Models;
-using CoCowork.BusinessLayer.Services;
+﻿using CoCowork.BusinessLayer.Services;
 using CoCowork.UI.ViewModels;
-using System;
-using System.Collections.ObjectModel;
 
 namespace CoCowork.UI.Commands.BookingCommands
 {
@@ -19,11 +16,11 @@ namespace CoCowork.UI.Commands.BookingCommands
 
         public override void Execute(object parameter)
         {
-            var places = _placeService.GetAll();
+            var places = _placeService.GetAllThatNotInMiniOffices();
 
             foreach (var item in places)
             {
-                    _vm.Places.Add(item);
+                _vm.Places.Add(item);
             }
         }
     }
