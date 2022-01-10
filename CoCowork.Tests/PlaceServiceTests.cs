@@ -68,7 +68,6 @@ namespace CoCowork.BusinessLayer.Tests
             //assert
             Assert.IsNotNull(actual);
             Assert.IsTrue(actual.Count > 0);
-            Assert.IsNull(actual[0].MiniOfficeId);
             Assert.IsInstanceOf(typeof(PlaceModel), actual[0]);
         }
 

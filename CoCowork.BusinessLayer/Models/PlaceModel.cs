@@ -11,6 +11,7 @@ namespace CoCowork.BusinessLayer.Models
         public bool IsFixed { get; set; }
         public int AmountDays { get; set; }
         public decimal? PricePerDay { get; set; }
+        public int? MiniOfficeId { get; set; }
         public decimal? PriceFixedPerDay { get; set; }
 
         public PlaceModel()

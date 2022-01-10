@@ -5,8 +5,8 @@ namespace CoCowork.BusinessLayer.Models
     public class LaptopModel : BookingItemModel
     {
         private double _amountMonths;
-        public int Number { get; set; }
-        public decimal PricePerMonth { get; set; }
+        public int? Number { get; set; }
+        public decimal? PricePerMonth { get; set; }
         public int AmountMonth { get; set; }
 
         public LaptopModel()
