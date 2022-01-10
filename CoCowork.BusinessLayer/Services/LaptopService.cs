@@ -19,14 +19,9 @@ namespace CoCowork.BusinessLayer.Services
             _orderRepository = new LaptopOrderRepository();
         }
 
-        public LaptopService(ILaptopOrderRepository fakeLaptopOrderRepository)
+        public LaptopService(ILaptopOrderRepository fakeLaptopOrderRepository, ILaptopRepository fakeLaptopRepository)
         {
             _orderRepository = fakeLaptopOrderRepository;
-            _laptopRepository = new LaptopRepository();
-        }
-
-        public LaptopService(ILaptopRepository fakeLaptopRepository)
-        {
             _laptopRepository = fakeLaptopRepository;
         }
 

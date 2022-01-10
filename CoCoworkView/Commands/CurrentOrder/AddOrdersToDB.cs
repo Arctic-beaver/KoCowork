@@ -28,14 +28,14 @@ namespace CoCowork.UI.Commands.CurrentOrder
 
         public override void Execute(object parameter)
         {
-            if (_vm.SelectClient == null)
+            if (_vm.SelectedClient == null)
             {
                 MessageBox.Show("Сначала выберите клиента!");
 
             }
             else
             {
-                _orderModel = new OrderModel { Client = _vm.SelectClient, IsCancelled = _vm.IsCancelled, IsPaid = _vm.IsPaid, TotalPrice = _vm.TotalPrice };
+                _orderModel = new OrderModel { Client = _vm.SelectedClient, IsCancelled = _vm.IsCancelled, IsPaid = _vm.IsPaid, TotalPrice = _vm.TotalPrice };
 
                 //var clientEntity = _clientService.FindClientInDB(_vm.SelectClient);
                 var newOrder = _orderService.InsertOrder(_orderModel);

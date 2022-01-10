@@ -8,11 +8,13 @@ namespace CoCowork.BusinessLayer.Tests
     public class LaptopServiceTests
     {
         private readonly Mock<ILaptopRepository> _laptopRepositoryMock;
+        private Mock<ILaptopOrderRepository> _orderRepositoryMock;
         private readonly LaptopTestData _laptopTestData;
 
         public LaptopServiceTests()
         {
             _laptopRepositoryMock = new Mock<ILaptopRepository>();
+            _orderRepositoryMock = new Mock<ILaptopOrderRepository>();
             _laptopTestData = new LaptopTestData();
         }
 
@@ -22,7 +24,8 @@ namespace CoCowork.BusinessLayer.Tests
             //arrange
             var laptops = _laptopTestData.GetLaptopListForTests();
             _laptopRepositoryMock.Setup(m => m.GetAll()).Returns(laptops);
-            var sut = new LaptopService(_laptopRepositoryMock.Object);
+            _orderRepositoryMock.Setup(m => m.GetAllLaptopOrders());
+            var sut = new LaptopService(_orderRepositoryMock.Object, _laptopRepositoryMock.Object);
 
             //act
             var actual = sut.GetAll();
