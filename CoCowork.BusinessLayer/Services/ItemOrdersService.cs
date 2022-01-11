@@ -16,6 +16,7 @@ namespace CoCowork.BusinessLayer.Services
 
             foreach (var item in ordersList)
             {
+                item.Order = order;
                 item.ItemService.AddItemOrder(item);
             }
         }
