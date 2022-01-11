@@ -91,6 +91,8 @@ namespace CoCowork.UI.ViewModels
 
             AddToCurrentOrders = new AddToCurrentOrders(currentOrderVM, bookingVM, this);
             ChangeInnerGridVisibility = new VisibilityOfInnerGridCommand(this);
+            StartDatePicker = DateTime.Now;
+            EndDatePicker = DateTime.Now;
         }
     }
 }
