@@ -70,6 +70,18 @@ namespace CoCowork.UI.ViewModels
             }
         }
 
+        private ItemModel _selectedItemOrder;
+        public ItemModel SelectedItemOrder
+        {
+            get { return _selectedItemOrder; }
+            set
+            {
+                _selectedItemOrder = value;
+
+                OnPropertyChanged("SelectedClient");
+            }
+        }
+
         public decimal? _totalPrice;
         public decimal? TotalPrice
         {
@@ -87,6 +99,7 @@ namespace CoCowork.UI.ViewModels
 
             _clientService = new ClientService();
             GetClients = new GetClientsCommand(this, _clientService);
+            DeleteOrder = new DeleteFromeCurrentOrder(this);
 
             GridVisibility = Visibility.Hidden;
             AddOrder = new AddOrdersToDB(this);
@@ -97,6 +110,7 @@ namespace CoCowork.UI.ViewModels
         public ICommand GetClients { get; set; }
 
         public ICommand AddOrder { get; set; }
+        public ICommand DeleteOrder { get; set; }
 
        
         public void CalculateTotalPriceInUI()
