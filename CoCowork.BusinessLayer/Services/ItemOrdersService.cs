@@ -6,6 +6,11 @@ namespace CoCowork.BusinessLayer.Services
 {
     public class ItemOrdersService : IItemOrdersService
     {
+        public ItemOrdersService()
+        {
+
+        }
+
         public void CreateOrdersForItem(ObservableCollection<ItemModel> ordersList, Order order)
         {
 

@@ -110,7 +110,13 @@ namespace CoCowork.BusinessLayer.Services
 
         public int AddItemOrder(ItemModel bookingItem)
         {
-            throw new NotImplementedException();
+            var _entity = _miniOfficeRepository.GetMiniOfficeById(bookingItem.Id);
+            BookingItemModel bookingItemModel = (BookingItemModel)bookingItem;
+
+
+            _itemOrder = new MiniOfficeOrder { MiniOffice = _entity, Order = bookingItem.Order, StartDate = bookingItemModel.StartDate, EndDate = bookingItemModel.EndDate, SubtotalPrice = bookingItem.SubtotalPrice };
+
+            return _orderRepository.Add(_itemOrder);
         }
 
         public int AddItemOrder(BookingItemModel bookingItem)
