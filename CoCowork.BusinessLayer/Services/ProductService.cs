@@ -46,7 +46,36 @@ namespace CoCowork.BusinessLayer.Services
             return CustomMapper.GetInstance().Map<List<ProductModel>>(Products);
         }
 
+        public List<ProductModel> GetProductsInStock()
+        {
+            var products = CustomMapper.GetInstance().Map<List<ProductModel>>(_productRepository.GetAll());
+            var result = new List<ProductModel>();
+            foreach (var product in products)
+            {
+                if (product.Amount != 0)
+                {
+                    result.Add(product);
+                }
+            }
+            return result;
+        }
 
+        public void UpdateProduct(ProductModel productModel)
+        {
+            Product product = CustomMapper.GetInstance().Map<Product>(productModel);
+            _productRepository.Update(product);
+        }
+
+        public int AddProduct(ProductModel productModel)
+        {
+            Product product = CustomMapper.GetInstance().Map<Product>(productModel);
+            return _productRepository.Add(product);
+
+        }
+
+        public void DeleteProduct(int id)
+        {
+            _productRepository.Delete(id);
+        }
     }
 }
-

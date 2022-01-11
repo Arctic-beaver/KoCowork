@@ -35,11 +35,11 @@ namespace CoCowork.DataLayer.Repositories
                     commandType: CommandType.StoredProcedure);
         }
 
-        public void Add(Client client)
+        public int Add(Client client)
         {
             using IDbConnection connection = ProvideConnection();
 
-            connection.Execute(_insertProc,
+            return connection.Execute(_insertProc,
                 new
                 {
                     FirstName = client.FirstName,

@@ -6,8 +6,8 @@ namespace CoCowork.BusinessLayer.Models
     {
         public string Phone { get; set; }
         public string Email { get; set; }
-        public DateTime BirthDate { get; set; }
-        public int PaperAmount { get; set; }
-        public DateTime PaperEndDate { get; set; }
+        public DateTime? DateBirth { get; set; }
+        public int? PaperAmount { get; set; }
+        public DateTime? PaperEndDate { get; set; }
     }
 }

@@ -5,7 +5,7 @@ namespace CoCowork.DataLayer.Repositories
 {
     public interface IClientRepository
     {
-        void Add(Client client);
+        int Add(Client client);
         void DeleteClientById(int id);
         List<Client> GetAll();
         Client GetClientById(int id);

@@ -1,5 +1,5 @@
 ﻿CREATE PROC dbo.Product_Insert
-	@Name varchar(20),
+	@Name varchar(30),
 	@Amount int,
 	@PriceForOne decimal,
 	@Description text

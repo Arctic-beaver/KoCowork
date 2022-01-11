@@ -17,14 +17,37 @@ namespace CoCowork.BusinessLayer.Services
 
         public List<ClientModel> GetAll()
         {
-            var players = _clientRepository.GetAll();
-            return CustomMapper.GetInstance().Map<List<ClientModel>>(players);
+            var clients = _clientRepository.GetAll();
+            return CustomMapper.GetInstance().Map<List<ClientModel>>(clients);
         }
 
         public Client FindClientInDB(ClientModel clientModel)
         {
             var client = _clientRepository.GetClientById(clientModel.Id);
             return client;
+        }
+
+        public void UpdateClient(ClientModel clientModel)
+        {
+            Client client = CustomMapper.GetInstance().Map<Client>(clientModel);
+            _clientRepository.UpdateClientById(client);
+        }
+
+        public int AddClient(ClientModel clientModel) //Change!!!!!
+        {
+            Client client = CustomMapper.GetInstance().Map<Client>(clientModel);
+            return _clientRepository.Add(client);
+            //try
+            //{
+            //    _clientRepository.Add(client);
+            //    result = "Успех";
+            //}
+            //catch (Exception ex)
+            //{
+            //    result = ex.Message;
+            //}
+            //return result;
+
         }
     }
 }

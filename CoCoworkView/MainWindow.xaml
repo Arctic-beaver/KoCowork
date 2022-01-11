@@ -29,8 +29,42 @@
             <i:InvokeCommandAction Command="{Binding Booking.GetPlaces}"/>
             <i:InvokeCommandAction Command="{Binding CurrentOrder.GetClients}"/>
             <i:InvokeCommandAction Command="{Binding Booking.GetLaptops}"/>
+            <i:InvokeCommandAction Command="{Binding Product.GetProductsCommand}"/>
+            <i:InvokeCommandAction Command="{Binding Client.GetClientsCommand}"/>
         </i:EventTrigger>
     </i:Interaction.Triggers>
+    <Window.Resources>
+        <Style x:Key="placeHolder" TargetType="{x:Type TextBox}" BasedOn="{StaticResource {x:Type TextBox}}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type TextBox}">
+                        <Grid>
+                            <TextBox Text="{Binding Path=Text,
+                                                RelativeSource={RelativeSource TemplatedParent},
+                                                Mode=TwoWay,
+                                                UpdateSourceTrigger=PropertyChanged}"
+                                 x:Name="textSource"
+                                 Background="Transparent"
+                                 Panel.ZIndex="2" />
+                            <TextBox Text="{TemplateBinding Tag}" Background="{TemplateBinding Background}" Panel.ZIndex="1">
+                                <TextBox.Style>
+                                    <Style TargetType="{x:Type TextBox}">
+                                        <Setter Property="Foreground" Value="Transparent"/>
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding Path=Text, Source={x:Reference textSource}}" Value="">
+                                                <Setter Property="Foreground" Value="#FF807463"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </TextBox.Style>
+                            </TextBox>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="20*"/>
@@ -62,7 +96,7 @@
             <Button x:Name="CurrentOrderButton" Command="{Binding MakeGridVisible}" CommandParameter="{Binding CurrentOrder}" Content="Текущий заказ" Grid.Column="1" Grid.Row="5" Margin="0, 18, 0, 18"/>
         </Grid>
 
-        <Grid x:Name="BookingGrid" Grid.Column ="1" Visibility="Visible" DataContext="{Binding Booking}">
+        <Grid x:Name="BookingGrid" Grid.Column ="1" Visibility="{Binding GridVisibility}" DataContext="{Binding Booking}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="70*"/>
                 <ColumnDefinition Width="25*"/>
@@ -370,12 +404,171 @@
         </Grid>
         
 
-        <Grid x:Name="ProductsGrid" Grid.Column ="1" Visibility="{Binding Product.GridVisibility}">
-            <Label>Text in products grid</Label>
+        <Grid x:Name="ProductsGrid" Grid.Column ="1" DataContext="{Binding Product}" Visibility="{Binding GridVisibility}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="75*"/>
+                <ColumnDefinition Width="25*"/>
+            </Grid.ColumnDefinitions>
+            <Grid x:Name="RightProductsGrid" Grid.Column ="2" Background="#FFE0DFDF" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="15*"/>
+                    <ColumnDefinition Width="70*"/>
+                    <ColumnDefinition Width="15*"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <Button x:Name="AddNewProductButton" Command="{Binding AddNewProductViewModel.ChangeProductVisibility}" Content="Инсертнуть" Grid.Column="1" Grid.Row="1" Margin="0, 0, 0, 50"/>
+                <StackPanel x:Name="ProductPanelChekBox" Grid.Column="1" Grid.Row="2"  Margin="0,0,0,20">
+                    <CheckBox Content="Товары в наличии" Margin="0, 5, 0, 0" />
+                </StackPanel>
+                <Button x:Name="EditProductButton" IsEnabled ="{Binding IsEditButtonAvailable}" Command="{Binding EditProductViewModel.ChangeProductVisibility}" CommandParameter="{Binding FillProductFields}" Content="Редактировать" Grid.Column="1" Grid.Row="3" Margin="0, 0, 0, 50"/>
+                <Button x:Name="AddToProductOrderButton" Content="Добавить к заказу" Grid.Column="1" Grid.Row="4" Margin="0, 45, 0, 0"/>
+            </Grid>
+            <Grid x:Name ="MainProductGrid" Grid.Column ="0" Background="#FFE0DFDF" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="70*"/>
+                    <ColumnDefinition Width="auto"/>
+                </Grid.ColumnDefinitions>
+                <DataGrid x:Name="ProductDataGrid" ItemsSource="{Binding Products}" SelectedItem="{Binding Path= SelectedProduct, Mode=TwoWay}" CanUserAddRows="False" CanUserDeleteRows="False" CanUserReorderColumns="False" CanUserSortColumns="True"  Grid.Column="0" ColumnWidth="*" AutoGenerateColumns="False">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Наименование" Width ="auto" Binding="{Binding Name}" IsReadOnly="True"/>
+                        <DataGridTextColumn Header="Цена за шт" Width ="auto" Binding="{Binding PriceForOne}" IsReadOnly="True"/>
+                        <DataGridTextColumn Header="Количество" Width ="auto" Binding="{Binding Amount}" IsReadOnly="True"/>
+                        <DataGridTextColumn Header="Описание" Width ="auto" Binding="{Binding Description}" IsReadOnly="True"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+
+                <Grid x:Name ="AddProductGrid" Visibility ="{Binding AddNewProductViewModel.GridVisibility}" Grid.Column ="1" Background="#FFE0DFDF" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="200">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Label Name="ProductNameLabel" Grid.Row="2" Grid.Column ="1" Content="Введите товар:" Margin="15,0,0,0" />
+                    <TextBox x:Name ="ProductName" Grid.Row ="2" Grid.Column ="1" Margin="15,25,15,0" Style="{StaticResource placeHolder}" Tag="Введите товар" Text="{Binding AddNewProductViewModel.Name}"/>
+                    <Label Name="ProductPriceLabel" Grid.Row="3" Grid.Column ="1" Content="Введите цену:" Margin="15,0,0,0" />
+                    <TextBox x:Name ="ProductPrice" Grid.Row ="3" Grid.Column ="1" Margin="15,25,15,0" Style="{StaticResource placeHolder}" Tag="Введите цену" Text="{Binding AddNewProductViewModel.PriceForOne}"/>
+                    <Label Name="ProductAmountLabel" Grid.Row="4" Grid.Column ="1" Content="Введите количество:" Margin="15,0,0,0" />
+                    <TextBox x:Name ="ProductAmount" Grid.Row ="4" Grid.Column ="1" Margin="15,25,15,0" Style="{StaticResource placeHolder}" Tag="Введите количество" Text="{Binding AddNewProductViewModel.Amount}"/>
+                    <Label Name="ProductDescriptionLabel" Grid.Row="5" Grid.Column ="1" Content="Введите описание:" Margin="15,0,0,0" />
+                    <TextBox x:Name ="ProductDescription" Grid.Row ="5" Grid.Column ="1" Margin="15,25,15,0" Style="{StaticResource placeHolder}" Tag="Введите описание" Text="{Binding AddNewProductViewModel.Description}"/>
+                    <Button x:Name ="AddFinallyProduct" Content="Добавить новый товар" Grid.Row="7" Margin="15" Command="{Binding AddNewProduct}" />
+                </Grid>
+                <Grid x:Name ="EditProductGrid" Visibility ="{Binding EditProductViewModel.GridVisibility}" Grid.Column ="1" Background="#FFE0DFDF" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="200">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Label Name="ProductEditNameLabel" Grid.Row="2" Grid.Column ="1" Content="Введите товар:" Margin="15,0,0,0" />
+                    <TextBox x:Name ="ProductEditName" Grid.Row ="2" Grid.Column ="1" Margin="15,25,15,0"  Text="{Binding EditProductViewModel.Name}"/>
+                    <Label Name="ProductEditPriceLabel" Grid.Row="3" Grid.Column ="1" Content="Введите цену:" Margin="15,0,0,0" />
+                    <TextBox x:Name ="ProductEditPrice" Grid.Row ="3" Grid.Column ="1" Margin="15,25,15,0"  Text="{Binding EditProductViewModel.PriceForOne}"/>
+                    <Label Name="ProductEditAmountLabel" Grid.Row="4" Grid.Column ="1" Content="Введите количество:" Margin="15,0,0,0" />
+                    <TextBox x:Name ="ProductEditAmount" Grid.Row ="4" Grid.Column ="1" Margin="15,25,15,0"  Text="{Binding EditProductViewModel.Amount}"/>
+                    <Label Name="ProductEditDescriptionLabel" Grid.Row="5" Grid.Column ="1" Content="Введите описание:" Margin="15,0,0,0" />
+                    <TextBox x:Name ="ProductEditDescription" Grid.Row ="5" Grid.Column ="1" Margin="15,25,15,0"  Text="{Binding EditProductViewModel.Description}"/>
+                    <Button x:Name ="EditFinallyProduct" Content="Сохранить" Grid.Row="7" Margin="15" Command="{Binding EditProduct}" />
+                </Grid>
+            </Grid>
         </Grid>
 
-        <Grid x:Name="ClientsGrid" Grid.Column ="1" Visibility="{Binding Client.GridVisibility}">
-            <Label>Text in client grid</Label>
+
+
+
+        <Grid x:Name="ClientsGrid" Grid.Column ="1" DataContext="{Binding Client}" Visibility="{Binding GridVisibility}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="75*"/>
+                <ColumnDefinition Width="25*"/>
+            </Grid.ColumnDefinitions>
+            <Grid x:Name="RightClientsGrid" Grid.Column ="2" Background="#FFE0DFDF" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="15*"/>
+                    <ColumnDefinition Width="70*"/>
+                    <ColumnDefinition Width="15*"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <Button x:Name="AddNewClientButton" Command="{Binding AddNewClientViewModel.ChangeClientVisibility}" Content="Инсертнуть" Grid.Column="1" Grid.Row="1" Margin="0, 0, 0, 50"/>
+                <Button x:Name="EditClientButton" Content="Редактировать" Grid.Column="1" Grid.Row="3" Margin="0, 0, 0, 50"/>
+            </Grid>
+            <Grid x:Name ="MainClientGrid" Grid.Column ="0" Background="#FFE0DFDF" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="70*"/>
+                    <ColumnDefinition Width="auto"/>
+                </Grid.ColumnDefinitions>
+                
+                <DataGrid x:Name="ClientDataGrid" ItemsSource="{Binding Clients}" SelectedItem="{Binding Path= SelectedItem, Mode=TwoWay}" CanUserAddRows="False" CanUserDeleteRows="False" CanUserReorderColumns="False" CanUserSortColumns="True"  Grid.Column="0" AutoGenerateColumns="False" ColumnWidth="*" Width="auto">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Имя" Binding="{Binding FirstName}" IsReadOnly="True"/>
+                        <DataGridTextColumn Header="Фамилия" Binding="{Binding LastName}" IsReadOnly="True"/>
+                        <DataGridTextColumn Header="Телефон" Binding="{Binding Phone}" IsReadOnly="True"/>
+                        <DataGridTextColumn Header="Email" Binding="{Binding Email}" IsReadOnly="True"/>
+                        <DataGridTextColumn Header="Дата рождения" Binding="{Binding DateBirth}" IsReadOnly="True"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+                
+                <Grid x:Name ="AddClientGrid" Visibility ="{Binding AddNewClientViewModel.GridVisibility}" Grid.Column ="1" Background="#FFE0DFDF" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="200">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Label Name="ClientFirstNameLabel" Grid.Row="1" Grid.Column ="1" Content="Введите имя:" Margin="15,0,0,0" />
+                    <TextBox x:Name ="ClientFirstName" Grid.Row ="1" Grid.Column ="1" Margin="15,25,15,0" Style="{StaticResource placeHolder}" Tag="Введите имя" Text="{Binding AddNewClientViewModel.FirstName}"/>
+                    <Label Name="ClientLastNameLabel" Grid.Row="2" Grid.Column ="1" Content="Введите фамилию:" Margin="15,0,0,0" />
+                    <TextBox x:Name ="ClientLastName" Grid.Row ="2" Grid.Column ="1" Margin="15,25,15,0" Style="{StaticResource placeHolder}" Tag="Введите фамилию" Text="{Binding AddNewClientViewModel.LastName}"/>
+                    <Label Name="ClientPhoneLabel" Grid.Row="3" Grid.Column ="1" Content="Введите телефон:" Margin="15,0,0,0" />
+                    <TextBox x:Name ="ClientPhone" Grid.Row ="3" Grid.Column ="1" Margin="15,25,15,0" Style="{StaticResource placeHolder}" Tag="Введите телефон" Text="{Binding AddNewClientViewModel.Phone}"/>
+                    <Label Name="ClientEmailLabel" Grid.Row="4" Grid.Column ="1" Content="Введите email:" Margin="15,0,0,0" />
+                    <TextBox x:Name ="ClientEmail" Grid.Row ="4" Grid.Column ="1" Margin="15,25,15,0" Style="{StaticResource placeHolder}" Tag="Введите email" Text="{Binding AddNewClientViewModel.Email}"/>
+                    <Label Name="ClientBirthDateLabel" Grid.Row="5" Grid.Column ="1" Content="Введите дату рождения:" Margin="15,0,0,0" />
+                    <DatePicker x:Name="ClientDatePicker" Grid.Row="5" Grid.Column="1" SelectedDate ="{Binding AddNewClientViewModel.DateBirth}" Margin="15, 25, 15, 0"/>
+                    <Label Name="ClientPaperAmountLabel" Grid.Row="6" Grid.Column ="1" Content="Введите количество листов:" Margin="15,0,0,0" />
+                    <TextBox x:Name ="ClientPaperAmount" Grid.Row ="6" Grid.Column ="1" Margin="15,25,15,0" Style="{StaticResource placeHolder}" Tag="Введите количество листов" Text="{Binding AddNewClientViewModel.PaperAmount}"/>
+                    <Label Name="ClientPaperEndDateLabel" Grid.Row="7" Grid.Column ="1" Content="Дата окончания печати:" Margin="15,0,0,0" />
+                    <TextBox x:Name ="ClientPaperEndDate" Grid.Row ="7" Grid.Column ="1" Margin="15,25,15,0" Style="{StaticResource placeHolder}" Tag="Дата окончания печати" Text="{Binding AddNewClientViewModel.PaperEndDate}"/>
+                    <Button x:Name ="AddFinallyClient" Content="Добавить нового клиента" Grid.Row="9" Margin="15" Command="{Binding AddNewClientCommand}" />
+                </Grid>
+            </Grid>
         </Grid>
 
         <Grid x:Name="OrderGrid" Grid.Column ="1" Visibility="{Binding GridVisibility}" DataContext="{Binding Order}">
