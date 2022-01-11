@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CoCowork.BusinessLayer.Services;
+using System;
 using System.Collections.Generic;
 
 namespace CoCowork.BusinessLayer.Models
@@ -20,8 +21,10 @@ namespace CoCowork.BusinessLayer.Models
         {
             _amountDays = GetAmountDays();
             SubtotalPrice = Convert.ToDecimal(_amountDays) * PricePerDay;
+            ItemService = new MiniOfficeService();
+
         }
 
-       
+
     }
 }

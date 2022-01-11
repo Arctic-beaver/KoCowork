@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CoCowork.BusinessLayer.Services;
+using System;
 
 namespace CoCowork.BusinessLayer.Models
 {
@@ -18,6 +19,7 @@ namespace CoCowork.BusinessLayer.Models
         {
             _amountMonths = GetAmountMonth();
             SubtotalPrice = Convert.ToDecimal(_amountMonths) * PricePerMonth;
+            ItemService = new LaptopService();
         }
 
        

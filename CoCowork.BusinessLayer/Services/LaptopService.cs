@@ -70,8 +70,10 @@ namespace CoCowork.BusinessLayer.Services
         public int AddItemOrder(BookingItemModel bookingItem)
         {
             var _entity = _laptopRepository.GetById(bookingItem.Id);
+            BookingItemModel bookingItemModel = (BookingItemModel)bookingItem;
 
-            _itemOrder = new LaptopOrder { Laptop = _entity, Order = bookingItem.Order, StartDate = bookingItem.StartDate, EndDate = bookingItem.EndDate, SubtotalPrice = bookingItem.SubtotalPrice };
+
+            _itemOrder = new LaptopOrder { Laptop = _entity, Order = bookingItem.Order, StartDate = bookingItem.StartDate, EndDate = bookingItemModel.EndDate, SubtotalPrice = bookingItemModel.SubtotalPrice };
 
             return _orderRepository.Add(_itemOrder);
 
@@ -79,7 +81,13 @@ namespace CoCowork.BusinessLayer.Services
 
         public int AddItemOrder(ItemModel bookingItem)
         {
-            throw new NotImplementedException();
+            var _entity = _laptopRepository.GetById(bookingItem.Id);
+            BookingItemModel bookingItemModel = (BookingItemModel)bookingItem;
+
+
+            _itemOrder = new LaptopOrder { Laptop = _entity, Order = bookingItem.Order, StartDate = bookingItemModel.StartDate, EndDate = bookingItemModel.EndDate, SubtotalPrice = bookingItem.SubtotalPrice };
+
+            return _orderRepository.Add(_itemOrder);
         }
     }
 }

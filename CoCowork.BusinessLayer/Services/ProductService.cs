@@ -30,6 +30,7 @@ namespace CoCowork.BusinessLayer.Services
 
             var _entity = _productRepository.GetById(bookingItem.Id);
 
+
             _itemOrder = new ProductOrder { Product = _entity, Order = bookingItem.Order, SubtotalPrice = bookingItem.SubtotalPrice };
 
             return _orderRepository.Add(_itemOrder);

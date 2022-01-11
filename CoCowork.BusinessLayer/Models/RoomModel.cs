@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CoCowork.BusinessLayer.Services;
+using System;
 
 namespace CoCowork.BusinessLayer.Models
 {
@@ -12,6 +13,8 @@ namespace CoCowork.BusinessLayer.Models
         public RoomModel()
         {
             TypeForDisplayInUI = "Комната";
+            ItemService = new RoomService();
+
         }
 
         public override void CalculateSubtotalPrice()
